@@ -1,7 +1,7 @@
 # upgrade all -y
 
-$PSScriptRoot\_ChocoDefault.ps1
-$PSScriptRoot\_ChocoDev.ps1
+. $PSScriptRoot\_ChocoDefault.ps1
+. $PSScriptRoot\_ChocoDev.ps1
 
 choco upgrade conemu -y
 choco upgrade nvm -y

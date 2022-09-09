@@ -1,6 +1,6 @@
 # upgrade all -y
 
-$PSScriptRoot\_ChocoDefault.ps1
+. $PSScriptRoot\_ChocoDefault.ps1
 
 # manual: awesome duplicate photo finder
 # manual: collageit
