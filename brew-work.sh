@@ -22,7 +22,7 @@ brew install --cask gpg-suite --force
 brew install --cask iterm2 --force
 brew install nvm --force
 brew install oh-my-posh --force
-# manual: onedrive
+brew install --cask onedrive --force
 # manual: paste plain text
 brew install --cask pinta --force
 brew install --cask postman --force

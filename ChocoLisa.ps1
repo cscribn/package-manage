@@ -1,5 +1,3 @@
-# upgrade all -y
-
 . $PSScriptRoot\_ChocoDefault.ps1
 
 # manual: awesome duplicate photo finder
@@ -8,3 +6,5 @@
 choco upgrade nvidia-display-driver -y
 # manual: scansnap
 # manual: silhouette studio
+
+upgrade all -y
