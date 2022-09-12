@@ -1,18 +1,15 @@
-choco upgrade filezilla -y
-choco upgrade git -y
 choco upgrade github-desktop -y
-choco upgrade kitty -y
-choco upgrade msys2 -y
-choco upgrade notepadplusplus -y
 choco upgrade nvm -y
-choco upgrade oh-my-posh -y
+choco upgrade nvm.install -y
+choco upgrade strawberryperl -y
 choco upgrade python -y
 
 # ruby
 choco upgrade ruby -y
+choco upgrade ruby.install -y
 Update-SessionEnvironment
 ridk install 2 3
 gem install colorls
 
-choco upgrade vim -y
 choco upgrade vscode -y
+choco upgrade vscode.install -y

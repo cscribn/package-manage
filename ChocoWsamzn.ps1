@@ -4,6 +4,5 @@
 choco upgrade conemu -y
 choco upgrade nvm -y
 choco upgrade postman -y
-choco upgrade googledrive -y
 
 upgrade all -y

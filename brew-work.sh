@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#brew upgrade && brew upgrade --cask
-
 brew tap homebrew/cask-versions
 
 brew install --cask amazon-workspaces --force
@@ -10,7 +8,6 @@ brew install bash --force
 # manual: embrava
 brew install --cask docker --force
 brew install --cask firefox --force
-# manual: forticlient
 brew install --cask gimp --force
 brew install --cask font-meslo-lg-nerd-font --force
 brew install git --force
@@ -29,7 +26,6 @@ brew install --cask postman --force
 brew install --cask powershell --force
 brew install rbenv --force
 brew uninstall ruby-build
-# manual: safari
 brew install --cask slack --force
 brew install --cask skitch --force
 brew install --cask studio-3t --force
@@ -41,3 +37,6 @@ brew install --cask vlc --force
 brew install yarn --force
 brew install zsh --force
 brew install --cask zoom --force
+
+
+brew upgrade && brew upgrade --cask
