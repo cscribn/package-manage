@@ -10,4 +10,4 @@ choco upgrade samsung-magician -y
 # manual: scansnap
 # manual: silhouette studio
 
-upgrade all -y
+choco upgrade all -y
