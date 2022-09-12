@@ -5,4 +5,4 @@ choco upgrade conemu -y
 choco upgrade nvm -y
 choco upgrade postman -y
 
-upgrade all -y
+choco upgrade all -y
