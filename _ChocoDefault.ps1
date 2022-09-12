@@ -66,3 +66,9 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
+
+# microsoft-windows-terminal
+Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\microsoft-windows-terminal"
+git clone https://github.com/cscribn/config-microsoft-windows-terminal.git  "$Env:USERPROFILE\.config\microsoft-windows-terminal"
+$LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
+Copy-Item -Force -Path "$Env:USERPROFILE\.config\microsoft-windows-terminal\LocalState\settings.json" -Destination "$LocalStateDir"
