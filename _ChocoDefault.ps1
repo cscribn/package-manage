@@ -1,5 +1,7 @@
 choco upgrade chocolatey -y
 choco upgrade curl -y
+choco upgrade git -y
+choco upgrade git.install -y
 
 choco upgrade 7zip -y
 choco upgrade 7zip.install -y
@@ -15,21 +17,19 @@ choco upgrade ghostscript -y
 choco upgrade googlechrome -y
 choco upgrade googledrive -y
 choco upgrade gimp -y
-choco upgrade git -y
-choco upgrade git.install -y
 choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
 choco upgrade kitty -y
 
 # Meslo LGS Nerd Font
-cd $Env:Windir\Fonts
+Set-Location "$Env:Windir\Fonts"
 
 curl -fLo "Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/complete/Meslo%20LG%20S%20Regular%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf
 
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "MesloLGS NF" /t REG_SZ /d "Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf" /f
 
-cd -
+Set-Location -
 
 choco upgrade microsoft-edge -y
 choco upgrade microsoft-windows-terminal -y
@@ -54,5 +54,10 @@ choco upgrade sumatrapdf.install -y
 choco upgrade vlc -y
 choco upgrade vlc.install -y
 choco upgrade vim -y
-# manual: zsh
 choco upgrade zoom -y
+
+# zsh
+Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\zsh"
+git clone https://github.com/cscribn/config-zsh.git  "$Env:USERPROFILE\.config\zsh"
+Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
+Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\*" -Destination "C\Program Files\Git"
