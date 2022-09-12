@@ -11,5 +11,6 @@ Update-SessionEnvironment
 ridk install 2 3
 gem install colorls
 
+choco upgrade xmlstarlet -y
 choco upgrade vscode -y
 choco upgrade vscode.install -y
