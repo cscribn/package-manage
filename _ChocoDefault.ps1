@@ -13,6 +13,7 @@ choco upgrade cutepdf -y
 choco upgrade dvddecrypter -y
 choco upgrade filezilla -y
 choco upgrade firefox -y
+choco upgrade freefilesync -y
 choco upgrade ghostscript -y
 choco upgrade googlechrome -y
 choco upgrade googledrive -y
