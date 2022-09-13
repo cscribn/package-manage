@@ -42,7 +42,7 @@ rbenv install --verbose "$ruby_version"
 rbenv global "$ruby_version"
 gem install colorls
 rm -rf ~/.config/colorls
-git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/colorls
+git clone https://github.com/cscribn/config-colorls.git  ~/.config/colorls
 
 brew install --cask slack --force
 brew install --cask skitch --force

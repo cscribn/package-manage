@@ -61,7 +61,7 @@ Update-SessionEnvironment
 ridk install 2 3
 gem install colorls
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
-git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\colorls"
+git clone https://github.com/cscribn/config-colorls.git  "$Env:USERPROFILE\.config\colorls"
 
 choco upgrade scribus -y
 choco upgrade sumatrapdf -y
