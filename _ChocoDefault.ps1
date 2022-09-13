@@ -37,7 +37,12 @@ choco upgrade nextdns -y
 choco upgrade notepadplusplus -y
 choco upgrade notepadplusplus.install -y
 choco upgrade onedrive --ignore-checksums -y
+
+# oh-my-posh
 choco upgrade oh-my-posh -y
+Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
+git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
+
 choco upgrade paint.net -y
 
 # powershell
@@ -48,6 +53,16 @@ Install-Module PSReadLine -AllowPrerelease -Force
 choco upgrade peazip -y
 choco upgrade peazip.install -y
 choco upgrade puretext -y
+
+# ruby
+choco upgrade ruby -y
+choco upgrade ruby.install -y
+Update-SessionEnvironment
+ridk install 2 3
+gem install colorls
+Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
+git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\colorls"
+
 choco upgrade scribus -y
 choco upgrade sumatrapdf -y
 choco upgrade sumatrapdf.install -y
@@ -59,10 +74,8 @@ choco upgrade zoom -y
 # zsh
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\zsh"
 git clone https://github.com/cscribn/config-zsh.git  "$Env:USERPROFILE\.config\zsh"
-Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
 Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\zsh.pkg\*" -Destination "C\Program Files\Git"
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
+Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
