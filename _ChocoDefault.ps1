@@ -74,7 +74,7 @@ choco upgrade zoom -y
 # zsh
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\zsh"
 git clone https://github.com/cscribn/config-zsh.git  "$Env:USERPROFILE\.config\zsh"
-Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\zsh.pkg\*" -Destination "C\Program Files\Git"
+Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\zsh.pkg\*" -Destination "C:\Program Files\Git"
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
