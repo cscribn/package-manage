@@ -66,3 +66,5 @@ rm -rf ~/.zsh/zsh-syntax-highlighting
 brew install --cask zoom || brew upgrade --cask zoom
 
 brew upgrade && brew upgrade --cask
+brew autoremove
+brew cleanup
