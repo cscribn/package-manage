@@ -32,7 +32,7 @@ brew install --cask powershell || brew upgrade --cask powershell
 
 # ruby
 brew install rbenv || brew upgrade rbenv
-brew uninstall ruby-build
+brew uninstall --ignore-dependencies ruby-build
 rm -rf ~/.rbenv/plugins/ruby-build
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 eval "$(rbenv init -)"
