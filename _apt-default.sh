@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ./_apt-default.sh
-
 sudo apt install curl -y
 sudo apt install git -y
 
