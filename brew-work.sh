@@ -1,37 +1,37 @@
 #!/bin/bash
 
 brew tap homebrew/cask-versions
-brew install git --force
+brew install git || brew upgrade git
 
-brew install --cask amazon-workspaces --force
-brew install --cask barrier --force
-brew install bash --force
+brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
+brew install --cask barrier || brew upgrade --cask barrier
+brew install bash || brew upgrade bash
 # manual: embrava
-brew install --cask docker --force
-brew install --cask firefox --force
-brew install --cask gimp --force
-brew install --cask font-meslo-lg-nerd-font --force
-brew install --cask github --force
-brew install --cask google-chrome --force
-brew install --cask google-chrome-beta --force
-brew install --cask google-drive --force
-brew install --cask gpg-suite --force
-brew install --cask iterm2 --force
-brew install nvm --force
+brew install --cask docker || brew upgrade --cask docker
+brew install --cask firefox || brew upgrade --cask firefox
+brew install --cask gimp || brew upgrade --cask gimp
+brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg-nerd-font
+brew install --cask github || brew upgrade --cask github
+brew install --cask google-chrome || brew upgrade --cask google-chrome
+brew install --cask google-chrome-beta || brew upgrade --cask google-chrome-beta
+brew install --cask google-drive || brew upgrade --cask google-drive
+brew install --cask gpg-suite || brew upgrade --cask gpg-suite
+brew install --cask iterm2 || brew upgrade --cask iterm2
+brew install nvm || brew upgrade nvm
 
 # oh-my-posh
-brew install oh-my-posh --force
+brew install oh-my-posh || brew upgrade oh-my-posh
 rm -rf ~/.config/oh-my-posh
 git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
 
-brew install --cask onedrive --force
+brew install --cask onedrive || brew upgrade --cask onedrive
 # manual: paste plain text
-brew install --cask pinta --force
-brew install --cask postman --force
-brew install --cask powershell --force
+brew install --cask pinta || brew upgrade --cask pinta
+brew install --cask postman || brew upgrade --cask postman
+brew install --cask powershell || brew upgrade --cask powershell
 
 # ruby
-brew install rbenv --force
+brew install rbenv || brew upgrade rbenv
 brew uninstall ruby-build
 rm -rf ~/.rbenv/plugins/ruby-build
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
@@ -44,18 +44,18 @@ gem install colorls
 rm -rf ~/.config/colorls
 git clone https://github.com/cscribn/config-colorls.git  ~/.config/colorls
 
-brew install --cask slack --force
-brew install --cask skitch --force
-brew install --cask studio-3t --force
-brew install --cask the-unarchiver --force
-brew install --cask visual-studio-code --force
-brew install vim --force
-brew install --cask vlc --force
+brew install --cask slack || brew upgrade --cask slack
+brew install --cask skitch || brew upgrade --cask skitch
+brew install --cask studio-3t || brew upgrade --cask studio-3t
+brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
+brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
+brew install vim || brew upgrade vim
+brew install --cask vlc || brew upgrade --cask vlc
 # manual: xcode
-brew install yarn --force
+brew install yarn || brew upgrade yarn
 
 # zsh
-brew install zsh --force
+brew install zsh || brew upgrade zsh
 rm -rf ~/.config/zsh
 git clone https://github.com/cscribn/config-zsh.git  ~/.config/zsh
 cp ~/.config/zsh/zshrc-mac ~/.zshrc
@@ -63,7 +63,6 @@ rm -rf ~/.zsh/zsh-autocomplete
 rm -rf ~/.zsh/zsh-autosuggestions
 rm -rf ~/.zsh/zsh-syntax-highlighting
 
-brew install --cask zoom --force
-
+brew install --cask zoom || brew upgrade --cask zoom
 
 brew upgrade && brew upgrade --cask
