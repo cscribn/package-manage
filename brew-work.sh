@@ -1,6 +1,7 @@
 #!/bin/bash
 
 brew tap homebrew/cask-versions
+brew install git --force
 
 brew install --cask amazon-workspaces --force
 brew install --cask barrier --force
@@ -10,7 +11,6 @@ brew install --cask docker --force
 brew install --cask firefox --force
 brew install --cask gimp --force
 brew install --cask font-meslo-lg-nerd-font --force
-brew install git --force
 brew install --cask github --force
 brew install --cask google-chrome --force
 brew install --cask google-chrome-beta --force
