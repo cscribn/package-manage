@@ -6,6 +6,7 @@ brew install git || brew upgrade git
 brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
+brew install --cask bbedit
 # manual: embrava
 brew install --cask docker || brew upgrade --cask docker
 brew install --cask firefox || brew upgrade --cask firefox
