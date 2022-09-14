@@ -26,7 +26,7 @@ choco upgrade kitty -y
 # Meslo LGS Nerd Font
 Set-Location "$Env:Windir\Fonts"
 
-curl -fLo "Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/complete/Meslo%20LG%20S%20Regular%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf
+curl -Lo "Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/complete/Meslo%20LG%20S%20Regular%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf
 
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "MesloLGS NF" /t REG_SZ /d "Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf" /f
 
@@ -62,7 +62,7 @@ Update-SessionEnvironment
 ridk install 2 3
 gem install colorls
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
-git clone https://github.com/cscribn/config-colorls.git  "$Env:USERPROFILE\.config\colorls"
+curl -Lo "$Env:USERPROFILE\.config\colorls\dark_colors.yaml" --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors.yaml
 
 choco upgrade scribus -y
 choco upgrade sumatrapdf -y
@@ -82,7 +82,5 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 
 # microsoft-windows-terminal
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\microsoft-windows-terminal"
-git clone https://github.com/cscribn/config-microsoft-windows-terminal.git  "$Env:USERPROFILE\.config\microsoft-windows-terminal"
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
-Copy-Item -Force -Path "$Env:USERPROFILE\.config\microsoft-windows-terminal\LocalState\settings.json" -Destination "$LocalStateDir"
+curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings.json

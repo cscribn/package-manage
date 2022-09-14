@@ -42,7 +42,7 @@ rbenv install --verbose "$ruby_version"
 rbenv global "$ruby_version"
 gem install colorls
 rm -rf ~/.config/colorls
-git clone https://github.com/cscribn/config-colorls.git  ~/.config/colorls
+curl -Lo ~/.config/colorls/dark_colors.yaml --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors.yaml
 
 brew install --cask slack || brew upgrade --cask slack
 brew install --cask skitch || brew upgrade --cask skitch
