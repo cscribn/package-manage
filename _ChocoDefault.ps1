@@ -3,8 +3,6 @@ choco upgrade curl -y
 choco upgrade git -y
 choco upgrade git.install -y
 
-choco upgrade 7zip -y
-choco upgrade 7zip.install -y
 choco upgrade agentransack -y
 choco upgrade bulkrenameutility -y
 choco upgrade chrome-remote-desktop-chrome -y
@@ -33,7 +31,12 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "MesloLGS N
 Set-Location -
 
 choco upgrade microsoft-edge -y
+
+# microsoft-windows-terminal
 choco upgrade microsoft-windows-terminal -y
+$LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
+curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings.json
+
 choco upgrade nextdns -y
 choco upgrade notepadplusplus -y
 choco upgrade notepadplusplus.install -y
@@ -81,6 +84,6 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 
-# microsoft-windows-terminal
-$LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
-curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings.json
+# 7-zip at end to help set as default
+choco upgrade 7zip -y
+choco upgrade 7zip.install -y
