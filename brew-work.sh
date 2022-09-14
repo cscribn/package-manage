@@ -27,6 +27,7 @@ git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
 
 brew install --cask onedrive || brew upgrade --cask onedrive
 # manual: paste plain text
+# manual: peazip
 brew install --cask pinta || brew upgrade --cask pinta
 brew install --cask postman || brew upgrade --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
@@ -48,7 +49,6 @@ curl -Lo ~/.config/colorls/dark_colors.yaml --create-dirs https://raw.githubuser
 brew install --cask slack || brew upgrade --cask slack
 brew install --cask skitch || brew upgrade --cask skitch
 brew install --cask studio-3t || brew upgrade --cask studio-3t
-brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
