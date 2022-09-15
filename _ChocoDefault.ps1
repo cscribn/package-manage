@@ -48,6 +48,7 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
 git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
 
 choco upgrade paint.net -y
+# manual: papercut mobility print
 
 # powershell
 choco upgrade powershell-core -y
@@ -65,7 +66,7 @@ Update-SessionEnvironment
 ridk install 2 3
 gem install colorls
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
-curl -Lo "$Env:USERPROFILE\.config\colorls\dark_colors.yaml" --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors.yaml
+curl -Lo "$Env:USERPROFILE\.config\colorls\dark_colors.yaml" --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors_ansi.yaml
 
 choco upgrade scribus -y
 choco upgrade sumatrapdf -y

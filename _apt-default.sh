@@ -20,7 +20,7 @@ rbenv install --verbose "$ruby_version"
 rbenv global "$ruby_version"
 gem install colorls
 rm -rf ~/.config/colorls
-curl -Lo ~/.config/colorls/dark_colors.yaml --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors.yaml
+curl -Lo ~/.config/colorls/dark_colors.yaml --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors_ansi.yaml
 
 sudo apt install unzip -y
 sudo apt install vim -y
