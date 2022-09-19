@@ -3,6 +3,7 @@
 
 # manual: backblaze
 choco upgrade barrier -y
+# manual: bluestacks
 choco upgrade dell-update -y
 choco upgrade dvdflick-v2 -y
 # manual: iso compressor

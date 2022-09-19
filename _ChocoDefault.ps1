@@ -1,4 +1,5 @@
 # Add or Remove Items in Start menu: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
+
 # Removing Invalid Entries in the Add/Remove Programs Tool: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
 
 choco upgrade chocolatey -y
@@ -91,3 +92,11 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 # 7-zip at end to help set as default
 choco upgrade 7zip -y
 choco upgrade 7zip.install -y
+
+# Registry
+# Old right-click
+New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Name "InprocServer32"
+
+# Disable Bing in Start
+New-Item -Path "HKCU:\Software\Policies\Microsoft\Windows" -Name "Explorer"
+New-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer" -Name "DisableSearchBoxSuggestions" -PropertyType "DWORD" -Value "1"
