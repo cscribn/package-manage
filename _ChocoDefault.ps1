@@ -5,7 +5,6 @@
 choco upgrade chocolatey -y
 choco upgrade curl -y
 choco upgrade git -y
-choco upgrade git.install -y
 
 choco upgrade agentransack -y
 choco upgrade bulkrenameutility -y
@@ -43,7 +42,6 @@ curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscrib
 
 choco upgrade nextdns -y
 choco upgrade notepadplusplus -y
-choco upgrade notepadplusplus.install -y
 choco upgrade onedrive --ignore-checksums -y
 
 # oh-my-posh
@@ -60,12 +58,10 @@ Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module PSReadLine -AllowPrerelease -Force
 
 choco upgrade peazip -y
-choco upgrade peazip.install -y
 choco upgrade puretext -y
 
 # ruby
 choco upgrade ruby -y
-choco upgrade ruby.install -y
 Update-SessionEnvironment
 ridk install 2 3
 gem install colorls
@@ -73,10 +69,9 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
 curl -Lo "$Env:USERPROFILE\.config\colorls\dark_colors.yaml" --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors_ansi.yaml
 
 choco upgrade scribus -y
+choco upgrade sharpkeys -y
 choco upgrade sumatrapdf -y
-choco upgrade sumatrapdf.install -y
 choco upgrade vlc -y
-choco upgrade vlc.install -y
 choco upgrade vim -y
 choco upgrade zoom -y
 
@@ -91,7 +86,6 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 
 # 7-zip at end to help set as default
 choco upgrade 7zip -y
-choco upgrade 7zip.install -y
 
 # Registry
 # Old right-click
