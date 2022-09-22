@@ -15,7 +15,6 @@ choco upgrade rpi-imager -y
 choco upgrade samsung-magician -y
 # manual: skraperui
 choco upgrade youtube-dl-gui -y
-choco upgrade youtube-dl-gui.install -y
 choco upgrade win32diskimager --version 0.9.5 -y
 choco pin add --name="'win32diskimager'" --version="'0.9.5'"
 
