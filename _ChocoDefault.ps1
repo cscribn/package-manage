@@ -59,15 +59,6 @@ Install-Module PSReadLine -AllowPrerelease -Force
 
 choco upgrade peazip -y
 choco upgrade puretext -y
-
-# ruby
-choco upgrade ruby -y
-Update-SessionEnvironment
-ridk install 2 3
-gem install colorls
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
-curl -Lo "$Env:USERPROFILE\.config\colorls\dark_colors.yaml" --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors_ansi.yaml
-
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
 choco upgrade sumatrapdf -y
