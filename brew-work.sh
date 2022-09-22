@@ -4,6 +4,7 @@ brew tap homebrew/cask-versions
 brew install git || brew upgrade git
 
 brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
+brew install awscli || brew upgrade awscli
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
 brew install --cask bbedit
@@ -18,7 +19,13 @@ brew install --cask google-chrome-beta || brew upgrade --cask google-chrome-beta
 brew install --cask google-drive || brew upgrade --cask google-drive
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install --cask iterm2 || brew upgrade --cask iterm2
+
+# node
 brew install nvm || brew upgrade nvm
+nvm uninstall latest
+nvm install latest
+nvm install 10.24.1
+nvm install 12.13.0
 
 # oh-my-posh
 brew install oh-my-posh || brew upgrade oh-my-posh
@@ -31,6 +38,15 @@ brew install --cask onedrive || brew upgrade --cask onedrive
 brew install --cask pinta || brew upgrade --cask pinta
 brew install --cask postman || brew upgrade --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
+
+# python 2
+brew install pyenv || brew upgrade pyenv
+pyenv install 2.7.18
+export PATH="$(pyenv root)/shims:${PATH}"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+pyenv shell 2.7.18
 
 # ruby
 brew install rbenv || brew upgrade rbenv
