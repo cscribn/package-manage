@@ -41,6 +41,13 @@ $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.Windo
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings.json
 
 choco upgrade nextdns -y
+
+# node
+choco upgrade nvm -y
+nvm uninstall latest
+nvm install latest
+nvm use latest
+
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
 
@@ -50,26 +57,33 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
 git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
 
 choco upgrade paint.net -y
-# manual: papercut mobility print
+choco upgrade peazip -y
 
 # powershell
 choco upgrade powershell-core -y
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module PSReadLine -AllowPrerelease -Force
 
-choco upgrade peazip -y
 choco upgrade puretext -y
 
+# python
+choco uninstall python -y
+choco install python -y
+$PythonPath = Resolve-Path "C:\Python3*\python.exe"
+$PythonWPath = Resolve-Path "C:\Python3*\pythonw.exe"
+Rename-Item -Path "$PythonPath" -NewName "python3.exe"
+Rename-Item -Path "$PythonWPath" -NewName "pythonw3.exe"
+choco upgrade python2 -y
+
 # ruby
-choco upgrade ruby -y
+choco uninstall ruby -y
+choco install ruby -y
 Update-SessionEnvironment
 ridk install 2 3
-gem install colorls
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\colorls"
-curl -Lo "$Env:USERPROFILE\.config\colorls\dark_colors.yaml" --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors_ansi.yaml
 
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
+choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
 choco upgrade vlc -y
 choco upgrade vim -y

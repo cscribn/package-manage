@@ -8,6 +8,7 @@ choco upgrade dell-update -y
 choco upgrade dvdflick-v2 -y
 # manual: iso compressor
 choco upgrade makemkv -y
+# manual: papercut mobility print
 choco upgrade mp3tag -y
 choco upgrade nvidia-display-driver -y
 choco upgrade plexmediaserver -y

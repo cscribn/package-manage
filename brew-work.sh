@@ -59,9 +59,6 @@ rbenv uninstall -f $(head -n 1 ~/.rbenv/version | tr -d '[[:space:]]')
 ruby_version=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
 rbenv install --verbose "$ruby_version"
 rbenv global "$ruby_version"
-gem install colorls
-rm -rf ~/.config/colorls
-curl -Lo ~/.config/colorls/dark_colors.yaml --create-dirs https://raw.githubusercontent.com/cscribn/config-misc/main/colorls/dark_colors_ansi.yaml
 
 brew install --cask slack || brew upgrade --cask slack
 brew install --cask studio-3t || brew upgrade --cask studio-3t
