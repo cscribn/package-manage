@@ -40,6 +40,7 @@ choco upgrade microsoft-windows-terminal -y
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings.json
 
+choco upgrade mp3tag -y
 choco upgrade nextdns -y
 
 # node
@@ -85,8 +86,10 @@ choco upgrade scribus -y
 choco upgrade sharpkeys -y
 choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
+choco upgrade tftpd32 -y
 choco upgrade vlc -y
 choco upgrade vim -y
+choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
 # zsh
