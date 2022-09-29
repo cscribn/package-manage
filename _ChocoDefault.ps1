@@ -2,7 +2,7 @@
 
 # Removing Invalid Entries in the Add/Remove Programs Tool: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
 
-choco upgrade chocolatey -y
+choco upgrade chocolatey -y || Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 choco upgrade curl -y
 choco upgrade git -y
 
@@ -75,6 +75,8 @@ $PythonWPath = Resolve-Path "C:\Python3*\pythonw.exe"
 Rename-Item -Path "$PythonPath" -NewName "python3.exe"
 Rename-Item -Path "$PythonWPath" -NewName "pythonw3.exe"
 choco upgrade python2 -y
+
+choco upgrade reflect-free -y
 
 # ruby
 choco uninstall ruby -y
