@@ -107,9 +107,13 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 choco upgrade 7zip -y
 
 # Registry
-# Old right-click
-New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Name "InprocServer32"
 
-# Disable Bing in Start
+# Google Chrome - remote access Curtain Mode
+New-ItemProperty -Path "HKLM:\Software\Policies\Google\Chrome" -Name "RemoteAccessHostRequireCurtain" -PropertyType "DWORD" -Value "1"
+
+# Start Menu - disable Bing Search
 New-Item -Path "HKCU:\Software\Policies\Microsoft\Windows" -Name "Explorer"
 New-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer" -Name "DisableSearchBoxSuggestions" -PropertyType "DWORD" -Value "1"
+
+# Windows - old right-click
+New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Name "InprocServer32"
