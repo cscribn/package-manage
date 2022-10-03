@@ -90,7 +90,16 @@ choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
+
+# vim
 choco upgrade vim -y
+Set-Location "$Env:USERPROFILE"
+
+curl -Lo ".vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
+Copy-Item ".vimrc" -Destination "_vimrc"
+
+Set-Location -
+
 choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
