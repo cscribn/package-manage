@@ -61,11 +61,17 @@ choco upgrade paint.net -y
 choco upgrade partitionwizard -y
 choco upgrade peazip -y
 
-# powershell
+# powershell-core
 choco upgrade powershell-core -y
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module posh-git -Force
 Install-Module PSReadLine -AllowPrerelease -Force
+Set-Location "$Env:USERPROFILE\Documents\PowerShell"
+
+curl -Lo "Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
+
+Set-Location -
+
 
 choco upgrade puretext -y
 
