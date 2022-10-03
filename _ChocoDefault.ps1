@@ -58,11 +58,13 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
 git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
 
 choco upgrade paint.net -y
+choco upgrade partitionwizard -y
 choco upgrade peazip -y
 
 # powershell
 choco upgrade powershell-core -y
 Install-Module -Name Terminal-Icons -Repository PSGallery
+Install-Module posh-git -Force
 Install-Module PSReadLine -AllowPrerelease -Force
 
 choco upgrade puretext -y
@@ -75,6 +77,7 @@ $PythonWPath = Resolve-Path "C:\Python3*\pythonw.exe"
 Rename-Item -Path "$PythonPath" -NewName "python3.exe"
 Rename-Item -Path "$PythonWPath" -NewName "pythonw3.exe"
 choco upgrade python2 -y
+choco upgrade quicktime -y
 
 choco upgrade reflect-free -y
 
