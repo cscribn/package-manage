@@ -3,11 +3,8 @@
 
 # conemu
 choco upgrade conemu -y
-Set-Location "$Env:APPDATA"
 
-curl -Lo "ConEmu.xml" https://raw.githubusercontent.com/cscribn/config-misc/main/conemu/ConEmu.xml
-
-Set-Location -
+curl -Lo "$Env:APPDATA\ConEmu.xml" https://raw.githubusercontent.com/cscribn/config-misc/main/conemu/ConEmu.xml
 
 choco upgrade nvm -y
 choco upgrade postman -y
