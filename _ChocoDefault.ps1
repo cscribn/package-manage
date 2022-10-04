@@ -72,7 +72,6 @@ curl -Lo "Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cs
 
 Set-Location -
 
-
 choco upgrade puretext -y
 
 # python
