@@ -12,7 +12,9 @@ sudo apt install rbenv -y
 sudo apt remove ruby-build -y
 export PATH="$HOME/.rbenv/bin:$PATH"
 rm -rf ~/.rbenv/plugins/ruby-build
+
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
 eval "$(rbenv init -)"
 rbenv uninstall -f $(head -n 1 ~/.rbenv/version | tr -d '[[:space:]]')
 ruby_version=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
@@ -25,7 +27,9 @@ sudo apt install vim -y
 # zsh
 sudo apt install zsh -y
 rm -rf ~/.config/zsh
+
 git clone https://github.com/cscribn/config-zsh.git  ~/.config/zsh
+
 cp ~/.config/zsh/zshrc-pi ~/.zshrc
 rm -rf ~/.zsh/zsh-autocomplete
 rm -rf ~/.zsh/zsh-autosuggestions

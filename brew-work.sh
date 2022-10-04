@@ -34,6 +34,7 @@ nvm install 12.13.0
 # oh-my-posh
 brew install oh-my-posh || brew upgrade oh-my-posh
 rm -rf ~/.config/oh-my-posh
+
 git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
 
 brew install --cask onedrive || brew upgrade --cask onedrive
@@ -56,7 +57,9 @@ pyenv shell 2.7.18
 brew install rbenv || brew upgrade rbenv
 brew uninstall --ignore-dependencies ruby-build
 rm -rf ~/.rbenv/plugins/ruby-build
+
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
 eval "$(rbenv init -)"
 rbenv uninstall -f $(head -n 1 ~/.rbenv/version | tr -d '[[:space:]]')
 ruby_version=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
@@ -74,7 +77,9 @@ brew install yarn || brew upgrade yarn
 # zsh
 brew install zsh || brew upgrade zsh
 rm -rf ~/.config/zsh
+
 git clone https://github.com/cscribn/config-zsh.git  ~/.config/zsh
+
 cp ~/.config/zsh/zshrc-mac ~/.zshrc
 rm -rf ~/.zsh/zsh-autocomplete
 rm -rf ~/.zsh/zsh-autosuggestions

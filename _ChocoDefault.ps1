@@ -34,6 +34,7 @@ choco upgrade microsoft-edge -y
 # microsoft-windows-terminal
 choco upgrade microsoft-windows-terminal -y
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
+
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings.json
 
 choco upgrade mp3tag -y
@@ -51,6 +52,7 @@ choco upgrade onedrive --ignore-checksums -y
 # oh-my-posh
 choco upgrade oh-my-posh -y
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
+
 git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
 
 choco upgrade paint.net -y
@@ -75,8 +77,8 @@ $PythonWPath = Resolve-Path "C:\Python3*\pythonw.exe"
 Rename-Item -Path "$PythonPath" -NewName "python3.exe"
 Rename-Item -Path "$PythonWPath" -NewName "pythonw3.exe"
 choco upgrade python2 -y
-choco upgrade quicktime -y
 
+choco upgrade quicktime -y
 choco upgrade reflect-free -y
 
 # ruby
@@ -97,8 +99,8 @@ choco upgrade vim -y
 Set-Location "$Env:USERPROFILE"
 
 curl -Lo ".vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
-Copy-Item ".vimrc" -Destination "_vimrc"
 
+Copy-Item ".vimrc" -Destination "_vimrc"
 Set-Location -
 
 choco upgrade youtube-dl-gui -y
@@ -106,7 +108,9 @@ choco upgrade zoom -y
 
 # zsh
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\zsh"
+
 git clone https://github.com/cscribn/config-zsh.git  "$Env:USERPROFILE\.config\zsh"
+
 Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\zsh.pkg\*" -Destination "C:\Program Files\Git"
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
