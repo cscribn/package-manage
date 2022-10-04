@@ -58,12 +58,20 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
 git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
 
 choco upgrade paint.net -y
+choco upgrade partitionwizard -y
 choco upgrade peazip -y
 
-# powershell
+# powershell-core
 choco upgrade powershell-core -y
 Install-Module -Name Terminal-Icons -Repository PSGallery
+Install-Module posh-git -Force
 Install-Module PSReadLine -AllowPrerelease -Force
+Set-Location "$Env:USERPROFILE\Documents\PowerShell"
+
+curl -Lo "Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
+
+Set-Location -
+
 
 choco upgrade puretext -y
 
@@ -75,6 +83,9 @@ $PythonWPath = Resolve-Path "C:\Python3*\pythonw.exe"
 Rename-Item -Path "$PythonPath" -NewName "python3.exe"
 Rename-Item -Path "$PythonWPath" -NewName "pythonw3.exe"
 choco upgrade python2 -y
+choco upgrade quicktime -y
+
+choco upgrade reflect-free -y
 
 # ruby
 choco uninstall ruby -y
@@ -88,7 +99,16 @@ choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
+
+# vim
 choco upgrade vim -y
+Set-Location "$Env:USERPROFILE"
+
+curl -Lo ".vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
+Copy-Item ".vimrc" -Destination "_vimrc"
+
+Set-Location -
+
 choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
@@ -105,9 +125,19 @@ Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 choco upgrade 7zip -y
 
 # Registry
-# Old right-click
-New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Name "InprocServer32"
 
-# Disable Bing in Start
-New-Item -Path "HKCU:\Software\Policies\Microsoft\Windows" -Name "Explorer"
-New-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer" -Name "DisableSearchBoxSuggestions" -PropertyType "DWORD" -Value "1"
+# Google Chrome - remote access Curtain Mode
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Google\Chrome" -Name "RemoteAccessHostRequireCurtain" -PropertyType "DWORD" -Value "1" -Force
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -PropertyType "DWORD" -Value "0" -Force
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -PropertyType "DWORD" -Value "0" -Force
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "SecurityLayer" -PropertyType "DWORD" -Value "1" -Force
+
+# Lock Screen - disable
+New-Item  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" -Force
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -PropertyType "DWORD" -Value "1" -Force
+
+# Start Menu - disable Bing Search
+New-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer" -Name "DisableSearchBoxSuggestions" -PropertyType "DWORD" -Value "1" -Force
+
+# Windows - old right-click
+New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" -Name "(Default)" -PropertyType "REG_SZ" -Value "" -Force

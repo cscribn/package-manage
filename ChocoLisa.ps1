@@ -5,7 +5,6 @@
 # manual: bluestacks
 # manual: collageit
 # manual: fotor
-choco upgrade lenovo-thinkvantage-system-update -y
 choco upgrade samsung-magician -y
 # manual: scansnap
 # manual: silhouette studio
