@@ -10,11 +10,19 @@ Bash scripts that call apt to install Raspberry Pi packages. Different files are
 
 Bash script that calls brew to install Mac OS packages on my work machine.
 
+### Prerequisites
+
+Install brew via Terminal
+
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
 ## Choco*
 
 Powershell scripts that call Chocolatey to install Windows packages. Different files are used for different machines.
 
-## Prerequisites
+### Prerequisites
 
 Install Chocolatey via PowerShell
 
