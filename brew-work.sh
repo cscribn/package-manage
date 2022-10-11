@@ -69,7 +69,12 @@ rbenv global "$ruby_version"
 brew install --cask slack || brew upgrade --cask slack
 brew install --cask studio-3t || brew upgrade --cask studio-3t
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
+
+# vim
 brew install vim || brew upgrade vim
+
+curl -Lo "$HOME/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
+
 brew install --cask vlc || brew upgrade --cask vlc
 # manual: xcode
 brew install yarn || brew upgrade yarn
