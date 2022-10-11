@@ -40,6 +40,7 @@ git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
 brew install --cask onedrive || brew upgrade --cask onedrive
 # manual: paste plain text
 # manual: peazip
+brew install php || brew upgrade php
 brew install --cask pinta || brew upgrade --cask pinta
 brew install --cask postman || brew upgrade --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
