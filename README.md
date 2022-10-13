@@ -30,11 +30,7 @@ Install Chocolatey via PowerShell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-Install PowerShell Core via PowerShell
-
-```pwsh
-winget install --id Microsoft.Powershell --source winget
-```
+Download and install the lates PowerShell Core release from [GitHub](https://github.com/PowerShell/PowerShell/releases).
 
 Unrestrict the Execution Policy in PowerShell Core
 
