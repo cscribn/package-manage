@@ -23,6 +23,7 @@ choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
 choco upgrade kitty -y
+choco upgrade libreoffice-fresh -y
 
 # Meslo LGS Nerd Font
 curl -Lo "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/complete/Meslo%20LG%20S%20Regular%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf
