@@ -22,6 +22,7 @@ choco upgrade gimp -y
 choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
+choco upgrade irfanviewplugins -y
 choco upgrade kitty -y
 choco upgrade libreoffice-fresh -y
 
@@ -92,6 +93,7 @@ choco upgrade scribus -y
 choco upgrade sharpkeys -y
 choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
+# tcno account switcher
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
 
