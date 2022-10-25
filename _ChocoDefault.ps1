@@ -6,6 +6,7 @@ choco upgrade chocolatey -y
 choco upgrade curl -y
 choco upgrade git -y
 
+choco upgrade 7zip -y
 choco upgrade agentransack -y
 choco upgrade bulkrenameutility -y
 choco upgrade chrome-remote-desktop-chrome -y
@@ -106,6 +107,7 @@ curl -Lo ".vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim
 Copy-Item ".vimrc" -Destination "_vimrc"
 Set-Location -
 
+choco upgrade winmerge -y
 choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
@@ -119,9 +121,6 @@ Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$E
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
-
-# 7-zip at end to help set as default
-choco upgrade 7zip -y
 
 # Registry
 

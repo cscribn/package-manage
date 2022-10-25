@@ -3,6 +3,7 @@
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew tap homebrew/cask-versions
 brew install git || brew upgrade git
+xcode-select --install
 
 brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
 brew install awscli || brew upgrade awscli
@@ -23,6 +24,7 @@ brew install --cask google-chrome-beta || brew upgrade --cask google-chrome-beta
 brew install --cask google-drive || brew upgrade --cask google-drive
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install --cask iterm2 || brew upgrade --cask iterm2
+brew install --cask libreoffice || brew upgrade --cask libreoffice
 
 # node
 brew install nvm || brew upgrade nvm
@@ -47,7 +49,7 @@ brew install --cask powershell || brew upgrade --cask powershell
 
 # python 2
 brew install pyenv || brew upgrade pyenv
-pyenv install 2.7.18
+pyenv install 2.7.18 -f
 export PATH="$(pyenv root)/shims:${PATH}"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
