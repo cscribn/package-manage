@@ -22,7 +22,11 @@ rbenv install --verbose "$ruby_version"
 rbenv global "$ruby_version"
 
 sudo apt install unzip -y
+
+# vim
 sudo apt install vim -y
+
+curl -Lo "$HOME/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
 
 # zsh
 sudo apt install zsh -y
