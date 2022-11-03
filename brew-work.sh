@@ -28,6 +28,10 @@ brew install --cask libreoffice || brew upgrade --cask libreoffice
 
 # node
 brew install nvm || brew upgrade nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 nvm uninstall latest
 nvm install latest
 nvm install 10.24.1
@@ -63,6 +67,7 @@ rm -rf ~/.rbenv/plugins/ruby-build
 
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 rbenv uninstall -f $(head -n 1 ~/.rbenv/version | tr -d '[[:space:]]')
 ruby_version=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
