@@ -20,6 +20,7 @@ choco upgrade ghostscript -y
 choco upgrade googlechrome -y
 choco upgrade googledrive -y
 choco upgrade gimp -y
+choco upgrade handbrake -y
 choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
