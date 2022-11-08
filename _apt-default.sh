@@ -16,10 +16,14 @@ rm -rf ~/.rbenv/plugins/ruby-build
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 eval "$(rbenv init -)"
-rbenv uninstall -f $(head -n 1 ~/.rbenv/version | tr -d '[[:space:]]')
-ruby_version=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
-rbenv install --verbose "$ruby_version"
-rbenv global "$ruby_version"
+ruby_installed=$(head -n 1 ~/.rbenv/version | tr -d '[[:space:]]')
+ruby_latest=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
+
+if [ "$ruby_installed" != "$ruby_latest" ]; then
+    rbenv uninstall -f "$ruby_installed"
+    rbenv install --verbose "$ruby_latest"
+    rbenv global "$ruby_latest"
+fi
 
 sudo apt install unzip -y
 
