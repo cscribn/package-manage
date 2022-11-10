@@ -12,12 +12,19 @@ brew install bash || brew upgrade bash
 brew install --cask bbedit
 brew install coreutils || brew upgrade coreutils
 brew install --cask docker || brew upgrade --cask docker
+
+# dotnet-sdk
+brew uninstall --cask --ignore-dependencies dotnet-sdk
+brew install --cask dotnet-sdk || brew upgrade --cask dotnet-sdk
+
 # manual: embrava
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || brew upgrade --cask firefox
+brew install --cask forticlient-vpn || brew upgrade --forticlient-vpn
 brew install --cask gimp || brew upgrade --cask gimp
 brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg-nerd-font
 brew install gifsicle || brew upgrade gifsicle
+brew install git || brew upgrade git
 brew install --cask github || brew upgrade --cask github
 brew install --cask google-chrome || brew upgrade --cask google-chrome
 brew install --cask google-chrome-beta || brew upgrade --cask google-chrome-beta

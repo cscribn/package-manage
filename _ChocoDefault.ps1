@@ -12,6 +12,11 @@ choco upgrade bulkrenameutility -y
 choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
+
+# dotnet-sdk
+choco uninstall dotnet-sdk -y
+choco install dotnet-sdk -y
+
 choco upgrade dvddecrypter -y
 choco upgrade filezilla -y
 choco upgrade firefox -y
