@@ -14,8 +14,11 @@ brew install coreutils || brew upgrade coreutils
 brew install --cask docker || brew upgrade --cask docker
 
 # dotnet-sdk
+brew tap isen-ng/dotnet-sdk-versions
 brew uninstall --cask --ignore-dependencies dotnet-sdk
 brew install --cask dotnet-sdk || brew upgrade --cask dotnet-sdk
+# https://github.com/isen-ng/homebrew-dotnet-sdk-versions
+brew install --cask dotnet-sdk6-0-400 || brew upgrade --cask dotnet-sdk6-0-400
 
 # manual: embrava
 brew install ffmpeg || brew upgrade ffmpeg
@@ -45,7 +48,7 @@ nvm install 10.24.1
 nvm install 12.13.0
 
 # oh-my-posh
-brew install oh-my-posh || brew upgrade oh-my-posh
+brew install brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade brew install jandedobbeleer/oh-my-posh/oh-my-posh
 rm -rf ~/.config/oh-my-posh
 
 git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
