@@ -9,7 +9,14 @@ brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
 brew install awscli || brew upgrade awscli
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
+
+# bbedit
 brew install --cask bbedit
+
+curl -Lo "$HOME/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist
+
+curl -Lo "$HOME/Library/Application Support/BBEdit/Language Modules/PowerShell.plist" https://raw.githubusercontent.com/doug-baer/BBEdit-PowerShell/master/PowerShell.plist
+
 brew install coreutils || brew upgrade coreutils
 brew install --cask docker || brew upgrade --cask docker
 
