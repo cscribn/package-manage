@@ -7,6 +7,10 @@ sudo apt install git -y
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
+# raspi2png
+git clone https://github.com/AndrewFromMelbourne/raspi2png
+sudo cp -a raspi2png/raspi2png /usr/local/bin
+
 # ruby
 sudo apt install rbenv -y
 sudo apt remove ruby-build -y
