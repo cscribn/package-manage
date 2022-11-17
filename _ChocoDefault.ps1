@@ -14,8 +14,8 @@ choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
 
 # dotnet-sdk
-choco uninstall dotnet-sdk -y
-choco install dotnet-sdk -y
+choco uninstall dotnet-6.0-sdk -y
+choco install dotnet-6.0-sdk -y
 
 choco upgrade dvddecrypter -y
 choco upgrade filezilla -y
