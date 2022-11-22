@@ -23,7 +23,8 @@ choco upgrade firefox -y
 choco upgrade freefilesync -y
 choco upgrade ghostscript -y
 choco upgrade googlechrome -y
-choco upgrade googledrive -y
+choco uninstall googledrive -y
+choco install googledrive -y
 choco upgrade gimp -y
 choco upgrade handbrake -y
 choco upgrade imgburn -y
