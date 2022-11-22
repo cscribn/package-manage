@@ -4,8 +4,6 @@
 # manual: backblaze
 choco upgrade barrier -y
 # manual: bluestacks
-choco uninstall dell-update -y
-choco install dell-update -y
 choco upgrade dvdflick-v2 -y
 # manual: iso compressor
 choco upgrade makemkv -y
