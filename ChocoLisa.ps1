@@ -5,6 +5,5 @@
 # manual: bluestacks
 # manual: collageit
 # manual: fotor
-choco upgrade samsung-magician -y
 # manual: scansnap
 # manual: silhouette studio
