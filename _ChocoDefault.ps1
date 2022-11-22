@@ -36,7 +36,7 @@ choco upgrade libreoffice-fresh -y
 # Meslo LGS Nerd Font
 curl -Lo "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/complete/Meslo%20LG%20S%20Regular%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf
 
-[Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", ""MesloLGS NF"", Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf)
+[Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", "MesloLGS NF", "Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf")
 
 choco upgrade microsoft-edge -y
 
@@ -60,9 +60,18 @@ choco upgrade onedrive --ignore-checksums -y
 
 # oh-my-posh
 choco upgrade oh-my-posh -y
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
 
-git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
+Set-Location "$Env:USERPROFILE\.config\oh-my-posh"
+$GitMain = git rev-parse main
+$GitHead = git rev-parse HEAD
+Set-Location -
+
+if ($GitMain -ne $GitHead)
+{
+    Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
+
+    git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
+}
 
 choco upgrade paint.net -y
 choco upgrade partitionwizard -y
@@ -91,6 +100,7 @@ choco upgrade quicktime -y
 choco upgrade reflect-free -y
 
 # ruby
+choco uninstall ruby.install -y
 choco uninstall ruby -y
 choco install ruby -y
 Update-SessionEnvironment
@@ -118,15 +128,23 @@ choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
 # zsh
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\zsh"
+Set-Location "$Env:USERPROFILE\.config\zsh"
+$GitMain = git rev-parse main
+$GitHead = git rev-parse HEAD
+Set-Location -
 
-git clone https://github.com/cscribn/config-zsh.git  "$Env:USERPROFILE\.config\zsh"
+if ($GitMain -ne $GitHead)
+{
+    Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\zsh"
 
-Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\zsh.pkg\*" -Destination "C:\Program Files\Git"
-Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
-Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
+    git clone https://github.com/cscribn/config-zsh.git  "$Env:USERPROFILE\.config\zsh"
+
+    Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\zsh.pkg\*" -Destination "C:\Program Files\Git"
+    Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
+    Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
+    Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
+    Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
+}
 
 # Registry
 
