@@ -19,12 +19,11 @@ choco install dotnet-6.0-sdk -y
 
 choco upgrade dvddecrypter -y
 choco upgrade filezilla -y
-choco upgrade firefox -y
+choco upgrade firefox --params /NoTaskbarShortcut -y
 choco upgrade freefilesync -y
 choco upgrade ghostscript -y
 choco upgrade googlechrome -y
-choco uninstall googledrive -y
-choco install googledrive -y
+# googledrive
 choco upgrade gimp -y
 choco upgrade handbrake -y
 choco upgrade imgburn -y
@@ -35,6 +34,7 @@ choco upgrade kitty -y
 choco upgrade libreoffice-fresh -y
 
 # Meslo LGS Nerd Font
+Remove-Item "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf"
 curl -Lo "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/complete/Meslo%20LG%20S%20Regular%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf
 
 [Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", "MesloLGS NF", "Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf")
@@ -50,11 +50,11 @@ curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscrib
 choco upgrade mp3tag -y
 choco upgrade nextdns -y
 
-# node
-choco upgrade nvm -y
-nvm uninstall latest
-nvm install latest
-nvm use latest
+# nvm
+choco uninstall nvm -y
+choco uninstall nvm.install -y
+choco install nvm -y
+Update-SessionEnvironment
 
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
@@ -89,23 +89,23 @@ curl -Lo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 choco upgrade puretext -y
 
 # python
-choco uninstall python -y
+choco uninstall python python3 -y
 choco install python -y
-$PythonPath = Resolve-Path "C:\Python3*\python.exe"
-$PythonWPath = Resolve-Path "C:\Python3*\pythonw.exe"
-Rename-Item -Path "$PythonPath" -NewName "python3.exe"
-Rename-Item -Path "$PythonWPath" -NewName "pythonw3.exe"
-choco upgrade python2 -y
+$PythonPath = Resolve-Path "C:\Python3*"
+Remove-Item "$PythonPath\python3.exe"
+Remove-Item "$PythonPath\pythonw3.exe"
+Rename-Item -Path "$PythonPath\python.exe" -NewName "python3.exe"
+Rename-Item -Path "$PythonPath\pythonw.exe" -NewName "pythonw3.exe"
+choco uninstall python2 -y
+choco install python2 -y
 
 choco upgrade quicktime -y
 choco upgrade reflect-free -y
 
 # ruby
-choco uninstall ruby.install -y
 choco uninstall ruby -y
+choco uninstall ruby.install -y
 choco install ruby -y
-Update-SessionEnvironment
-ridk install 2 3
 
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
@@ -146,6 +146,10 @@ if ($GitMain -ne $GitHead)
     Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
     Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 }
+
+# node - put here for timing issue
+nvm install latest
+nvm use latest
 
 # Registry
 
