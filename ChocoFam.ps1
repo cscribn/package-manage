@@ -5,5 +5,3 @@ choco upgrade epicgameslauncher -y
 choco upgrade nvidia-display-driver -y
 choco upgrade samsung-magician -y
 choco upgrade steam-client -y
-
-choco upgrade all -y

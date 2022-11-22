@@ -16,5 +16,3 @@ choco upgrade samsung-magician -y
 # manual: skraperui
 choco upgrade win32diskimager --version 0.9.5 -y
 choco pin add --name="'win32diskimager'" --version="'0.9.5'"
-
-choco upgrade all -y
