@@ -4,7 +4,9 @@
 # bluestacks
 # collageit
 # fotor
+# samsung magician
 # scansnap
 # silhouette studio
 
 . $PSScriptRoot\_ChocoDefault.ps1
+. $PSScriptRoot\_ChocoClean.ps1

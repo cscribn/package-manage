@@ -7,6 +7,8 @@
 
 # Note: Removing Invalid Entries in the Add/Remove Programs Tool: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
 
+$StartTime = Get-Date
+
 choco upgrade chocolatey -y
 choco upgrade curl -y
 choco upgrade git -y
