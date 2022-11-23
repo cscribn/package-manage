@@ -72,7 +72,7 @@ $GitMain = git rev-parse main
 $GitHead = git rev-parse HEAD
 Set-Location -
 
-if ($GitMain -ne $GitHead)
+If ($GitMain -ne $GitHead)
 {
     Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
 
@@ -138,7 +138,7 @@ $GitMain = git rev-parse main
 $GitHead = git rev-parse HEAD
 Set-Location -
 
-if ($GitMain -ne $GitHead)
+If ($GitMain -ne $GitHead)
 {
     Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\zsh"
 
@@ -146,8 +146,36 @@ if ($GitMain -ne $GitHead)
 
     Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\zsh.pkg\*" -Destination "C:\Program Files\Git"
     Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
+}
+
+Set-Location "$Env:USERPROFILE\.zsh\zsh-autocomplete"
+$GitMain = git rev-parse main
+$GitHead = git rev-parse HEAD
+Set-Location -
+
+If ($GitMain -ne $GitHead)
+{
     Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
+}
+
+Set-Location "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
+$GitMain = git rev-parse main
+$GitHead = git rev-parse HEAD
+Set-Location -
+
+If ($GitMain -ne $GitHead)
+{
+
     Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
+}
+
+Set-Location "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
+$GitMain = git rev-parse main
+$GitHead = git rev-parse HEAD
+Set-Location -
+
+If ($GitMain -ne $GitHead)
+{
     Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 }
 
