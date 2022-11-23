@@ -1,6 +1,11 @@
-# Add or Remove Items in Start menu: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
+# Non-Chocolatey installations (add/update these first)
+# googledrive
+# tcno account switcher
+# microsoft-windows-terminal
 
-# Removing Invalid Entries in the Add/Remove Programs Tool: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
+# Note: Add or Remove Items in Start menu: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
+
+# Note: Removing Invalid Entries in the Add/Remove Programs Tool: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
 
 choco upgrade chocolatey -y
 choco upgrade curl -y
@@ -23,7 +28,6 @@ choco upgrade firefox --params /NoTaskbarShortcut -y
 choco upgrade freefilesync -y
 choco upgrade ghostscript -y
 choco upgrade googlechrome -y
-# googledrive
 choco upgrade gimp -y
 choco upgrade handbrake -y
 choco upgrade imgburn -y
@@ -42,7 +46,6 @@ curl -Lo "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compat
 choco upgrade microsoft-edge -y
 
 # microsoft-windows-terminal
-choco upgrade microsoft-windows-terminal -y
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
 
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings.json
@@ -111,7 +114,6 @@ choco upgrade scribus -y
 choco upgrade sharpkeys -y
 choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
-# tcno account switcher
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
 

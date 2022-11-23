@@ -1,6 +1,8 @@
+# Non-Chocolatey installations (add/update these first)
+# lenovo vangate
+
 . $PSScriptRoot\_ChocoDefault.ps1
 
 choco upgrade epicgameslauncher -y
-# manual: lenovo vantage
 choco upgrade nvidia-display-driver -y
 choco upgrade steam-client -y
