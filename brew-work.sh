@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Non-brew installations (add/update these first)
+# embrava
+# paste plain text
+# peazip
+
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew tap homebrew/cask-versions
 brew install git || brew upgrade git
@@ -27,7 +32,6 @@ brew install --cask dotnet-sdk || brew upgrade --cask dotnet-sdk
 # https://github.com/isen-ng/homebrew-dotnet-sdk-versions
 brew install --cask dotnet-sdk6-0-400 || brew upgrade --cask dotnet-sdk6-0-400
 
-# manual: embrava
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || brew upgrade --cask firefox
 brew install --cask forticlient-vpn || brew upgrade --forticlient-vpn
@@ -61,8 +65,6 @@ rm -rf ~/.config/oh-my-posh
 git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
 
 brew install --cask onedrive || brew upgrade --cask onedrive
-# manual: paste plain text
-# manual: peazip
 brew install php || brew upgrade php
 brew install --cask pinta || brew upgrade --cask pinta
 brew install --cask postman || brew upgrade --cask postman
@@ -105,7 +107,6 @@ brew install vim || brew upgrade vim
 curl -Lo "$HOME/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
 
 brew install --cask vlc || brew upgrade --cask vlc
-# manual: xcode
 brew install yarn || brew upgrade yarn
 
 # zsh
@@ -121,6 +122,5 @@ rm -rf ~/.zsh/zsh-syntax-highlighting
 
 brew install --cask zoom || brew upgrade --cask zoom
 
-brew upgrade && brew upgrade --cask
 brew autoremove
 brew cleanup
