@@ -28,7 +28,6 @@ brew install --cask docker || brew upgrade --cask docker
 # dotnet-sdk
 brew tap isen-ng/dotnet-sdk-versions
 brew uninstall --cask --ignore-dependencies dotnet-sdk
-brew install --cask dotnet-sdk || brew upgrade --cask dotnet-sdk
 # https://github.com/isen-ng/homebrew-dotnet-sdk-versions
 brew install --cask dotnet-sdk6-0-400 || brew upgrade --cask dotnet-sdk6-0-400
 
@@ -48,23 +47,32 @@ brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 
 # node
-brew install nvm || brew upgrade nvm
+brew uninstall nvm
+brew install nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-nvm uninstall latest
 nvm install latest
 nvm install 10.24.1
 nvm install 12.13.0
 
 # oh-my-posh
-brew install brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade brew install jandedobbeleer/oh-my-posh/oh-my-posh
-rm -rf ~/.config/oh-my-posh
+brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
 
-git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
+cd ~/.config/oh-my-posh || exit
+gitmain=$(git rev-parse main)
+githead=$(git rev-parse HEAD)
+cd - || exit
+
+if [ "$gitmain" -ne "$githead" ]; then
+    rm -rf ~/.config/oh-my-posh
+
+    git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
+fi
 
 brew install --cask onedrive || brew upgrade --cask onedrive
+brew install perl || brew upgrade perl
 brew install php || brew upgrade php
 brew install --cask pinta || brew upgrade --cask pinta
 brew install --cask postman || brew upgrade --cask postman
@@ -111,14 +119,45 @@ brew install yarn || brew upgrade yarn
 
 # zsh
 brew install zsh || brew upgrade zsh
-rm -rf ~/.config/zsh
 
-git clone https://github.com/cscribn/config-zsh.git  ~/.config/zsh
+cd ~/.config/zsh || exit
+gitmain=$(git rev-parse main)
+githead=$(git rev-parse HEAD)
+cd - || exit
 
-cp ~/.config/zsh/zshrc-mac ~/.zshrc
-rm -rf ~/.zsh/zsh-autocomplete
-rm -rf ~/.zsh/zsh-autosuggestions
-rm -rf ~/.zsh/zsh-syntax-highlighting
+if [ "$gitmain" -ne "$githead" ]; then
+    rm -rf ~/.config/zsh
+
+    git clone https://github.com/cscribn/config-zsh.git  ~/.config/zsh
+    cp ~/.config/zsh/zshrc-mac ~/.zshrc
+fi
+
+cd ~/.zsh/zsh-autocomplete || exit
+gitmain=$(git rev-parse main)
+githead=$(git rev-parse HEAD)
+cd - || exit
+
+if [ "$gitmain" -ne "$githead" ]; then
+    rm -rf ~/.zsh/zsh-autocomplete
+fi
+
+cd ~/.zsh/zsh-autosuggestions || exit
+gitmain=$(git rev-parse main)
+githead=$(git rev-parse HEAD)
+cd - || exit
+
+if [ "$gitmain" -ne "$githead" ]; then
+    rm -rf ~/.zsh/zsh-autosuggestions
+fi
+
+cd ~/.zsh/zsh-syntax-highlighting || exit
+gitmain=$(git rev-parse main)
+githead=$(git rev-parse HEAD)
+cd - || exit
+
+if [ "$gitmain" -ne "$githead" ]; then
+    rm -rf ~/.zsh/zsh-syntax-highlighting
+fi
 
 brew install --cask zoom || brew upgrade --cask zoom
 
