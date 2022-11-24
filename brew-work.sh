@@ -8,7 +8,6 @@
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew tap homebrew/cask-versions
 brew install git || brew upgrade git
-xcode-select --install
 
 brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
 brew install awscli || brew upgrade awscli
@@ -27,7 +26,6 @@ brew install --cask docker || brew upgrade --cask docker
 
 # dotnet-sdk
 brew tap isen-ng/dotnet-sdk-versions
-brew uninstall --cask --ignore-dependencies dotnet-sdk
 # https://github.com/isen-ng/homebrew-dotnet-sdk-versions
 brew install --cask dotnet-sdk6-0-400 || brew upgrade --cask dotnet-sdk6-0-400
 
@@ -58,14 +56,14 @@ nvm install 10.24.1
 nvm install 12.13.0
 
 # oh-my-posh
-brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
+brew install oh-my-posh || brew upgrade oh-my-posh
 
 cd ~/.config/oh-my-posh || exit
 gitmain=$(git rev-parse main)
 githead=$(git rev-parse HEAD)
 cd - || exit
 
-if [ "$gitmain" -ne "$githead" ]; then
+if [ "$gitmain" != "$githead" ]; then
     rm -rf ~/.config/oh-my-posh
 
     git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
@@ -80,7 +78,7 @@ brew install --cask powershell || brew upgrade --cask powershell
 
 # python 2
 brew install pyenv || brew upgrade pyenv
-pyenv install 2.7.18 -f
+pyenv install 2.7.18 -ffmpeg
 export PATH="$(pyenv root)/shims:${PATH}"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -89,7 +87,6 @@ pyenv shell 2.7.18
 
 # ruby
 brew install rbenv || brew upgrade rbenv
-brew uninstall --ignore-dependencies ruby-build
 rm -rf ~/.rbenv/plugins/ruby-build
 
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
@@ -104,6 +101,8 @@ if [ "$ruby_installed" != "$ruby_latest" ]; then
     rbenv install --verbose "$ruby_latest"
     rbenv global "$ruby_latest"
 fi
+
+rbenv install --verbose 2.5.3
 
 brew install --cask slack || brew upgrade --cask slack
 brew install --cask studio-3t || brew upgrade --cask studio-3t
@@ -125,7 +124,7 @@ gitmain=$(git rev-parse main)
 githead=$(git rev-parse HEAD)
 cd - || exit
 
-if [ "$gitmain" -ne "$githead" ]; then
+if [ "$gitmain" != "$githead" ]; then
     rm -rf ~/.config/zsh
 
     git clone https://github.com/cscribn/config-zsh.git  ~/.config/zsh
@@ -137,25 +136,25 @@ gitmain=$(git rev-parse main)
 githead=$(git rev-parse HEAD)
 cd - || exit
 
-if [ "$gitmain" -ne "$githead" ]; then
+if [ "$gitmain" != "$githead" ]; then
     rm -rf ~/.zsh/zsh-autocomplete
 fi
 
 cd ~/.zsh/zsh-autosuggestions || exit
-gitmain=$(git rev-parse main)
+gitmain=$(git rev-parse master)
 githead=$(git rev-parse HEAD)
 cd - || exit
 
-if [ "$gitmain" -ne "$githead" ]; then
+if [ "$gitmain" != "$githead" ]; then
     rm -rf ~/.zsh/zsh-autosuggestions
 fi
 
 cd ~/.zsh/zsh-syntax-highlighting || exit
-gitmain=$(git rev-parse main)
+gitmain=$(git rev-parse master)
 githead=$(git rev-parse HEAD)
 cd - || exit
 
-if [ "$gitmain" -ne "$githead" ]; then
+if [ "$gitmain" != "$githead" ]; then
     rm -rf ~/.zsh/zsh-syntax-highlighting
 fi
 

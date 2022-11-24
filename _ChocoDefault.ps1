@@ -159,7 +159,7 @@ If ($GitMain -ne $GitHead)
 }
 
 Set-Location "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
-$GitMain = git rev-parse main
+$GitMain = git rev-parse master
 $GitHead = git rev-parse HEAD
 Set-Location -
 
@@ -170,7 +170,7 @@ If ($GitMain -ne $GitHead)
 }
 
 Set-Location "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
-$GitMain = git rev-parse main
+$GitMain = git rev-parse master
 $GitHead = git rev-parse HEAD
 Set-Location -
 
