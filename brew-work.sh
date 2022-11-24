@@ -102,8 +102,6 @@ if [ "$ruby_installed" != "$ruby_latest" ]; then
     rbenv global "$ruby_latest"
 fi
 
-rbenv install --verbose 2.5.3
-
 brew install --cask slack || brew upgrade --cask slack
 brew install --cask studio-3t || brew upgrade --cask studio-3t
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
