@@ -19,4 +19,4 @@ choco upgrade rpi-imager -y
 choco upgrade win32diskimager --version 0.9.5 -y
 choco pin add --name="'win32diskimager'" --version="'0.9.5'"
 
-. $PSScriptRoot\_ChocoClean.ps1
+. $PSScriptRoot\_ChocoLast.ps1

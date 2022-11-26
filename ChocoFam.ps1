@@ -8,4 +8,4 @@ choco upgrade epicgameslauncher -y
 choco upgrade nvidia-display-driver -y
 choco upgrade steam-client -y
 
-. $PSScriptRoot\_ChocoClean.ps1
+. $PSScriptRoot\_ChocoLast.ps1

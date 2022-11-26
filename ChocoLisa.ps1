@@ -9,4 +9,4 @@
 # silhouette studio
 
 . $PSScriptRoot\_ChocoDefault.ps1
-. $PSScriptRoot\_ChocoClean.ps1
+. $PSScriptRoot\_ChocoLast.ps1
