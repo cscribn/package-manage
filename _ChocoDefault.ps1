@@ -68,6 +68,7 @@ choco upgrade onedrive --ignore-checksums -y
 choco upgrade oh-my-posh -y
 
 Set-Location "$Env:USERPROFILE\.config\oh-my-posh"
+git fetch
 $GitMain = git rev-parse main
 $GitHead = git rev-parse HEAD
 Set-Location -
@@ -134,6 +135,7 @@ choco upgrade zoom -y
 
 # zsh
 Set-Location "$Env:USERPROFILE\.config\zsh"
+git fetch
 $GitMain = git rev-parse main
 $GitHead = git rev-parse HEAD
 Set-Location -
@@ -149,6 +151,7 @@ If ($GitMain -ne $GitHead)
 }
 
 Set-Location "$Env:USERPROFILE\.zsh\zsh-autocomplete"
+git fetch
 $GitMain = git rev-parse main
 $GitHead = git rev-parse HEAD
 Set-Location -

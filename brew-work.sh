@@ -59,6 +59,7 @@ nvm install 12.13.0
 brew install oh-my-posh || brew upgrade oh-my-posh
 
 cd ~/.config/oh-my-posh || exit
+git fetch
 gitmain=$(git rev-parse main)
 githead=$(git rev-parse HEAD)
 cd - || exit
@@ -118,6 +119,7 @@ brew install yarn || brew upgrade yarn
 brew install zsh || brew upgrade zsh
 
 cd ~/.config/zsh || exit
+git fetch
 gitmain=$(git rev-parse main)
 githead=$(git rev-parse HEAD)
 cd - || exit
@@ -130,6 +132,7 @@ if [ "$gitmain" != "$githead" ]; then
 fi
 
 cd ~/.zsh/zsh-autocomplete || exit
+git fetch
 gitmain=$(git rev-parse main)
 githead=$(git rev-parse HEAD)
 cd - || exit
