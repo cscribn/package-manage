@@ -58,16 +58,27 @@ nvm install 12.13.0
 # oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
 
-cd ~/.config/oh-my-posh || exit
-git fetch
-gitmain=$(git rev-parse main)
-githead=$(git rev-parse HEAD)
-cd - || exit
+git_dir="$HOME/.config/oh-my-posh"
+git_url="https://github.com/cscribn/config-oh-my-posh.git"
+clone=0
 
-if [ "$gitmain" != "$githead" ]; then
-    rm -rf ~/.config/oh-my-posh
+if [ ! -d "$git_dir" ]; then
+    clone=1
+else
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse main)
+    git_head=$(git rev-parse HEAD)
+    cd - || exit
 
-    git clone https://github.com/cscribn/config-oh-my-posh.git  ~/.config/oh-my-posh
+    if [ "$git_main" != "$git_head" ]; then
+        rm -rf "$git_dir"
+        clone=1
+    fi
+fi
+
+if [ "$clone" ]; then
+    git clone "$git_url" "$git_dir"
 fi
 
 brew install --cask onedrive || brew upgrade --cask onedrive
@@ -118,45 +129,71 @@ brew install yarn || brew upgrade yarn
 # zsh
 brew install zsh || brew upgrade zsh
 
-cd ~/.config/zsh || exit
-git fetch
-gitmain=$(git rev-parse main)
-githead=$(git rev-parse HEAD)
-cd - || exit
+git_dir="$HOME/.config/zsh"
+git_url="https://github.com/cscribn/config-zsh.git"
+clone=0
 
-if [ "$gitmain" != "$githead" ]; then
-    rm -rf ~/.config/zsh
+if [ ! -d "$git_dir" ]; then
+    clone=1
+else
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse main)
+    git_head=$(git rev-parse HEAD)
+    cd - || exit
 
-    git clone https://github.com/cscribn/config-zsh.git  ~/.config/zsh
+    if [ "$git_main" != "$git_head" ]; then
+        rm -rf "$git_dir"
+        clone=1
+    fi
+fi
+
+if [ "$clone" ]; then
+    git clone "$git_url" "$git_dir"
+
     cp ~/.config/zsh/zshrc-mac ~/.zshrc
 fi
 
-cd ~/.zsh/zsh-autocomplete || exit
-git fetch
-gitmain=$(git rev-parse main)
-githead=$(git rev-parse HEAD)
-cd - || exit
+git_dir="$HOME/.zsh/zsh-autocomplete"
 
-if [ "$gitmain" != "$githead" ]; then
-    rm -rf ~/.zsh/zsh-autocomplete
+if [ -d "$git_dir" ]; then
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse main)
+    git_head=$(git rev-parse HEAD)
+    cd - || exit
+
+    if [ "$git_main" != "$git_head" ]; then
+        rm -rf "$git_dir"
+    fi
 fi
 
-cd ~/.zsh/zsh-autosuggestions || exit
-gitmain=$(git rev-parse master)
-githead=$(git rev-parse HEAD)
-cd - || exit
+git_dir="$HOME/.zsh/zsh-autosuggestions"
 
-if [ "$gitmain" != "$githead" ]; then
-    rm -rf ~/.zsh/zsh-autosuggestions
+if [ -d "$git_dir" ]; then
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse master)
+    git_head=$(git rev-parse HEAD)
+    cd - || exit
+
+    if [ "$git_main" != "$git_head" ]; then
+        rm -rf "$git_dir"
+    fi
 fi
 
-cd ~/.zsh/zsh-syntax-highlighting || exit
-gitmain=$(git rev-parse master)
-githead=$(git rev-parse HEAD)
-cd - || exit
+git_dir="$HOME/.zsh/zsh-syntax-highlighting"
 
-if [ "$gitmain" != "$githead" ]; then
-    rm -rf ~/.zsh/zsh-syntax-highlighting
+if [ -d "$git_dir" ]; then
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse master)
+    git_head=$(git rev-parse HEAD)
+    cd - || exit
+
+    if [ "$git_main" != "$git_head" ]; then
+        rm -rf "$git_dir"
+    fi
 fi
 
 brew install --cask zoom || brew upgrade --cask zoom

@@ -72,12 +72,17 @@ git fetch
 $GitMain = git rev-parse main
 $GitHead = git rev-parse HEAD
 Set-Location -
+Clone = $FALSE
 
 If ($GitMain -ne $GitHead)
 {
+{
     Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
+}
 
-    git clone https://github.com/cscribn/config-oh-my-posh.git  "$Env:USERPROFILE\.config\oh-my-posh"
+If ($Clone)
+{
+    git clone $GitUrl $GitDir
 }
 
 choco upgrade paint.net -y
@@ -134,52 +139,83 @@ choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
 # zsh
-Set-Location "$Env:USERPROFILE\.config\zsh"
-git fetch
-$GitMain = git rev-parse main
-$GitHead = git rev-parse HEAD
-Set-Location -
+GitDir = "$Env:USERPROFILE\.config\zsh"
+GitUrl = https://github.com/cscribn/config-zsh.git
+Clone = $FALSE
 
-If ($GitMain -ne $GitHead)
+If (-Not (Test-Path -Path $GitDir))
 {
-    Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\zsh"
+    Clone = $TRUE
+}
+Else
+{
+    Set-Location $GitDir
+    git fetch
+    $GitMain = git rev-parse main
+    $GitHead = git rev-parse HEAD
+    Set-Location -
 
-    git clone https://github.com/cscribn/config-zsh.git  "$Env:USERPROFILE\.config\zsh"
-
-    Copy-Item -Recurse -Force -Path "$Env:USERPROFILE\.config\zsh\zsh.pkg\*" -Destination "C:\Program Files\Git"
-    Copy-Item -Force -Path "$Env:USERPROFILE\.config\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
+    If ($GitMain -ne $GitHead)
+    {
+        Remove-Item -Recurse -Force $GitDir
+        Clone = $TRUE
+    }
 }
 
-Set-Location "$Env:USERPROFILE\.zsh\zsh-autocomplete"
-git fetch
-$GitMain = git rev-parse main
-$GitHead = git rev-parse HEAD
-Set-Location -
-
-If ($GitMain -ne $GitHead)
+If ($Clone)
 {
-    Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autocomplete"
+    git clone $GitUrl $GitDir
+
+    Copy-Item -Recurse -Force -Path "$GitDir\zsh.pkg\*" -Destination "C:\Program Files\Git"
+    Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
 }
 
-Set-Location "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
-$GitMain = git rev-parse master
-$GitHead = git rev-parse HEAD
-Set-Location -
+GitDir = "$Env:USERPROFILE\.zsh\zsh-autocomplete"
 
-If ($GitMain -ne $GitHead)
+If (Test-Path -Path $GitDir)
 {
+    Set-Location $GitDir
+    git fetch
+    $GitMain = git rev-parse main
+    $GitHead = git rev-parse HEAD
+    Set-Location -
 
-    Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
+    If ($GitMain -ne $GitHead)
+    {
+        Remove-Item -Recurse -Force $GitDir
+    }
 }
 
-Set-Location "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
-$GitMain = git rev-parse master
-$GitHead = git rev-parse HEAD
-Set-Location -
+GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 
-If ($GitMain -ne $GitHead)
+If (Test-Path -Path $GitDir)
 {
-    Remove-Item -Recurse -Force "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
+    Set-Location $GitDir
+    git fetch
+    $GitMain = git rev-parse master
+    $GitHead = git rev-parse HEAD
+    Set-Location -
+
+    If ($GitMain -ne $GitHead)
+    {
+        Remove-Item -Recurse -Force $GitDir
+    }
+}
+
+GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
+
+If (Test-Path -Path $GitDir)
+{
+    Set-Location $GitDir
+    git fetch
+    $GitMain = git rev-parse master
+    $GitHead = git rev-parse HEAD
+    Set-Location -
+
+    If ($GitMain -ne $GitHead)
+    {
+        Remove-Item -Recurse -Force $GitDir
+    }
 }
 
 # node - put here for timing issue
