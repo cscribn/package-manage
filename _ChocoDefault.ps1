@@ -67,17 +67,27 @@ choco upgrade onedrive --ignore-checksums -y
 # oh-my-posh
 choco upgrade oh-my-posh -y
 
-Set-Location "$Env:USERPROFILE\.config\oh-my-posh"
-git fetch
-$GitMain = git rev-parse main
-$GitHead = git rev-parse HEAD
-Set-Location -
+GitDir = "$Env:USERPROFILE\.config\oh-my-posh"
+GitUrl = "https://github.com/cscribn/config-oh-my-posh.git"
 Clone = $FALSE
 
-If ($GitMain -ne $GitHead)
+If (-Not (Test-Path -Path $GitDir))
 {
+    Clone = $TRUE
+}
+Else
 {
-    Remove-Item -Recurse -Force "$Env:USERPROFILE\.config\oh-my-posh"
+    Set-Location $GitDir
+    git fetch
+    $GitMain = git rev-parse main
+    $GitHead = git rev-parse HEAD
+    Set-Location -
+
+    If ($GitMain -ne $GitHead)
+    {
+        Remove-Item -Recurse -Force $GitDir
+        Clone = $TRUE
+    }
 }
 
 If ($Clone)
