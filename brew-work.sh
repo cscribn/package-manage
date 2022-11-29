@@ -56,7 +56,7 @@ nvm install 10.24.1
 nvm install 12.13.0
 
 # oh-my-posh
-brew install oh-my-posh || brew upgrade oh-my-posh
+brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
 
 cd ~/.config/oh-my-posh || exit
 git fetch
