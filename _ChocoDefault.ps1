@@ -130,6 +130,7 @@ curl -Lo ".vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim
 Copy-Item ".vimrc" -Destination "_vimrc"
 Set-Location -
 
+choco upgrade vscode -y
 choco upgrade winmerge -y
 choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
