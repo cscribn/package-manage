@@ -81,7 +81,6 @@ If ($GitMain -ne $GitHead)
 }
 
 choco upgrade paint.net -y
-choco upgrade partitionwizard -y
 choco upgrade peazip -y
 
 # powershell-core
@@ -107,7 +106,6 @@ choco uninstall python2 -y
 choco install python2 -y
 
 choco upgrade quicktime -y
-choco upgrade reflect-free -y
 
 # ruby
 choco uninstall ruby -y
