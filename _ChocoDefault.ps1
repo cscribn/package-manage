@@ -96,6 +96,7 @@ choco upgrade puretext -y
 
 # python
 choco uninstall python python3 -y
+Remove-Item "C:\Python3*"
 choco install python -y
 $PythonPath = Resolve-Path "C:\Python3*"
 Remove-Item "$PythonPath\python3.exe"
