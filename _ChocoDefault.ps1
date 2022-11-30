@@ -67,13 +67,13 @@ choco upgrade onedrive --ignore-checksums -y
 # oh-my-posh
 choco upgrade oh-my-posh -y
 
-GitDir = "$Env:USERPROFILE\.config\oh-my-posh"
-GitUrl = "https://github.com/cscribn/config-oh-my-posh.git"
-Clone = $FALSE
+$GitDir = "$Env:USERPROFILE\.config\oh-my-posh"
+$GitUrl = "https://github.com/cscribn/config-oh-my-posh.git"
+$Clone = $FALSE
 
 If (-Not (Test-Path -Path $GitDir))
 {
-    Clone = $TRUE
+    $Clone = $TRUE
 }
 Else
 {
@@ -86,7 +86,7 @@ Else
     If ($GitMain -ne $GitHead)
     {
         Remove-Item -Recurse -Force $GitDir
-        Clone = $TRUE
+        $Clone = $TRUE
     }
 }
 
@@ -147,13 +147,13 @@ choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
 # zsh
-GitDir = "$Env:USERPROFILE\.config\zsh"
-GitUrl = https://github.com/cscribn/config-zsh.git
-Clone = $FALSE
+$GitDir = "$Env:USERPROFILE\.config\zsh"
+$GitUrl = https://github.com/cscribn/config-zsh.git
+$Clone = $FALSE
 
 If (-Not (Test-Path -Path $GitDir))
 {
-    Clone = $TRUE
+    $Clone = $TRUE
 }
 Else
 {
@@ -166,7 +166,7 @@ Else
     If ($GitMain -ne $GitHead)
     {
         Remove-Item -Recurse -Force $GitDir
-        Clone = $TRUE
+        $Clone = $TRUE
     }
 }
 
@@ -178,7 +178,7 @@ If ($Clone)
     Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
 }
 
-GitDir = "$Env:USERPROFILE\.zsh\zsh-autocomplete"
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-autocomplete"
 
 If (Test-Path -Path $GitDir)
 {
@@ -194,7 +194,7 @@ If (Test-Path -Path $GitDir)
     }
 }
 
-GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 
 If (Test-Path -Path $GitDir)
 {
@@ -210,7 +210,7 @@ If (Test-Path -Path $GitDir)
     }
 }
 
-GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 
 If (Test-Path -Path $GitDir)
 {
