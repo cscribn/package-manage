@@ -71,27 +71,22 @@ $GitDir = "$Env:USERPROFILE\.config\oh-my-posh"
 $GitUrl = "https://github.com/cscribn/config-oh-my-posh.git"
 $Clone = $FALSE
 
-If (-Not (Test-Path -Path $GitDir))
-{
+If (-Not (Test-Path -Path $GitDir)) {
     $Clone = $TRUE
-}
-Else
-{
+} Else {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
     $GitHead = git rev-parse HEAD
     Set-Location -
 
-    If ($GitMain -ne $GitHead)
-    {
+    If ($GitMain -ne $GitHead) {
         Remove-Item -Recurse -Force $GitDir
         $Clone = $TRUE
     }
 }
 
-If ($Clone)
-{
+If ($Clone) {
     git clone $GitUrl $GitDir
 }
 
@@ -151,27 +146,22 @@ $GitDir = "$Env:USERPROFILE\.config\zsh"
 $GitUrl = "https://github.com/cscribn/config-zsh.git"
 $Clone = $FALSE
 
-If (-Not (Test-Path -Path $GitDir))
-{
+If (-Not (Test-Path -Path $GitDir)) {
     $Clone = $TRUE
-}
-Else
-{
+} Else {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
     $GitHead = git rev-parse HEAD
     Set-Location -
 
-    If ($GitMain -ne $GitHead)
-    {
+    If ($GitMain -ne $GitHead) {
         Remove-Item -Recurse -Force $GitDir
         $Clone = $TRUE
     }
 }
 
-If ($Clone)
-{
+If ($Clone) {
     git clone $GitUrl $GitDir
 
     Copy-Item -Recurse -Force -Path "$GitDir\zsh.pkg\*" -Destination "C:\Program Files\Git"
@@ -180,48 +170,42 @@ If ($Clone)
 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autocomplete"
 
-If (Test-Path -Path $GitDir)
-{
+If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
     $GitHead = git rev-parse HEAD
     Set-Location -
 
-    If ($GitMain -ne $GitHead)
-    {
+    If ($GitMain -ne $GitHead) {
         Remove-Item -Recurse -Force $GitDir
     }
 }
 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 
-If (Test-Path -Path $GitDir)
-{
+If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse master
     $GitHead = git rev-parse HEAD
     Set-Location -
 
-    If ($GitMain -ne $GitHead)
-    {
+    If ($GitMain -ne $GitHead) {
         Remove-Item -Recurse -Force $GitDir
     }
 }
 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 
-If (Test-Path -Path $GitDir)
-{
+If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse master
     $GitHead = git rev-parse HEAD
     Set-Location -
 
-    If ($GitMain -ne $GitHead)
-    {
+    If ($GitMain -ne $GitHead) {
         Remove-Item -Recurse -Force $GitDir
     }
 }
