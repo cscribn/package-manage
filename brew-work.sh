@@ -77,7 +77,7 @@ else
     fi
 fi
 
-if [ "$clone" ]; then
+if [ "$clone" = 1 ]; then
     git clone "$git_url" "$git_dir"
 fi
 
@@ -148,7 +148,7 @@ else
     fi
 fi
 
-if [ "$clone" ]; then
+if [ "$clone" = 1 ]; then
     git clone "$git_url" "$git_dir"
 
     cp ~/.config/zsh/zshrc-mac ~/.zshrc
