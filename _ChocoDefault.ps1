@@ -83,7 +83,7 @@ If (-Not (Test-Path -Path $GitDir)) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
-    $GitHead = git rev-parse HEAD
+    $GitHead = git merge-base main HEAD
     Set-Location -
 
     If ($GitMain -ne $GitHead) {
@@ -165,7 +165,7 @@ If (-Not (Test-Path -Path $GitDir)) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
-    $GitHead = git rev-parse HEAD
+    $GitHead = git merge-base main HEAD
     Set-Location -
 
     If ($GitMain -ne $GitHead) {
@@ -187,7 +187,7 @@ If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
-    $GitHead = git rev-parse HEAD
+    $GitHead = git merge-base main HEAD
     Set-Location -
 
     If ($GitMain -ne $GitHead) {
@@ -201,7 +201,7 @@ If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse master
-    $GitHead = git rev-parse HEAD
+    $GitHead = git merge-base master HEAD
     Set-Location -
 
     If ($GitMain -ne $GitHead) {
@@ -215,7 +215,7 @@ If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse master
-    $GitHead = git rev-parse HEAD
+    $GitHead = git merge-base master HEAD
     Set-Location -
 
     If ($GitMain -ne $GitHead) {

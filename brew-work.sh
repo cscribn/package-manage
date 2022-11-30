@@ -68,7 +68,7 @@ else
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse main)
-    git_head=$(git rev-parse HEAD)
+    git_head=$(git merge-base main HEAD)
     cd - || exit
 
     if [ "$git_main" != "$git_head" ]; then
@@ -139,7 +139,7 @@ else
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse main)
-    git_head=$(git rev-parse HEAD)
+    git_head=$(git merge-base main HEAD)
     cd - || exit
 
     if [ "$git_main" != "$git_head" ]; then
@@ -160,7 +160,7 @@ if [ -d "$git_dir" ]; then
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse main)
-    git_head=$(git rev-parse HEAD)
+    git_head=$(git merge-base main HEAD)
     cd - || exit
 
     if [ "$git_main" != "$git_head" ]; then
@@ -174,7 +174,7 @@ if [ -d "$git_dir" ]; then
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse master)
-    git_head=$(git rev-parse HEAD)
+    git_head=$(git merge-base master HEAD)
     cd - || exit
 
     if [ "$git_main" != "$git_head" ]; then
@@ -188,7 +188,7 @@ if [ -d "$git_dir" ]; then
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse master)
-    git_head=$(git rev-parse HEAD)
+    git_head=$(git merge-base master HEAD)
     cd - || exit
 
     if [ "$git_main" != "$git_head" ]; then
