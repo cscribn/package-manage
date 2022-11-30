@@ -148,7 +148,7 @@ choco upgrade zoom -y
 
 # zsh
 $GitDir = "$Env:USERPROFILE\.config\zsh"
-$GitUrl = https://github.com/cscribn/config-zsh.git
+$GitUrl = "https://github.com/cscribn/config-zsh.git"
 $Clone = $FALSE
 
 If (-Not (Test-Path -Path $GitDir))
