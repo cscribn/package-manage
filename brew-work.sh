@@ -68,10 +68,10 @@ else
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse main)
-    git_head=$(git merge-base main HEAD)
+    git_origin=$(git rev-parse origin/main)
     cd - || exit
 
-    if [ "$git_main" != "$git_head" ]; then
+    if [ "$git_main" != "$git_origin" ]; then
         rm -rf "$git_dir"
         clone=1
     fi
@@ -139,10 +139,10 @@ else
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse main)
-    git_head=$(git merge-base main HEAD)
+    git_origin=$(git rev-parse origin/main)
     cd - || exit
 
-    if [ "$git_main" != "$git_head" ]; then
+    if [ "$git_main" != "$git_origin" ]; then
         rm -rf "$git_dir"
         clone=1
     fi
@@ -160,10 +160,10 @@ if [ -d "$git_dir" ]; then
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse main)
-    git_head=$(git merge-base main HEAD)
+    git_origin=$(git rev-parse origin/main)
     cd - || exit
 
-    if [ "$git_main" != "$git_head" ]; then
+    if [ "$git_main" != "$git_origin" ]; then
         rm -rf "$git_dir"
     fi
 fi
@@ -174,10 +174,10 @@ if [ -d "$git_dir" ]; then
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse master)
-    git_head=$(git merge-base master HEAD)
+    git_origin=$(git rev-parse origin/master)
     cd - || exit
 
-    if [ "$git_main" != "$git_head" ]; then
+    if [ "$git_main" != "$git_origin" ]; then
         rm -rf "$git_dir"
     fi
 fi
@@ -188,10 +188,10 @@ if [ -d "$git_dir" ]; then
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse master)
-    git_head=$(git merge-base master HEAD)
+    git_origin=$(git rev-parse origin/master)
     cd - || exit
 
-    if [ "$git_main" != "$git_head" ]; then
+    if [ "$git_main" != "$git_origin" ]; then
         rm -rf "$git_dir"
     fi
 fi

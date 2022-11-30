@@ -83,10 +83,10 @@ If (-Not (Test-Path -Path $GitDir)) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
-    $GitHead = git merge-base main HEAD
+    $GitOrigin = git rev-parse origin/main
     Set-Location -
 
-    If ($GitMain -ne $GitHead) {
+    If ($GitMain -ne $GitOrigin) {
         Remove-Item -Recurse -Force $GitDir
         $Clone = $TRUE
     }
@@ -165,10 +165,10 @@ If (-Not (Test-Path -Path $GitDir)) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
-    $GitHead = git merge-base main HEAD
+    $GitOrigin = git rev-parse origin/main
     Set-Location -
 
-    If ($GitMain -ne $GitHead) {
+    If ($GitMain -ne $GitOrigin) {
         Remove-Item -Recurse -Force $GitDir
         $Clone = $TRUE
     }
@@ -187,10 +187,10 @@ If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse main
-    $GitHead = git merge-base main HEAD
+    $GitOrigin = git rev-parse origin/main
     Set-Location -
 
-    If ($GitMain -ne $GitHead) {
+    If ($GitMain -ne $GitOrigin) {
         Remove-Item -Recurse -Force $GitDir
     }
 }
@@ -201,10 +201,10 @@ If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse master
-    $GitHead = git merge-base master HEAD
+    $GitOrigin = git rev-parse origin/master
     Set-Location -
 
-    If ($GitMain -ne $GitHead) {
+    If ($GitMain -ne $GitOrigin) {
         Remove-Item -Recurse -Force $GitDir
     }
 }
@@ -215,10 +215,10 @@ If (Test-Path -Path $GitDir) {
     Set-Location $GitDir
     git fetch
     $GitMain = git rev-parse master
-    $GitHead = git merge-base master HEAD
+    $GitOrigin = git rev-parse origin/master
     Set-Location -
 
-    If ($GitMain -ne $GitHead) {
+    If ($GitMain -ne $GitOrigin) {
         Remove-Item -Recurse -Force $GitDir
     }
 }
