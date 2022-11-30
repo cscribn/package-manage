@@ -110,11 +110,9 @@ choco upgrade puretext -y
 
 # python
 choco uninstall python python3 -y
-Remove-Item "C:\Python3*"
+Remove-Item -Recurse "C:\Python3*"
 choco install python -y
 $PythonPath = Resolve-Path "C:\Python3*"
-Remove-Item "$PythonPath\python3.exe"
-Remove-Item "$PythonPath\pythonw3.exe"
 Rename-Item -Path "$PythonPath\python.exe" -NewName "python3.exe"
 Rename-Item -Path "$PythonPath\pythonw.exe" -NewName "pythonw3.exe"
 choco uninstall python2 -y
