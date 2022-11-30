@@ -10,6 +10,8 @@
 $StartTime = Get-Date
 
 choco upgrade chocolatey -y
+$Outdated = choco outdated -r
+
 choco upgrade curl -y
 choco upgrade git -y
 
@@ -21,8 +23,10 @@ choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
 
 # dotnet-sdk
-choco uninstall dotnet-6.0-sdk -y
-choco install dotnet-6.0-sdk -y
+If ($Outdated -match "dotnet-6.0-sdk") {
+    choco uninstall dotnet-6.0-sdk -y
+    choco install dotnet-6.0-sdk -y
+}
 
 choco upgrade dvddecrypter -y
 choco upgrade filezilla -y
@@ -56,10 +60,12 @@ choco upgrade mp3tag -y
 choco upgrade nextdns -y
 
 # nvm
-choco uninstall nvm -y
-choco uninstall nvm.install -y
-choco install nvm -y
-Update-SessionEnvironment
+If ($Outdated -match "nvm") {
+    choco uninstall nvm -y
+    choco uninstall nvm.install -y
+    choco install nvm -y
+    Update-SessionEnvironment
+}
 
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
@@ -104,21 +110,28 @@ curl -Lo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 choco upgrade puretext -y
 
 # python
-choco uninstall python python3 -y
-Remove-Item -Recurse "C:\Python3*"
-choco install python -y
-$PythonPath = Resolve-Path "C:\Python3*"
-Rename-Item -Path "$PythonPath\python.exe" -NewName "python3.exe"
-Rename-Item -Path "$PythonPath\pythonw.exe" -NewName "pythonw3.exe"
-choco uninstall python2 -y
-choco install python2 -y
+If ($Outdated -match "python3") {
+    choco uninstall python python3 -y
+    Remove-Item -Recurse "C:\Python3*"
+    choco install python -y
+    $PythonPath = Resolve-Path "C:\Python3*"
+    Rename-Item -Path "$PythonPath\python.exe" -NewName "python3.exe"
+    Rename-Item -Path "$PythonPath\pythonw.exe" -NewName "pythonw3.exe"
+}
+
+If ($Outdated -match "python2") {
+    hoco uninstall python2 -y
+    choco install python2 -y
+}
 
 choco upgrade quicktime -y
 
 # ruby
-choco uninstall ruby -y
-choco uninstall ruby.install -y
-choco install ruby -y
+If ($Outdated -match "ruby") {
+    choco uninstall ruby -y
+    choco uninstall ruby.install -y
+    choco install ruby -y
+}
 
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
