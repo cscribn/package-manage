@@ -7,6 +7,29 @@ sudo apt install git -y
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
+git_dir="$HOME/.config/oh-my-posh"
+git_url="https://github.com/cscribn/config-oh-my-posh.git"
+clone=0
+
+if [ ! -d "$git_dir" ]; then
+    clone=1
+else
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse main)
+    git_origin=$(git rev-parse origin/main)
+    cd - || exit
+
+    if [ "$git_main" != "$git_origin" ]; then
+        rm -rf "$git_dir"
+        clone=1
+    fi
+fi
+
+if [ "$clone" = 1 ]; then
+    git clone "$git_url" "$git_dir"
+fi
+
 # raspi2png
 git clone https://github.com/AndrewFromMelbourne/raspi2png
 sudo cp -a raspi2png/raspi2png /usr/local/bin
@@ -38,11 +61,70 @@ curl -Lo "$HOME/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/ma
 
 # zsh
 sudo apt install zsh -y
-rm -rf ~/.config/zsh
 
-git clone https://github.com/cscribn/config-zsh.git  ~/.config/zsh
+git_dir="$HOME/.config/zsh"
+git_url="https://github.com/cscribn/config-zsh.git"
+clone=0
 
-cp ~/.config/zsh/zshrc-pi ~/.zshrc
-rm -rf ~/.zsh/zsh-autocomplete
-rm -rf ~/.zsh/zsh-autosuggestions
-rm -rf ~/.zsh/zsh-syntax-highlighting
+if [ ! -d "$git_dir" ]; then
+    clone=1
+else
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse main)
+    git_origin=$(git rev-parse origin/main)
+    cd - || exit
+
+    if [ "$git_main" != "$git_origin" ]; then
+        rm -rf "$git_dir"
+        clone=1
+    fi
+fi
+
+if [ "$clone" = 1 ]; then
+    git clone "$git_url" "$git_dir"
+
+    cp ~/.config/zsh/zshrc-pi ~/.zshrc
+fi
+
+git_dir="$HOME/.zsh/zsh-autocomplete"
+
+if [ -d "$git_dir" ]; then
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse main)
+    git_origin=$(git rev-parse origin/main)
+    cd - || exit
+
+    if [ "$git_main" != "$git_origin" ]; then
+        rm -rf "$git_dir"
+    fi
+fi
+
+git_dir="$HOME/.zsh/zsh-autosuggestions"
+
+if [ -d "$git_dir" ]; then
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse master)
+    git_origin=$(git rev-parse origin/master)
+    cd - || exit
+
+    if [ "$git_main" != "$git_origin" ]; then
+        rm -rf "$git_dir"
+    fi
+fi
+
+git_dir="$HOME/.zsh/zsh-syntax-highlighting"
+
+if [ -d "$git_dir" ]; then
+    cd "$git_dir" || exit
+    git fetch
+    git_main=$(git rev-parse master)
+    git_origin=$(git rev-parse origin/master)
+    cd - || exit
+
+    if [ "$git_main" != "$git_origin" ]; then
+        rm -rf "$git_dir"
+    fi
+fi
