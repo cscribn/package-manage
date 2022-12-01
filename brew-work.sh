@@ -198,6 +198,6 @@ fi
 
 brew install --cask zoom || brew upgrade --cask zoom
 
-bre upgrade
+brew upgrade
 brew autoremove
 brew cleanup
