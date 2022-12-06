@@ -33,6 +33,7 @@ fi
 # raspi2png
 git clone https://github.com/AndrewFromMelbourne/raspi2png
 sudo cp -a raspi2png/raspi2png /usr/local/bin
+rm -rf ./raspi2png
 
 # ruby
 sudo apt install rbenv -y
