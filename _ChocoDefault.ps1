@@ -104,9 +104,9 @@ choco upgrade peazip -y
 
 # powershell-core
 choco upgrade powershell-core -y
-Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module posh-git -Force
 Install-Module PSReadLine -AllowPrerelease -Force
+Install-Module -Name Terminal-Icons -Repository PSGallery
 
 curl -Lo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
 
@@ -182,20 +182,6 @@ If ($Clone) {
 
     Copy-Item -Recurse -Force -Path "$GitDir\zsh.pkg\*" -Destination "C:\Program Files\Git"
     Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
-}
-
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-autocomplete"
-
-If (Test-Path -Path $GitDir) {
-    Set-Location $GitDir
-    git fetch
-    $GitMain = git rev-parse main
-    $GitOrigin = git rev-parse origin/main
-    Set-Location -
-
-    If ($GitMain -ne $GitOrigin) {
-        Remove-Item -Recurse -Force $GitDir
-    }
 }
 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"

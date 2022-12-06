@@ -156,20 +156,6 @@ if [ "$clone" = 1 ]; then
     cp ~/.config/zsh/zshrc-mac ~/.zshrc
 fi
 
-git_dir="$HOME/.zsh/zsh-autocomplete"
-
-if [ -d "$git_dir" ]; then
-    cd "$git_dir" || exit
-    git fetch
-    git_main=$(git rev-parse main)
-    git_origin=$(git rev-parse origin/main)
-    cd - || exit
-
-    if [ "$git_main" != "$git_origin" ]; then
-        rm -rf "$git_dir"
-    fi
-fi
-
 git_dir="$HOME/.zsh/zsh-autosuggestions"
 
 if [ -d "$git_dir" ]; then
