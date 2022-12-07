@@ -1,7 +1,8 @@
 # Non-Chocolatey installations (add/update these first)
+# git-sdk
 # googledrive
-# tcno account switcher
 # microsoft-windows-terminal
+# tcno account switcher
 
 # Note: Add or Remove Items in Start menu: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
 
@@ -11,6 +12,16 @@ $StartTime = Get-Date
 
 choco upgrade chocolatey -y
 $Outdated = choco outdated -r
+
+# pacman
+If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) {
+    Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"
+    Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"
+    Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"
+    Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"
+}
+
+Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm pacman`""
 
 choco upgrade curl -y
 choco upgrade git -y
@@ -158,6 +169,8 @@ choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
 # zsh
+Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm --overwrite \* zsh`""
+
 $GitDir = "$Env:USERPROFILE\.config\zsh"
 $GitUrl = "https://github.com/cscribn/config-zsh.git"
 $Clone = $FALSE
@@ -180,7 +193,6 @@ If (-Not (Test-Path -Path $GitDir)) {
 If ($Clone) {
     git clone $GitUrl $GitDir
 
-    Copy-Item -Recurse -Force -Path "$GitDir\zsh.pkg\*" -Destination "C:\Program Files\Git"
     Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
 }
 
