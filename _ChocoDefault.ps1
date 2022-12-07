@@ -1,5 +1,5 @@
 # Non-Chocolatey installations (add/update these first)
-# git-sdk
+# git-sdk (uninstall once pacman is scriptable)
 # googledrive
 # microsoft-windows-terminal
 # tcno account switcher
