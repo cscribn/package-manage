@@ -111,7 +111,6 @@ $Content = Get-Content "$GitDir\themes\powerlevel10k_rainbow_ansi.omp.json"
 $Content.replace("`"home_icon`": `"~`",", "`"folder_separator_icon`": `"/`",`r`n            `"home_icon`": `"~`",") | Set-Content "$GitDir\themes\powerlevel10k_rainbow_ansi.omp.json"
 
 choco upgrade paint.net -y
-choco upgrade peazip -y
 
 # powershell-core
 choco upgrade powershell-core -y
