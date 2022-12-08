@@ -193,6 +193,7 @@ If ($Clone) {
     git clone $GitUrl $GitDir
 
     Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
+    Copy-Item -Recurse -Force -Path "$GitDir\zsh.ico" -Destination "C:\Program Files\Git\usr\share\icons\locolor\32x32\apps"
 }
 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
