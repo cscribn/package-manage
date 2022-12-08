@@ -10,6 +10,7 @@
 
 $StartTime = Get-Date
 
+$env:Path += ';C:\Program Files\Git\bin;C:\Program Files\Git\usr\bin'
 choco upgrade chocolatey -y
 $Outdated = choco outdated -r
 
