@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Non-brew installations (add/update these first)
 # embrava
