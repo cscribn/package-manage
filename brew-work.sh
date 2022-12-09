@@ -18,7 +18,7 @@ brew install --cask barrier || brew upgrade --cask barrier
 # bash
 brew install bash || brew upgrade bash
 
-curl -Lo "$HOME/.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc
+curl -Lo "$HOME/.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc-mac
 
 # bbedit
 brew install --cask bbedit

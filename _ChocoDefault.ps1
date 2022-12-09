@@ -29,7 +29,7 @@ choco upgrade curl -y
 # bash
 choco upgrade git -y
 
-curl -Lo "$Env:USERPROFILE\.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc
+curl -Lo "$Env:USERPROFILE\.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc-win
 
 choco upgrade 7zip -y
 choco upgrade agentransack -y
