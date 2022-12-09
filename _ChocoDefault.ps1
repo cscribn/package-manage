@@ -25,7 +25,11 @@ If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm pacman`""
 
 choco upgrade curl -y
+
+# bash
 choco upgrade git -y
+
+curl -Lo "$Env:USERPROFILE\.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc
 
 choco upgrade 7zip -y
 choco upgrade agentransack -y

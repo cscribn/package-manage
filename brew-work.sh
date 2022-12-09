@@ -14,7 +14,11 @@ brew install git || brew upgrade git
 brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
 brew install awscli || brew upgrade awscli
 brew install --cask barrier || brew upgrade --cask barrier
+
+# bash
 brew install bash || brew upgrade bash
+
+curl -Lo "$HOME/.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc
 
 # bbedit
 brew install --cask bbedit
