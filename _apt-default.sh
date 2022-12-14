@@ -1,7 +1,12 @@
 #!/bin/bash
+# Non-apt installations (add these first)
+# rust
 
 sudo apt install curl -y
 sudo apt install git -y
+rustup update
+
+cargo install lsd
 
 # oh-my-posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh

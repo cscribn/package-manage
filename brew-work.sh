@@ -49,6 +49,7 @@ brew install --cask google-drive || brew upgrade --cask google-drive
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask libreoffice || brew upgrade --cask libreoffice
+brew install lsd || brew upgrade lsd
 
 # node
 brew uninstall nvm

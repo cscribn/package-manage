@@ -58,6 +58,7 @@ choco upgrade irfanview -y
 choco upgrade irfanviewplugins -y
 choco upgrade kitty -y
 choco upgrade libreoffice-fresh -y
+choco upgrade lsd -y
 
 # Meslo LGS Nerd Font
 Remove-Item "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf"
