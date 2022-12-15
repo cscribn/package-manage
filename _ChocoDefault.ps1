@@ -38,7 +38,7 @@ choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
 
-# dotnet-sdk
+# dotnet-sdk https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages
 If ($Outdated -match "dotnet-6.0-sdk") {
     choco uninstall dotnet-6.0-sdk -y
 }
