@@ -34,6 +34,7 @@ brew install --cask docker || brew upgrade --cask docker
 brew tap isen-ng/dotnet-sdk-versions
 # https://github.com/isen-ng/homebrew-dotnet-sdk-versions
 brew install --cask dotnet-sdk6-0-400 || brew upgrade --cask dotnet-sdk6-0-400
+brew install --cask dotnet-sdk7-0-100 || brew upgrade --cask dotnet-sdk7-0-100
 
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || brew upgrade --cask firefox

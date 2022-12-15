@@ -41,8 +41,15 @@ choco upgrade cutepdf -y
 # dotnet-sdk
 If ($Outdated -match "dotnet-6.0-sdk") {
     choco uninstall dotnet-6.0-sdk -y
-    choco install dotnet-6.0-sdk -y
 }
+
+If ($Outdated -match "dotnet-7.0-sdk") {
+    choco uninstall dotnet-7.0-sdk -y
+
+}
+
+choco upgrade dotnet-6.0-sdk -y
+choco upgrade dotnet-7.0-sdk -y
 
 choco upgrade dvddecrypter -y
 choco upgrade filezilla -y
