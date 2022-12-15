@@ -73,6 +73,8 @@ curl -Lo "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compat
 
 [Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", "MesloLGS NF", "Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf")
 
+robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
+
 choco upgrade microsoft-edge -y
 
 # microsoft-windows-terminal
