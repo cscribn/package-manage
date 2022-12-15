@@ -1,6 +1,6 @@
 #!/bin/bash
 # Non-apt installations (add these first)
-# rust
+# rust (curl https://sh.rustup.rs -sSf | sh)
 
 sudo apt install curl -y
 sudo apt install git -y
