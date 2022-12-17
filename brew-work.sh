@@ -5,7 +5,28 @@
 # paste plain text
 # peazip
 
-export PATH="$PATH:/opt/homebrew/bin"
+# settings
+set -o errexit
+set -o nounset
+set -o pipefail
+[[ "${TRACE-0}" == "1" ]] && set -o xtrace
+
+# variables
+declare script_name
+script_name=$(basename "${0}")
+declare clone
+declare git_dir
+declare git_main
+declare git_origin
+declare git_url
+
+# usage
+if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
+    echo "Usage: ./${script_name}"
+    exit
+fi
+
+export PATH="${PATH}:/opt/homebrew/bin"
 
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew tap homebrew/cask-versions
@@ -18,14 +39,14 @@ brew install --cask barrier || brew upgrade --cask barrier
 # bash
 brew install bash || brew upgrade bash
 
-curl -Lo "$HOME/.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc-mac
+curl -Lo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc-mac
 
 # bbedit
 brew install --cask bbedit
 
-curl -Lo "$HOME/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist
+curl -Lo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist
 
-curl -Lo "$HOME/Library/Application Support/BBEdit/Language Modules/PowerShell.plist" https://raw.githubusercontent.com/doug-baer/BBEdit-PowerShell/master/PowerShell.plist
+curl -Lo "${HOME}/Library/Application Support/BBEdit/Language Modules/PowerShell.plist" https://raw.githubusercontent.com/doug-baer/BBEdit-PowerShell/master/PowerShell.plist
 
 brew install coreutils || brew upgrade coreutils
 brew install --cask docker || brew upgrade --cask docker
@@ -55,9 +76,9 @@ brew install lsd || brew upgrade lsd
 # node
 brew uninstall nvm
 brew install nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="${HOME}/.nvm"
+[[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 nvm install node
 nvm install 10.24.1
@@ -66,11 +87,11 @@ nvm install 12.13.0
 # oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
 
-git_dir="$HOME/.config/oh-my-posh"
+git_dir="${HOME}/.config/oh-my-posh"
 git_url="https://github.com/cscribn/config-oh-my-posh.git"
 clone=0
 
-if [ ! -d "$git_dir" ]; then
+if [[ ! -d "$git_dir" ]]; then
     clone=1
 else
     cd "$git_dir" || exit
@@ -79,13 +100,13 @@ else
     git_origin=$(git rev-parse origin/main)
     cd - || exit
 
-    if [ "$git_main" != "$git_origin" ]; then
+    if [[ "$git_main" != "$git_origin" ]]; then
         rm -rf "$git_dir"
         clone=1
     fi
 fi
 
-if [ "$clone" = 1 ]; then
+if [[ "$clone" = 1 ]]; then
     git clone "$git_url" "$git_dir"
 fi
 
@@ -99,9 +120,10 @@ brew install --cask powershell || brew upgrade --cask powershell
 # python 2
 brew install pyenv || brew upgrade pyenv
 pyenv install 2.7.18 -ffmpeg
-export PATH="$(pyenv root)/shims:${PATH}"
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+PATH="$(pyenv root)/shims:${PATH}"
+export PATH
+export PYENV_ROOT="${HOME}/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:${PATH}"
 eval "$(pyenv init -)"
 pyenv shell 2.7.18
 
@@ -111,12 +133,14 @@ rm -rf ~/.rbenv/plugins/ruby-build
 
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="${HOME}/.rbenv/bin:${PATH}"
 eval "$(rbenv init -)"
+declare ruby_installed
 ruby_installed=$(head -n 1 ~/.rbenv/version | tr -d '[[:space:]]')
+declare ruby_latest
 ruby_latest=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
 
-if [ "$ruby_installed" != "$ruby_latest" ]; then
+if [[ "$ruby_installed" != "$ruby_latest" ]]; then
     rbenv uninstall -f "$ruby_installed"
     rbenv install --verbose "$ruby_latest"
     rbenv global "$ruby_latest"
@@ -129,7 +153,7 @@ brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 # vim
 brew install vim || brew upgrade vim
 
-curl -Lo "$HOME/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
+curl -Lo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
 
 brew install --cask vlc || brew upgrade --cask vlc
 brew install yarn || brew upgrade yarn
@@ -137,11 +161,11 @@ brew install yarn || brew upgrade yarn
 # zsh
 brew install zsh || brew upgrade zsh
 
-git_dir="$HOME/.config/zsh"
+git_dir="${HOME}/.config/zsh"
 git_url="https://github.com/cscribn/config-zsh.git"
 clone=0
 
-if [ ! -d "$git_dir" ]; then
+if [[ ! -d "$git_dir" ]]; then
     clone=1
 else
     cd "$git_dir" || exit
@@ -150,42 +174,42 @@ else
     git_origin=$(git rev-parse origin/main)
     cd - || exit
 
-    if [ "$git_main" != "$git_origin" ]; then
+    if [[ "$git_main" != "$git_origin" ]]; then
         rm -rf "$git_dir"
         clone=1
     fi
 fi
 
-if [ "$clone" = 1 ]; then
+if [[ "$clone" = 1 ]]; then
     git clone "$git_url" "$git_dir"
 
     cp ~/.config/zsh/zshrc-mac ~/.zshrc
 fi
 
-git_dir="$HOME/.zsh/zsh-autosuggestions"
+git_dir="${HOME}/.zsh/zsh-autosuggestions"
 
-if [ -d "$git_dir" ]; then
+if [[ -d "$git_dir" ]]; then
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse master)
     git_origin=$(git rev-parse origin/master)
     cd - || exit
 
-    if [ "$git_main" != "$git_origin" ]; then
+    if [[ "$git_main" != "$git_origin" ]]; then
         rm -rf "$git_dir"
     fi
 fi
 
-git_dir="$HOME/.zsh/zsh-syntax-highlighting"
+git_dir="${HOME}/.zsh/zsh-syntax-highlighting"
 
-if [ -d "$git_dir" ]; then
+if [[ -d "$git_dir" ]]; then
     cd "$git_dir" || exit
     git fetch
     git_main=$(git rev-parse master)
     git_origin=$(git rev-parse origin/master)
     cd - || exit
 
-    if [ "$git_main" != "$git_origin" ]; then
+    if [[ "$git_main" != "$git_origin" ]]; then
         rm -rf "$git_dir"
     fi
 fi
