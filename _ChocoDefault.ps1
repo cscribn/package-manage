@@ -86,12 +86,8 @@ choco upgrade mp3tag -y
 choco upgrade nextdns -y
 
 # nvm
-If ($Outdated -match "nvm") {
-    choco uninstall nvm -y
-    choco uninstall nvm.install -y
-    choco install nvm -y
-    Update-SessionEnvironment
-}
+choco upgrade nvm -y
+Update-SessionEnvironment
 
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
@@ -243,6 +239,7 @@ If (Test-Path -Path $GitDir) {
 }
 
 # node - put here for timing issue
+(Get-ChildItem "C:\ProgramData\nvm" | Select -ExpandProperty Name) -match "^v.*" | Remove-Item -Recurse
 nvm install latest
 nvm use latest
 
