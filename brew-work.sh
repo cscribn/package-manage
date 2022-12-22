@@ -74,7 +74,7 @@ brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 
 # node
-find "${HOME}/.nvm/versions/node" -depth 1 -type d ! -name "v10.24.1" ! -name "v12.13.0"
+find "${HOME}/.nvm/versions/node" -depth 1 -type d ! -name "v10.24.1" ! -name "v12.13.0" -exec rm -rf {} +
 
 brew install nvm || brew upgrade nvm
 export NVM_DIR="${HOME}/.nvm"
