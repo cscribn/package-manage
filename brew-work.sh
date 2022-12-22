@@ -74,8 +74,9 @@ brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 
 # node
-brew uninstall nvm
-brew install nvm
+find "${HOME}/.nvm/versions/node" -depth 1 -type d ! -name "v10.24.1" ! -name "v12.13.0"
+
+brew install nvm || brew upgrade nvm
 export NVM_DIR="${HOME}/.nvm"
 [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
