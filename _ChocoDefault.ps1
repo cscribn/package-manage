@@ -141,15 +141,17 @@ If ($Outdated -match "python3") {
     choco uninstall python python3 -y
     Remove-Item -Recurse "C:\Python3*"
     choco install python -y
-    $PythonPath = Resolve-Path "C:\Python3*"
-    Rename-Item -Path "$PythonPath\python.exe" -NewName "python3.exe"
-    Rename-Item -Path "$PythonPath\pythonw.exe" -NewName "pythonw3.exe"
+    $Python3Path = Resolve-Path "C:\Python3*"
+    Rename-Item -Path "$Python3Path\python.exe" -NewName "python3.exe"
+    Rename-Item -Path "$Python3Path\pythonw.exe" -NewName "pythonw3.exe"
 }
 
 If ($Outdated -match "python2") {
-    hoco uninstall python2 -y
+    choco uninstall python2 -y
     choco install python2 -y
 }
+
+choco install pip -y
 
 choco upgrade quicktime -y
 
