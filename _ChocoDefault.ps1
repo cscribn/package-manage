@@ -151,8 +151,6 @@ If ($Outdated -match "python2") {
     choco install python2 -y
 }
 
-choco install pip -y
-
 choco upgrade quicktime -y
 
 # ruby
