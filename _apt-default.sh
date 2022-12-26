@@ -14,6 +14,7 @@ sudo apt install git -y
 rustup update
 
 cargo install lsd
+wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet7pi/main/install.sh | sudo bash
 
 # node
 rm -rf "${HOME}/.nvm/versions/node"/*
@@ -51,6 +52,9 @@ fi
 if [[ "$clone" = 1 ]]; then
     git clone "$git_url" "$git_dir"
 fi
+
+sudo apt install python-pip -y
+sudo apt install python3-pip -y
 
 # raspi2png
 git clone https://github.com/AndrewFromMelbourne/raspi2png
