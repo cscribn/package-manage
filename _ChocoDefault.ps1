@@ -135,22 +135,7 @@ Install-Module -Name Terminal-Icons -Repository PSGallery
 curl -Lo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
 
 choco upgrade puretext -y
-
-# python
-If ($Outdated -match "python3") {
-    choco uninstall python python3 -y
-    Remove-Item -Recurse "C:\Python3*"
-    choco install python -y
-    $Python3Path = Resolve-Path "C:\Python3*"
-    Rename-Item -Path "$Python3Path\python.exe" -NewName "python3.exe"
-    Rename-Item -Path "$Python3Path\pythonw.exe" -NewName "pythonw3.exe"
-}
-
-If ($Outdated -match "python2") {
-    choco uninstall python2 -y
-    choco install python2 -y
-}
-
+winget install -e --id Python.Python.3.11
 choco upgrade quicktime -y
 
 # ruby
@@ -163,7 +148,11 @@ If ($Outdated -match "ruby") {
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
 choco upgrade sqlitebrowser -y
+
+# perl
 choco upgrade strawberryperl -y
+cpanm -n Perl::LanguageServer
+
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
