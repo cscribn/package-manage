@@ -162,6 +162,7 @@ If ($Outdated -match "ruby") {
 
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
+choco upgrade sqlitebrowser -y
 choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
