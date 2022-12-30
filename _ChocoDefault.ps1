@@ -1,8 +1,10 @@
 # Non-Chocolatey installations (add/update these first)
+# chocolatey itself
 # git-sdk (uninstall once pacman is scriptable)
 # googledrive
 # microsoft-windows-terminal
 # tcno account switcher
+# winget
 
 # Note: Add or Remove Items in Start menu: https://support.microsoft.com/en-us/topic/removing-invalid-entries-in-the-add-remove-programs-tool-0dae27c1-0b06-2559-311b-635cd532a6d5
 
