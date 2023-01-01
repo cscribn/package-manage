@@ -9,6 +9,7 @@ declare git_main
 declare git_origin
 declare git_url
 
+sudo apt update
 sudo apt install curl -y
 sudo apt install git -y
 rustup update
