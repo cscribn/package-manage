@@ -5,7 +5,6 @@
 # sh -c 'sh -c "$(curl -sL https://nextdns.io/install)"'
 
 # settings
-set -o errexit
 set -o nounset
 set -o pipefail
 [[ "${TRACE-0}" == "1" ]] && set -o xtrace
