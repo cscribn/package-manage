@@ -137,7 +137,7 @@ Install-Module -Name Terminal-Icons -Repository PSGallery
 curl -Lo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
 
 choco upgrade puretext -y
-winget install -e --id Python.Python.3.11
+winget install --accept-source-agreements --accept-package-agreements -e --id Python.Python.3.11
 choco upgrade quicktime -y
 
 # ruby
