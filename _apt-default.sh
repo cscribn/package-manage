@@ -21,7 +21,7 @@ wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet7pi/main/install.
 rm -rf "${HOME}/.nvm/versions/node"/*
 
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -66,13 +66,13 @@ rm -rf ./raspi2png
 sudo apt install rbenv -y
 sudo apt remove ruby-build -y
 export PATH="${HOME}/.rbenv/bin:${PATH}"
-rm -rf ~/.rbenv/plugins/ruby-build
+rm -rf "${HOME}/.rbenv/plugins/ruby-build"
 
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
 
 eval "$(rbenv init -)"
 declare ruby_installed
-ruby_installed=$(head -n 1 ~/.rbenv/version | tr -d '[[:space:]]')
+ruby_installed=$(head -n 1 ${HOME}/.rbenv/version | tr -d '[[:space:]]')
 declare ruby_latest
 ruby_latest=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
 
@@ -114,7 +114,7 @@ fi
 if [[ "$clone" = 1 ]]; then
     git clone "$git_url" "$git_dir"
 
-    cp ~/.config/zsh/zshrc-pi ~/.zshrc
+    cp "${HOME}/.config/zsh/zshrc-pi" "${HOME}/.zshrc"
 fi
 
 git_dir="${HOME}/.zsh/zsh-autosuggestions"
