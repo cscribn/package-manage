@@ -128,6 +128,7 @@ $Content.replace("`"home_icon`": `"~`",", "`"folder_separator_icon`": `"/`",`r`n
 
 choco upgrade paint.net -y
 choco upgrade pngquant -y
+choco upgrade pngyu -y
 
 # powershell-core
 choco upgrade powershell-core -y
