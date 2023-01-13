@@ -66,6 +66,7 @@ choco upgrade inkscape -y
 choco upgrade irfanview -y
 choco upgrade irfanviewplugins -y
 choco upgrade kitty -y
+choco uninstall libreoffice-fresh -y
 choco upgrade libreoffice-still -y
 choco upgrade lsd -y
 
