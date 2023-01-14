@@ -228,7 +228,7 @@ If (Test-Path -Path $GitDir) {
 }
 
 # node - put here for timing issue
-(Get-ChildItem "C:\ProgramData\nvm" | Select -ExpandProperty Name) -match "^v.*" | Remove-Item -Recurse
+(Get-ChildItem "C:\ProgramData\nvm" | ForEach-Object {$_.FullName}) -match "\\v.*" | Remove-Item -Recurse
 nvm install latest
 nvm use latest
 
