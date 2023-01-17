@@ -68,3 +68,6 @@ if [[ "$clone" = 1 ]]; then
 
     cp ~/.config/zsh/zshrc-mac ~/.zshrc
 fi
+
+# pwsh
+curl -Lo "$HOME/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
