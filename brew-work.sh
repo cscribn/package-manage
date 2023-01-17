@@ -15,9 +15,9 @@ declare script_name
 script_name=$(basename "${0}")
 declare script_dir
 script_dir="$(dirname "$0")"
-
-# include
-source "${script_dir}/_brew-work-config.sh"
+declare git_dir
+declare git_main
+declare git_origin
 
 # usage
 if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
@@ -153,3 +153,5 @@ brew install --cask zoom || brew upgrade --cask zoom
 brew upgrade
 brew autoremove
 brew cleanup
+
+source "${script_dir}/_brew-work-config.sh"
