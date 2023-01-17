@@ -27,11 +27,7 @@ If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm pacman`""
 
 choco upgrade curl -y
-
-# bash
 choco upgrade git -y
-
-curl -Lo "$Env:USERPROFILE\.bashrc" https://raw.githubusercontent.com/cscribn/config-misc/main/bash/bashrc-win
 
 choco upgrade 7zip -y
 choco upgrade agentransack -y
@@ -79,12 +75,6 @@ curl -Lo "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compat
 robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 
 choco upgrade microsoft-edge -y
-
-# microsoft-windows-terminal
-$LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
-
-curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings.json
-
 choco upgrade mp3tag -y
 choco upgrade nextdns -y
 
@@ -94,33 +84,7 @@ Update-SessionEnvironment
 
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
-
-# oh-my-posh
 choco upgrade oh-my-posh -y
-
-$GitDir = "$Env:USERPROFILE\.config\oh-my-posh"
-$GitUrl = "https://github.com/cscribn/config-oh-my-posh.git"
-$Clone = $FALSE
-
-If (-Not (Test-Path -Path $GitDir)) {
-    $Clone = $TRUE
-} Else {
-    Set-Location $GitDir
-    git fetch
-    $GitMain = git rev-parse main
-    $GitOrigin = git rev-parse origin/main
-    Set-Location -
-
-    If ($GitMain -ne $GitOrigin) {
-        Remove-Item -Recurse -Force $GitDir
-        $Clone = $TRUE
-    }
-}
-
-If ($Clone) {
-    git clone $GitUrl $GitDir
-}
-
 choco upgrade paint.net -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
@@ -130,8 +94,6 @@ choco upgrade powershell-core -y
 Install-Module posh-git -Force
 Install-Module PSReadLine -AllowPrerelease -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery
-
-curl -Lo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
 
 choco upgrade puretext -y
 winget install --accept-source-agreements --accept-package-agreements -e --id Python.Python.3.11
@@ -155,16 +117,7 @@ cpanm -n Perl::LanguageServer
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
-
-# vim
 choco upgrade vim -y
-Set-Location "$Env:USERPROFILE"
-
-curl -Lo ".vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
-
-Copy-Item ".vimrc" -Destination "_vimrc"
-Set-Location -
-
 choco upgrade vscode -y
 choco upgrade winmerge -y
 choco upgrade youtube-dl-gui -y
@@ -172,32 +125,6 @@ choco upgrade zoom -y
 
 # zsh
 Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm --overwrite \* zsh`""
-
-$GitDir = "$Env:USERPROFILE\.config\zsh"
-$GitUrl = "https://github.com/cscribn/config-zsh.git"
-$Clone = $FALSE
-
-If (-Not (Test-Path -Path $GitDir)) {
-    $Clone = $TRUE
-} Else {
-    Set-Location $GitDir
-    git fetch
-    $GitMain = git rev-parse main
-    $GitOrigin = git rev-parse origin/main
-    Set-Location -
-
-    If ($GitMain -ne $GitOrigin) {
-        Remove-Item -Recurse -Force $GitDir
-        $Clone = $TRUE
-    }
-}
-
-If ($Clone) {
-    git clone $GitUrl $GitDir
-
-    Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
-    Copy-Item -Recurse -Force -Path "$GitDir\zsh.ico" -Destination "C:\Program Files\Git\usr\share\icons\locolor\32x32\apps"
-}
 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 

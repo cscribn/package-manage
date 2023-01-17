@@ -1,4 +1,5 @@
 . $PSScriptRoot\_ChocoDefault.ps1
+. $PSScriptRoot\_ChocoDefaultConfig.ps1
 . $PSScriptRoot\_ChocoDev.ps1
 
 # conemu
@@ -8,4 +9,4 @@ curl -Lo "$Env:APPDATA\ConEmu.xml" https://raw.githubusercontent.com/cscribn/con
 
 choco upgrade postman -y
 
-. $PSScriptRoot\_ChocoLast.ps1
+. $PSScriptRoot\_ChodoDefaultLast.ps1
