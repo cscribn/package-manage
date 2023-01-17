@@ -3,11 +3,13 @@
 # rust (curl https://sh.rustup.rs -sSf | sh)
 
 # variables
-declare clone
+declare script_name
+script_name=$(basename "${0}")
+declare script_dir
+script_dir="$(dirname "$0")"
 declare git_dir
 declare git_main
 declare git_origin
-declare git_url
 
 sudo apt update
 sudo apt install curl -y
@@ -15,7 +17,10 @@ sudo apt install git -y
 rustup update
 
 cargo install lsd
+
+# dotnet
 wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet7pi/main/install.sh | sudo bash
+rm -f "${HOME}/dotnetdebug.sh"
 
 # node
 rm -rf "${HOME}/.nvm/versions/node"/*
@@ -30,29 +35,6 @@ nvm install node
 # oh-my-posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
-
-git_dir="${HOME}/.config/oh-my-posh"
-git_url="https://github.com/cscribn/config-oh-my-posh.git"
-clone=0
-
-if [[ ! -d "$git_dir" ]]; then
-    clone=1
-else
-    cd "$git_dir" || exit
-    git fetch
-    git_main=$(git rev-parse main)
-    git_origin=$(git rev-parse origin/main)
-    cd - || exit
-
-    if [[ "$git_main" != "$git_origin" ]]; then
-        rm -rf "$git_dir"
-        clone=1
-    fi
-fi
-
-if [[ "$clone" = 1 ]]; then
-    git clone "$git_url" "$git_dir"
-fi
 
 sudo apt install python-pip -y
 sudo apt install python3-pip -y
@@ -83,39 +65,10 @@ if [[ "$ruby_installed" != "$ruby_latest" ]]; then
 fi
 
 sudo apt install unzip -y
-
-# vim
 sudo apt install vim -y
-
-curl -Lo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
 
 # zsh
 sudo apt install zsh -y
-
-git_dir="${HOME}/.config/zsh"
-git_url="https://github.com/cscribn/config-zsh.git"
-clone=0
-
-if [[ ! -d "$git_dir" ]]; then
-    clone=1
-else
-    cd "$git_dir" || exit
-    git fetch
-    git_main=$(git rev-parse main)
-    git_origin=$(git rev-parse origin/main)
-    cd - || exit
-
-    if [[ "$git_main" != "$git_origin" ]]; then
-        rm -rf "$git_dir"
-        clone=1
-    fi
-fi
-
-if [[ "$clone" = 1 ]]; then
-    git clone "$git_url" "$git_dir"
-
-    cp "${HOME}/.config/zsh/zshrc-pi" "${HOME}/.zshrc"
-fi
 
 git_dir="${HOME}/.zsh/zsh-autosuggestions"
 
@@ -144,3 +97,5 @@ if [[ -d "$git_dir" ]]; then
         rm -rf "$git_dir"
     fi
 fi
+
+source "${script_dir}/_apt-default-config.sh"
