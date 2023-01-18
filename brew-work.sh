@@ -21,8 +21,8 @@ declare git_origin
 
 # usage
 if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
-    echo "Usage: ./${script_name}"
-    exit
+	echo "Usage: ./${script_name}"
+	exit
 fi
 
 export PATH="${PATH}:/opt/homebrew/bin"
@@ -105,9 +105,9 @@ declare ruby_latest
 ruby_latest=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
 
 if [[ "$ruby_installed" != "$ruby_latest" ]]; then
-    rbenv uninstall -f "$ruby_installed"
-    rbenv install --verbose "$ruby_latest"
-    rbenv global "$ruby_latest"
+	rbenv uninstall -f "$ruby_installed"
+	rbenv install --verbose "$ruby_latest"
+	rbenv global "$ruby_latest"
 fi
 
 brew install --cask slack || brew upgrade --cask slack
@@ -123,29 +123,29 @@ brew install zsh || brew upgrade zsh
 git_dir="${HOME}/.zsh/zsh-autosuggestions"
 
 if [[ -d "$git_dir" ]]; then
-    cd "$git_dir" || exit
-    git fetch
-    git_main=$(git rev-parse master)
-    git_origin=$(git rev-parse origin/master)
-    cd - || exit
+	cd "$git_dir" || exit
+	git fetch
+	git_main=$(git rev-parse master)
+	git_origin=$(git rev-parse origin/master)
+	cd - || exit
 
-    if [[ "$git_main" != "$git_origin" ]]; then
-        rm -rf "$git_dir"
-    fi
+	if [[ "$git_main" != "$git_origin" ]]; then
+		rm -rf "$git_dir"
+	fi
 fi
 
 git_dir="${HOME}/.zsh/zsh-syntax-highlighting"
 
 if [[ -d "$git_dir" ]]; then
-    cd "$git_dir" || exit
-    git fetch
-    git_main=$(git rev-parse master)
-    git_origin=$(git rev-parse origin/master)
-    cd - || exit
+	cd "$git_dir" || exit
+	git fetch
+	git_main=$(git rev-parse master)
+	git_origin=$(git rev-parse origin/master)
+	cd - || exit
 
-    if [[ "$git_main" != "$git_origin" ]]; then
-        rm -rf "$git_dir"
-    fi
+	if [[ "$git_main" != "$git_origin" ]]; then
+		rm -rf "$git_dir"
+	fi
 fi
 
 brew install --cask zoom || brew upgrade --cask zoom

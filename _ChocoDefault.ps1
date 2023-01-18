@@ -18,10 +18,10 @@ $Outdated = choco outdated -r
 
 # pacman
 If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) {
-    Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"
-    Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"
-    Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"
-    Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"
+	Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"
+	Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"
+	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"
+	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"
 }
 
 Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm pacman`""
@@ -38,11 +38,11 @@ choco upgrade cutepdf -y
 
 # dotnet-sdk https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages
 If ($Outdated -match "dotnet-6.0-sdk") {
-    choco uninstall dotnet-6.0-sdk -y
+	choco uninstall dotnet-6.0-sdk -y
 }
 
 If ($Outdated -match "dotnet-7.0-sdk") {
-    choco uninstall dotnet-7.0-sdk -y
+	choco uninstall dotnet-7.0-sdk -y
 
 }
 
@@ -101,9 +101,9 @@ choco upgrade quicktime -y
 
 # ruby
 If ($Outdated -match "ruby") {
-    choco uninstall ruby -y
-    choco uninstall ruby.install -y
-    choco install ruby -y
+	choco uninstall ruby -y
+	choco uninstall ruby.install -y
+	choco install ruby -y
 }
 
 choco upgrade scribus -y
@@ -129,29 +129,29 @@ Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm --overwrite \* zsh`""
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 
 If (Test-Path -Path $GitDir) {
-    Set-Location $GitDir
-    git fetch
-    $GitMain = git rev-parse master
-    $GitOrigin = git rev-parse origin/master
-    Set-Location -
+	Set-Location $GitDir
+	git fetch
+	$GitMain = git rev-parse master
+	$GitOrigin = git rev-parse origin/master
+	Set-Location -
 
-    If ($GitMain -ne $GitOrigin) {
-        Remove-Item -Recurse -Force $GitDir
-    }
+	If ($GitMain -ne $GitOrigin) {
+		Remove-Item -Recurse -Force $GitDir
+	}
 }
 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 
 If (Test-Path -Path $GitDir) {
-    Set-Location $GitDir
-    git fetch
-    $GitMain = git rev-parse master
-    $GitOrigin = git rev-parse origin/master
-    Set-Location -
+	Set-Location $GitDir
+	git fetch
+	$GitMain = git rev-parse master
+	$GitOrigin = git rev-parse origin/master
+	Set-Location -
 
-    If ($GitMain -ne $GitOrigin) {
-        Remove-Item -Recurse -Force $GitDir
-    }
+	If ($GitMain -ne $GitOrigin) {
+		Remove-Item -Recurse -Force $GitDir
+	}
 }
 
 # node - put here for timing issue

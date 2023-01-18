@@ -15,8 +15,8 @@ script_name=$(basename "${0}")
 
 # usage
 if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
-    echo "Usage: ./${script_name}"
-    exit
+	echo "Usage: ./${script_name}"
+	exit
 fi
 
 # include

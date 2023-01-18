@@ -12,22 +12,22 @@ $GitUrl = "https://github.com/cscribn/config-oh-my-posh.git"
 $Clone = $FALSE
 
 If (-Not (Test-Path -Path $GitDir)) {
-    $Clone = $TRUE
+	$Clone = $TRUE
 } Else {
-    Set-Location $GitDir
-    git fetch
-    $GitMain = git rev-parse main
-    $GitOrigin = git rev-parse origin/main
-    Set-Location -
+	Set-Location $GitDir
+	git fetch
+	$GitMain = git rev-parse main
+	$GitOrigin = git rev-parse origin/main
+	Set-Location -
 
-    If ($GitMain -ne $GitOrigin) {
-        Remove-Item -Recurse -Force $GitDir
-        $Clone = $TRUE
-    }
+	If ($GitMain -ne $GitOrigin) {
+		Remove-Item -Recurse -Force $GitDir
+		$Clone = $TRUE
+	}
 }
 
 If ($Clone) {
-    git clone $GitUrl $GitDir
+	git clone $GitUrl $GitDir
 }
 
 # powershell-core
@@ -47,23 +47,23 @@ $GitUrl = "https://github.com/cscribn/config-zsh.git"
 $Clone = $FALSE
 
 If (-Not (Test-Path -Path $GitDir)) {
-    $Clone = $TRUE
+	$Clone = $TRUE
 } Else {
-    Set-Location $GitDir
-    git fetch
-    $GitMain = git rev-parse main
-    $GitOrigin = git rev-parse origin/main
-    Set-Location -
+	Set-Location $GitDir
+	git fetch
+	$GitMain = git rev-parse main
+	$GitOrigin = git rev-parse origin/main
+	Set-Location -
 
-    If ($GitMain -ne $GitOrigin) {
-        Remove-Item -Recurse -Force $GitDir
-        $Clone = $TRUE
-    }
+	If ($GitMain -ne $GitOrigin) {
+		Remove-Item -Recurse -Force $GitDir
+		$Clone = $TRUE
+	}
 }
 
 If ($Clone) {
-    git clone $GitUrl $GitDir
+	git clone $GitUrl $GitDir
 
-    Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
-    Copy-Item -Recurse -Force -Path "$GitDir\zsh.ico" -Destination "C:\Program Files\Git\usr\share\icons\locolor\32x32\apps"
+	Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
+	Copy-Item -Recurse -Force -Path "$GitDir\zsh.ico" -Destination "C:\Program Files\Git\usr\share\icons\locolor\32x32\apps"
 }
