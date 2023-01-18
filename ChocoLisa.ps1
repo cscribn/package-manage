@@ -9,5 +9,4 @@
 # silhouette studio
 
 . $PSScriptRoot\_ChocoDefault.ps1
-. $PSScriptRoot\_ChocoDefaultConfig.ps1
 . $PSScriptRoot\_ChodoDefaultLast.ps1

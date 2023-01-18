@@ -3,7 +3,6 @@
 # samsung magician
 
 . $PSScriptRoot\_ChocoDefault.ps1
-. $PSScriptRoot\_ChocoDefaultConfig.ps1
 
 choco upgrade hyperx-ngenuity -y
 choco upgrade epicgameslauncher -y
