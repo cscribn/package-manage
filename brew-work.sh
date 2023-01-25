@@ -45,6 +45,7 @@ brew tap isen-ng/dotnet-sdk-versions
 brew install --cask dotnet-sdk6-0-400 || brew upgrade --cask dotnet-sdk6-0-400
 brew install --cask dotnet-sdk7-0-100 || brew upgrade --cask dotnet-sdk7-0-100
 
+brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || brew upgrade --cask firefox
 brew install --cask forticlient-vpn || brew upgrade --forticlient-vpn
