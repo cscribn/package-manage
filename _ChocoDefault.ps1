@@ -86,7 +86,8 @@ choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
 choco upgrade oh-my-posh -y
 choco upgrade paint.net -y
-choco upgrade partition-manager -y
+choco uninstall partition-manager -y
+choco upgrade partitionwizard -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
 
