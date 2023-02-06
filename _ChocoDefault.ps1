@@ -101,7 +101,7 @@ Install-Module -Name Terminal-Icons -Repository PSGallery
 choco upgrade puretext -y
 winget install --accept-source-agreements --accept-package-agreements -e --id Python.Python.3.11
 choco upgrade quicktime -y
-choco upgrade reflect-free -y
+choco uninstall reflect-free -y
 
 # ruby
 If ($Outdated -match "ruby") {
