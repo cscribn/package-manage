@@ -56,6 +56,7 @@ choco upgrade freefilesync -y
 choco upgrade ghostscript -y
 choco upgrade googlechrome -y
 choco upgrade gimp -y
+choco upgrade guiformat -y
 choco upgrade handbrake -y
 choco upgrade imgburn -y
 choco upgrade inkscape -y
@@ -87,7 +88,7 @@ choco upgrade onedrive --ignore-checksums -y
 choco upgrade oh-my-posh -y
 choco upgrade paint.net -y
 choco uninstall partition-manager -y
-choco upgrade partitionwizard -y
+choco uninstall partitionwizard -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
 
