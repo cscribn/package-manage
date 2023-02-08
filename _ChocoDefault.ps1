@@ -64,7 +64,6 @@ choco upgrade irfanview -y
 choco upgrade irfanviewplugins -y
 choco upgrade jcpicker -y
 choco upgrade kitty -y
-choco uninstall libreoffice-fresh -y
 choco upgrade libreoffice-still -y
 choco upgrade lsd -y
 
@@ -88,8 +87,6 @@ choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
 choco upgrade oh-my-posh -y
 choco upgrade paint.net -y
-choco uninstall partition-manager -y
-choco uninstall partitionwizard -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
 
@@ -102,7 +99,6 @@ Install-Module -Name Terminal-Icons -Repository PSGallery
 choco upgrade puretext -y
 winget install --accept-source-agreements --accept-package-agreements -e --id Python.Python.3.11
 choco upgrade quicktime -y
-choco uninstall reflect-free -y
 
 # ruby
 If ($Outdated -match "ruby") {
