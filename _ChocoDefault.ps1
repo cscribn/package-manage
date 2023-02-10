@@ -97,7 +97,9 @@ Install-Module PSReadLine -AllowPrerelease -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery
 
 choco upgrade puretext -y
-winget install --accept-source-agreements --accept-package-agreements -e --id Python.Python.3.11
+winget uninstall -e --id Python.Python.3.11
+choco install python -y
+python -m pip install -U pip
 choco upgrade quicktime -y
 
 # ruby
