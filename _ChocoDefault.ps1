@@ -98,7 +98,7 @@ Install-Module -Name Terminal-Icons -Repository PSGallery
 
 choco upgrade puretext -y
 winget uninstall -e --id Python.Python.3.11
-choco install python -y
+choco upgrade python -y
 python -m pip install -U pip
 choco upgrade quicktime -y
 
