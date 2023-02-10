@@ -171,6 +171,10 @@ nvm use latest
 # Lock Screen - disable
 [Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization", "NoLockScreen", 1)
 
+# Modern Standby - disable
+[Microsoft.Win32.Registry]::SetValue
+("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power", "PlatformAoAcOverride", 0)
+
 # Start Menu - disable Bing Search
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer", "DisableSearchBoxSuggestions", 1)
 
