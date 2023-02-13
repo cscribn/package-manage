@@ -54,7 +54,7 @@ choco upgrade filezilla -y
 choco upgrade firefox --params /NoTaskbarShortcut -y
 choco upgrade freefilesync -y
 choco upgrade ghostscript -y
-choco upgrade googlechrome -y
+choco upgrade googlechrome -y --ignore-checksums -y
 choco upgrade gimp -y
 choco upgrade guiformat -y
 choco upgrade handbrake -y
@@ -97,8 +97,13 @@ Install-Module PSReadLine -AllowPrerelease -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery
 
 choco upgrade puretext -y
-winget uninstall -e --id Python.Python.3.11
-choco upgrade python -y
+
+# python
+If ($Outdated -match "python") {
+	choco uninstall python python3 -y
+	choco install python -y
+}
+
 python -m pip install -U pip
 choco upgrade quicktime -y
 
