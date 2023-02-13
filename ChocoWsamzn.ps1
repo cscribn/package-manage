@@ -6,6 +6,7 @@ choco upgrade conemu -y
 
 curl -Lo "$Env:APPDATA\ConEmu.xml" https://raw.githubusercontent.com/cscribn/config-misc/main/conemu/ConEmu.xml
 
+choco upgrade pnpm
 choco upgrade postman -y
 
 . $PSScriptRoot\_ChodoDefaultLast.ps1

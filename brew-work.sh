@@ -79,6 +79,7 @@ brew install --cask onedrive || brew upgrade --cask onedrive
 brew install perl || brew upgrade perl
 brew install php || brew upgrade php
 brew install --cask pinta || brew upgrade --cask pinta
+brew install pnpm || brew upgrade pnpm
 brew install --cask postman || brew upgrade --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
 
