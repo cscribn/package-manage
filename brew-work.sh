@@ -61,6 +61,7 @@ brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
+brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
 
 # node
 find "${HOME}/.nvm/versions/node" -depth 1 -type d ! -name "v10.24.1" ! -name "v12.13.0" -exec rm -rf {} +
