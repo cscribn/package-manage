@@ -113,6 +113,7 @@ Install-Module posh-git -Force
 Install-Module PSReadLine -AllowPrerelease -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery
 
+choco upgrade powertoys -y
 choco upgrade puretext -y
 
 # python
