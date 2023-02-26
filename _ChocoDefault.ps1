@@ -68,7 +68,7 @@ choco upgrade dotnet-7.0-sdk -y
 
 choco upgrade dvddecrypter -y
 choco upgrade filezilla -y
-choco upgrade firefox --params /NoTaskbarShortcut -y
+choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
 choco upgrade freefilesync -y
 choco upgrade ghostscript -y
 choco upgrade googlechrome -y --ignore-checksums -y
@@ -143,7 +143,7 @@ cpanm -n Perl::LanguageServer
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
-choco upgrade vim -y
+choco upgrade vim -y --params "'/NoDesktopShortcuts'"
 choco upgrade vscode -y
 choco upgrade winmerge -y
 choco upgrade youtube-dl-gui -y
