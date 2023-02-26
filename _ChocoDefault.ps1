@@ -144,7 +144,7 @@ choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
 choco upgrade vim -y --params "'/NoDesktopShortcuts'"
-choco upgrade vscode -y
+choco upgrade vscode -y --params "/NoDesktopIcon"
 choco upgrade winmerge -y
 choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
