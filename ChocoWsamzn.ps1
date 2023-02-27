@@ -1,5 +1,5 @@
+$StartTime = Get-Date
 . $PSScriptRoot\_ChocoDefault.ps1
-. $PSScriptRoot\_ChocoDev.ps1
 
 # conemu
 choco upgrade conemu -y
@@ -9,4 +9,11 @@ curl -Lo "$Env:APPDATA\ConEmu.xml" https://raw.githubusercontent.com/cscribn/con
 choco upgrade pnpm
 choco upgrade postman -y
 
-. $PSScriptRoot\_ChodoDefaultLast.ps1
+choco feature enable -n useRememberedArgumentsForUpgrades
+choco upgrade all -y
+
+# clean desktop shortcuts
+If ($null -ne $StartTime) {
+	$Desktops = "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop"
+	$Desktops | Get-ChildItem -Filter "*.lnk" -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -gt $StartTime } | Remove-Item
+}

@@ -27,8 +27,6 @@
 # Windows - old right-click
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32", "", "")
 
-$Global:StartTime = Get-Date
-
 $env:Path += ';C:\Program Files\Git\bin'
 choco upgrade chocolatey -y
 $Outdated = choco outdated -r
@@ -73,6 +71,7 @@ choco upgrade freefilesync -y
 choco upgrade ghostscript -y
 choco upgrade googlechrome -y --ignore-checksums -y
 choco upgrade gimp -y
+choco upgrade github-desktop -y
 choco upgrade guiformat -y
 choco upgrade handbrake -y
 choco upgrade imgburn -y
@@ -146,6 +145,7 @@ choco upgrade vlc -y
 choco upgrade vim -y --params "'/NoDesktopShortcuts'"
 choco upgrade vscode -y --params "/NoDesktopIcon"
 choco upgrade winmerge -y
+choco upgrade xmlstarlet -y
 choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
