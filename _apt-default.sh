@@ -44,26 +44,6 @@ git clone https://github.com/AndrewFromMelbourne/raspi2png
 sudo cp -a raspi2png/raspi2png /usr/local/bin
 rm -rf ./raspi2png
 
-# ruby
-sudo apt install rbenv -y
-sudo apt remove ruby-build -y
-export PATH="${HOME}/.rbenv/bin:${PATH}"
-rm -rf "${HOME}/.rbenv/plugins/ruby-build"
-
-git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
-
-eval "$(rbenv init -)"
-declare ruby_installed
-ruby_installed=$(head -n 1 ${HOME}/.rbenv/version | tr -d '[[:space:]]')
-declare ruby_latest
-ruby_latest=$(rbenv install --list-all | grep -v - | tail -1 | tr -d '[[:space:]]')
-
-if [[ "$ruby_installed" != "$ruby_latest" ]]; then
-	rbenv uninstall -f "$ruby_installed"
-	rbenv install --verbose "$ruby_latest"
-	rbenv global "$ruby_latest"
-fi
-
 sudo apt install unzip -y
 sudo apt install vim -y
 
