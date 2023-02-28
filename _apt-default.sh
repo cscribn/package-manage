@@ -44,6 +44,14 @@ git clone https://github.com/AndrewFromMelbourne/raspi2png
 sudo cp -a raspi2png/raspi2png /usr/local/bin
 rm -rf ./raspi2png
 
+# ruby
+sudo apt install rbenv -y
+sudo apt remove ruby-build -y
+export PATH="${HOME}/.rbenv/bin:${PATH}"
+rm -rf "${HOME}/.rbenv/plugins/ruby-build"
+
+git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
+
 sudo apt install unzip -y
 sudo apt install vim -y
 

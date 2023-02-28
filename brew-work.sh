@@ -94,6 +94,12 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:${PATH}"
 eval "$(pyenv init -)"
 pyenv shell 2.7.18
 
+# ruby
+brew install rbenv || brew upgrade rbenv
+rm -rf ~/.rbenv/plugins/ruby-build
+
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
 brew install --cask slack || brew upgrade --cask slack
 brew install --cask studio-3t || brew upgrade --cask studio-3t
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
