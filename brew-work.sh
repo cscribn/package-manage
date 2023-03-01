@@ -29,6 +29,7 @@ export PATH="${PATH}:/opt/homebrew/bin"
 
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew tap homebrew/cask-versions
+brew tap snyk/tap
 brew install git || brew upgrade git
 
 brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
@@ -101,6 +102,7 @@ rm -rf ~/.rbenv/plugins/ruby-build
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 brew install --cask slack || brew upgrade --cask slack
+brew install snyk || brew upgrade snyk
 brew install --cask studio-3t || brew upgrade --cask studio-3t
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 brew install vim || brew upgrade vim
