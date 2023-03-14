@@ -54,6 +54,7 @@ git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-b
 
 sudo apt install unzip -y
 sudo apt install vim -y
+sudo apt install wondershaper -y
 
 # zsh
 sudo apt install zsh -y
