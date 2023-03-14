@@ -150,7 +150,7 @@ choco upgrade youtube-dl-gui -y
 choco upgrade zoom -y
 
 # zsh
-Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm --overwrite \* zsh`""
+Invoke-Expression "bash.exe -c -i `"pacman -S --needed --noconfirm --overwrite \* zsh`""
 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 
