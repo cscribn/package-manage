@@ -52,11 +52,14 @@ rm -rf "${HOME}/.rbenv/plugins/ruby-build"
 
 git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
 
+sudo apt install speedtest-cli -y
 sudo apt install unzip -y
 sudo apt install vim -y
 
-# example: sudo wondershaper eth0 2048 1024
+# wondershaper
 sudo apt install wondershaper -y
+sudo wondershaper eth0 10240 10240
+sudo wondershaper wlan0 10240 10240
 
 # zsh
 sudo apt install zsh -y
