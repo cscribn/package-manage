@@ -18,6 +18,11 @@ fi
 # include
 source ./_apt-default.sh
 
+# wondershaper
+sudo apt install wondershaper -y
+sudo wondershaper eth0 10240 10240
+sudo wondershaper wlan0 10240 10240
+
 # RetroPie-Extra
 curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/libretrocores/lr-duckstation.sh" https://raw.githubusercontent.com/Exarkuniv/RetroPie-Extra/master/scriptmodules/libretrocores/lr-duckstation.sh
 
