@@ -80,6 +80,7 @@ brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer
 brew install --cask onedrive || brew upgrade --cask onedrive
 brew install perl || brew upgrade perl
 brew install php || brew upgrade php
+python3 -m pip install -U pip
 brew install --cask pinta || brew upgrade --cask pinta
 brew install pnpm || brew upgrade pnpm
 brew install --cask postman || brew upgrade --cask postman
