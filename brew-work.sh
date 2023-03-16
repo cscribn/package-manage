@@ -61,6 +61,8 @@ brew install --cask google-drive || brew upgrade --cask google-drive
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask libreoffice || brew upgrade --cask libreoffice
+brew install --cask keka || brew upgrade --cask keka
+brew install --cask kekaexternalhelper || brew upgrade --cask kekaexternalhelper
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
 
