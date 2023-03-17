@@ -147,6 +147,7 @@ choco upgrade vim -y --params "'/NoDesktopShortcuts'"
 choco upgrade vscode -y --params "/NoDesktopIcon"
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
+choco uninstall youtube-dl-gui.install -y
 choco uninstall youtube-dl-gui -y
 choco upgrade yt-dlg.portable -y
 choco upgrade zoom -y
