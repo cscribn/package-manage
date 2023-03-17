@@ -65,6 +65,7 @@ choco upgrade dotnet-6.0-sdk -y
 choco upgrade dotnet-7.0-sdk -y
 
 choco upgrade dvddecrypter -y
+choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
 choco upgrade freefilesync -y
@@ -146,7 +147,8 @@ choco upgrade vim -y --params "'/NoDesktopShortcuts'"
 choco upgrade vscode -y --params "/NoDesktopIcon"
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
-choco upgrade youtube-dl-gui -y
+choco uninstall youtube-dl-gui -y
+choco upgrade yt-dlg.portable -y
 choco upgrade zoom -y
 
 # zsh
