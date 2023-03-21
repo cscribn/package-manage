@@ -20,7 +20,7 @@ cargo install lsd
 
 # dotnet
 wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet7pi/main/install.sh | sudo bash
-rm -f "${HOME}/dotnetdebug.sh"
+sudo rm -f "${HOME}/dotnetdebug.sh"
 
 # node
 rm -rf "${HOME}/.nvm/versions/node"/*
