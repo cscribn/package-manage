@@ -181,6 +181,8 @@ If (Test-Path -Path $GitDir) {
 	}
 }
 
+Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-7) | Remove-Item
+
 # node - put here for timing issue
 (Get-ChildItem "C:\ProgramData\nvm" | ForEach-Object {$_.FullName}) -match "\\v.*" | Remove-Item -Recurse
 nvm install latest
