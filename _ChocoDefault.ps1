@@ -121,9 +121,9 @@ choco upgrade puretext -y
 # python
 If ($Outdated -match "python") {
 	choco uninstall python python3 -y
-	choco install python -y
 }
 
+choco upgrade python -y
 python -m pip install -U pip
 choco upgrade quicktime -y
 
@@ -131,9 +131,9 @@ choco upgrade quicktime -y
 If ($Outdated -match "ruby") {
 	choco uninstall ruby -y
 	choco uninstall ruby.install -y
-	choco install ruby -y
 }
 
+choco upgrade ruby -y
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
 choco upgrade sqlitebrowser -y
