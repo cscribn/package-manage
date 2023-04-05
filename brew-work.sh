@@ -78,7 +78,10 @@ nvm install node
 nvm install 10.24.1
 nvm install 12.13.0
 
+# oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
+oh-my-posh disable notice
+
 brew install --cask onedrive || brew upgrade --cask onedrive
 brew install perl || brew upgrade perl
 brew install php || brew upgrade php

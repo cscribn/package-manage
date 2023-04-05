@@ -35,6 +35,7 @@ nvm install node
 # oh-my-posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
+/usr/local/bin/oh-my-posh disable notice
 
 sudo apt install python-pip -y
 sudo apt install python3-pip -y

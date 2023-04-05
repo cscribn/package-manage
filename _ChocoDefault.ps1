@@ -104,7 +104,11 @@ Update-SessionEnvironment
 
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
+
+# oh-my-posh
 choco upgrade oh-my-posh -y
+oh-my-posh disable notice
+
 choco upgrade paint.net -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
