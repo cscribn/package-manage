@@ -44,7 +44,10 @@ If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm pacman`""
 
 choco upgrade curl -y
+
+# git
 choco upgrade git -y
+git config --global http.sslBackend openssl
 
 choco upgrade 7zip -y
 choco upgrade agentransack -y
