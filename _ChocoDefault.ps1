@@ -80,6 +80,7 @@ choco upgrade gimp -y
 choco upgrade github-desktop -y
 choco upgrade guiformat -y
 choco upgrade handbrake -y
+choco upgrade imagemagick.app -y
 choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
