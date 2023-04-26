@@ -50,6 +50,7 @@ choco upgrade git -y
 git config --global http.sslBackend openssl
 
 choco upgrade 7zip -y
+choco upgrade adb -y
 choco upgrade agentransack -y
 choco upgrade bulkrenameutility -y
 choco upgrade chrome-remote-desktop-chrome -y
@@ -85,6 +86,7 @@ choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
 choco upgrade irfanviewplugins -y
+choco upgrade itunes -y
 choco upgrade jcpicker -y
 choco upgrade kitty -y
 choco upgrade libreoffice-still -y

@@ -33,6 +33,7 @@ brew tap snyk/tap
 brew install git || brew upgrade git
 
 brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
+brew install android-platform-tools || brew upgrade android-platform-tools
 brew install awscli || brew upgrade awscli
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
