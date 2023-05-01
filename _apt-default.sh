@@ -21,7 +21,6 @@ cargo install lsd
 # dotnet
 sudo rm -rf "/opt/dotnet/sdk"/*
 sudo rm -rf "/opt/dotnet/shared/Microsoft.NETCore.App"/*
-sudo rm -rf "/opt/dotnet/shared/Microsoft.AspNetCore.All"/*
 sudo rm -rf "/opt/dotnet/shared/Microsoft.AspNetCore.App"/*
 sudo rm -rf "/opt/dotnet/host/fxr"/*
 
