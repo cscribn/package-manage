@@ -19,6 +19,12 @@ rustup update
 cargo install lsd
 
 # dotnet
+sudo rm -rf "/opt/dotnet/sdk"/*
+sudo rm -rf "/opt/dotnet/shared/Microsoft.NETCore.App"/*
+sudo rm -rf "/opt/dotnet/shared/Microsoft.AspNetCore.All"/*
+sudo rm -rf "/opt/dotnet/shared/Microsoft.AspNetCore.App"/*
+sudo rm -rf "/opt/dotnet/host/fxr"/*
+
 wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet7pi/main/install.sh | sudo bash
 sudo rm -f "${HOME}/dotnetdebug.sh"
 
