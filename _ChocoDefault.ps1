@@ -96,6 +96,7 @@ choco upgrade lsd -y
 Remove-Item "$Env:Windir\Fonts\Meslo LG M Bold Italic Nerd Font Complete Windows Compatible.ttf"
 Remove-Item "$Env:Windir\Fonts\Meslo LG M Regular Nerd Font Complete Mono Windows Compatible.ttf"
 Remove-Item "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf"
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "Meslo LG M Regular Nerd Font Complete Mono Windows Compatible (OpenType)"
 Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "MesloLGM NF Bold Italic"
 Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "MesloLGM NFM Regular"
 Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "MesloLGS NF"
