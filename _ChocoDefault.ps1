@@ -92,20 +92,11 @@ choco upgrade kitty -y
 choco upgrade libreoffice-still -y
 choco upgrade lsd -y
 
-# Clean Up Nerd Fonts
-Remove-Item "$Env:Windir\Fonts\Meslo LG M Bold Italic Nerd Font Complete Windows Compatible.ttf"
-Remove-Item "$Env:Windir\Fonts\Meslo LG M Regular Nerd Font Complete Mono Windows Compatible.ttf"
-Remove-Item "$Env:Windir\Fonts\Meslo LG S Regular Nerd Font Complete Windows Compatible.ttf"
-Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "Meslo LG M Regular Nerd Font Complete Mono Windows Compatible (OpenType)"
-Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "MesloLGM NF Bold Italic"
-Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "MesloLGM NFM Regular"
-Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "MesloLGS NF"
+# Meslo LGS Nerd Font Mono
+Remove-Item "$Env:Windir\Fonts\MesloLGSNerdFontMono-Regular.ttf"
+curl -Lo "$Env:Windir\Fonts\MesloLGSNerdFontMono-Regular.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/MesloLGSNerdFontMono-Regular.ttf
 
-# Meslo LGS Nerd Font
-Remove-Item "$Env:Windir\Fonts\MesloLGSNerdFont-Regular.ttf"
-curl -Lo "$Env:Windir\Fonts\MesloLGSNerdFont-Regular.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/MesloLGSNerdFont-Regular.ttf
-
-[Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", "MesloLGS Nerd Font", "MesloLGSNerdFont-Regular.ttf")
+[Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", "MesloLGS Nerd Font Mono", "MesloLGSNerdFontMono-Regular.ttf")
 
 robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 
