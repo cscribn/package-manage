@@ -32,6 +32,7 @@ brew tap homebrew/cask-versions
 brew tap snyk/tap
 brew install git || brew upgrade git
 
+brew install --cask altair-graphql-client || brew upgrade --cask altair-graphql-client
 brew install --cask amazon-workspaces || brew upgrade --cask amazon-workspaces
 brew install android-platform-tools || brew upgrade android-platform-tools
 brew install awscli || brew upgrade awscli
