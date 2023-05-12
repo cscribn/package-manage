@@ -65,6 +65,11 @@ brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install --cask keka || brew upgrade --cask keka
 brew install --cask kekaexternalhelper || brew upgrade --cask kekaexternalhelper
 brew install lsd || brew upgrade lsd
+
+# mkcert
+brew install mkcert || brew upgrade mkcert
+brew install nss || brew upgrade nss
+
 brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
 
 # node
@@ -78,6 +83,7 @@ export NVM_DIR="${HOME}/.nvm"
 nvm install node
 nvm install 10.24.1
 nvm install 12.13.0
+nvm install 16.14.0
 
 # oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
