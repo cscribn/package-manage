@@ -85,6 +85,7 @@ nvm install node
 nvm install 10.24.1
 nvm install 12.13.0
 nvm install 16.14.0
+nvm install 18.15.0
 
 # oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
@@ -112,8 +113,8 @@ pyenv shell 2.7.18
 # ruby
 brew install rbenv || brew upgrade rbenv
 rm -rf ~/.rbenv/plugins/ruby-build
-
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+rbenv install 2.7.6
 
 brew install --cask slack || brew upgrade --cask slack
 brew install snyk || brew upgrade snyk
