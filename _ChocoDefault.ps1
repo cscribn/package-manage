@@ -92,18 +92,13 @@ choco upgrade kitty --version 0.76.1.9 -y
 choco pin add --name="'kitty'" --version="'0.76.1.9'"
 choco upgrade libreoffice-still -y
 choco upgrade lsd -y
-
-# Meslo LGS Nerd Font Mono
-Remove-Item "$Env:Windir\Fonts\MesloLGSNerdFontMono-Regular.ttf"
-curl -Lo "$Env:Windir\Fonts\MesloLGSNerdFontMono-Regular.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/S/Regular/MesloLGSNerdFontMono-Regular.ttf
-
-[Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", "MesloLGS Nerd Font Mono", "MesloLGSNerdFontMono-Regular.ttf")
-
-robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
-
 choco upgrade microsoft-edge -y
 choco upgrade mp3tag -y
 choco upgrade nextdns -y
+
+# nerd-fonts
+choco upgrade nerd-fonts-meslo -y
+robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 
 # nvm
 choco upgrade nvm -y
