@@ -119,6 +119,7 @@ rbenv install 2.7.6
 brew install --cask slack || brew upgrade --cask slack
 brew install snyk || brew upgrade snyk
 brew install --cask studio-3t || brew upgrade --cask studio-3t
+brew install --cask visual-studio || brew upgrade --cask visual-studio
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
