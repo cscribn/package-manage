@@ -79,7 +79,12 @@ brew install nss || brew upgrade nss
 brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
 
 # node
-find "${HOME}/.nvm/versions/node" -depth 1 -type d ! -name "v10.24.1" ! -name "v12.13.0" -exec rm -rf {} +
+find "${HOME}/.nvm/versions/node" -depth 1 -type d \
+	! -name "v10.24.1" \
+	! -name "v12.13.0" \
+	! -name "v16.14.0" \
+	! -name "v18.15.0" \
+	-exec rm -rf {} +
 
 brew install nvm || brew upgrade nvm
 export NVM_DIR="${HOME}/.nvm"
@@ -91,6 +96,7 @@ nvm install 10.24.1
 nvm install 12.13.0
 nvm install 16.14.0
 nvm install 18.15.0
+nvm use stable
 
 # oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
