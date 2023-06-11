@@ -38,7 +38,12 @@ brew install android-platform-tools || brew upgrade android-platform-tools
 brew install awscli || brew upgrade awscli
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
-brew install --cask bbedit
+brew install --cask bbedit || brew upgrade --cask bbedit
+
+# cake
+brew install cake || brew upgrade cake
+brew uninstall --ignore-dependencies dotnet
+
 brew install coreutils || brew upgrade coreutils
 brew install --cask docker || brew upgrade --cask docker
 
@@ -46,7 +51,7 @@ brew install --cask docker || brew upgrade --cask docker
 brew tap isen-ng/dotnet-sdk-versions
 # https://github.com/isen-ng/homebrew-dotnet-sdk-versions
 brew install --cask dotnet-sdk6-0-400 || brew upgrade --cask dotnet-sdk6-0-400
-brew install --cask dotnet-sdk7-0-100 || brew upgrade --cask dotnet-sdk7-0-100
+brew install --cask dotnet-sdk7-0-200 || brew upgrade --cask dotnet-sdk7-0-200
 
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install ffmpeg || brew upgrade ffmpeg
