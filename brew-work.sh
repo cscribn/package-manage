@@ -39,11 +39,7 @@ brew install awscli || brew upgrade awscli
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
 brew install --cask bbedit || brew upgrade --cask bbedit
-
-# cake
 brew install cake || brew upgrade cake
-brew uninstall --ignore-dependencies dotnet
-
 brew install coreutils || brew upgrade coreutils
 brew install --cask docker || brew upgrade --cask docker
 
@@ -169,6 +165,7 @@ fi
 
 brew install --cask zoom || brew upgrade --cask zoom
 
+brew uninstall --ignore-dependencies dotnet
 brew upgrade
 brew autoremove
 brew cleanup
