@@ -197,4 +197,14 @@ Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Whe
 nvm install latest
 nvm use latest
 
+# delete pesky desktop shortcuts
+$Desktops = "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop"
+$Desktops | Get-ChildItem -Filter "GitHub Desktop.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "ImageMagick Display.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "iTunes.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "LibreOffice *.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Mp3tag.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "paint.net.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Zoom.lnk" -ErrorAction SilentlyContinue | Remove-Item
+
 . $PSScriptRoot\_ChocoDefaultConfig.ps1
