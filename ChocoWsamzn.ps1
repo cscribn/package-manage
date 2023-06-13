@@ -1,6 +1,8 @@
 $StartTime = Get-Date
 . $PSScriptRoot\_ChocoDefault.ps1
 
+choco upgrade awscli -y
+
 # conemu
 choco upgrade conemu -y
 
