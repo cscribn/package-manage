@@ -16,12 +16,19 @@ choco upgrade makemkv -y
 choco upgrade nvidia-display-driver -y
 
 # node
-# note: there is a bug preventing "nvm install latest"
+Get-ChildItem "C:\ProgramData\nvm" | Where-Object { $_.PSIsContainer } | Where-Object { `
+	$_.Name -ne "v10.24.1" -and `
+	$_.Name -ne "v12.13.0" -and `
+	$_.Name -ne "v16.14.0" -and `
+	$_.Name -ne "v18.15.0"`
+} | Remove-Item -Recurse
+
+nvm install latest
 nvm install 10.24.1
 nvm install 12.13.0
 nvm install 16.14.0
 nvm install 18.15.0
-nvm use 18.15.0
+nvm use latest
 
 choco upgrade plexmediaserver -y
 choco upgrade rpi-imager -y
