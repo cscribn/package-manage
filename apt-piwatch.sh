@@ -74,8 +74,12 @@ fi
 
 # retro-go
 git_dir="${HOME}/opt/game-and-watch-retro-go"
+git_url="https://github.com/kbeckmann/game-and-watch-retro-go.git"
+clone=0
 
-if [[ -d "$git_dir" ]]; then
+if [[ ! -d "$git_dir" ]]; then
+	clone=1
+else
 	cd "$git_dir" || exit
 	git fetch
 	git_main=$(git rev-parse main)
@@ -84,11 +88,13 @@ if [[ -d "$git_dir" ]]; then
 
 	if [[ "$git_main" != "$git_origin" ]]; then
 		rm -rf "$git_dir"
+		clone=1
 	fi
 fi
 
-[[ -d ${HOME}/opt/game-and-watch-retro-go ]] ||
-    git clone https://github.com/kbeckmann/game-and-watch-retro-go.git  "${HOME}/opt/game-and-watch-retro-go"
+if [[ "$clone" = 1 ]]; then
+	git clone "$git_url" "$git_dir"
+fi
 
 cd "${HOME}/opt/game-and-watch-retro-go" || exit
 python3 -m pip install -r requirements.txt
