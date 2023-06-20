@@ -23,7 +23,7 @@ source ./_apt-default.sh
 mkdir -p "${HOME}/opt"
 
 # xpack
-xpack_dir="${HOME}/pi/opt/xpack-arm-none-eabi-gcc-10.2.1-1.1"
+xpack_dir="${HOME}/opt/xpack-arm-none-eabi-gcc-10.2.1-1.1"
 
 if [[ ! -d "$xpack_dir" ]]; then
 	cd "${HOME}" || exit
@@ -31,7 +31,7 @@ if [[ ! -d "$xpack_dir" ]]; then
 	cd - || exit
 
 	cd "${HOME}/opt" || exit
-	tar xvf "../xpack-arm-none-eabi-gcc-10.2.1-1.1-linux-arm.tar.gz" "xpack-arm-none-eabigcc-10.2.1-1.1"
+	tar xvf "../xpack-arm-none-eabi-gcc-10.2.1-1.1-linux-arm.tar.gz" "$xpack_dir"
 	cd - || exit
 fi
 
