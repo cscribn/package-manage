@@ -19,13 +19,35 @@ rustup update
 cargo install lsd
 
 # dotnet
-sudo rm -rf "/opt/dotnet/sdk"/*
-sudo rm -rf "/opt/dotnet/shared/Microsoft.NETCore.App"/*
-sudo rm -rf "/opt/dotnet/shared/Microsoft.AspNetCore.App"/*
-sudo rm -rf "/opt/dotnet/host/fxr"/*
+git_dir="${HOME}/dotnet7pi"
+git_url="https://github.com/pjgpetecodes/dotnet7pi.git"
+clone=0
 
-wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet7pi/main/install.sh | sudo bash
-sudo rm -f "${HOME}/dotnetdebug.sh"
+if [[ ! -d "$git_dir" ]]; then
+	clone=1
+else
+	cd "$git_dir" || exit
+	git fetch
+	git_main=$(git rev-parse main)
+	git_origin=$(git rev-parse origin/main)
+	cd - || exit
+
+	if [[ "$git_main" != "$git_origin" ]]; then
+		rm -rf "$git_dir"
+		clone=1
+	fi
+fi
+
+if [[ "$clone" = 1 ]]; then
+	git clone "$git_url" "$git_dir"
+	sudo rm -rf "/opt/dotnet/sdk"/*
+	sudo rm -rf "/opt/dotnet/shared/Microsoft.NETCore.App"/*
+	sudo rm -rf "/opt/dotnet/shared/Microsoft.AspNetCore.App"/*
+	sudo rm -rf "/opt/dotnet/host/fxr"/*
+
+	wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet7pi/main/install.sh | sudo bash
+	sudo rm -f "${HOME}/dotnetdebug.sh"
+fi
 
 # node
 rm -rf "${HOME}/.nvm/versions/node"/*
