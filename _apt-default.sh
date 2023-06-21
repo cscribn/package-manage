@@ -23,22 +23,9 @@ git_dir="${HOME}/dotnet7pi"
 git_url="https://github.com/pjgpetecodes/dotnet7pi.git"
 clone=0
 
-if [[ ! -d "$git_dir" ]]; then
-	clone=1
-else
-	cd "$git_dir" || exit
-	git fetch
-	git_main=$(git rev-parse main)
-	git_origin=$(git rev-parse origin/main)
-	cd - || exit
-
-	if [[ "$git_main" != "$git_origin" ]]; then
-		rm -rf "$git_dir"
-		clone=1
-	fi
-fi
-
-if [[ "$clone" = 1 ]]; then
+if [[ ! -d "$git_dir" ]] || \
+	[[ $(find "${HOME}" -maxdepth 1 -name "dotnet*pi" -type d -ctime +90 -print) ]]; then
+	sudo rm -rf "$git_dir"
 	git clone "$git_url" "$git_dir"
 	sudo rm -rf "/opt/dotnet/sdk"/*
 	sudo rm -rf "/opt/dotnet/shared/Microsoft.NETCore.App"/*
