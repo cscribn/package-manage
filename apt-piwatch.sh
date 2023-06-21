@@ -93,7 +93,7 @@ else
 fi
 
 if [[ "$clone" = 1 ]]; then
-	git clone "$git_url" "$git_dir"
+	git clone --recurse-submodules "$git_url" "$git_dir"
 fi
 
 cd "${HOME}/opt/game-and-watch-retro-go" || exit
