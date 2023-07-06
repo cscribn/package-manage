@@ -58,16 +58,13 @@ choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
 
 # dotnet-sdk https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages
-If ($Outdated -match "dotnet-6.0-sdk") {
-	choco list --id-only | Where-Object {$_ -match '^dotnet-6.0-sdk'} | ForEach-Object { choco uninstall $_ -y }
-}
+choco list --id-only | Where-Object {$_ -match '^dotnet-6.0-sdk'} | ForEach-Object { choco uninstall $_ -y }
 
 If ($Outdated -match "dotnet-7.0-sdk") {
 	choco list --id-only | Where-Object {$_ -match '^dotnet-7.0-sdk'} | ForEach-Object { choco uninstall $_ -y }
 
 }
 
-choco upgrade dotnet-6.0-sdk -y
 choco upgrade dotnet-7.0-sdk -y
 
 choco upgrade dvddecrypter -y
@@ -154,7 +151,6 @@ choco upgrade tftpd32 -y
 choco upgrade vlc -y
 choco upgrade vim -y --params "'/NoDesktopShortcuts'"
 choco upgrade vscode -y --params "/NoDesktopIcon"
-choco upgrade visualstudio2022community --package-parameters "--allWorkloads --passive --locale en-US" -y
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
 choco upgrade yt-dlg.portable -y
