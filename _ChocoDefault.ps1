@@ -59,11 +59,11 @@ choco upgrade cutepdf -y
 
 # dotnet-sdk https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages
 If ($Outdated -match "dotnet-6.0-sdk") {
-	choco uninstall dotnet-6.0-sdk -y
+	choco list --id-only | Where-Object {$_ -match '^dotnet-6.0-sdk'} | ForEach-Object { choco uninstall $_ -y }
 }
 
 If ($Outdated -match "dotnet-7.0-sdk") {
-	choco uninstall dotnet-7.0-sdk -y
+	choco list --id-only | Where-Object {$_ -match '^dotnet-7.0-sdk'} | ForEach-Object { choco uninstall $_ -y }
 
 }
 
