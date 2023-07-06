@@ -93,6 +93,7 @@ choco pin add --name="'kitty'" --version="'0.76.1.9'"
 choco upgrade libreoffice-still -y
 choco upgrade lsd -y
 choco upgrade microsoft-edge -y
+choco upgrade microsoft-teams -y
 choco upgrade mp3tag -y
 choco upgrade nextdns -y
 
@@ -119,7 +120,7 @@ choco upgrade pngyu -y
 choco upgrade powershell-core -y
 Install-Module posh-git -Force
 Install-Module PSReadLine -AllowPrerelease -Force
-Install-Module -Name Terminal-Icons -Repository PSGallery
+Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade powertoys -y
 choco upgrade puretext -y
