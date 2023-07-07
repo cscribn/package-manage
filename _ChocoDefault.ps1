@@ -57,15 +57,12 @@ choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
 
-# dotnet-sdk https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages
-choco list --id-only | Where-Object {$_ -match '^dotnet-6.0-sdk'} | ForEach-Object { choco uninstall $_ -y }
-
-If ($Outdated -match "dotnet-7.0-sdk") {
-	choco list --id-only | Where-Object {$_ -match '^dotnet-7.0-sdk'} | ForEach-Object { choco uninstall $_ -y }
-
+# dotnet-sdk
+If ($Outdated -match "dotnet-.+-sdk") {
+	choco list --id-only | Where-Object {$_ -match '^dotnet-.+-sdk'} | ForEach-Object { choco uninstall $_ -y }
 }
 
-choco upgrade dotnet-7.0-sdk -y
+choco upgrade dotnet-sdk -y
 
 choco upgrade dvddecrypter -y
 choco upgrade ffmpeg -y
@@ -138,6 +135,7 @@ If ($Outdated -match "ruby") {
 }
 
 choco upgrade ruby -y
+
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
 choco upgrade sqlitebrowser -y
