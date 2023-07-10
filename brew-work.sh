@@ -130,6 +130,7 @@ brew install --cask studio-3t || brew upgrade --cask studio-3t
 # terraform
 brew install tfenv || brew upgrade tfenv
 tfenv install 1.5.2
+tfenv use 1.5.2
 
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 brew install vim || brew upgrade vim
