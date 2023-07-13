@@ -18,34 +18,18 @@ rustup update
 
 cargo install lsd
 
-# dotnet
-git_dir="${HOME}/dotnet7pi"
-git_url="https://github.com/pjgpetecodes/dotnet7pi.git"
-clone=0
+# FIXME dotnet
+sudo rm -rf "${HOME}/dotnet7pi"
+sudo rm -rf "/opt/dotnet/sdk"/*
+sudo rm -rf "/opt/dotnet/shared/Microsoft.NETCore.App"/*
+sudo rm -rf "/opt/dotnet/shared/Microsoft.AspNetCore.App"/*
+sudo rm -rf "/opt/dotnet/host/fxr"/*
+sudo rm -f /usr/local/bin/dotnet
 
-if [[ ! -d "$git_dir" ]] || \
-	[[ $(find "${HOME}" -maxdepth 1 -name "dotnet*pi" -type d -ctime +90 -print) ]]; then
-	sudo rm -rf "$git_dir"
-	git clone "$git_url" "$git_dir"
-	sudo rm -rf "/opt/dotnet/sdk"/*
-	sudo rm -rf "/opt/dotnet/shared/Microsoft.NETCore.App"/*
-	sudo rm -rf "/opt/dotnet/shared/Microsoft.AspNetCore.App"/*
-	sudo rm -rf "/opt/dotnet/host/fxr"/*
-
-	wget -O - https://raw.githubusercontent.com/pjgpetecodes/dotnet7pi/main/install.sh | sudo bash
-	sudo rm -f "${HOME}/dotnetdebug.sh"
-fi
-
-# node
-rm -rf "${HOME}/.nvm/versions/node"/*
-
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-export NVM_DIR="${HOME}/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-nvm install --lts
-nvm alias default lts/*
+# FIXME node
+rm -rf ~/.nvm
+rm -rf ~/.npm
+rm -rf ~/.bower
 
 # oh-my-posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh

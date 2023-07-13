@@ -57,12 +57,9 @@ choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
 
-# dotnet-sdk
-If ($Outdated -match "dotnet-.+-sdk") {
-	choco list --id-only | Where-Object {$_ -match '^dotnet-.+-sdk'} | ForEach-Object { choco uninstall $_ -y }
-}
-
-choco upgrade dotnet-sdk -y
+# FIXME dotnet-sdk
+choco list --id-only | Where-Object {$_ -match '^dotnet-.+-sdk'} | ForEach-Object { choco uninstall $_ -y }
+choco uninstall dotnet-sdk -y
 
 choco upgrade dvddecrypter -y
 choco upgrade ffmpeg -y
@@ -95,9 +92,8 @@ choco upgrade nextdns -y
 choco upgrade nerd-fonts-meslo -y
 robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 
-# nvm
-choco upgrade nvm -y
-Update-SessionEnvironment
+# FIXME nvm
+choco uninstall nvm -y
 
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
@@ -186,11 +182,6 @@ If (Test-Path -Path $GitDir) {
 }
 
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
-
-# node - put here for timing issue
-(Get-ChildItem "C:\ProgramData\nvm" | ForEach-Object {$_.FullName}) -match "\\v.*" | Remove-Item -Recurse
-nvm install latest
-nvm use latest
 
 # delete pesky desktop shortcuts
 $Desktops = "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop"
