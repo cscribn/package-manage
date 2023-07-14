@@ -15,14 +15,7 @@ sudo apt update
 sudo apt install curl -y
 sudo apt install git -y
 rustup update
-
 cargo install lsd
-
-# FIXME dotnet
-sudo rm -rf "${HOME}/dotnet7pi" "/opt/dotnet" "/usr/local/bin/dotnet"
-
-# FIXME node
-rm -rf ~/.nvm ~/.npm ~/.bower
 
 # oh-my-posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh
