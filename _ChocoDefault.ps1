@@ -94,6 +94,7 @@ robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 
 # FIXME nvm
 choco uninstall nvm -y
+choco uninstall nvm.install -y
 
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
