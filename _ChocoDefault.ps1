@@ -56,11 +56,6 @@ choco upgrade bulkrenameutility -y
 choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
-
-# FIXME dotnet-sdk
-choco list --id-only | Where-Object {$_ -match '^dotnet-.+-sdk'} | ForEach-Object { choco uninstall $_ -y }
-choco uninstall dotnet-sdk -y
-
 choco upgrade dvddecrypter -y
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
@@ -91,10 +86,6 @@ choco upgrade nextdns -y
 # nerd-fonts
 choco upgrade nerd-fonts-meslo -y
 robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
-
-# FIXME nvm
-choco uninstall nvm -y
-choco uninstall nvm.install -y
 
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
