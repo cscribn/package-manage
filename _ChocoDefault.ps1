@@ -64,6 +64,7 @@ choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 choco upgrade cutepdf -y
 choco upgrade dvddecrypter -y
+choco upgrade instanteyedropper.app -y
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
@@ -80,7 +81,7 @@ choco upgrade inkscape -y
 choco upgrade irfanview -y
 choco upgrade irfanviewplugins -y
 choco upgrade itunes -y
-choco upgrade jcpicker -y
+choco uninstall jcpicker -y
 choco upgrade kitty --version 0.76.1.9 -y
 choco pin add --name="'kitty'" --version="'0.76.1.9'"
 choco upgrade libreoffice-still -y
