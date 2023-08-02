@@ -1,10 +1,7 @@
 # Non-Chocolatey installations (add/update these first)
-# alienware update universal
 # backblaze
 # bluestacks
 # iso compressor
-# papercut mobility print
-# samsung magician
 # skraperui
 
 $StartTime = Get-Date

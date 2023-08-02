@@ -4,7 +4,6 @@
 # bluestacks
 # collageit
 # fotor
-# samsung magician
 # scansnap
 # silhouette studio
 

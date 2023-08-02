@@ -1,6 +1,5 @@
 # Non-Chocolatey installations (add/update these first)
 # lenovo vantage
-# samsung magician
 
 $StartTime = Get-Date
 . $PSScriptRoot\_ChocoDefault.ps1
