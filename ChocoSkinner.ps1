@@ -4,7 +4,6 @@
 # iso compressor
 # skraperui
 
-$StartTime = Get-Date
 . $PSScriptRoot\_ChocoDefault.ps1
 
 choco upgrade barrier -y
@@ -16,9 +15,3 @@ choco pin add --name="'win32diskimager'" --version="'0.9.5'"
 
 choco feature enable -n useRememberedArgumentsForUpgrades
 choco upgrade all -y
-
-$Desktops = "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop"
-
-If ($null -ne $StartTime) {
-	$Desktops | Get-ChildItem -Filter "*.lnk" -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -gt $StartTime } | Remove-Item
-}
