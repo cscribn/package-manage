@@ -1,5 +1,6 @@
 # Non-Chocolatey installations (add/update these first)
 # lenovo vantage
+# tcno account switcher
 
 . $PSScriptRoot\_ChocoDefault.ps1
 

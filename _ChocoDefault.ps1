@@ -3,7 +3,6 @@
 # git-sdk (uninstall once pacman is scriptable)
 # googledrive
 # microsoft-windows-terminal
-# tcno account switcher
 # winget
 
 # Registry
