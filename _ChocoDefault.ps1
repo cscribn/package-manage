@@ -184,12 +184,29 @@ Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Whe
 
 # delete pesky desktop shortcuts
 $Desktops = "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop"
+
+$Desktops | Get-ChildItem -Filter "Chrome Remote Desktop.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "DB Browser *.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "DVD Decrypter.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "DVD Flick.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "FreeFileSync.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "GitHub Desktop.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Google Chrome.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "ImageMagick Display.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "ImgBurn.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Inkscape.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Instant Eyedropper.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "iTunes.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "LibreOffice *.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "MakeMKV.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Microsoft Edge.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Mp3tag.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "paint.net.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "QuickTime Player.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "RealTimeSync.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Scribus *.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "SharpKeys.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "VLC media player.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Zoom.lnk" -ErrorAction SilentlyContinue | Remove-Item
 
 . $PSScriptRoot\_ChocoDefaultConfig.ps1
