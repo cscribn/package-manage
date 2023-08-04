@@ -85,7 +85,6 @@ choco upgrade kitty --version 0.76.1.9 -y
 choco pin add --name="'kitty'" --version="'0.76.1.9'"
 choco upgrade libreoffice-still -y
 choco upgrade lsd -y
-choco upgrade microsoft-edge -y
 choco upgrade microsoft-teams -y
 choco upgrade mp3tag -y
 choco upgrade nextdns -y
