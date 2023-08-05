@@ -35,6 +35,7 @@ brew install git || brew upgrade git
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
 brew install --cask bbedit || brew upgrade --cask bbedit
+brew install curl || brew upgrade curl
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || brew upgrade --cask firefox
