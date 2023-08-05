@@ -28,6 +28,7 @@ fi
 export PATH="${PATH}:/opt/homebrew/bin"
 
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew tap homebrew/cask-fonts
 brew tap homebrew/cask-versions
 brew install git || brew upgrade git
 
@@ -42,7 +43,6 @@ brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg
 brew install gifsicle || brew upgrade gifsicle
 brew install git || brew upgrade git
 brew install --cask github || brew upgrade --cask github
-brew install --cask google-chrome || brew upgrade --cask google-chrome
 brew install --cask google-drive || brew upgrade --cask google-drive
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install --cask hex-fiend || brew upgrade --cask hex-fiend
@@ -77,7 +77,6 @@ brew install rbenv || brew upgrade rbenv
 rm -rf ~/.rbenv/plugins/ruby-build
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-brew install --cask slack || brew upgrade --cask slack
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 brew install vim || brew upgrade vim
@@ -113,8 +112,6 @@ if [[ -d "$git_dir" ]]; then
 		rm -rf "$git_dir"
 	fi
 fi
-
-brew install --cask zoom || brew upgrade --cask zoom
 
 brew upgrade
 brew autoremove
