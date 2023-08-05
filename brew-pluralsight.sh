@@ -64,7 +64,7 @@ brew install --cask powershell || brew upgrade --cask powershell
 
 # python 2
 brew install pyenv || brew upgrade pyenv
-pyenv install 2.7.18 -ffmpeg
+pyenv install 2.7.18
 PATH="$(pyenv root)/shims:${PATH}"
 export PATH
 export PYENV_ROOT="${HOME}/.pyenv"
