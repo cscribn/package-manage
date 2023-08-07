@@ -4,6 +4,7 @@
 # embrava
 # filezilla
 # paste plain text
+# pyenv install 2.7.18
 
 # settings
 set -o nounset
@@ -35,6 +36,7 @@ brew install git || brew upgrade git
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
 brew install --cask bbedit || brew upgrade --cask bbedit
+brew install --cask google-chrome-beta || brew upgrade --cask google-chrome-beta
 brew install curl || brew upgrade curl
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install ffmpeg || brew upgrade ffmpeg
@@ -65,7 +67,6 @@ brew install --cask powershell || brew upgrade --cask powershell
 
 # python 2
 brew install pyenv || brew upgrade pyenv
-pyenv install 2.7.18
 PATH="$(pyenv root)/shims:${PATH}"
 export PATH
 export PYENV_ROOT="${HOME}/.pyenv"
