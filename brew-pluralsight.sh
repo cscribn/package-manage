@@ -64,6 +64,7 @@ brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
 oh-my-posh disable notice
 
+brew install --cask oracle-jdk17 || brew upgrade --cask oracle-jdk17
 brew install perl || brew upgrade perl
 python3 -m pip install -U pip
 brew install --cask pinta || brew upgrade --cask pinta
