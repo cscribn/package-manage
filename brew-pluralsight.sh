@@ -80,6 +80,8 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:${PATH}"
 eval "$(pyenv init -)"
 pyenv shell 2.7.18
 
+brew install --cask rectangle || brew upgrade --cask rectangle
+
 # ruby
 brew install rbenv || brew upgrade rbenv
 rm -rf ~/.rbenv/plugins/ruby-build
