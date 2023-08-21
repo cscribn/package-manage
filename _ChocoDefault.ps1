@@ -184,10 +184,17 @@ Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Whe
 # delete pesky desktop shortcuts
 $Desktops = "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop"
 
+$Desktops | Get-ChildItem -Filter "BlueStacks 5.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "BlueStacks Multi-Instance Manager.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "BlueStacks X.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Canon IJ Network Tool.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Chrome Remote Desktop.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "DB Browser (SQLCipher).lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "DB Browser (SQLite).lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "DB Browser *.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "DVD Decrypter.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "DVD Flick.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "FlashPrint-MP.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "FreeFileSync.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "GitHub Desktop.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Google Chrome.lnk" -ErrorAction SilentlyContinue | Remove-Item
@@ -201,10 +208,14 @@ $Desktops | Get-ChildItem -Filter "MakeMKV.lnk" -ErrorAction SilentlyContinue | 
 $Desktops | Get-ChildItem -Filter "Microsoft Edge.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Mp3tag.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "paint.net.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Paragon Partition Manager™ 14 Free.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "QuickTime Player.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "RealTimeSync.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Redragon K556RGB Keyboard.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Scribus *.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Scribus 1.4.8.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "SharpKeys.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "SumatraPDF.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "VLC media player.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Zoom.lnk" -ErrorAction SilentlyContinue | Remove-Item
 
