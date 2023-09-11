@@ -212,6 +212,8 @@ $Desktops | Get-ChildItem -Filter "Paragon Partition Manager™ 14 Free.lnk" -Er
 $Desktops | Get-ChildItem -Filter "QuickTime Player.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "RealTimeSync.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Redragon K556RGB Keyboard.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Roblox Player.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Roblox Studio.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Scribus *.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Scribus 1.4.8.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "SharpKeys.lnk" -ErrorAction SilentlyContinue | Remove-Item
