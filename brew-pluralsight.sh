@@ -57,6 +57,7 @@ brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install --cask hex-fiend || brew upgrade --cask hex-fiend
 brew install htop || brew upgrade htop
 brew install --cask iterm2 || brew upgrade --cask iterm2
+brew install --cask itsycal ||brew upgrade --cask itsycal
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
