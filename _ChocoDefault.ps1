@@ -61,6 +61,12 @@ choco upgrade agentransack -y
 choco upgrade bulkrenameutility -y
 choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
+
+# clink
+choco upgrade clink -y
+cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S"
+cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
+
 choco upgrade cutepdf -y
 choco upgrade dvddecrypter -y
 choco upgrade instanteyedropper.app -y
