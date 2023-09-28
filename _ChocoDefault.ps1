@@ -63,7 +63,9 @@ choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 
 # clink
-choco upgrade clink -y
+choco uninstall clink -y
+choco uninstall clink-maintained -y
+choco upgrade clink-maintained -y
 cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S"
 cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 
