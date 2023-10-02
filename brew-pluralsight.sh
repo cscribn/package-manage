@@ -40,7 +40,7 @@ brew install curl || brew upgrade curl
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install ffmpeg || brew upgrade ffmpeg
-brew install --cask firefox || brew upgrade --cask firefox
+brew reinstall --cask firefox || install --cask firefox
 brew install --cask gimp || brew upgrade --cask gimp
 
 # git-lfs
@@ -58,6 +58,11 @@ brew install --cask hex-fiend || brew upgrade --cask hex-fiend
 brew install htop || brew upgrade htop
 brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask itsycal ||brew upgrade --cask itsycal
+
+# psql
+brew install libpq || brew upgrade libpq
+brew link --force libpq
+
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
