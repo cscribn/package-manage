@@ -198,6 +198,7 @@ $Desktops | Get-ChildItem -Filter "Chrome Remote Desktop.lnk" -ErrorAction Silen
 $Desktops | Get-ChildItem -Filter "DB Browser (SQLCipher).lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "DB Browser (SQLite).lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "DB Browser *.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "DiskInternals Research.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "DVD Decrypter.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "DVD Flick.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "FlashPrint-MP.lnk" -ErrorAction SilentlyContinue | Remove-Item
