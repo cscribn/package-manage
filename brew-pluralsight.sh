@@ -28,6 +28,7 @@ fi
 
 export PATH="${PATH}:/opt/homebrew/bin"
 
+brew doctor
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew tap homebrew/cask-fonts
 brew tap homebrew/cask-versions
@@ -40,7 +41,7 @@ brew install curl || brew upgrade curl
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install ffmpeg || brew upgrade ffmpeg
-brew reinstall --cask firefox || install --cask firefox
+brew install --cask firefox || install --cask firefox
 brew install --cask gimp || brew upgrade --cask gimp
 
 # git-lfs
