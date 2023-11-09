@@ -6,7 +6,7 @@
 declare script_name
 script_name=$(basename "${0}")
 declare script_dir
-script_dir="$(dirname "$0")"
+script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 declare git_dir
 declare git_main
 declare git_origin
