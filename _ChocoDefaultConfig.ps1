@@ -4,11 +4,6 @@ curl -Lo "$Env:USERPROFILE\.bashrc" https://raw.githubusercontent.com/cscribn/co
 # clink
 curl -Lo "$Env:LOCALAPPDATA\clink\oh-my-posh.lua" https://raw.githubusercontent.com/cscribn/config-misc/main/clink/oh-my-posh.lua
 
-# microsoft-windows-terminal
-$LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
-
-curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
-
 # oh-my-posh
 $GitDir = "$Env:USERPROFILE\.config\oh-my-posh"
 $GitUrl = "https://github.com/cscribn/config-oh-my-posh.git"
