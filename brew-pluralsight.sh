@@ -39,7 +39,7 @@ brew install bash || brew upgrade bash
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install curl || brew upgrade curl
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
-brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
+brew install --cask docker || brew upgrade --cask docker
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || install --cask firefox
 brew install --cask gimp || brew upgrade --cask gimp
@@ -66,6 +66,7 @@ brew link --force libpq
 
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
+brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
 
 # oh-my-posh
