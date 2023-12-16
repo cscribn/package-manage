@@ -100,8 +100,8 @@ cd "${HOME}/opt/game-and-watch-retro-go" || exit
 python3 -m pip install -r requirements.txt
 cd - || exit
 
-# .zshrc.zsh
-cp "${HOME}/.config/zsh/zshrc1-piwatch" "${HOME}/.zshrc1.zsh"
+# .zshrc1
+cp "${HOME}/.config/zsh/zshrc1-piwatch" "${HOME}/.zshrc1"
 
 sudo apt dist-upgrade -y
 sudo apt autoremove -y
