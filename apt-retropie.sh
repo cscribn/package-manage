@@ -41,8 +41,8 @@ curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/ports/openbor-v6510-RPi3.sh" htt
 
 curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/ports/openbor-v6510-RPi4.sh" https://raw.githubusercontent.com/crcerror/OpenBOR-63xx-RetroPie-openbeta/master/scriptmodules/openbor-6xxx-RPi4/openbor-v6510-RPi4.sh
 
-# .zshrc.zsh
-cp "${HOME}/.config/zsh/zshrc1-retropie" "${HOME}/.zshrc1.zsh"
+# .zshrc1
+cp "${HOME}/.config/zsh/zshrc1-retropie" "${HOME}/.zshrc1"
 
 sudo apt dist-upgrade -y
 sudo apt autoremove -y
