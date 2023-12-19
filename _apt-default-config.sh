@@ -57,5 +57,5 @@ fi
 if [[ "$clone" = 1 ]]; then
 	git clone "$git_url" "$git_dir"
 
-	cp "${HOME}/.config/zsh/zshrc-pi" "${HOME}/.zshrc"
+	cp "${HOME}/.config/zsh/zshrc-rpi" "${HOME}/.zshrc"
 fi
