@@ -136,4 +136,4 @@ brew upgrade
 brew autoremove
 brew cleanup
 
-source "${script_dir}/_brew-pluralsight-config.sh"
+source "${script_dir}/_brew-work-config.sh"

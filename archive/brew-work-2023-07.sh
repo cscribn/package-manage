@@ -175,4 +175,4 @@ brew upgrade
 brew autoremove
 brew cleanup
 
-source "${script_dir}/_brew-work-config.sh"
+source "${script_dir}/_brew-work-config-2023-07.sh"
