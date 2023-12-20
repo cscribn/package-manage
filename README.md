@@ -6,10 +6,6 @@ Scripts beginning with "_" are meant to be included in other scripts.
 
 Bash scripts that call apt to install Raspberry Pi packages. Different files are used for different machines.
 
-## brew-work
-
-Bash script that calls brew to install Mac OS packages on my work machine.
-
 ### Prerequisites
 
 Install brew via Terminal
