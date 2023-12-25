@@ -41,6 +41,8 @@ curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/ports/openbor-v6510-RPi3.sh" htt
 
 curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/ports/openbor-v6510-RPi4.sh" https://raw.githubusercontent.com/crcerror/OpenBOR-63xx-RetroPie-openbeta/master/scriptmodules/openbor-6xxx-RPi4/openbor-v6510-RPi4.sh
 
+curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/supplementary/mamedev.sh" https://raw.githubusercontent.com/FollyMaddy/RetroPie-Share/main/00-scriptmodules-00/supplementary/mamedev.sh
+
 # .zshrc1
 cp "${HOME}/.config/zsh/zshrc1-retropie" "${HOME}/.zshrc1"
 
