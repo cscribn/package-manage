@@ -121,6 +121,31 @@ Install-Module PSReadLine -AllowPrerelease -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade powertoys -y
+
+# ps-sfta - file type associations
+$GitDir = "C:\PS-SFTA"
+
+If (Test-Path -Path $GitDir) {
+	Set-Location $GitDir
+	git fetch
+	$GitMain = git rev-parse master
+	$GitOrigin = git rev-parse origin/master
+	Set-Location -
+
+	If ($GitMain -ne $GitOrigin) {
+		Remove-Item -Recurse -Force $GitDir
+		git clone https://github.com/DanysysTeam/PS-SFTA.git  $GitDir
+	}
+}
+
+. $GitDir\SFTA.ps1
+Set-FTA IrfanView.gif .gif
+Set-FTA IrfanView.jpg .jpeg
+Set-FTA IrfanView.jpg .jpg
+Set-FTA IrfanView.png .png
+Set-FTA IrfanView.tif .tif
+Set-FTA VLC.mpeg .mpeg
+
 choco upgrade puretext -y
 
 # python
