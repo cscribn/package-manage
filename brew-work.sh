@@ -77,18 +77,9 @@ brew install --cask oracle-jdk17 || brew upgrade --cask oracle-jdk17
 brew install perl || brew upgrade perl
 python3 -m pip install -U pip
 brew install --cask pinta || brew upgrade --cask pinta
+brew install poetry || brew upgrade poetry
 brew install --cask postman || brew upgrade --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
-
-# python 2
-brew install pyenv || brew upgrade pyenv
-PATH="$(pyenv root)/shims:${PATH}"
-export PATH
-export PYENV_ROOT="${HOME}/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:${PATH}"
-eval "$(pyenv init -)"
-pyenv shell 2.7.18
-
 brew install --cask rectangle || brew upgrade --cask rectangle
 
 # ruby
