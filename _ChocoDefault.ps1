@@ -124,8 +124,12 @@ choco upgrade powertoys -y
 
 # ps-sfta - file type associations
 $GitDir = "C:\PS-SFTA"
+$GitUrl = "https://github.com/DanysysTeam/PS-SFTA.git"
+$Clone = $FALSE
 
-If (Test-Path -Path $GitDir) {
+If (-Not (Test-Path -Path $GitDir)) {
+	$Clone = $TRUE
+} Else {
 	Set-Location $GitDir
 	git fetch
 	$GitMain = git rev-parse master
@@ -134,8 +138,12 @@ If (Test-Path -Path $GitDir) {
 
 	If ($GitMain -ne $GitOrigin) {
 		Remove-Item -Recurse -Force $GitDir
-		git clone https://github.com/DanysysTeam/PS-SFTA.git  $GitDir
+		$Clone = $TRUE
 	}
+}
+
+If ($Clone) {
+	git clone $GitUrl $GitDir
 }
 
 . $GitDir\SFTA.ps1
@@ -144,6 +152,7 @@ Set-FTA IrfanView.jpg .jpeg
 Set-FTA IrfanView.jpg .jpg
 Set-FTA IrfanView.png .png
 Set-FTA IrfanView.tif .tif
+Set-FTA VLC.mp3 .mp3
 Set-FTA VLC.mpeg .mpeg
 
 choco upgrade puretext -y
