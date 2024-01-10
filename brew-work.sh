@@ -39,6 +39,7 @@ brew install bash || brew upgrade bash
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install curl || brew upgrade curl
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
+brew install direnv || brew upgrade direnv
 brew install --cask docker || brew upgrade --cask docker
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || install --cask firefox
@@ -69,6 +70,14 @@ brew install lsd || brew upgrade lsd
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
 
+# node
+brew install nvm || brew upgrade nvm
+export NVM_DIR="${HOME}/.nvm"
+[[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+nvm install node
+
 # oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
 oh-my-posh disable notice
@@ -78,9 +87,15 @@ brew install perl || brew upgrade perl
 python3 -m pip install -U pip
 brew install --cask pinta || brew upgrade --cask pinta
 brew install poetry || brew upgrade poetry
+
+# postgresql
+brew install postgresql@12 || brew upgrade postgresql@12
+brew services restart postgresql@12
+
 brew install --cask postman || brew upgrade --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
+brew install pyenv || brew upgrade pyenv
 brew install --cask rectangle || brew upgrade --cask rectangle
 
 # ruby
@@ -92,6 +107,7 @@ brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
+brew install yarn || brew upgrade yarn
 
 # zsh
 brew install zsh || brew upgrade zsh
