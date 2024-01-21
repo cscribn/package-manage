@@ -26,9 +26,6 @@ Remove-ItemProperty –Path "HKCU:\SOFTWARE\Classes\AppX6eg8h5sxqq90pv53845wmnbe
 # Modern Standby - disable
 [Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power", "PlatformAoAcOverride", 0)
 
-# Start back up - remove
-Remove-ItemProperty –Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StorageProvider\OneDrive" –Name "StorageProviderKnownFolderSyncInfoSourceFactory"  -ErrorAction SilentlyContinue
-
 # Start Menu - disable Bing Search
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer", "DisableSearchBoxSuggestions", 1)
 
