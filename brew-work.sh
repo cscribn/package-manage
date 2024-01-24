@@ -34,6 +34,7 @@ brew tap homebrew/cask-fonts
 brew tap homebrew/cask-versions
 brew install git || brew upgrade git
 
+brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
 brew install --cask bbedit || brew upgrade --cask bbedit
