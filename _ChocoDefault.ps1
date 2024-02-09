@@ -95,8 +95,7 @@ choco upgrade inkscape -y
 choco upgrade irfanview -y
 choco upgrade irfanviewplugins -y
 choco upgrade itunes -y
-choco upgrade kitty --version 0.76.1.9 -y
-choco pin add --name="'kitty'" --version="'0.76.1.9'"
+choco upgrade kitty -y
 choco upgrade libreoffice-still -y
 choco upgrade linux-reader -y
 choco upgrade lsd -y
