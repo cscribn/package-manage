@@ -58,6 +58,10 @@ git config --global http.sslBackend openssl
 choco upgrade 7zip -y
 choco upgrade adb -y
 choco upgrade agentransack -y
+
+# apple devices
+winget install 9NP83LWLPZ9K --silent --accept-package-agreements --accept-source-agreements
+
 choco upgrade bulkrenameutility -y
 choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
@@ -81,6 +85,10 @@ choco upgrade github-desktop -y
 choco upgrade guiformat -y
 choco upgrade handbrake -y
 choco upgrade hxd -y
+
+# icloud
+winget install 9PKTQ5699M62 --silent --accept-package-agreements --accept-source-agreements
+
 choco upgrade imagemagick.app -y
 choco upgrade imgburn -y
 choco upgrade inkscape -y
@@ -225,9 +233,7 @@ Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Whe
 # delete pesky desktop shortcuts
 $Desktops = "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop"
 
-$Desktops | Get-ChildItem -Filter "BlueStacks 5.lnk" -ErrorAction SilentlyContinue | Remove-Item
-$Desktops | Get-ChildItem -Filter "BlueStacks Multi-Instance Manager.lnk" -ErrorAction SilentlyContinue | Remove-Item
-$Desktops | Get-ChildItem -Filter "BlueStacks X.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "BlueStacks *.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Canon IJ Network Tool.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Chrome Remote Desktop.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "DB Browser (SQLCipher).lnk" -ErrorAction SilentlyContinue | Remove-Item
@@ -244,21 +250,19 @@ $Desktops | Get-ChildItem -Filter "ImageMagick Display.lnk" -ErrorAction Silentl
 $Desktops | Get-ChildItem -Filter "ImgBurn.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Inkscape.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Instant Eyedropper.lnk" -ErrorAction SilentlyContinue | Remove-Item
-$Desktops | Get-ChildItem -Filter "iTunes.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "LibreOffice *.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "MakeMKV.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Microsoft Edge.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Mp3tag.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "paint.net.lnk" -ErrorAction SilentlyContinue | Remove-Item
-$Desktops | Get-ChildItem -Filter "Paragon Partition Manager™ 14 Free.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Paragon Partition Manager*.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "QuickTime Player.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "RealTimeSync.lnk" -ErrorAction SilentlyContinue | Remove-Item
-$Desktops | Get-ChildItem -Filter "Redragon K556RGB Keyboard.lnk" -ErrorAction SilentlyContinue | Remove-Item
+$Desktops | Get-ChildItem -Filter "Redragon * Keyboard.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Roblox Player.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Roblox Studio.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "ScanSnap Home.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Scribus *.lnk" -ErrorAction SilentlyContinue | Remove-Item
-$Desktops | Get-ChildItem -Filter "Scribus 1.4.8.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "SharpKeys.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "SumatraPDF.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "VLC media player.lnk" -ErrorAction SilentlyContinue | Remove-Item
