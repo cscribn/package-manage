@@ -98,8 +98,6 @@ choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
 choco upgrade irfanviewplugins -y
-choco uninstall itunes -y
-choco pin remove -n=kitty
 choco upgrade kitty -y
 choco upgrade libreoffice-still -y
 choco upgrade linux-reader -y
