@@ -94,7 +94,6 @@ choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
 choco upgrade irfanviewplugins -y
-choco upgrade itunes -y
 choco upgrade kitty -y
 choco upgrade libreoffice-still -y
 choco upgrade linux-reader -y
