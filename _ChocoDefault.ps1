@@ -177,7 +177,7 @@ If ($Outdated -match "python") {
 
 choco upgrade python -y
 python -m pip install -U pip
-choco upgrade quicktime -y
+choco uninstall quicktime -y
 
 # ruby
 If ($Outdated -match "ruby") {
