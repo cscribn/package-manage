@@ -132,7 +132,7 @@ Install-Module PSReadLine -AllowPrerelease -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade powertoys -y
-choo upgrade processhacker -y
+choco upgrade processhacker -y
 
 # ps-sfta - file type associations
 $GitDir = "C:\PS-SFTA"
