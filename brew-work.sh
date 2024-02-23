@@ -57,6 +57,7 @@ brew install git || brew upgrade git
 brew install --cask github || brew upgrade --cask github
 brew install --cask google-drive || brew upgrade --cask google-drive
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
+brew install helm || brew upgrade helm
 brew install --cask hex-fiend || brew upgrade --cask hex-fiend
 brew install htop || brew upgrade htop
 brew install --cask iterm2 || brew upgrade --cask iterm2
