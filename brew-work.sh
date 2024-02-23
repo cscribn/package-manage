@@ -106,12 +106,23 @@ brew install --cask rectangle || brew upgrade --cask rectangle
 
 # ruby
 brew install rbenv || brew upgrade rbenv
-rm -rf ~/.rbenv/plugins/ruby-build
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+rm -rf "${HOME}/.rbenv/plugins/ruby-build"
+git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
 
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
+
+# vim
 brew install vim || brew upgrade vim
+git_dir="${HOME}/.vim/pack/github/start/copilot.vim"
+git_url="https://github.com/github/copilot.vim.git"
+
+if [[ ! -d "$git_dir" ]]; then
+	git clone "$git_url" "$git_dir"
+else
+	git pull origin release
+fi
+
 brew install --cask vlc || brew upgrade --cask vlc
 brew install yarn || brew upgrade yarn
 

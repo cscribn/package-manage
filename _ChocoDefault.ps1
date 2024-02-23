@@ -196,7 +196,19 @@ cpanm -n Perl::LanguageServer
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
+
+# vim
 choco upgrade vim -y --params "'/NoDesktopShortcuts'"
+
+$GitDir = "$Env:USERPROFILE\.vim\pack\github\start\copilot.vim"
+$GitUrl = "https://github.com/github/copilot.vim.git"
+
+If (Test-Path -Path $GitDir) {
+	git pull origin release
+} Else {
+	git clone $GitUrl $GitDir
+}
+
 choco upgrade vscode -y --params "/NoDesktopIcon"
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
