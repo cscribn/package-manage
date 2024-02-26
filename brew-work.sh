@@ -19,6 +19,7 @@ script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 declare git_dir
 declare git_main
 declare git_origin
+declare git_url
 
 # usage
 if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
