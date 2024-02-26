@@ -121,7 +121,9 @@ git_url="https://github.com/github/copilot.vim.git"
 if [[ ! -d "$git_dir" ]]; then
 	git clone "$git_url" "$git_dir"
 else
+	cd "$git_dir" || exit
 	git pull origin release
+	cd - || exit
 fi
 
 brew install --cask vlc || brew upgrade --cask vlc
