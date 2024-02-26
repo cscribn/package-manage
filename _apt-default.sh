@@ -7,6 +7,8 @@ declare script_name
 script_name=$(basename "${0}")
 declare script_dir
 script_dir="$(dirname "$0")"
+declare git_dir
+declare git_url
 
 # helper functions
 fetch_remove() {
@@ -57,7 +59,19 @@ git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-b
 
 sudo apt install speedtest-cli -y
 sudo apt install unzip -y
+
+# vim
 sudo apt install vim -y
+git_dir="${HOME}/.vim/pack/Exafunction/start/codeium.vim"
+git_url="https://github.com/Exafunction/codeium.vim"
+
+if [[ ! -d "$git_dir" ]]; then
+	git clone "$git_url" "$git_dir"
+else
+	cd "$git_dir" || exit
+	git pull origin main
+	cd - || exit
+fi
 
 # zsh
 sudo apt install zsh -y

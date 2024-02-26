@@ -196,7 +196,30 @@ cpanm -n Perl::LanguageServer
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
+
+# vim
 choco upgrade vim -y --params "'/NoDesktopShortcuts'"
+$GitDir = "$Env:USERPROFILE\.vim\pack\Exafunction\start\codeium.vim"
+$GitUrl = "https://github.com/Exafunction/codeium.vim"
+
+If (Test-Path -Path $GitDir) {
+	Set-Location $GitDir
+	git pull origin main
+	Set-Location -
+} Else {
+	git clone $GitUrl $GitDir
+}
+
+$GitDir = "$Env:USERPROFILE\vimfiles\pack\Exafunction\start\codeium.vim"
+
+If (Test-Path -Path $GitDir) {
+	Set-Location $GitDir
+	git pull origin main
+	Set-Location -
+} Else {
+	git clone $GitUrl $GitDir
+}
+
 choco upgrade vscode -y --params "/NoDesktopIcon"
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
