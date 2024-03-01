@@ -66,6 +66,7 @@ choco upgrade agentransack -y
 # apple devices
 winget install 9NP83LWLPZ9K --silent --accept-package-agreements --accept-source-agreements
 
+choco install auto-dark-mode -y
 choco upgrade bulkrenameutility -y
 choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
