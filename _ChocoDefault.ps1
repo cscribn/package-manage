@@ -78,7 +78,7 @@ cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 
 choco upgrade cutepdf -y
 choco upgrade dvddecrypter -y
-choco upgrade instanteyedropper.app -y
+choco upgrade instanteyedropper.app -y --ignore-checksums -y
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
@@ -134,6 +134,7 @@ Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade powertoys -y
 choco uninstall processhacker -y
+choco uninstall processhacker.install -y
 
 # ps-sfta - file type associations
 $GitDir = "C:\PS-SFTA"
