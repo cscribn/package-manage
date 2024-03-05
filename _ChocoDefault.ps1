@@ -179,6 +179,7 @@ Set-FTA VLC.mpeg .mpeg
 choco upgrade puretext -y
 
 # python
+choco uninstall python311 -y
 choco upgrade python -y
 python -m pip install -U pip
 
