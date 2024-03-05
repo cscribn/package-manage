@@ -30,7 +30,12 @@ fetch_remove() {
 	fi
 }
 
+# update, autoremove, clean, upgrade all apt
 sudo apt update
+sudo apt autoremove -y
+sudo apt clean -y
+sudo apt dist-upgrade -y
+
 sudo apt install curl -y
 sudo apt install git -y
 rustup update

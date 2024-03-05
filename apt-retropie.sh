@@ -45,7 +45,3 @@ curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/supplementary/mamedev.sh" https:
 
 # .zshrc1
 cp "${HOME}/.config/zsh/zshrc1-retropie" "${HOME}/.zshrc1"
-
-sudo apt dist-upgrade -y
-sudo apt autoremove -y
-sudo apt clean -y

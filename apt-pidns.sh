@@ -24,7 +24,3 @@ source ./_apt-default.sh
 
 # .zshrc1
 cp "${HOME}/.config/zsh/zshrc1-pidns" "${HOME}/.zshrc1"
-
-sudo apt dist-upgrade -y
-sudo apt autoremove -y
-sudo apt clean -y

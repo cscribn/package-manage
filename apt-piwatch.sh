@@ -102,7 +102,3 @@ cd - || exit
 
 # .zshrc1
 cp "${HOME}/.config/zsh/zshrc1-piwatch" "${HOME}/.zshrc1"
-
-sudo apt dist-upgrade -y
-sudo apt autoremove -y
-sudo apt clean -y
