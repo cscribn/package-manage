@@ -53,6 +53,14 @@ If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 
 Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm pacman`""
 
+# clean choco
+choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y
+Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
+
+# upgrade all choco
+choco feature enable -n useRememberedArgumentsForUpgrades
+choco upgrade all -y
+
 choco upgrade curl -y
 
 # git
@@ -262,7 +270,7 @@ If (Test-Path -Path $GitDir) {
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
 # delete pesky desktop shortcuts
-$Desktops = "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop"
+$Desktops = "$env:USERPROFILE\Desktop"
 
 $Desktops | Get-ChildItem -Filter "BlueStacks *.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Canon IJ Network Tool.lnk" -ErrorAction SilentlyContinue | Remove-Item

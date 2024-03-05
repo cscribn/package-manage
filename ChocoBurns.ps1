@@ -8,9 +8,6 @@
 choco upgrade nvidia-display-driver -y
 choco upgrade plexmediaserver -y
 
-choco feature enable -n useRememberedArgumentsForUpgrades
-choco upgrade all -y
-
 # config
 
 # microsoft-windows-terminal
