@@ -28,7 +28,6 @@ fi
 
 export PATH="/opt/homebrew/bin:${PATH}"
 
-
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # fix, clean, upgrade all brew
