@@ -68,6 +68,7 @@ brew install --cask hex-fiend || brew upgrade --cask hex-fiend
 brew install htop || brew upgrade htop
 brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask itsycal ||brew upgrade --cask itsycal
+brew install jq ||brew upgrade jq
 
 # psql
 brew install libpq || brew upgrade libpq
@@ -116,6 +117,7 @@ rm -rf "${HOME}/.rbenv/plugins/ruby-build"
 git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
 
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
+brew install tsh || brew upgrade tsh
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 
 # vim
