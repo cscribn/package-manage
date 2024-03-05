@@ -41,7 +41,6 @@ Remove-ItemProperty –Path "HKCU:\SOFTWARE\Classes\AppX6eg8h5sxqq90pv53845wmnbe
 
 $env:Path += ';C:\Program Files\Git\bin'
 choco upgrade chocolatey -y
-$Outdated = choco outdated -r
 
 # pacman
 If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) {
@@ -180,21 +179,10 @@ Set-FTA VLC.mpeg .mpeg
 choco upgrade puretext -y
 
 # python
-If ($Outdated -match "python") {
-	choco uninstall python python3 -y
-}
-
 choco upgrade python -y
 python -m pip install -U pip
 
-# ruby
-If ($Outdated -match "ruby") {
-	choco uninstall ruby -y
-	choco uninstall ruby.install -y
-}
-
 choco upgrade ruby -y
-
 choco upgrade scribus -y
 choco upgrade sharpkeys -y
 choco upgrade sqlitebrowser -y
