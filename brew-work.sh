@@ -4,7 +4,6 @@
 # embrava
 # filezilla
 # paste plain text
-# pyenv install 2.7.18
 
 # settings
 set -o nounset
@@ -29,8 +28,15 @@ fi
 
 export PATH="${PATH}:/opt/homebrew/bin"
 
-brew doctor
+
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# fix, clean, upgrade all brew
+brew doctor
+brew autoremove
+brew cleanup
+brew upgrade
+
 brew tap homebrew/cask-fonts
 brew tap homebrew/cask-versions
 brew install git || brew upgrade git
@@ -159,9 +165,5 @@ if [[ -d "$git_dir" ]]; then
 		rm -rf "$git_dir"
 	fi
 fi
-
-brew upgrade
-brew autoremove
-brew cleanup
 
 source "${script_dir}/_brew-work-config.sh"
