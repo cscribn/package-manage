@@ -36,6 +36,7 @@ brew autoremove
 brew cleanup
 brew upgrade
 
+brew tap common-fate/granted
 brew tap homebrew/cask-fonts
 brew tap homebrew/cask-versions
 brew install git || brew upgrade git
@@ -63,6 +64,7 @@ brew install git || brew upgrade git
 brew install --cask github || brew upgrade --cask github
 brew install --cask google-drive || brew upgrade --cask google-drive
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
+brew install granted || brew upgrade granted
 brew install helm || brew upgrade helm
 brew install --cask hex-fiend || brew upgrade --cask hex-fiend
 brew install htop || brew upgrade htop
