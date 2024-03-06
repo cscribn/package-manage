@@ -140,8 +140,6 @@ Install-Module PSReadLine -AllowPrerelease -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade powertoys -y
-choco uninstall processhacker -y
-choco uninstall processhacker.install -y
 
 # ps-sfta - file type associations
 $GitDir = "C:\PS-SFTA"
@@ -284,7 +282,6 @@ $Desktops | Get-ChildItem -Filter "Microsoft Edge.lnk" -ErrorAction SilentlyCont
 $Desktops | Get-ChildItem -Filter "Mp3tag.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "paint.net.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Paragon Partition Manager*.lnk" -ErrorAction SilentlyContinue | Remove-Item
-$Desktops | Get-ChildItem -Filter "Process Hacker*.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "RealTimeSync.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Redragon * Keyboard.lnk" -ErrorAction SilentlyContinue | Remove-Item
 $Desktops | Get-ChildItem -Filter "Roblox Player.lnk" -ErrorAction SilentlyContinue | Remove-Item
