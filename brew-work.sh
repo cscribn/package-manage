@@ -26,7 +26,7 @@ if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
 	exit
 fi
 
-export PATH="/opt/homebrew/bin:${PATH}"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
