@@ -13,7 +13,7 @@ declare git_url
 # helper functions
 fetch_remove() {
 	local git_dir="$1"
-	local branch="2"
+	local branch="$2"
 	local git_main
 	local git_origin
 
