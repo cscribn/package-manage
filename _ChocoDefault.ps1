@@ -41,6 +41,7 @@ Remove-ItemProperty –Path "HKCU:\SOFTWARE\Classes\AppX6eg8h5sxqq90pv53845wmnbe
 
 $env:Path += ';C:\Program Files\Git\bin'
 choco upgrade chocolatey -y
+$Outdated = choco outdated -r
 
 # pacman
 If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) {
@@ -55,10 +56,6 @@ Invoke-Expression "bash.exe -c -i `"pacman -S --noconfirm pacman`""
 # clean choco
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y
 Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
-
-# upgrade all choco
-choco feature enable -n useRememberedArgumentsForUpgrades
-choco upgrade all -y
 
 choco upgrade curl -y
 
@@ -177,12 +174,22 @@ Set-FTA VLC.mpeg .mpeg
 choco upgrade puretext -y
 
 # python
-choco uninstall python311 -y
+If ($Outdated -match "pythonh") {
+	choco uninstall puthon -y
+}
+
 choco upgrade python -y
 python -m pip install -U pip
 
 choco upgrade ruby -y
+
+# scribus
+If ($Outdated -match "scribus") {
+	choco uninstall scribus -y
+}
+
 choco upgrade scribus -y
+
 choco upgrade sharpkeys -y
 choco upgrade sqlitebrowser -y
 
@@ -195,6 +202,10 @@ choco upgrade tftpd32 -y
 choco upgrade vlc -y
 
 # vim
+If ($Outdated -match "vim") {
+	choco uninstall vim -y
+}
+
 choco upgrade vim -y --params "'/NoDesktopShortcuts'"
 $GitDir = "$Env:USERPROFILE\.vim\pack\Exafunction\start\codeium.vim"
 $GitUrl = "https://github.com/Exafunction/codeium.vim"
@@ -297,3 +308,7 @@ Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "VLC me
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Zoom.lnk" | Remove-Item
 
 . $PSScriptRoot\_ChocoDefaultConfig.ps1
+
+# upgrade all choco
+choco feature enable -n useRememberedArgumentsForUpgrades
+choco upgrade all -y
