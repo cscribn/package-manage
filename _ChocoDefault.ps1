@@ -88,6 +88,7 @@ choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
 choco upgrade freefilesync -y
 choco upgrade ghostscript -y
+choco upgrade ghostscript.app -y
 choco upgrade googlechrome -y --ignore-checksums -y
 choco upgrade gimp -y
 choco upgrade github-desktop -y
