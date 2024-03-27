@@ -104,11 +104,7 @@ python3 -m pip install -U pip
 
 brew install --cask pinta || brew upgrade --cask pinta
 brew install poetry || brew upgrade poetry
-
-# postgresql
-brew install postgresql@12 || brew upgrade postgresql@12
-brew services restart postgresql@12
-
+brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
 brew install --cask postman || brew upgrade --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
