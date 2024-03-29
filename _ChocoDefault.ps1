@@ -122,6 +122,20 @@ robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
 
+# nvm
+choco upgrade nvm -y
+nvm install lts
+nvm use lts
+
+# remove old node versions
+$Nodes = Get-ChildItem -Directory | Sort-Object Name
+
+foreach ($Node in $Nodes) {
+	If ($Nodes.IndexOf($Node) -lt $Nodes.Length - 1) {
+		nvm uninstall $Node.Name
+	}
+}
+
 # oh-my-posh
 choco upgrade oh-my-posh -y
 oh-my-posh disable notice
