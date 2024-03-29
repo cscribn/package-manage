@@ -92,7 +92,7 @@ nvm install --lts
 
 # remove old node versions
 cd "${HOME}/.nvm/versions/node" || exit
-\ls -t | tail -n +2 | xargs rm -rf --
+\ls -r | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh; nvm deactivate {} && nvm uninstall {}"
 cd - || exit
 
 # oh-my-posh
