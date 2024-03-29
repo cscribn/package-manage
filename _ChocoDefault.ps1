@@ -174,7 +174,7 @@ Set-FTA VLC.mpeg .mpeg
 choco upgrade puretext -y
 
 # python
-If ($Outdated -match "pythonh") {
+If ($Outdated -match "python") {
 	choco uninstall puthon -y
 }
 
