@@ -77,7 +77,7 @@ brew install jq ||brew upgrade jq
 brew install libpq || brew upgrade libpq
 brew link --force libpq
 
-brew install --cask libreoffice || brew upgrade --cask libreoffice
+brew install --cask libreoffice-still || brew upgrade --cask libreoffice-still
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
