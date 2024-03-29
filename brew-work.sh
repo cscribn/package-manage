@@ -88,7 +88,12 @@ export NVM_DIR="${HOME}/.nvm"
 [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-nvm install node
+nvm install --lts
+
+# remove old node versions
+cd "${HOME}/.nvm/versions/node" || exit
+\ls -t | tail -n +2 | xargs rm -rf --
+cd - || exit
 
 # oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
