@@ -3,6 +3,7 @@
 # bluestacks
 # iso compressor
 # skraperui
+# spotdl
 
 . $PSScriptRoot\_ChocoDefault.ps1
 
