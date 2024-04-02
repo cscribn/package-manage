@@ -45,6 +45,7 @@ brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-re
 brew install --cask alt-tab || brew upgrade --cask alt-tab
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
+brew install bat || brew upgrade bat
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install curl || brew upgrade curl
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
