@@ -136,6 +136,8 @@ foreach ($Node in $Nodes) {
 	}
 }
 
+choco upgrade ntop.portable -y
+
 # oh-my-posh
 choco upgrade oh-my-posh -y
 oh-my-posh disable notice
