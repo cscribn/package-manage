@@ -108,7 +108,6 @@ choco upgrade kitty -y
 choco upgrade libreoffice-still -y
 choco upgrade linux-reader -y
 choco upgrade lsd -y
-choco upgrade microsoft-teams -y
 choco upgrade mp3tag -y
 
 # netflix

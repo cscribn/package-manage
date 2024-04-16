@@ -81,7 +81,6 @@ brew link --force libpq
 brew install --cask libreoffice-still || brew upgrade --cask libreoffice-still
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
-brew install --cask microsoft-teams || brew upgrade --cask microsoft-teams
 
 # node
 brew install nvm || brew upgrade nvm
