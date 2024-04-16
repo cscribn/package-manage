@@ -245,6 +245,7 @@ If (Test-Path -Path $GitDir) {
 }
 
 choco upgrade vscode -y --params "/NoDesktopIcon"
+choco upgrade winget -y
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
 choco upgrade yt-dlg.portable -y
