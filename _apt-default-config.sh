@@ -31,6 +31,10 @@ if [[ "$clone" = 1 ]]; then
 	git clone "$git_url" "$git_dir"
 fi
 
+# pwsh
+mkdir -p "${HOME}/.config/powershell"
+curl -Lo "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
+
 # vim
 curl -Lo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
 
