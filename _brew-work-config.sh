@@ -12,7 +12,6 @@ curl -Lo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/config-misc
 
 # bbedit
 curl -Lo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist
-
 curl -Lo "${HOME}/Library/Application Support/BBEdit/Language Modules/PowerShell.plist" https://raw.githubusercontent.com/doug-baer/BBEdit-PowerShell/master/PowerShell.plist
 
 # oh-my-posh
@@ -40,7 +39,6 @@ if [[ "$clone" = 1 ]]; then
 fi
 
 # vim
-
 curl -Lo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
 
 # zsh
