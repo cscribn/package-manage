@@ -3,7 +3,41 @@
 # git-sdk (uninstall once pacman is scriptable)
 # googledrive
 # microsoft-windows-terminal
-# winget
+
+# Helper Functions
+function Invoke-Fetch-Remove {
+    param (
+        [string]$GitDir,
+        [string]$Branch
+    )
+
+	If (Test-Path -Path $GitDir) {
+		Set-Location $GitDir
+		git fetch
+		$GitMain = git rev-parse $Branch
+		$GitOrigin = git rev-parse origin/$Branch
+		Set-Location -
+
+		If ($GitMain -ne $GitOrigin) {
+			Remove-Item -Recurse -Force $GitDir
+		}
+	}
+}
+
+function Invoke-Pull-Clone {
+	param (
+		[string]$GitDir,
+		[string]$GitUrl
+	)
+
+	If (Test-Path -Path $GitDir) {
+		Set-Location $GitDir
+		git pull origin main
+		Set-Location -
+	} Else {
+		git clone $GitUrl $GitDir
+	}
+}
 
 # Registry
 
@@ -223,26 +257,8 @@ If ($Outdated -match "vim") {
 }
 
 choco upgrade vim -y --params "'/NoDesktopShortcuts'"
-$GitDir = "$Env:USERPROFILE\.vim\pack\Exafunction\start\codeium.vim"
-$GitUrl = "https://github.com/Exafunction/codeium.vim"
-
-If (Test-Path -Path $GitDir) {
-	Set-Location $GitDir
-	git pull origin main
-	Set-Location -
-} Else {
-	git clone $GitUrl $GitDir
-}
-
-$GitDir = "$Env:USERPROFILE\vimfiles\pack\Exafunction\start\codeium.vim"
-
-If (Test-Path -Path $GitDir) {
-	Set-Location $GitDir
-	git pull origin main
-	Set-Location -
-} Else {
-	git clone $GitUrl $GitDir
-}
+Invoke-Pull-Clone "$Env:USERPROFILE\.vim\pack\Exafunction\start\codeium.vim" "https://github.com/Exafunction/codeium.vim"
+Invoke-Pull-Clone "$Env:USERPROFILE\vimfiles\pack\Exafunction\start\codeium.vim" "https://github.com/Exafunction/codeium.vim"
 
 choco upgrade vscode -y --params "/NoDesktopIcon"
 choco upgrade winget -y
@@ -253,35 +269,8 @@ choco upgrade zoom -y
 
 # zsh
 Invoke-Expression "bash.exe -c -i `"pacman -S --needed --noconfirm --overwrite \* zsh`""
-
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
-
-If (Test-Path -Path $GitDir) {
-	Set-Location $GitDir
-	git fetch
-	$GitMain = git rev-parse master
-	$GitOrigin = git rev-parse origin/master
-	Set-Location -
-
-	If ($GitMain -ne $GitOrigin) {
-		Remove-Item -Recurse -Force $GitDir
-	}
-}
-
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
-
-If (Test-Path -Path $GitDir) {
-	Set-Location $GitDir
-	git fetch
-	$GitMain = git rev-parse master
-	$GitOrigin = git rev-parse origin/master
-	Set-Location -
-
-	If ($GitMain -ne $GitOrigin) {
-		Remove-Item -Recurse -Force $GitDir
-	}
-}
-
+Invoke-Fetch-Remove "$Env:USERPROFILE\.zsh\zsh-autosuggestions" "master"
+Invoke-Fetch-Remove "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting" "master"
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
 # delete pesky desktop shortcuts
