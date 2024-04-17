@@ -20,6 +20,26 @@ declare git_main
 declare git_origin
 declare git_url
 
+# helper functions
+fetch_remove() {
+	local git_dir="$1"
+	local branch="$2"
+	local git_main
+	local git_origin
+
+	if [[ -d "$git_dir" ]]; then
+		cd "$git_dir" || exit
+		git fetch
+		git_main=$(git rev-parse ${branch})
+		git_origin=$(git rev-parse origin/${branch})
+		cd - || exit
+
+		if [[ "$git_main" != "$git_origin" ]]; then
+			rm -rf "$git_dir"
+		fi
+	fi
+}
+
 # usage
 if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
 	echo "Usage: ./${script_name}"
@@ -143,33 +163,7 @@ brew install yarn || brew upgrade yarn
 
 # zsh
 brew install zsh || brew upgrade zsh
-
-git_dir="${HOME}/.zsh/zsh-autosuggestions"
-
-if [[ -d "$git_dir" ]]; then
-	cd "$git_dir" || exit
-	git fetch
-	git_main=$(git rev-parse master)
-	git_origin=$(git rev-parse origin/master)
-	cd - || exit
-
-	if [[ "$git_main" != "$git_origin" ]]; then
-		rm -rf "$git_dir"
-	fi
-fi
-
-git_dir="${HOME}/.zsh/zsh-syntax-highlighting"
-
-if [[ -d "$git_dir" ]]; then
-	cd "$git_dir" || exit
-	git fetch
-	git_main=$(git rev-parse master)
-	git_origin=$(git rev-parse origin/master)
-	cd - || exit
-
-	if [[ "$git_main" != "$git_origin" ]]; then
-		rm -rf "$git_dir"
-	fi
-fi
+fetch_remove "${HOME}/.zsh/zsh-autosuggestions" "master"
+fetch_remove "${HOME}/.zsh/zsh-syntax-highlighting" "master"
 
 source "${script_dir}/_brew-work-config.sh"
