@@ -116,6 +116,7 @@ cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S"
 cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 
 choco upgrade cutepdf -y
+choco upgrade dbeaver -y
 choco upgrade dvddecrypter -y
 choco upgrade instanteyedropper.app -y --ignore-checksums -y
 choco upgrade ffmpeg -y
@@ -241,7 +242,6 @@ If ($Outdated -match "scribus") {
 choco upgrade scribus -y
 
 choco upgrade sharpkeys -y
-choco upgrade sqlitebrowser -y
 
 # perl
 choco upgrade strawberryperl -y
