@@ -242,7 +242,6 @@ If ($Outdated -match "scribus") {
 choco upgrade scribus -y
 
 choco upgrade sharpkeys -y
-choco uninstall sqlitebrowser -y
 
 # perl
 choco upgrade strawberryperl -y
