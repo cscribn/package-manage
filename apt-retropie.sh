@@ -16,7 +16,7 @@ if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
 fi
 
 # include
-source ./_apt-default.sh
+source ./_apt-pi-default.sh
 
 # wondershaper
 sudo apt install wondershaper -y

@@ -20,7 +20,7 @@ if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
 fi
 
 # include
-source ./_apt-default.sh
+source ./_apt-pi-default.sh
 
 # .zshrc1
 cp "${HOME}/.config/zsh/zshrc1-pidns" "${HOME}/.zshrc1"

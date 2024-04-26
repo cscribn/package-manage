@@ -96,4 +96,4 @@ sudo apt install zsh -y
 fetch_remove "${HOME}/.zsh/zsh-autosuggestions" "master"
 fetch_remove "${HOME}/.zsh/zsh-syntax-highlighting" "master"
 
-source "${script_dir}/_apt-default-config.sh"
+source "${script_dir}/_apt-pi-default-config.sh"
