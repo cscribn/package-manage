@@ -101,6 +101,7 @@ brew link --force libpq
 brew install --cask libreoffice-still || brew upgrade --cask libreoffice-still
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
+brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
 
 # node
 brew install nvm || brew upgrade nvm
