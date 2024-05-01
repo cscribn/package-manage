@@ -44,4 +44,4 @@ curl -Lo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/
 
 # zsh
 fetch_clone "${HOME}/.config/zsh" "https://github.com/cscribn/config-zsh.git" "main"
-[[ "$clone" = 1 ]] && cp "${HOME}/.config/zsh/zshrc-rpi" "${HOME}/.zshrc"
+[[ "$clone" = 1 ]] && cp "${HOME}/.config/zsh/zshrc-ubuntu" "${HOME}/.zshrc"
