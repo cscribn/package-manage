@@ -39,7 +39,7 @@ sudo apt clean -y
 sudo apt install curl -y
 sudo apt install git -y
 rustup update
-cargo install lsd
+# cargo install lsd
 
 # motd
 # fetch_remove "${HOME}/motd" "main"
