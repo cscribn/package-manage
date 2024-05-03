@@ -18,6 +18,9 @@ fi
 # include
 source ./_apt-ubuntu-default.sh
 
+# enable ssh
+sudo systemctl enable ssh
+
 # wondershaper
 # sudo apt install wondershaper -y
 # sudo wondershaper eth0 10240 10240
