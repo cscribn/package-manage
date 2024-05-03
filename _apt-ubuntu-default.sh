@@ -1,6 +1,5 @@
 #!/bin/bash
 # Non-apt installations (add these first)
-# rust (curl https://sh.rustup.rs -sSf | sh)
 
 # variables
 declare script_name
@@ -34,12 +33,10 @@ fetch_remove() {
 sudo apt update
 sudo apt autoremove -y
 sudo apt clean -y
-# sudo apt dist-upgrade -y
+sudo apt dist-upgrade -y
 
 sudo apt install curl -y
 sudo apt install git -y
-rustup update
-# cargo install lsd
 
 # motd
 # fetch_remove "${HOME}/motd" "main"
@@ -48,16 +45,6 @@ rustup update
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 /usr/local/bin/oh-my-posh disable notice
-
-# pwsh
-rm -rf "${HOME}/powershell"
-mkdir "${HOME}/powershell"
-curl -s https://api.github.com/repos/PowerShell/PowerShell/releases/latest \
-	| grep "https://github.com/PowerShell/PowerShell/releases/download/.*/powershell-.*-linux-arm64.tar.gz" \
-	| cut -d : -f 2,3 | tr -d \" | wget -qi -
-tar -xvf ./powershell-*-linux-arm64.tar.gz -C "${HOME}/powershell"
-rm -f ./powershell-*-linux-arm64.tar.gz
-"${HOME}/powershell/pwsh" ./PwshLinux.ps1
 
 sudo apt install python-pip -y
 sudo apt install python3-pip -y
