@@ -37,9 +37,7 @@ sudo apt dist-upgrade -y
 
 sudo apt install curl -y
 sudo apt install git -y
-
-# motd
-# fetch_remove "${HOME}/motd" "main"
+sudo apt install htop -y
 
 # oh-my-posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh
@@ -48,11 +46,6 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 
 sudo apt install python-pip -y
 sudo apt install python3-pip -y
-
-# raspi2png
-# git clone https://github.com/AndrewFromMelbourne/raspi2png
-# sudo cp -a raspi2png/raspi2png /usr/local/bin
-# rm -rf ./raspi2png
 
 # ruby
 sudo apt install rbenv -y
