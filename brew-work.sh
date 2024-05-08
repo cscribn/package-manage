@@ -145,20 +145,7 @@ git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-b
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install tsh || brew upgrade tsh
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
-
-# vim
 brew install vim || brew upgrade vim
-git_dir="${HOME}/.vim/pack/github/start/copilot.vim"
-git_url="https://github.com/github/copilot.vim.git"
-
-if [[ ! -d "$git_dir" ]]; then
-	git clone "$git_url" "$git_dir"
-else
-	cd "$git_dir" || exit
-	git pull origin release
-	cd - || exit
-fi
-
 brew install --cask vlc || brew upgrade --cask vlc
 brew install yarn || brew upgrade yarn
 
