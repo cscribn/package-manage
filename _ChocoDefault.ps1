@@ -241,6 +241,7 @@ If ($Outdated -match "scribus") {
 
 choco upgrade scribus -y
 
+choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
 
 # perl
