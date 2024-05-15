@@ -163,6 +163,7 @@ nvm install lts
 nvm use lts
 
 # remove old node versions
+Set-Location "$Env:PROGRAMDATA\nvm"
 $Nodes = Get-ChildItem -Directory | Sort-Object Name
 
 foreach ($Node in $Nodes) {
@@ -170,6 +171,8 @@ foreach ($Node in $Nodes) {
 		nvm uninstall $Node.Name
 	}
 }
+
+Set-Location -
 
 choco upgrade ntop.portable -y
 
