@@ -3,6 +3,7 @@
 # Non-brew installations (add/update these first)
 # embrava
 # filezilla
+# sudo git lfs install --system
 # paste plain text
 
 # settings
