@@ -77,7 +77,6 @@ brew install --cask gimp || brew upgrade --cask gimp
 # git-lfs
 brew install git-lfs || brew upgrade git-lfs
 git lfs install
-sudo git lfs install --system
 
 brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg-nerd-font
 brew install gifsicle || brew upgrade gifsicle
