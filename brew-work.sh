@@ -58,7 +58,6 @@ brew upgrade
 
 brew tap common-fate/granted
 brew tap homebrew/cask-fonts
-brew tap homebrew/cask-versions
 brew install git || brew upgrade git
 
 brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
