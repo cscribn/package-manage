@@ -7,7 +7,7 @@
 # scansnap
 # silhouette studio
 
-. $PSScriptRoot\_ChocoDefault.ps1
+. $PSScriptRoot\_ChocoDefaultFirst.ps1
 
 # config
 
@@ -15,3 +15,5 @@
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
 
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
+
+. $PSScriptRoot\_ChocoDefaultLast.ps1

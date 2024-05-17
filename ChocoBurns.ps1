@@ -3,7 +3,7 @@
 # backblaze
 # papercut mobility print
 
-. $PSScriptRoot\_ChocoDefault.ps1
+. $PSScriptRoot\_ChocoDefaultFirst.ps1
 
 choco upgrade nvidia-display-driver -y
 choco upgrade plexmediaserver -y
@@ -14,3 +14,5 @@ choco upgrade plexmediaserver -y
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
 
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
+
+. $PSScriptRoot\_ChocoDefaultLast.ps1
