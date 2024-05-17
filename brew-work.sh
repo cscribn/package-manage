@@ -120,7 +120,7 @@ cd - || exit
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh
 oh-my-posh disable notice
 
-brew install --cask oracle-jdk17 || brew upgrade --cask oracle-jdk17
+brew install --cask oracle-jdk@17 || brew upgrade --cask oracle-jdk@17
 brew install perl || brew upgrade perl
 
 # python
