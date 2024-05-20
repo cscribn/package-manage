@@ -146,7 +146,7 @@ choco upgrade lsd -y
 choco upgrade mp3tag -y
 
 # netflix
-winget install 9WZDNCRFJ3TJ --silent --accept-package-agreements --accept-source-agreements
+winget uninstall 9WZDNCRFJ3TJ
 
 choco upgrade nextdns -y
 
