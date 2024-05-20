@@ -181,6 +181,10 @@ choco upgrade oh-my-posh -y
 oh-my-posh disable notice
 
 choco upgrade paint.net -y
+
+# plantronics hub
+winget install -e --id Poly.PlantronicsHub
+
 choco upgrade pngquant -y
 choco upgrade pngyu -y
 
