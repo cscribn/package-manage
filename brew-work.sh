@@ -122,12 +122,6 @@ oh-my-posh disable notice
 
 brew install --cask oracle-jdk@17 || brew upgrade --cask oracle-jdk@17
 brew install perl || brew upgrade perl
-
-# python
-python3 -m venv "${HOME}/.venv"
-source "${HOME}/.venv/bin/activate"
-python3 -m pip install -U pip
-
 brew install --cask pinta || brew upgrade --cask pinta
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
