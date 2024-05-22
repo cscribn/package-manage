@@ -144,10 +144,6 @@ choco upgrade libreoffice-still -y
 choco upgrade linux-reader -y
 choco upgrade lsd -y
 choco upgrade mp3tag -y
-
-# netflix
-winget uninstall 9WZDNCRFJ3TJ
-
 choco upgrade nextdns -y
 
 # nerd-fonts
