@@ -232,7 +232,7 @@ choco upgrade puretext -y
 python -m pip install -U pip
 
 choco upgrade ruby -y
-($Outdated -match "scribus") && choco uninstall scribus -f -y; choco upgrade scribus -y
+($Outdated -match "scribus") && choco uninstall scribus -f -y; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
 
