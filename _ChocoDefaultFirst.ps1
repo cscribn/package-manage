@@ -123,7 +123,7 @@ choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
 choco upgrade freefilesync -y
-choco upgrade ghostscript -y
+($Outdated -match "ghostscript") && choco uninstall ghostscript -f -y; choco upgrade ghostscript -y
 choco upgrade googlechrome -y --ignore-checksums -y
 choco upgrade gimp -y
 choco upgrade github-desktop -y
@@ -228,22 +228,11 @@ Set-FTA VLC.mpeg .mpeg
 choco upgrade puretext -y
 
 # python
-If ($Outdated -match "python") {
-	choco uninstall puthon -y
-}
-
-choco upgrade python -y
+($Outdated -match "python") && choco uninstall python -f -y; choco upgrade python -y
 python -m pip install -U pip
 
 choco upgrade ruby -y
-
-# scribus
-If ($Outdated -match "scribus") {
-	choco uninstall scribus -y
-}
-
-choco upgrade scribus -y
-
+($Outdated -match "scribus") && choco uninstall scribus -f -y; choco upgrade scribus -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
 
@@ -256,11 +245,7 @@ choco upgrade tftpd32 -y
 choco upgrade vlc -y
 
 # vim
-If ($Outdated -match "vim") {
-	choco uninstall vim -y
-}
-
-choco upgrade vim -y --params "'/NoDesktopShortcuts'"
+($Outdated -match "vim") && choco uninstall vim -f -y; choco upgrade vim -y --params "'/NoDesktopShortcuts'"
 Invoke-Pull-Clone "$Env:USERPROFILE\.vim\pack\Exafunction\start\codeium.vim" "https://github.com/Exafunction/codeium.vim"
 Invoke-Pull-Clone "$Env:USERPROFILE\vimfiles\pack\Exafunction\start\codeium.vim" "https://github.com/Exafunction/codeium.vim"
 
