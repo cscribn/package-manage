@@ -1,5 +1,6 @@
 # Non-Chocolatey installations (add/update these first)
 # chocolatey itself
+# freefilesync
 # git-sdk (uninstall once pacman is scriptable)
 # googledrive
 # microsoft-windows-terminal
@@ -122,8 +123,8 @@ choco upgrade instanteyedropper.app -y --ignore-checksums -y
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
-choco upgrade freefilesync -y
-($Outdated -match "ghostscript") && choco uninstall ghostscript -f -y; choco upgrade ghostscript -y
+choco uninstall freefilesync -n --skipautouninstaller
+If ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y
 choco upgrade googlechrome -y --ignore-checksums -y
 choco upgrade gimp -y
 choco upgrade github-desktop -y
@@ -161,9 +162,12 @@ nvm use lts
 # remove old node versions
 Set-Location "$Env:PROGRAMDATA\nvm"
 $Nodes = Get-ChildItem -Directory | Sort-Object Name
+$NodeCount = 0
 
 foreach ($Node in $Nodes) {
-	If ($Nodes.IndexOf($Node) -lt $Nodes.Length - 1) {
+	$NodeCount++
+
+	If ($NodeCount -lt $Nodes.Length - 1) {
 		nvm uninstall $Node.Name
 	}
 }
@@ -228,11 +232,11 @@ Set-FTA VLC.mpeg .mpeg
 choco upgrade puretext -y
 
 # python
-($Outdated -match "python") && choco uninstall python -f -y; choco upgrade python -y
+If ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y
 python -m pip install -U pip
 
 choco upgrade ruby -y
-($Outdated -match "scribus") && choco uninstall scribus -f -y; choco upgrade scribus -i -y
+If ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
 
@@ -245,7 +249,7 @@ choco upgrade tftpd32 -y
 choco upgrade vlc -y
 
 # vim
-($Outdated -match "vim") && choco uninstall vim -f -y; choco upgrade vim -y --params "'/NoDesktopShortcuts'"
+If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoDesktopShortcuts'"
 Invoke-Pull-Clone "$Env:USERPROFILE\.vim\pack\Exafunction\start\codeium.vim" "https://github.com/Exafunction/codeium.vim"
 Invoke-Pull-Clone "$Env:USERPROFILE\vimfiles\pack\Exafunction\start\codeium.vim" "https://github.com/Exafunction/codeium.vim"
 
