@@ -1,10 +1,15 @@
 # package-manage
 
-Scripts beginning with "_" are meant to be included in other scripts.
+* Scripts beginning with "_" are meant to be included in other scripts.
+* Scripts are formatted to ease copying/pasting single lines. The code is therefore not DRY and sometimes lines are long running.
 
 ## apt*
 
-Bash scripts that call apt to install Raspberry Pi packages. Different files are used for different machines.
+Bash scripts that call apt to install Raspberry Pi/Ubuntu packages. Different files are used for different machines.
+
+## brew*
+
+Bash scripts that call homebrew to install Mac packages.
 
 ### Prerequisites
 
