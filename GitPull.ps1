@@ -1,3 +1,1 @@
-Set-Location $PSScriptRoot
-git pull
-Set-Location -
+Set-Location $PSScriptRoot; git pull; Set-Location -
