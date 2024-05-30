@@ -94,7 +94,7 @@ choco upgrade nextdns -y
 choco upgrade nerd-fonts-meslo -y;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 choco upgrade notepadplusplus -y
 choco upgrade onedrive --ignore-checksums -y
-choco upgrade nvm -y; nvm install lts;nvm use lts
+choco upgrade nvm -y; nvm install lts; nvm use lts
 
 # remove old node versions
 Set-Location "$Env:PROGRAMDATA\nvm"; $Nodes = Get-ChildItem -Directory | Sort-Object Name; $NodeCount = 0; `
