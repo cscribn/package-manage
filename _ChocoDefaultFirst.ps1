@@ -127,7 +127,7 @@ choco upgrade ruby -y
 If ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
-choco upgrade strawberryperl -y; cpanm -n Perl::LanguageServer
+choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
