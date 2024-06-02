@@ -36,7 +36,7 @@ fetch_clone() {
 fetch_clone "${HOME}/.config/oh-my-posh" "https://github.com/cscribn/config-oh-my-posh.git" "main"
 
 # pwsh
-mkdir -p "${HOME}/.config/powershell"
+mkdir -p "${HOME}/.config/powershell"; \
 curl -Lo "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
 
 # vim
