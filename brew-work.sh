@@ -38,6 +38,8 @@ brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg
 brew install gifsicle || brew upgrade gifsicle
 brew install git || brew upgrade git
 brew install --cask github || brew upgrade --cask github
+brew install --cask google-chrome || brew upgrade --cask google-chrome
+brew install --cask google-chrome@beta || brew upgrade --cask google-chrome@beta
 brew install --cask google-drive || brew upgrade --cask google-drive
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install granted || brew upgrade granted
