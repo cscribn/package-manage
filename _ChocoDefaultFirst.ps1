@@ -144,7 +144,6 @@ choco upgrade wireshark -y
 choco upgrade winget -y
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
-choco uninstall yt-dlg.portable -y
 winget install -e --id yt-dlg.yt-dlg
 choco upgrade zoom -y
 

@@ -52,6 +52,7 @@ brew install --cask libreoffice-still || brew upgrade --cask libreoffice-still
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
+brew install nmap || brew upgrade nmap
 
 # node
 brew install nvm || brew upgrade nvm; export NVM_DIR="${HOME}/.nvm"; \
@@ -84,6 +85,7 @@ brew install tsh || brew upgrade tsh
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
+brew install --cask wireshark || brew upgrade --cask wireshark
 brew install yarn || brew upgrade yarn
 
 # zsh
