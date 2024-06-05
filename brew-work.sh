@@ -18,6 +18,7 @@ brew upgrade
 
 brew tap common-fate/granted
 brew tap homebrew/cask-fonts
+brew tap snyk/tap
 brew install git || brew upgrade git
 
 brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
@@ -82,6 +83,7 @@ brew install --cask rectangle || brew upgrade --cask rectangle
 brew install rbenv || brew upgrade rbenv; rm -rf "${HOME}/.rbenv/plugins/ruby-build"; \
 git clone "https://github.com/rbenv/ruby-build.git" "${HOME}/.rbenv/plugins/ruby-build"
 
+brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install tsh || brew upgrade tsh
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
