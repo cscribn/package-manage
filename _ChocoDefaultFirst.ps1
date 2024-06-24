@@ -105,6 +105,7 @@ choco upgrade oh-my-posh -y;oh-my-posh disable notice
 choco upgrade onedrive --ignore-checksums -y
 choco upgrade paint.net -y
 winget install -e --id Poly.PlantronicsHub # plantronics hub
+choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
 choco upgrade powershell-core -y; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
