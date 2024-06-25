@@ -74,6 +74,7 @@ choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
 If ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y
 choco upgrade googlechrome -y --ignore-checksums -y
+choco upgrade googledrive -y
 choco upgrade gimp -y
 choco upgrade github-desktop -y
 choco upgrade guiformat -y
