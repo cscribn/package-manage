@@ -10,6 +10,7 @@ Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "BlueSt
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Canon IJ Network Tool.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Chrome Remote Desktop.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "DiskInternals Research.lnk" | Remove-Item
+Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Docker Desktop.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "DVD Decrypter.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "DVD Flick.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "EA.lnk" | Remove-Item
