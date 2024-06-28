@@ -1,6 +1,7 @@
 # Non-Chocolatey installations (add/update these first)
 # backblaze
 # bluestacks
+# docker desktop
 # iso compressor
 # skraperui
 # spotdl
