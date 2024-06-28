@@ -8,7 +8,6 @@
 . $PSScriptRoot\_ChocoDefaultFirst.ps1
 
 choco upgrade barrier -y
-choco upgrade docker-desktop -y
 choco upgrade dvdflick-v2 -y
 choco upgrade makemkv -y
 choco upgrade rpi-imager -y
