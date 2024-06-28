@@ -62,7 +62,7 @@ choco upgrade agentransack -y
 winget install 9NP83LWLPZ9K --silent --accept-package-agreements --accept-source-agreements # apple devices
 choco upgrade auto-dark-mode -y
 choco upgrade bat -y
-choco upgrade bulkrenameutility -y
+choco upgrade bulkrenameutility -y --ignore-checksums -y
 choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 choco upgrade clink-maintained -y; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
