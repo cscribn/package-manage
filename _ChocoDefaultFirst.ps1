@@ -79,17 +79,6 @@ choco upgrade pngquant -y
 choco upgrade pngyu -y
 choco upgrade powershell-core -y; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
-# ps-sfta - file type associations
-$GitDir = "C:\PS-SFTA"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/DanysysTeam/PS-SFTA.git" $GitDir }; `
-. $GitDir\SFTA.ps1; `
-Set-FTA IrfanView.gif .gif; `
-Set-FTA IrfanView.jpg .jpeg; `
-Set-FTA IrfanView.jpg .jpg; `
-Set-FTA IrfanView.png .png; `
-Set-FTA IrfanView.tif .tif; `
-Set-FTA VLC.mp3 .mp3; `
-Set-FTA VLC.mpeg .mpeg
-
 choco upgrade puretext -y
 $Outdated = choco outdated -r; If ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y; python -m pip install -U pip
 choco upgrade ruby -y
@@ -118,3 +107,5 @@ Invoke-Expression "C:\Program Files\Git\bin\bash.exe -c -i `"pacman -S --needed 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir}; `
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
+
+. $PSScriptRoot\_ChocoDefaultFileTypes.ps1
