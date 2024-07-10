@@ -28,6 +28,16 @@ winget install 9NP83LWLPZ9K --silent --accept-package-agreements --accept-source
 choco upgrade auto-dark-mode -y
 choco upgrade bat -y
 choco upgrade bulkrenameutility -y --ignore-checksums -y
+
+# caffeine and startup shortcut
+choco upgrade caffeine -y; `
+$Shell = New-Object -comObject WScript.Shell; `
+$Shortcut = $Shell.CreateShortcut("$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Caffeine.lnk"); `
+$Shortcut.TargetPath = "C:\ProgramData\chocolatey\lib\caffeine\caffeine64.exe"; `
+$Shortcut.Arguments = "-allowss"; `
+$Shortcut.WorkingDirectory = "C:\ProgramData\chocolatey\lib\caffeine"; `
+$Shortcut.Save()
+
 choco upgrade chrome-remote-desktop-chrome -y
 choco upgrade chrome-remote-desktop-host -y
 choco upgrade clink-maintained -y; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
@@ -68,7 +78,6 @@ choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
 choco upgrade powershell-core -y; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
-choco upgrade powertoys -y
 
 # ps-sfta - file type associations
 $GitDir = "C:\PS-SFTA"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/DanysysTeam/PS-SFTA.git" $GitDir }; `
