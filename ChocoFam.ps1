@@ -6,6 +6,7 @@
 
 choco upgrade hyperx-ngenuity -y
 choco upgrade epicgameslauncher -y
+choco upgrade nextdns -y
 choco upgrade steam-client -y
 
 # config

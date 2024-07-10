@@ -1,10 +1,12 @@
 # Non-Chocolatey installations (add/update these first)
 # alienware update universal
 # backblaze
+# googledrive
 # papercut mobility print
 
 . $PSScriptRoot\_ChocoDefaultFirst.ps1
 
+choco upgrade nextdns -y
 choco upgrade nvidia-display-driver -y
 choco upgrade plexmediaserver -y
 

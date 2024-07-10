@@ -2,6 +2,7 @@
 # backblaze
 # bluestacks
 # docker desktop
+# google drive
 # iso compressor
 # skraperui
 # spotdl
@@ -9,9 +10,17 @@
 . $PSScriptRoot\_ChocoDefaultFirst.ps1
 
 choco upgrade barrier -y
+choco upgrade dbeaver -y
 choco upgrade dvdflick-v2 -y
+choco upgrade github-desktop -y
+choco upgrade hxd -y
+choco upgrade kitty -y
 choco upgrade makemkv -y
+choco upgrade nextdns -y
+winget install -e --id Poly.PlantronicsHub # plantronics hub
 choco upgrade rpi-imager -y
+choco upgrade vscode -y --params "/NoDesktopIcon"
+choco upgrade wireguard -y
 choco upgrade win32diskimager --version 0.9.5 -y
 choco pin add --name="'win32diskimager'" --version="'0.9.5'"
 
