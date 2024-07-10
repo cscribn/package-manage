@@ -7,7 +7,6 @@
 . $PSScriptRoot\_ChocoDefaultFirst.ps1
 
 choco upgrade nextdns -y
-choco upgrade nvidia-display-driver -y
 choco upgrade plexmediaserver -y
 
 # config
