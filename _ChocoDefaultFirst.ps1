@@ -24,7 +24,6 @@ choco upgrade git -y; git config --global http.sslBackend openssl
 choco upgrade 7zip -y
 choco upgrade adb -y
 choco upgrade agentransack -y
-winget install 9NP83LWLPZ9K --silent --accept-package-agreements --accept-source-agreements # apple devices
 choco upgrade auto-dark-mode -y
 choco upgrade bat -y
 choco upgrade bulkrenameutility -y --ignore-checksums -y
@@ -51,7 +50,6 @@ choco upgrade googlechrome -y --ignore-checksums -y
 choco upgrade gimp -y
 choco upgrade guiformat -y
 choco upgrade handbrake -y
-winget install 9PKTQ5699M62 --silent --accept-package-agreements --accept-source-agreements # icloud
 choco upgrade imagemagick.app -y
 choco upgrade imgburn -y
 choco upgrade inkscape -y
@@ -109,4 +107,5 @@ $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; If (Test-Path $GitDir) { 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
+. $PSScriptRoot\_ChocoDefaultApps.ps1
 . $PSScriptRoot\_ChocoDefaultFileTypes.ps1
