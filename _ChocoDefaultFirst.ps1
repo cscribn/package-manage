@@ -15,7 +15,7 @@ If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"; `
 	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git" `
 }; `
-Invoke-Expression "C:\Program Files\Git\bin\bash.exe -c -i `"pacman -S --noconfirm pacman`""
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --noconfirm pacman"
 
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade curl -y
@@ -103,7 +103,8 @@ winget install -e --id yt-dlg.yt-dlg
 choco upgrade zoom -y
 
 # zsh
-Invoke-Expression "C:\Program Files\Git\bin\bash.exe -c -i `"pacman -S --needed --noconfirm --overwrite \* zsh`""; `
+
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"; `
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir}; `
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
