@@ -89,7 +89,7 @@ choco upgrade tftpd32 -y
 choco upgrade vlc -y
 
 # vim
-$Outdated = choco outdated -r; If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoDesktopShortcuts'"; `
+$Outdated = choco outdated -r; If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params --params "/NoContextmenu /NoDesktopShortcut"; `
 $GitDir = "$Env:USERPROFILE\.vim\pack\Exafunction\start\codeium.vim"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/Exafunction/codeium.vim" $GitDir }; `
 $GitDir = "$Env:USERPROFILE\vimfiles\pack\Exafunction\start\codeium.vim"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/Exafunction/codeium.vim" $GitDir }
 
