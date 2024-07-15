@@ -91,8 +91,8 @@ choco upgrade vlc -y
 # vim
 choco uninstall vim -f -y
 $Outdated = choco outdated -r; If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "/NoContextmenu /NoDesktopShortcut"; `
-$GitDir = "$Env:USERPROFILE\.vim\pack\Exafunction\start\codeium.vim"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/Exafunction/codeium.vim" $GitDir }; `
-$GitDir = "$Env:USERPROFILE\vimfiles\pack\Exafunction\start\codeium.vim"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/Exafunction/codeium.vim" $GitDir }
+Remove-Item "$Env:USERPROFILE\vimfiles\pack" -Force  -Recurse -ErrorAction SilentlyContinue
+Remove-Item "$Env:USERPROFILE\.vim" -Force  -Recurse -ErrorAction SilentlyContinue
 
 choco upgrade wireshark -y
 choco upgrade winget -y
