@@ -29,10 +29,7 @@ git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-b
 
 sudo apt install speedtest-cli -y
 sudo apt install unzip -y
-
-# vim
 sudo apt install vim -y
-git_dir="${HOME}/.vim/pack/Exafunction/start/codeium.vim"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/Exafunction/codeium.vim" "$git_dir"; fi
 
 # zsh
 sudo apt install zsh -y
