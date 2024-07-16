@@ -1,6 +1,6 @@
 #!/bin/bash
 # Non-apt installations (add these first)
-# rust (curl https://sh.rustup.rs -sSf | sh)
+# rust (curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh)
 
 # update, autoremove, clean, upgrade all apt
 sudo apt update
@@ -43,7 +43,7 @@ sudo apt install vim -y
 sudo apt install zsh -y
 
 git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
-git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git"; fi
+git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
 
 script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ); \
 source "${script_dir}/_apt-pi-default-config.sh"
