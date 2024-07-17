@@ -7,6 +7,7 @@
 . $PSScriptRoot\_ChocoDefaultRegistry.ps1
 
 choco upgrade chocolatey -y
+choco upgrade winget -y
 
 # pacman
 If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
@@ -42,6 +43,7 @@ choco upgrade chrome-remote-desktop-host -y
 choco upgrade clink-maintained -y; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 choco upgrade cutepdf -y
 choco upgrade instanteyedropper.app -y --ignore-checksums -y
+winget install fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
@@ -89,7 +91,6 @@ choco upgrade tftpd32 -y
 choco upgrade vlc -y
 $Outdated = choco outdated -r; If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "/NoContextmenu /NoDesktopShortcut"
 choco upgrade wireshark -y
-choco upgrade winget -y
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
 winget install -e --id yt-dlg.yt-dlg

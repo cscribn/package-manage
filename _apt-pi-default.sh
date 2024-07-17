@@ -9,6 +9,7 @@ sudo apt clean -y
 sudo apt dist-upgrade -y
 
 sudo apt install curl -y
+sudo apt install fastfetch -y
 sudo apt install git -y
 rustup update
 sudo apt install htop -y

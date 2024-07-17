@@ -31,6 +31,7 @@ brew install curl || brew upgrade curl
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
 brew install direnv || brew upgrade direnv
 brew install --cask docker || brew upgrade --cask docker
+brew install fastfetch || brew upgrade fastfetch
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || install --cask firefox
 brew install --cask gimp || brew upgrade --cask gimp
