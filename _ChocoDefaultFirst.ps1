@@ -87,13 +87,7 @@ choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
-
-# vim
-choco uninstall vim -f -y
-$Outdated = choco outdated -r; If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "/NoContextmenu /NoDesktopShortcut"; `
-Remove-Item "$Env:USERPROFILE\vimfiles\pack" -Force  -Recurse -ErrorAction SilentlyContinue
-Remove-Item "$Env:USERPROFILE\.vim" -Force  -Recurse -ErrorAction SilentlyContinue
-
+$Outdated = choco outdated -r; If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "/NoContextmenu /NoDesktopShortcut"
 choco upgrade wireshark -y
 choco upgrade winget -y
 choco upgrade winmerge -y
