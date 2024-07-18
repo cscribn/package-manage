@@ -38,8 +38,9 @@ $Shortcut.Arguments = "-allowss"; `
 $Shortcut.WorkingDirectory = "C:\ProgramData\chocolatey\lib\caffeine"; `
 $Shortcut.Save()
 
-choco upgrade chrome-remote-desktop-chrome -y
-choco upgrade chrome-remote-desktop-host -y
+choco uninstall chrome-remote-desktop-chrome -y
+choco uninstall chrome-remote-desktop-host -y
+winget install -e --id Google.ChromeRemoteDesktopHost
 choco upgrade clink-maintained -y; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 choco upgrade cutepdf -y
 choco upgrade instanteyedropper.app -y --ignore-checksums -y
@@ -48,11 +49,13 @@ choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
 $Outdated = choco outdated -r; If ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y
-choco upgrade googlechrome -y --ignore-checksums -y
+choco uninstall googlechrome -y
+winget install -e --id Google.Chrome
 choco upgrade gimp -y
 choco upgrade guiformat -y
 choco upgrade handbrake -y
-choco upgrade imagemagick.app -y
+choco uninstall imagemagick.app -y
+winget install -e --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
 choco upgrade inkscape -y
 choco upgrade irfanview -y
@@ -63,7 +66,8 @@ choco upgrade lsd -y
 choco upgrade mp3tag -y
 choco upgrade nerd-fonts-meslo -y;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 choco upgrade nmap -y
-choco upgrade notepadplusplus -y
+choco uninstall notepadplusplus -y
+winget install -e --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
 
 # nvm, node, and removing old node versions
@@ -81,7 +85,8 @@ choco upgrade powershell-core -y; Install-Module posh-git -Force; Install-Module
 
 choco upgrade puretext -y
 $Outdated = choco outdated -r; If ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y; python -m pip install -U pip
-choco upgrade ruby -y
+choco uninstall ruby -y
+$Search = winget search RubyInstallerTeam.Ruby | Select -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install --uninstall-previous -e --id RubyInstallerTeam.$Ver
 $Outdated = choco outdated -r; If ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
@@ -90,7 +95,8 @@ choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
 $Outdated = choco outdated -r; If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "/NoContextmenu /NoDesktopShortcut"
-choco upgrade wireshark -y
+choco uninstall wireshark -y
+winget install -e --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
 winget install -e --id yt-dlg.yt-dlg
