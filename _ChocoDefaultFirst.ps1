@@ -68,7 +68,7 @@ choco upgrade ntop.portable -y
 # nvm, node, and removing old node versions
 choco upgrade nvm -y; nvm install lts; nvm use lts; `
 Set-Location "$Env:PROGRAMDATA\nvm"; $Nodes = Get-ChildItem -Directory | Sort-Object Name; $NodeCount = 0; `
-foreach ($Node in $Nodes) { $NodeCount++; If ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
+ForEach ($Node in $Nodes) { $NodeCount++; If ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
 
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
 choco upgrade onedrive --ignore-checksums -y
@@ -80,7 +80,20 @@ choco upgrade powershell-core -y; Install-Module posh-git -Force; Install-Module
 
 choco upgrade puretext -y
 $Outdated = choco outdated -r; If ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y; python -m pip install -U pip
+
+# ruby
+$Count = 0; `
+$List = winget list -q Ruby; `
+$Array =($List -split '\n'); `
+For ($I = 0; $I -lt $Array.Length; $I++) { `
+    If ($Array[$I].StartsWith("Ruby")) { `
+        $Count++; `
+        If ($Count -gt 1) { winget uninstall $OldRuby[2]; Break }; `
+        $OldRuby = $Array[$I] -split ' '; `
+    } `
+}; `
 $Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install --uninstall-previous -e --id RubyInstallerTeam.$Ver
+
 $Outdated = choco outdated -r; If ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
@@ -96,7 +109,6 @@ winget install -e --id yt-dlg.yt-dlg
 choco upgrade zoom -y
 
 # zsh
-
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"; `
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir}; `
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
