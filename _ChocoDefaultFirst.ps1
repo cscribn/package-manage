@@ -10,7 +10,7 @@ choco upgrade chocolatey -y
 choco upgrade winget -y
 
 # pacman
-If (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
+if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
 	Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"; `
 	Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"; `
 	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"; `
@@ -46,7 +46,7 @@ winget install fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
-$Outdated = choco outdated -r; If ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y
+$Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y
 winget install -e --id Google.Chrome
 choco upgrade gimp -y
 choco upgrade guiformat -y
@@ -68,7 +68,7 @@ choco upgrade ntop.portable -y
 # nvm, node, and removing old node versions
 choco upgrade nvm -y; nvm install lts; nvm use lts; `
 Set-Location "$Env:PROGRAMDATA\nvm"; $Nodes = Get-ChildItem -Directory | Sort-Object Name; $NodeCount = 0; `
-ForEach ($Node in $Nodes) { $NodeCount++; If ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
+foreach ($Node in $Nodes) { $NodeCount++; if ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
 
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
 choco upgrade onedrive --ignore-checksums -y
@@ -79,29 +79,29 @@ choco upgrade pngyu -y
 choco upgrade powershell-core -y; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade puretext -y
-$Outdated = choco outdated -r; If ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y; python -m pip install -U pip
+$Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y; python -m pip install -U pip
 
 # ruby
 $Count = 0; `
 $List = winget list -q Ruby; `
 $Array =($List -split '\n'); `
-For ($I = 0; $I -lt $Array.Length; $I++) { `
-    If ($Array[$I].StartsWith("Ruby")) { `
+for ($I = 0; $I -lt $Array.Length; $I++) { `
+    if ($Array[$I].StartsWith("Ruby")) { `
         $Count++; `
-        If ($Count -gt 1) { winget uninstall $OldRuby[2]; Break }; `
+        if ($Count -gt 1) { winget uninstall $OldRuby[2]; Break }; `
         $OldRuby = $Array[$I] -split ' '; `
     } `
 }; `
 $Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install --uninstall-previous -e --id RubyInstallerTeam.$Ver
 
-$Outdated = choco outdated -r; If ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
+$Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
 choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
-$Outdated = choco outdated -r; If ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "/NoContextmenu /NoDesktopShortcut"
+$Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "/NoContextmenu /NoDesktopShortcut"
 winget install -e --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
@@ -110,8 +110,8 @@ choco upgrade zoom -y
 
 # zsh
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"; `
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir}; `
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; if (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir}; `
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; if (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
 . $PSScriptRoot\_ChocoDefaultApps.ps1
