@@ -3,7 +3,6 @@
 # upgrade all choco
 choco feature enable -n useRememberedArgumentsForUpgrades
 choco upgrade all -y
-winget upgrade --all
 
 # delete pesky desktop shortcuts
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Blender *.lnk" | Remove-Item
