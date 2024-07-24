@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Non-brew installations (add/update these first)
+# Non-package installations (add/update these first)
 # embrava
 # filezilla
 # google chrome
@@ -99,4 +99,4 @@ git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$gi
 git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git"; fi
 
 script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ); \
-source "${script_dir}/_brew-work-config.sh"
+source "${script_dir}/_mac-work-config.sh"
