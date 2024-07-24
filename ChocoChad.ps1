@@ -1,6 +1,5 @@
 # Non-Chocolatey installations (add/update these first)
 # backblaze
-# bluestacks
 # google drive
 # iso compressor
 # skraperui
@@ -9,6 +8,7 @@
 . $PSScriptRoot\_ChocoDefaultFirst.ps1
 
 choco upgrade barrier -y
+winget install -e --id BlueStack.BlueStacks
 choco upgrade dbeaver -y
 choco upgrade dvdflick-v2 -y
 choco upgrade github-desktop -y

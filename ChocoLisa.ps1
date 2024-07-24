@@ -1,15 +1,15 @@
 # Non-Chocolatey installations (add/update these first)
 # awesome duplicate photo finder
 # backblaze
-# bluestacks
 # collageit
-# fotor
 # google drive
 # scansnap
 # silhouette studio
 
 . $PSScriptRoot\_ChocoDefaultFirst.ps1
 
+winget install -e --id BlueStack.BlueStacks
+winget install -e --id fotor.fotor
 choco upgrade nextdns -y
 winget install -e --id Poly.PlantronicsHub # plantronics hub
 
