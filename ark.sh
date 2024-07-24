@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # include
-source ./_apt-ubuntu-default.sh
+source ./_ubuntu-default.sh
 
 # properly link singe directory
 unlink /opt/hypseus-singe/singe;ln -sfv /roms/daphne/roms /opt/hypseus-singe/singe

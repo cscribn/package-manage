@@ -3,13 +3,13 @@
 * Scripts beginning with "_" are meant to be included in other scripts.
 * Scripts are formatted to ease copying/pasting single lines. The code is therefore not DRY and sometimes lines are long running.
 
-## apt*
+## pi* & ubuntu*
 
-Bash scripts that call apt to install Raspberry Pi/Ubuntu packages. Different files are used for different machines.
+Bash scripts that install/upgrade Raspberry Pi/Ubuntu packages. Different files are used for different machines.
 
-## brew*
+## mac*
 
-Bash scripts that call homebrew to install Mac packages.
+Bash scripts that install/upgrade Mac packages.
 
 ### Prerequisites
 
@@ -19,9 +19,9 @@ Install brew via Terminal
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-## Choco*
+## Win*
 
-Powershell scripts that call Chocolatey to install Windows packages. Different files are used for different machines.
+Powershell scripts that install/upgrade Windows packages. Different files are used for different machines.
 
 ### Prerequisites
 
