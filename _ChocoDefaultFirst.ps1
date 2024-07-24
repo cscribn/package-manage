@@ -1,4 +1,4 @@
-# Non-Chocolatey installations (add/update these first)
+# Non-package installations (add/update these first)
 # chocolatey itself
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)

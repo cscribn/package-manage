@@ -1,5 +1,5 @@
 #!/bin/bash
-# Non-apt installations (add these first)
+# Non-package installations (add these first)
 
 # update, autoremove, clean, upgrade all apt
 sudo apt update

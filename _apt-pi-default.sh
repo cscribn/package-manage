@@ -1,5 +1,5 @@
 #!/bin/bash
-# Non-apt installations (add these first)
+# Non-package installations (add these first)
 # rust (curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh)
 
 # update, autoremove, clean, upgrade all apt
