@@ -1,13 +1,13 @@
 # Non-package installations (add/update these first)
-# lenovo vantage
-# tcno account switcher
+# alienware update universal
+# backblaze
+# googledrive
+# papercut mobility print
 
-. $PSScriptRoot\_ChocoDefaultFirst.ps1
+. $PSScriptRoot\_WinDefaultFirst.ps1
 
-choco upgrade hyperx-ngenuity -y
-choco upgrade epicgameslauncher -y
 choco upgrade nextdns -y
-choco upgrade steam-client -y
+choco upgrade plexmediaserver -y
 
 # config
 
@@ -15,4 +15,4 @@ choco upgrade steam-client -y
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
 
-. $PSScriptRoot\_ChocoDefaultLast.ps1
+. $PSScriptRoot\_WinDefaultLast.ps1

@@ -1,17 +1,13 @@
 # Non-package installations (add/update these first)
-# awesome duplicate photo finder
-# backblaze
-# collageit
-# google drive
-# scansnap
-# silhouette studio
+# lenovo vantage
+# tcno account switcher
 
-. $PSScriptRoot\_ChocoDefaultFirst.ps1
+. $PSScriptRoot\_WinDefaultFirst.ps1
 
-winget install -e --id BlueStack.BlueStacks
-winget install -e --id fotor.fotor
+choco upgrade hyperx-ngenuity -y
+choco upgrade epicgameslauncher -y
 choco upgrade nextdns -y
-winget install -e --id Poly.PlantronicsHub # plantronics hub
+choco upgrade steam-client -y
 
 # config
 
@@ -19,4 +15,4 @@ winget install -e --id Poly.PlantronicsHub # plantronics hub
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
 
-. $PSScriptRoot\_ChocoDefaultLast.ps1
+. $PSScriptRoot\_WinDefaultLast.ps1

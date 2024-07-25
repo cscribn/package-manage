@@ -4,7 +4,7 @@
 # git-sdk (uninstall once pacman is scriptable)
 # microsoft-windows-terminal
 
-. $PSScriptRoot\_ChocoDefaultRegistry.ps1
+. $PSScriptRoot\_WinDefaultRegistry.ps1
 
 choco upgrade chocolatey -y
 choco upgrade winget -y
@@ -114,5 +114,5 @@ $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; if (Test-Path $GitDir) { 
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; if (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
-. $PSScriptRoot\_ChocoDefaultApps.ps1
-. $PSScriptRoot\_ChocoDefaultFileTypes.ps1
+. $PSScriptRoot\_WinDefaultApps.ps1
+. $PSScriptRoot\_WinDefaultFileTypes.ps1

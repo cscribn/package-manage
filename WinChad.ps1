@@ -5,7 +5,7 @@
 # skraperui
 # spotdl
 
-. $PSScriptRoot\_ChocoDefaultFirst.ps1
+. $PSScriptRoot\_WinDefaultFirst.ps1
 
 choco upgrade barrier -y
 winget install -e --id BlueStack.BlueStacks
@@ -29,4 +29,4 @@ choco pin add --name="'win32diskimager'" --version="'0.9.5'"
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings-chad.json
 
-. $PSScriptRoot\_ChocoDefaultLast.ps1
+. $PSScriptRoot\_WinDefaultLast.ps1

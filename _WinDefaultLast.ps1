@@ -1,4 +1,4 @@
-. $PSScriptRoot\_ChocoDefaultConfig.ps1
+. $PSScriptRoot\_WinDefaultConfig.ps1
 
 # upgrade all choco
 choco feature enable -n useRememberedArgumentsForUpgrades
