@@ -20,7 +20,8 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade curl -y
-choco upgrade git -y; git config --global http.sslBackend openssl
+choco uninstall git -y
+choco upgrade git --params "'/NoShellIntegration'" -y; git config --global http.sslBackend openssl
 
 choco upgrade 7zip -y
 choco upgrade adb -y
