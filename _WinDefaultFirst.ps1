@@ -45,7 +45,7 @@ choco upgrade instanteyedropper.app -y --ignore-checksums -y
 winget install fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
-choco upgrade firefox -y --params "/NoTaskbarShortcut /NoDesktopShortcut"
+choco upgrade firefox -y --params "'/NoTaskbarShortcut /NoDesktopShortcut'"
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y
 winget install -e --id Google.Chrome
 choco upgrade gimp -y
@@ -101,7 +101,7 @@ choco upgrade strawberryperl -y
 choco upgrade sumatrapdf -y
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
-$Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "/NoContextmenu /NoDesktopShortcut"
+$Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
 winget install -e --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y
