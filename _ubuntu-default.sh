@@ -9,6 +9,7 @@ sudo apt dist-upgrade -y
 
 sudo apt install curl -y
 sudo apt install neofetch -y
+sudo apt install fzf -y
 sudo apt install git -y
 sudo apt install htop -y
 

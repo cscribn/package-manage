@@ -34,6 +34,7 @@ brew install --cask docker || brew upgrade --cask docker
 brew install fastfetch || brew upgrade fastfetch
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || install --cask firefox
+brew install fzf || brew upgrade fzf
 brew install --cask gimp || brew upgrade --cask gimp
 brew install git-lfs || brew upgrade git-lfs; git lfs install
 brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg-nerd-font

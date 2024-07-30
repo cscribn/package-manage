@@ -46,6 +46,7 @@ winget install fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco upgrade firefox -y --params "'/NoTaskbarShortcut /NoDesktopShortcut'"
+choco upgrade fzf -y
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y
 winget install -e --id Google.Chrome
 choco upgrade gimp -y
