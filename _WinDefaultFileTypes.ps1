@@ -1,5 +1,6 @@
 $GitDir = "C:\PS-SFTA"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/DanysysTeam/PS-SFTA.git" $GitDir }; `
 . $GitDir\SFTA.ps1; `
+Set-FTA Applications\Firefox.exe .pdf; `
 Set-FTA IrfanView.bmp .bmp; `
 Set-FTA IrfanView.gif .gif; `
 Set-FTA IrfanView.heic .heic; `

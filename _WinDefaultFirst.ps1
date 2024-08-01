@@ -99,7 +99,7 @@ $Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
 choco upgrade strawberryperl -y
-choco upgrade sumatrapdf -y
+choco uninstall sumatrapdf -y; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'"
 choco upgrade tftpd32 -y
 choco upgrade vlc -y
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
