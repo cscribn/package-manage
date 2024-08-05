@@ -61,6 +61,7 @@ choco upgrade libreoffice-still -y
 choco upgrade linux-reader -y
 choco upgrade lsd -y
 choco upgrade mp3tag -y
+choco upgrade moderncsv -y
 choco upgrade nerd-fonts-meslo -y;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 choco upgrade nmap -y
 winget install -e --id Notepad++.Notepad++
