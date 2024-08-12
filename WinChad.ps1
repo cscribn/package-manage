@@ -17,6 +17,7 @@ choco upgrade kitty -y
 choco upgrade makemkv -y
 choco upgrade nextdns -y
 winget install -e --id Poly.PlantronicsHub # plantronics hub
+choco upgrade postman -y
 choco upgrade rpi-imager -y
 choco upgrade vscode -y --params "'/NoDesktopIcon'"
 choco upgrade wireguard -y
