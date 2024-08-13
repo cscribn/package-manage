@@ -33,15 +33,15 @@ fetch_clone() {
 }
 
 # oh-my-posh
-fetch_clone "${HOME}/.config/oh-my-posh" "https://github.com/cscribn/config-oh-my-posh.git" "main"
+fetch_clone "${HOME}/.config/oh-my-posh" "https://github.com/cscribn/dotfiles-oh-my-posh.git" "main"
 
 # pwsh
 mkdir -p "${HOME}/.config/powershell"; \
-curl -Lo "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/config-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
+curl -Lo "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
 
 # vim
-curl -Lo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/config-misc/main/vim/vimrc
+curl -Lo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc
 
 # zsh
-fetch_clone "${HOME}/.config/zsh" "https://github.com/cscribn/config-zsh.git" "main"
+fetch_clone "${HOME}/.config/zsh" "https://github.com/cscribn/dotfiles-zsh.git" "main"
 [[ "$clone" = 1 ]] && cp "${HOME}/.config/zsh/zshrc-ubuntu" "${HOME}/.zshrc"

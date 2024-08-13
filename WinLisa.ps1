@@ -17,6 +17,6 @@ winget install -e --id Poly.PlantronicsHub # plantronics hub
 
 # microsoft-windows-terminal
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
-curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/config-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
+curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
 
 . $PSScriptRoot\_WinDefaultLast.ps1
