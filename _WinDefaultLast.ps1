@@ -1,7 +1,6 @@
 . $PSScriptRoot\_WinDefaultConfig.ps1
 
 # upgrade all choco
-choco feature enable -n useRememberedArgumentsForUpgrades
 choco upgrade all -y
 
 # delete pesky desktop shortcuts

@@ -7,7 +7,8 @@
 . $PSScriptRoot\_WinDefaultRegistry.ps1
 
 choco upgrade chocolatey -y
-choco upgrade winget -y
+choco feature enable -n='useRememberedArgumentsForUpgrades'
+choco upgrade winget -y --ignore-dependencies
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
@@ -18,19 +19,19 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 }; `
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --noconfirm pacman"
 
-choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
+choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y  --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade curl -y
-choco upgrade git --params "'/NoShellIntegration'" -y; git config --global http.sslBackend openssl
+choco upgrade git --params "'/NoShellIntegration'" -y --ignore-dependencies; git config --global http.sslBackend openssl
 
-choco upgrade 7zip -y
+choco upgrade 7zip -y --ignore-dependencies
 choco upgrade adb -y
 choco upgrade agentransack -y
 choco upgrade auto-dark-mode -y
-choco upgrade bat -y
+choco upgrade bat -y --ignore-dependencies
 choco upgrade bulkrenameutility -y --ignore-checksums -y
 
 # caffeine and startup shortcut
-choco upgrade caffeine -y; `
+choco upgrade caffeine -y --ignore-dependencies; `
 $Shell = New-Object -comObject WScript.Shell; `
 $Shortcut = $Shell.CreateShortcut("$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Caffeine.lnk"); `
 $Shortcut.TargetPath = "C:\ProgramData\chocolatey\lib\caffeine\caffeine64.exe"; `
@@ -40,48 +41,48 @@ $Shortcut.Save()
 
 winget install -e --id Google.ChromeRemoteDesktopHost
 choco upgrade clink-maintained -y; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
-choco upgrade cutepdf -y
+choco upgrade cutepdf -y --ignore-dependencies
 choco upgrade instanteyedropper.app -y --ignore-checksums -y
 winget install fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
-choco upgrade firefox -y --params "'/NoTaskbarShortcut /NoDesktopShortcut'"
+choco upgrade firefox -y --params "'/NoTaskbarShortcut /NoDesktopShortcut'" --ignore-dependencies
 choco upgrade fzf -y
-$Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y
+$Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
 winget install -e --id Google.Chrome
 choco upgrade gimp -y
 choco upgrade guiformat -y
-choco upgrade handbrake -y
+choco upgrade handbrake -y --ignore-dependencies
 winget install -e --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
-choco upgrade inkscape -y
-choco upgrade irfanview -y
-choco upgrade irfanviewplugins -y
-choco upgrade libreoffice-still -y
+choco upgrade inkscape -y --ignore-dependencies
+choco upgrade irfanview -y --ignore-dependencies
+choco upgrade irfanviewplugins -y --ignore-dependencies
+choco upgrade libreoffice-still -y --ignore-dependencies
 choco upgrade linux-reader -y
-choco upgrade lsd -y
+choco upgrade lsd -y --ignore-dependencies
 choco upgrade mp3tag -y
 choco upgrade moderncsv -y
-choco upgrade nerd-fonts-meslo -y;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
-choco upgrade nmap -y
+choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
+choco upgrade nmap -y --ignore-dependencies
 winget install -e --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
 
 # nvm, node, and removing old node versions
-choco upgrade nvm -y; nvm install lts; nvm use lts; `
+choco upgrade nvm -y --ignore-dependencies; nvm install lts; nvm use lts; `
 Set-Location "$Env:PROGRAMDATA\nvm"; $Nodes = Get-ChildItem -Directory | Sort-Object Name; $NodeCount = 0; `
 foreach ($Node in $Nodes) { $NodeCount++; if ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
 
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
 choco upgrade onedrive --ignore-checksums -y
-choco upgrade paint.net -y
+choco upgrade paint.net -y --ignore-dependencies
 choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
-choco upgrade powershell-core -y; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+choco upgrade powershell-core -y --ignore-dependencies; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade puretext -y
-$Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y; python -m pip install -U pip
+$Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y --ignore-dependencies; python -m pip install -U pip
 
 # ruby
 $Count = 0; `
@@ -100,13 +101,13 @@ $Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
 choco upgrade strawberryperl -y
-$Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'"
+$Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
 choco upgrade tftpd32 -y
-choco upgrade vlc -y
+choco upgrade vlc -y --ignore-dependencies
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
 winget install -e --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
-choco upgrade xmlstarlet -y
+choco upgrade xmlstarlet -y --ignore-dependencies
 winget install -e --id yt-dlg.yt-dlg
 choco upgrade zoom -y
 
