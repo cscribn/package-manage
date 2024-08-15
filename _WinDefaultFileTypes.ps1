@@ -25,5 +25,5 @@ try { `
     Set-FTA VLC.wmv .wmv; `
 } `
 catch { `
-    Write-Host "Error: $($_.Exception.Message)" `
+    Write-Host $_.Exception.Message -ForegroundColor Red`
 }
