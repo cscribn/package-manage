@@ -3,11 +3,14 @@
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
 # microsoft-windows-terminal
+#
+# Note: --ignore-dependencies is being used on all packages requiring microsoft-vclibs-140-00
 
 . $PSScriptRoot\_WinDefaultRegistry.ps1
 
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
+choco upgrade microsoft-ui-xaml -y
 choco upgrade winget -y --ignore-dependencies
 
 # pacman
