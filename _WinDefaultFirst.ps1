@@ -10,7 +10,7 @@
 
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
-choco upgrade microsoft-ui-xaml -y
+choco upgrade microsoft-ui-xaml-2-7 -y
 choco upgrade winget -y --ignore-dependencies
 
 # pacman
