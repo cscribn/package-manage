@@ -1,6 +1,5 @@
 $GitDir = "C:\PS-SFTA"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/DanysysTeam/PS-SFTA.git" $GitDir }; `
 . $GitDir\SFTA.ps1; `
-Set-FTA Applications\Firefox.exe .pdf; `
 Set-FTA IrfanView.bmp .bmp; `
 Set-FTA IrfanView.gif .gif; `
 Set-FTA IrfanView.heic .heic; `
@@ -21,4 +20,5 @@ Set-FTA VLC.mpg .mpg; `
 Set-FTA VLC.rm .rm; `
 Set-FTA VLC.swf .swf; `
 Set-FTA VLC.wav .wav; `
-Set-FTA VLC.wmv .wmv;
+Set-FTA VLC.wmv .wmv; `
+try { Set-FTA Applications\Firefox.exe .pdf } catch { Write-Host $_.Exception.Message -ForegroundColor Red` }
