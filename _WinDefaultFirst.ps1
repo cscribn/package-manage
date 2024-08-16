@@ -98,7 +98,7 @@ for ($I = 0; $I -lt $Array.Length; $I++) { `
         $OldRuby = $Array[$I] -split ' '; `
     } `
 }; `
-$Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install --uninstall-previous -e --id RubyInstallerTeam.$Ver
+$Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install -e --id RubyInstallerTeam.$Ver
 
 $Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
