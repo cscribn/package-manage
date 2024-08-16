@@ -1,7 +1,6 @@
 # Non-package installations (add/update these first)
 # awesome duplicate photo finder
 # backblaze
-# collageit
 # google drive
 # scansnap
 # silhouette studio
