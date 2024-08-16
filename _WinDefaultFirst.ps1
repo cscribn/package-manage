@@ -111,6 +111,7 @@ $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim
 winget install -e --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y --ignore-dependencies
+choco upgrade xmlstarlet.portable -y --ignore-dependencies
 winget install -e --id yt-dlg.yt-dlg
 choco upgrade zoom -y
 
