@@ -10,6 +10,7 @@
 
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
+choco upgrade dotnet4.6.1 -y
 choco upgrade microsoft-ui-xaml-2-7 -y
 choco upgrade winget -y --ignore-dependencies
 
