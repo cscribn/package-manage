@@ -1,4 +1,4 @@
-# Disable UCPD so that PS-SFTA can run. This requires a reboot.
+# Disable UCPD so that PS-SFTA can run. This requires a reboot. See https://github.com/DanysysTeam/PS-SFTA/issues/33#issuecomment-2022699726
 schtasks.exe /change /Disable /TN "\Microsoft\Windows\AppxDeploymentClient\UCPD velocity"
 sc.exe config "UCPD" start= disabled
 
