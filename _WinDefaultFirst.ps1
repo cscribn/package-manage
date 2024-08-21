@@ -26,10 +26,10 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade curl -y
 choco uninstall git -f -y
-winget install -e --id Git.Git; git config --global http.sslBackend openssl
+winget install -e  --uninstall-previous --id Git.Git; git config --global http.sslBackend openssl
 
 choco uninstall 7zip -f -y
-winget install -e --id 7zip.7zip
+winget install -e --uninstall-previous --id 7zip.7zip
 choco upgrade adb -y
 choco upgrade agentransack -y
 choco upgrade auto-dark-mode -y
@@ -45,54 +45,54 @@ $Shortcut.Arguments = "-allowss"; `
 $Shortcut.WorkingDirectory = "C:\ProgramData\chocolatey\lib\caffeine"; `
 $Shortcut.Save()
 
-winget install -e --id Google.ChromeRemoteDesktopHost
+winget install -e  --uninstall-previous --id Google.ChromeRemoteDesktopHost
 choco upgrade clink-maintained -y; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 choco upgrade cutepdf -y --ignore-dependencies
 choco upgrade instanteyedropper.app -y --ignore-checksums -y
-winget install fastfetch
+winget install  --uninstall-previous fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
 choco uninstall firefox -f -y
-winget install -e --id Mozilla.Firefox
+winget install -e  --uninstall-previous --id Mozilla.Firefox
 choco upgrade fzf -y
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
-winget install -e --id Google.Chrome
+winget install -e  --uninstall-previous --id Google.Chrome
 choco upgrade gimp -y
 choco upgrade guiformat -y
 choco uninstall handbrake -f -y --force
-winget install -e --id HandBrake.HandBrake
-winget install -e --id ImageMagick.ImageMagick
+winget install -e --uninstall-previous --id HandBrake.HandBrake
+winget install -e --uninstall-previous --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
 choco uninstall inkscape -f -y
-winget install -e --id Inkscape.Inkscape
+winget install -e --uninstall-previous --id Inkscape.Inkscape
 choco upgrade irfanview -y --ignore-dependencies
 choco upgrade irfanviewplugins -y --ignore-dependencies
 choco uninstall libreoffice-still -f -y
-winget install -e --id TheDocumentFoundation.LibreOffice.LTS
+winget install -e --uninstall-previous --id TheDocumentFoundation.LibreOffice.LTS
 choco upgrade linux-reader -y
 choco upgrade lsd -y --ignore-dependencies
 choco upgrade mp3tag -y
 choco upgrade moderncsv -y
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 choco upgrade nmap -y --ignore-dependencies
-winget install -e --id Notepad++.Notepad++
+winget install --uninstall-previous -e --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
 
 # nvm, node, and removing old node versions
-winget install -e --id CoreyButler.NVMforWindows; nvm install lts; nvm use lts; `
+winget install --uninstall-previous -e --id CoreyButler.NVMforWindows; nvm install lts; nvm use lts; `
 Set-Location "$Env:PROGRAMDATA\nvm"; $Nodes = Get-ChildItem -Directory | Sort-Object Name; $NodeCount = 0; `
 foreach ($Node in $Nodes) { $NodeCount++; if ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
 
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
 choco uninstall onedrive -f -y
-winget install -e --id Microsoft.OneDrive
+winget install --uninstall-previous -e --id Microsoft.OneDrive
 choco uninstall paint.net -f -y
-winget install -e --id dotPDNLLC.paintdotnet
+winget install --uninstall-previous -e --id dotPDNLLC.paintdotnet
 choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
 choco uninstall powershell-core -f -y
-winget install -e --id Microsoft.PowerShell; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+winget install --uninstall-previous -e --id Microsoft.PowerShell; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade puretext -y
 $Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y --ignore-dependencies; python -m pip install -U pip
@@ -108,7 +108,7 @@ for ($I = 0; $I -lt $Array.Length; $I++) { `
         $OldRuby = $Array[$I] -split ' '; `
     } `
 }; `
-$Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install -e --id RubyInstallerTeam.$Ver
+$Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install -e --uninstall-previous --id RubyInstallerTeam.$Ver
 
 $Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
@@ -117,13 +117,13 @@ choco upgrade strawberryperl -y
 $Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
 choco upgrade tftpd32 -y
 choco uninstall vlc -f -y
-winget install -e --id VideoLAN.VLC
+winget install -e --uninstall-previous --id VideoLAN.VLC
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
-winget install -e --id WiresharkFoundation.Wireshark
+winget install -e --uninstall-previous --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y --ignore-dependencies
 choco upgrade xmlstarlet.portable -y --ignore-dependencies
-winget install -e --id yt-dlg.yt-dlg
+winget install -e --uninstall-previous --id yt-dlg.yt-dlg
 choco upgrade zoom -y
 
 # zsh
