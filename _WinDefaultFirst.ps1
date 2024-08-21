@@ -24,10 +24,13 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --noconfirm pacman"
 
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y  --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
+choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade curl -y
-choco upgrade git --params "'/NoShellIntegration'" -y --ignore-dependencies; git config --global http.sslBackend openssl
+choco uninstall git -f -y
+winget install -e --id Git.Git; git config --global http.sslBackend openssl
 
-choco upgrade 7zip -y --ignore-dependencies
+choco uninstall 7zip -f -y
+winget install -e --id 7zip.7zip
 choco upgrade adb -y
 choco upgrade agentransack -y
 choco upgrade auto-dark-mode -y
@@ -50,19 +53,23 @@ choco upgrade instanteyedropper.app -y --ignore-checksums -y
 winget install fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
-choco upgrade firefox -y --params "'/NoTaskbarShortcut /NoDesktopShortcut'" --ignore-dependencies
+choco uninstall firefox -f -y
+winget install -e --id Mozilla.Firefox
 choco upgrade fzf -y
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
 winget install -e --id Google.Chrome
 choco upgrade gimp -y
 choco upgrade guiformat -y
-choco upgrade handbrake -y --ignore-dependencies
+choco uninstall handbrake -f -y --force
+winget install -e --id HandBrake.HandBrake
 winget install -e --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
-choco upgrade inkscape -y --ignore-dependencies
+choco uninstall inkscape -f -y
+winget install -e --id Inkscape.Inkscape
 choco upgrade irfanview -y --ignore-dependencies
 choco upgrade irfanviewplugins -y --ignore-dependencies
-choco upgrade libreoffice-still -y --ignore-dependencies
+choco uninstall libreoffice-still -f -y
+winget install -e --id TheDocumentFoundation.LibreOffice.LTS
 choco upgrade linux-reader -y
 choco upgrade lsd -y --ignore-dependencies
 choco upgrade mp3tag -y
@@ -78,12 +85,15 @@ Set-Location "$Env:PROGRAMDATA\nvm"; $Nodes = Get-ChildItem -Directory | Sort-Ob
 foreach ($Node in $Nodes) { $NodeCount++; if ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
 
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
-choco upgrade onedrive --ignore-checksums -y
-choco upgrade paint.net -y --ignore-dependencies
+choco uninstall onedrive -f -y
+winget install -e --id Microsoft.OneDrive
+choco uninstall paint.net -f -y
+winget install -e --id dotPDNLLC.paintdotnet
 choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
-choco upgrade powershell-core -y --ignore-dependencies; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+choco uninstall powershell-core -f -y
+winget install -e --id Microsoft.PowerShell; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade puretext -y
 $Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y --ignore-dependencies; python -m pip install -U pip
@@ -107,7 +117,8 @@ choco upgrade sharpkeys -y
 choco upgrade strawberryperl -y
 $Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
 choco upgrade tftpd32 -y
-choco upgrade vlc -y --ignore-dependencies
+choco uninstall vlc -f -y
+winget install -e --id VideoLAN.VLC
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
 winget install -e --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
