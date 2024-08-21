@@ -73,7 +73,7 @@ winget install -e --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
 
 # nvm, node, and removing old node versions
-choco upgrade nvm -y --ignore-dependencies; nvm install lts; nvm use lts; `
+winget install -e --id CoreyButler.NVMforWindows; nvm install lts; nvm use lts; `
 Set-Location "$Env:PROGRAMDATA\nvm"; $Nodes = Get-ChildItem -Directory | Sort-Object Name; $NodeCount = 0; `
 foreach ($Node in $Nodes) { $NodeCount++; if ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
 
