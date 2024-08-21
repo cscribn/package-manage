@@ -23,7 +23,6 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 }; `
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --noconfirm pacman"
 
-choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y  --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade curl -y
 choco uninstall git -f -y
