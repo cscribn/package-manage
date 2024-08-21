@@ -1,3 +1,7 @@
+# Disable UCPD so that PS-SFTA can run. This requires a reboot.
+schtasks.exe /change /Disable /TN "\Microsoft\Windows\AppxDeploymentClient\UCPD velocity"
+sc.exe config "UCPD" start= disabled
+
 $GitDir = "C:\PS-SFTA"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/DanysysTeam/PS-SFTA.git" $GitDir }; `
 . $GitDir\SFTA.ps1; `
 Set-FTA IrfanView.bmp .bmp; `
