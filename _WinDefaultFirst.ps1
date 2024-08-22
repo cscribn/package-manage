@@ -86,8 +86,7 @@ winget install --uninstall-previous -e --id dotPDNLLC.paintdotnet
 choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
-choco uninstall powershell-core -f -y
-winget install --uninstall-previous -e --id Microsoft.PowerShell; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+choco upgrade powershell-core -y --ignore-dependencies; Install-Module posh-git -Force; Install-Module PSReadLine -AllowPrerelease -Force; Install-Module -Name Terminal-Icons -Repository PSGallery -Force
 
 choco upgrade puretext -y
 $Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y --ignore-dependencies; python -m pip install -U pip
