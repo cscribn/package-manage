@@ -65,8 +65,10 @@ winget install -e --uninstall-previous --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
 choco uninstall inkscape -f -y
 winget install -e --uninstall-previous --id Inkscape.Inkscape
-choco upgrade irfanview -y --ignore-dependencies
-choco upgrade irfanviewplugins -y --ignore-dependencies
+choco uninstall irfanview -y
+choco uninstall irfanviewplugins -y
+winget install -e --uninstall-previous --id IrfanSkiljan.IrfanView
+winget install -e --uninstall-previous --id IrfanSkiljan.IrfanView.PlugIns
 choco uninstall libreoffice-still -f -y
 winget install -e --uninstall-previous --id TheDocumentFoundation.LibreOffice.LTS
 choco upgrade linux-reader -y
