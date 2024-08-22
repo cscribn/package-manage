@@ -19,7 +19,6 @@ choco upgrade nextdns -y
 winget install -e --id Poly.PlantronicsHub # plantronics hub
 choco upgrade postman -y
 choco upgrade rpi-imager -y
-choco upgrade vscode -y --params "'/NoDesktopIcon'"
 choco upgrade wireguard -y
 choco upgrade win32diskimager --version 0.9.5 -y
 choco pin add --name="'win32diskimager'" --version="'0.9.5'"

@@ -102,6 +102,7 @@ $Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninst
 choco upgrade tftpd32 -y
 winget install -e --uninstall-previous --id VideoLAN.VLC
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
+winget install -e --uninstall-previous --id Microsoft.VisualStudioCode
 winget install -e --uninstall-previous --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y --ignore-dependencies
