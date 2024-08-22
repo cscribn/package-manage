@@ -77,12 +77,7 @@ choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fon
 choco upgrade nmap -y --ignore-dependencies
 winget install --uninstall-previous -e --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
-
-# nvm, node, and removing old node versions
-winget install --uninstall-previous -e --id CoreyButler.NVMforWindows; nvm install lts; nvm use lts; `
-Set-Location "$Env:PROGRAMDATA\nvm"; $Nodes = Get-ChildItem -Directory | Sort-Object Name; $NodeCount = 0; `
-foreach ($Node in $Nodes) { $NodeCount++; if ($NodeCount -lt $Nodes.Length - 1) { nvm uninstall $Node.Name } }; Set-Location -
-
+choco uninstall nvm -y
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
 choco uninstall onedrive -f -y
 winget install --uninstall-previous -e --id Microsoft.OneDrive
