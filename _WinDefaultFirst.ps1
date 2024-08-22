@@ -24,10 +24,8 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade curl -y
-choco uninstall git -f -y
 winget install -e  --uninstall-previous --id Git.Git; git config --global http.sslBackend openssl
 
-choco uninstall 7zip -f -y
 winget install -e --uninstall-previous --id 7zip.7zip
 choco upgrade adb -y
 choco upgrade agentransack -y
@@ -51,24 +49,18 @@ choco upgrade instanteyedropper.app -y --ignore-checksums -y
 winget install  --uninstall-previous fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
-choco uninstall firefox -f -y
 winget install -e  --uninstall-previous --id Mozilla.Firefox
 choco upgrade fzf -y
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
 winget install -e  --uninstall-previous --id Google.Chrome
 choco upgrade gimp -y
 choco upgrade guiformat -y
-choco uninstall handbrake -f -y
 winget install -e --uninstall-previous --id HandBrake.HandBrake
 winget install -e --uninstall-previous --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
-choco uninstall inkscape -f -y
 winget install -e --uninstall-previous --id Inkscape.Inkscape
-choco uninstall irfanviewplugins -f -y
-choco uninstall irfanview -f -y
 winget install -e --uninstall-previous --id IrfanSkiljan.IrfanView
 winget install -e --uninstall-previous --id IrfanSkiljan.IrfanView.PlugIns
-choco uninstall libreoffice-still -f -y
 winget install -e --uninstall-previous --id TheDocumentFoundation.LibreOffice.LTS
 choco upgrade linux-reader -y
 choco upgrade lsd -y --ignore-dependencies
@@ -78,11 +70,8 @@ choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fon
 choco upgrade nmap -y --ignore-dependencies
 winget install -e --uninstall-previous --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
-choco uninstall nvm -f -y
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
-choco uninstall onedrive -f -y
 winget install -e --uninstall-previous --id Microsoft.OneDrive
-choco uninstall paint.net -f -y
 winget install -e --uninstall-previous --id dotPDNLLC.paintdotnet
 choco upgrade pdftk -y
 choco upgrade pngquant -y
@@ -108,11 +97,9 @@ $Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split =
 $Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
-choco uninstall strawberryperl -f -y
 winget install -e --uninstall-previous --id StrawberryPerl.StrawberryPerl
 $Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
 choco upgrade tftpd32 -y
-choco uninstall vlc -f -y
 winget install -e --uninstall-previous --id VideoLAN.VLC
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
 winget install -e --uninstall-previous --id WiresharkFoundation.Wireshark
