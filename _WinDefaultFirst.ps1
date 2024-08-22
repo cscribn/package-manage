@@ -75,14 +75,14 @@ choco upgrade mp3tag -y
 choco upgrade moderncsv -y
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 choco upgrade nmap -y --ignore-dependencies
-winget install --uninstall-previous -e --id Notepad++.Notepad++
+winget install -e --uninstall-previous --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
 choco uninstall nvm -y
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
 choco uninstall onedrive -f -y
-winget install --uninstall-previous -e --id Microsoft.OneDrive
+winget install -e --uninstall-previous --id Microsoft.OneDrive
 choco uninstall paint.net -f -y
-winget install --uninstall-previous -e --id dotPDNLLC.paintdotnet
+winget install -e --uninstall-previous --id dotPDNLLC.paintdotnet
 choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
@@ -107,7 +107,8 @@ $Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split =
 $Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
-choco upgrade strawberryperl -y
+choco uninstall strawberryperl -y
+winget install -e --uninstall-previous --id StrawberryPerl.StrawberryPerl
 $Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
 choco upgrade tftpd32 -y
 choco uninstall vlc -f -y
