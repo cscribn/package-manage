@@ -59,14 +59,14 @@ $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco unins
 winget install -e  --uninstall-previous --id Google.Chrome
 choco upgrade gimp -y
 choco upgrade guiformat -y
-choco uninstall handbrake -f -y --force
+choco uninstall handbrake -f -y
 winget install -e --uninstall-previous --id HandBrake.HandBrake
 winget install -e --uninstall-previous --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
 choco uninstall inkscape -f -y
 winget install -e --uninstall-previous --id Inkscape.Inkscape
-choco uninstall irfanview -y
-choco uninstall irfanviewplugins -y
+choco uninstall irfanviewplugins -f -y
+choco uninstall irfanview -f -y
 winget install -e --uninstall-previous --id IrfanSkiljan.IrfanView
 winget install -e --uninstall-previous --id IrfanSkiljan.IrfanView.PlugIns
 choco uninstall libreoffice-still -f -y
@@ -79,7 +79,7 @@ choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fon
 choco upgrade nmap -y --ignore-dependencies
 winget install -e --uninstall-previous --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
-choco uninstall nvm -y
+choco uninstall nvm -f -y
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
 choco uninstall onedrive -f -y
 winget install -e --uninstall-previous --id Microsoft.OneDrive
@@ -109,7 +109,7 @@ $Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split =
 $Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
-choco uninstall strawberryperl -y
+choco uninstall strawberryperl -f -y
 winget install -e --uninstall-previous --id StrawberryPerl.StrawberryPerl
 $Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
 choco upgrade tftpd32 -y
