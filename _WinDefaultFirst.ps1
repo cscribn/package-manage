@@ -3,6 +3,7 @@
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
 # microsoft-windows-terminal
+# winget
 #
 # Note: --ignore-dependencies is being used on all packages requiring microsoft-vclibs-140-00
 
@@ -10,9 +11,7 @@
 
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
-choco upgrade dotnet4.6.1 -y
 choco upgrade microsoft-ui-xaml-2-7 -y
-choco upgrade winget -y --ignore-dependencies
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
