@@ -24,9 +24,9 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 choco upgrade curl -y
-winget install -e  --uninstall-previous --id Git.Git; git config --global http.sslBackend openssl
+winget install -e --id Git.Git; git config --global http.sslBackend openssl
 
-winget install -e --uninstall-previous --id 7zip.7zip
+winget install -e --id 7zip.7zip
 choco upgrade adb -y
 choco upgrade agentransack -y
 choco upgrade auto-dark-mode -y
@@ -42,37 +42,37 @@ $Shortcut.Arguments = "-allowss"; `
 $Shortcut.WorkingDirectory = "C:\ProgramData\chocolatey\lib\caffeine"; `
 $Shortcut.Save()
 
-winget install -e  --uninstall-previous --id Google.ChromeRemoteDesktopHost
+winget install -e --id Google.ChromeRemoteDesktopHost
 choco upgrade clink-maintained -y; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 choco upgrade cutepdf -y --ignore-dependencies
 choco upgrade instanteyedropper.app -y --ignore-checksums -y
-winget install  --uninstall-previous fastfetch
+winget install -e fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
-winget install -e  --uninstall-previous --id Mozilla.Firefox
+winget install -e --id Mozilla.Firefox
 choco upgrade fzf -y
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
-winget install -e  --uninstall-previous --id Google.Chrome
+winget install -e --id Google.Chrome
 choco upgrade gimp -y
 choco upgrade guiformat -y
-winget install -e --uninstall-previous --id HandBrake.HandBrake
-winget install -e --uninstall-previous --id ImageMagick.ImageMagick
+winget install -e --id HandBrake.HandBrake
+winget install -e --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
-winget install -e --uninstall-previous --id Inkscape.Inkscape
-winget install -e --uninstall-previous --id IrfanSkiljan.IrfanView
-winget install -e --uninstall-previous --id IrfanSkiljan.IrfanView.PlugIns
-winget install -e --uninstall-previous --id TheDocumentFoundation.LibreOffice.LTS
+winget install -e --id Inkscape.Inkscape
+winget install -e --id IrfanSkiljan.IrfanView
+winget install -e --id IrfanSkiljan.IrfanView.PlugIns
+winget install -e --id TheDocumentFoundation.LibreOffice.LTS
 choco upgrade linux-reader -y
 choco upgrade lsd -y --ignore-dependencies
 choco upgrade mp3tag -y
 choco upgrade moderncsv -y
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
 choco upgrade nmap -y --ignore-dependencies
-winget install -e --uninstall-previous --id Notepad++.Notepad++
+winget install -e --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
 choco upgrade oh-my-posh -y; oh-my-posh disable notice
-winget install -e --uninstall-previous --id Microsoft.OneDrive
-winget install -e --uninstall-previous --id dotPDNLLC.paintdotnet
+winget install -e --id Microsoft.OneDrive
+winget install -e --id dotPDNLLC.paintdotnet
 choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
@@ -92,22 +92,22 @@ for ($I = 0; $I -lt $Array.Length; $I++) { `
         $OldRuby = $Array[$I] -split ' '; `
     } `
 }; `
-$Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install -e --uninstall-previous --id RubyInstallerTeam.$Ver
+$Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install -e --id RubyInstallerTeam.$Ver
 
 $Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
 choco upgrade sd-card-formatter -y
 choco upgrade sharpkeys -y
-winget install -e --uninstall-previous --id StrawberryPerl.StrawberryPerl
+winget install -e --id StrawberryPerl.StrawberryPerl
 $Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
 choco upgrade tftpd32 -y
-winget install -e --uninstall-previous --id VideoLAN.VLC
+winget install -e --id VideoLAN.VLC
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
-winget install -e --uninstall-previous --id Microsoft.VisualStudioCode
-winget install -e --uninstall-previous --id WiresharkFoundation.Wireshark
+winget install -e --id Microsoft.VisualStudioCode
+winget install -e --id WiresharkFoundation.Wireshark
 choco upgrade winmerge -y
 choco upgrade xmlstarlet -y --ignore-dependencies
 choco upgrade xmlstarlet.portable -y --ignore-dependencies
-winget install -e --uninstall-previous --id yt-dlg.yt-dlg
+winget install -e --id yt-dlg.yt-dlg
 choco upgrade zoom -y
 
 # zsh
