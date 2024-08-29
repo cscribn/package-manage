@@ -19,6 +19,7 @@ brew upgrade
 
 brew tap common-fate/granted
 brew tap snyk/tap
+brew install libgit2@1.7 || brew upgrade libgit2@1.7
 brew install git || brew upgrade git
 
 brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
