@@ -66,7 +66,7 @@ choco upgrade linux-reader -y
 choco upgrade lsd -y --ignore-dependencies
 choco upgrade mp3tag -y
 choco upgrade moderncsv -y
-choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO
+choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
 choco upgrade nmap -y --ignore-dependencies
 winget install -e --id Notepad++.Notepad++
 choco upgrade ntop.portable -y
