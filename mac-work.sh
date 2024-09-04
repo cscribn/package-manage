@@ -55,7 +55,7 @@ brew install jq ||brew upgrade jq
 brew install libpq || brew upgrade libpq;brew link --force libpq
 brew install --cask libreoffice-still || brew upgrade --cask libreoffice-still
 brew install lsd || brew upgrade lsd
-brew install --cask microsoft-edge || brew upgrade --cask microsoft-edge
+brew install --cask microsoft-edge # Don't upgrade 
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
 brew install nmap || brew upgrade nmap
 
