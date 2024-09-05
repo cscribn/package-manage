@@ -40,33 +40,33 @@ $Shortcut.Save()
 
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
-winget install -e --id=AcroSoftwareInc.CutePDFWriter
-winget install -e --id=Spicebrains.Instant-Eyedropper
+winget install -e --id AcroSoftwareInc.CutePDFWriter
+winget install -e --id Spicebrains.Instant-Eyedropper
 winget install -e fastfetch
-winget install -e --id=Gyan.FFmpeg
+winget install -e --id Gyan.FFmpeg
 choco upgrade filezilla -y --ignore-dependencies
 winget install -e --id Mozilla.Firefox
 winget install -e --id junegunn.fzf
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
 winget install -e --id Google.Chrome
 winget install -e --id GIMP.GIMP
-winget install -e --id=Ridgecrop.guiformat
+winget install -e --id Ridgecrop.guiformat
 winget install -e --id HandBrake.HandBrake
 winget install -e --id ImageMagick.ImageMagick
-choco upgrade imgburn -y
+winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
 winget install -e --id IrfanSkiljan.IrfanView
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns
 winget install -e --id TheDocumentFoundation.LibreOffice.LTS
-choco upgrade linux-reader -y
-choco upgrade lsd -y --ignore-dependencies
-choco upgrade mp3tag -y
-choco upgrade moderncsv -y
+winget install -e --id DiskInternals.LinuxReader
+winget install -e --id lsd-rs.lsd
+winget install -e --id FlorianHeidenreich.Mp3tag
+winget install -e --id PFOJEnterprisesLLC.ModernCSV
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
-choco upgrade nmap -y --ignore-dependencies
+winget install -e --id Insecure.Nmap
 winget install -e --id Notepad++.Notepad++
-choco upgrade ntop.portable -y
-choco upgrade oh-my-posh -y; oh-my-posh disable notice
+winget install -e --id gsass1.NTop
+winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id Microsoft.OneDrive
 winget install -e --id dotPDNLLC.paintdotnet
 choco upgrade pdftk -y
