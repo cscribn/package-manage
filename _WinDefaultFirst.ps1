@@ -44,7 +44,7 @@ $Shortcut.Save()
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 winget install -e --id=AcroSoftwareInc.CutePDFWriter
-choco upgrade instanteyedropper.app -y --ignore-checksums -y
+winget install -e --id=Spicebrains.Instant-Eyedropper
 winget install -e fastfetch
 choco upgrade ffmpeg -y
 choco upgrade filezilla -y
