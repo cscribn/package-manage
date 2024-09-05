@@ -69,11 +69,11 @@ winget install -e --id gsass1.NTop
 winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id Microsoft.OneDrive
 winget install -e --id dotPDNLLC.paintdotnet
-choco upgrade pdftk -y
-choco upgrade pngquant -y
-choco upgrade pngyu -y
+winget install -e --id PDFLabs.PDFtk.Free
+choco upgrade pngquant -y --ignore-dependencies
+choco upgrade pngyu -y --ignore-dependencies
 winget install -e --id Google.PlatformTools
-choco upgrade powershell-core -y --ignore-dependencies; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
+winget install -e --id=Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
 
 choco upgrade puretext -y
 $Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y --ignore-dependencies; python -m pip install -U pip
@@ -91,9 +91,9 @@ for ($I = 0; $I -lt $Array.Length; $I++) { `
 }; `
 $Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install -e --id RubyInstallerTeam.$Ver
 
-$Outdated = choco outdated -r; if ($Outdated -match "scribus") { choco uninstall scribus -f -y }; choco upgrade scribus -i -y
+winget install -e --id Scribus.Scribus
 choco upgrade sd-card-formatter -y
-choco upgrade sharpkeys -y
+winget install -e --id RandyRants.SharpKeys
 winget install -e --id StrawberryPerl.StrawberryPerl
 $Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
 choco upgrade tftpd32 -y
@@ -101,11 +101,11 @@ winget install -e --id VideoLAN.VLC
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id WiresharkFoundation.Wireshark
-choco upgrade winmerge -y
+winget install -e --id WinMerge.WinMerge
 choco upgrade xmlstarlet -y --ignore-dependencies
 choco upgrade xmlstarlet.portable -y --ignore-dependencies
 winget install -e --id yt-dlg.yt-dlg
-choco upgrade zoom -y
+winget install -e --id=Zoom.Zoom
 
 # zsh
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -Sy --needed --noconfirm --overwrite \* zsh"; `
