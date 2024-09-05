@@ -1,6 +1,5 @@
 # Non-package installations (add/update these first)
 # backblaze
-# google drive
 # iso compressor
 # skraperui
 # spotdl
@@ -12,6 +11,7 @@ winget install -e --id BlueStack.BlueStacks
 choco upgrade dbeaver -y
 choco upgrade dvdflick-v2 -y
 choco upgrade github-desktop -y
+winget install -e --id Google.GoogleDrive
 choco upgrade hxd -y
 choco upgrade kitty -y
 choco upgrade makemkv -y

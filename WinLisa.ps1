@@ -1,7 +1,6 @@
 # Non-package installations (add/update these first)
 # awesome duplicate photo finder
 # backblaze
-# google drive
 # scansnap
 # silhouette studio
 
@@ -9,6 +8,7 @@
 
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id fotor.fotor
+winget install -e --id Google.GoogleDrive
 choco upgrade nextdns -y
 winget install -e --id Poly.PlantronicsHub # plantronics hub
 

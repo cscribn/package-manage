@@ -1,11 +1,11 @@
 # Non-package installations (add/update these first)
 # alienware update universal
 # backblaze
-# googledrive
 # papercut mobility print
 
 . $PSScriptRoot\_WinDefaultFirst.ps1
 
+winget install -e --id Google.GoogleDrive
 choco upgrade nextdns -y
 choco upgrade plexmediaserver -y
 
