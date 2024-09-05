@@ -23,7 +23,7 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -Sy --needed --noconfirm --overwrite \* pacman"
 
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
-choco upgrade curl -y
+winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
 
 winget install -e --id 7zip.7zip
