@@ -1,12 +1,11 @@
 # Non-package installations (add/update these first)
-# chocolatey itself
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
-# microsoft-windows-terminal
 # winget
 
 . $PSScriptRoot\_WinDefaultRegistry.ps1
 
+winget install -e --id Chocolatey.Chocolatey
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
 
@@ -100,6 +99,7 @@ choco upgrade tftpd32 -y
 winget install -e --id VideoLAN.VLC
 $Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
 winget install -e --id Microsoft.VisualStudioCode
+winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id WiresharkFoundation.Wireshark
 winget install -e --id WinMerge.WinMerge
 choco upgrade xmlstarlet -y --ignore-dependencies
