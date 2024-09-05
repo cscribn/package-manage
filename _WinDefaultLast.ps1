@@ -1,8 +1,5 @@
 . $PSScriptRoot\_WinDefaultConfig.ps1
 
-# upgrade all choco
-choco upgrade all -y
-
 # delete pesky desktop shortcuts
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Blender *.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "BlueStacks *.lnk" | Remove-Item

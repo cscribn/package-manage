@@ -4,14 +4,11 @@
 # git-sdk (uninstall once pacman is scriptable)
 # microsoft-windows-terminal
 # winget
-#
-# Note: --ignore-dependencies is being used on all packages requiring microsoft-vclibs-140-00
 
 . $PSScriptRoot\_WinDefaultRegistry.ps1
 
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
-choco upgrade microsoft-ui-xaml-2-7 -y
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
@@ -47,7 +44,7 @@ winget install -e --id=AcroSoftwareInc.CutePDFWriter
 winget install -e --id=Spicebrains.Instant-Eyedropper
 winget install -e fastfetch
 winget install -e --id=Gyan.FFmpeg
-choco upgrade filezilla -y
+choco upgrade filezilla -y --ignore-dependencies
 winget install -e --id Mozilla.Firefox
 winget install -e --id junegunn.fzf
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
