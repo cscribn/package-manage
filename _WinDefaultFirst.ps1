@@ -42,8 +42,8 @@ $Shortcut.WorkingDirectory = "C:\ProgramData\chocolatey\lib\caffeine"; `
 $Shortcut.Save()
 
 winget install -e --id Google.ChromeRemoteDesktopHost
-choco upgrade clink-maintained -y; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 choco upgrade cutepdf -y --ignore-dependencies
+winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 choco upgrade instanteyedropper.app -y --ignore-checksums -y
 winget install -e fastfetch
 choco upgrade ffmpeg -y
