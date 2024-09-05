@@ -1,7 +1,3 @@
-# Disable UCPD so that PS-SFTA can run. This requires a reboot. See https://github.com/DanysysTeam/PS-SFTA/issues/33#issuecomment-2022699726
-schtasks.exe /change /Disable /TN "\Microsoft\Windows\AppxDeploymentClient\UCPD velocity"
-sc.exe config "UCPD" start= disabled
-
 $GitDir = "C:\PS-SFTA"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/DanysysTeam/PS-SFTA.git" $GitDir }; `
 . $GitDir\SFTA.ps1; `
 Set-FTA IrfanView.bmp .bmp; `
@@ -25,4 +21,3 @@ Set-FTA VLC.rm .rm; `
 Set-FTA VLC.swf .swf; `
 Set-FTA VLC.wav .wav; `
 Set-FTA VLC.wmv .wmv; `
-try { Set-FTA Applications\Firefox.exe .pdf } catch { Write-Host $_.Exception.Message -ForegroundColor Red` }
