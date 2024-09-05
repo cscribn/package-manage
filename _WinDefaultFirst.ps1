@@ -49,8 +49,8 @@ winget install -e --id Mozilla.Firefox
 winget install -e --id junegunn.fzf
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
 winget install -e --id Google.Chrome
-choco upgrade gimp -y
 choco upgrade guiformat -y
+winget install -e --id GIMP.GIMP
 winget install -e --id HandBrake.HandBrake
 winget install -e --id ImageMagick.ImageMagick
 choco upgrade imgburn -y
