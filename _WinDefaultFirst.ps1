@@ -49,7 +49,7 @@ winget install -e fastfetch
 winget install -e --id=Gyan.FFmpeg
 choco upgrade filezilla -y
 winget install -e --id Mozilla.Firefox
-choco upgrade fzf -y
+winget install -e --id junegunn.fzf
 $Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
 winget install -e --id Google.Chrome
 choco upgrade gimp -y
