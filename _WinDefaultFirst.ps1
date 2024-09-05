@@ -30,7 +30,7 @@ winget install -e --id 7zip.7zip
 winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Armin2208.WindowsAutoNightMode
 winget install -e --id sharkdp.bat
-choco upgrade bulkrenameutility -y --ignore-checksums -y
+winget install -e --id TGRMNSoftware.BulkRenameUtility
 
 # caffeine and startup shortcut
 choco upgrade caffeine -y --ignore-dependencies; `
