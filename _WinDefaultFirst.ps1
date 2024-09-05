@@ -27,7 +27,6 @@ winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
 
 winget install -e --id 7zip.7zip
-choco upgrade adb -y
 choco upgrade agentransack -y
 choco upgrade auto-dark-mode -y
 choco upgrade bat -y --ignore-dependencies
@@ -76,6 +75,7 @@ winget install -e --id dotPDNLLC.paintdotnet
 choco upgrade pdftk -y
 choco upgrade pngquant -y
 choco upgrade pngyu -y
+winget install -e --id Google.PlatformTools
 choco upgrade powershell-core -y --ignore-dependencies; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
 
 choco upgrade puretext -y
