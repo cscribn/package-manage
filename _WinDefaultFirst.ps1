@@ -46,7 +46,7 @@ winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\c
 winget install -e --id=AcroSoftwareInc.CutePDFWriter
 winget install -e --id=Spicebrains.Instant-Eyedropper
 winget install -e fastfetch
-choco upgrade ffmpeg -y
+winget install -e --id=Gyan.FFmpeg
 choco upgrade filezilla -y
 winget install -e --id Mozilla.Firefox
 choco upgrade fzf -y
