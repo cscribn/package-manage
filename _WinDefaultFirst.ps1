@@ -28,8 +28,8 @@ winget install -e --id Git.Git; git config --global http.sslBackend openssl
 
 winget install -e --id 7zip.7zip
 winget install -e --id Mythicsoft.AgentRansack
-choco upgrade bat -y --ignore-dependencies
 winget install -e --id Armin2208.WindowsAutoNightMode
+winget install -e --id sharkdp.bat
 choco upgrade bulkrenameutility -y --ignore-checksums -y
 
 # caffeine and startup shortcut
