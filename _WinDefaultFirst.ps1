@@ -27,7 +27,7 @@ winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
 
 winget install -e --id 7zip.7zip
-choco upgrade agentransack -y
+winget install -e --id Mythicsoft.AgentRansack
 choco upgrade auto-dark-mode -y
 choco upgrade bat -y --ignore-dependencies
 choco upgrade bulkrenameutility -y --ignore-checksums -y
