@@ -22,11 +22,9 @@ choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; 
 winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
 winget install -e --id=Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
-
 winget install -e --id 7zip.7zip
 winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Armin2208.WindowsAutoNightMode
-winget install -e --id sharkdp.bat
 winget install -e --id TGRMNSoftware.BulkRenameUtility
 
 # caffeine and startup shortcut
@@ -41,16 +39,13 @@ $Shortcut.Save()
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 winget install -e --id Spicebrains.Instant-Eyedropper
-winget install -e --id Fastfetch-cli.Fastfetch
 winget install -e --id Gyan.FFmpeg
 choco upgrade filezilla -y --ignore-dependencies
 winget install -e --id Mozilla.Firefox
 winget install -e --id junegunn.fzf
 winget install -e --id Google.Chrome
 winget install -e --id GIMP.GIMP
-winget install -e --id Ridgecrop.guiformat
 winget install -e --id HandBrake.HandBrake
-winget install -e --id ImageMagick.ImageMagick
 winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
 winget install -e --id IrfanSkiljan.IrfanView
@@ -72,20 +67,6 @@ choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
 winget install -e --id Google.PlatformTools
 choco upgrade puretext -y --ignore-dependencies
-
-# python
-if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
-    $Id = (Get-WinGetPackage -Name Python).Id | Select-Object -First 1; winget uninstall -e --id $Id `
-} `
-$Id = Find-WinGetPackage Python.Python | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id; `
-python -m pip install -U pip
-
-# ruby
-if ((Get-WinGetPackage -Name Ruby).Count -gt 1) { `
-    $Id = (Get-WinGetPackage -Name Ruby).Id | Select-Object -First 1; winget uninstall -e --id $Id `
-} `
-$Id = (Find-WinGetPackage RubyInstallerTeam.Ruby).Id | Select-Object -Last 1; winget install -e --id $Id
-
 winget install -e --id Scribus.Scribus
 winget install -e --id RandyRants.SharpKeys
 winget install -e --id SumatraPDF.SumatraPDF
@@ -95,8 +76,6 @@ winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id WiresharkFoundation.Wireshark
 winget install -e --id WinMerge.WinMerge
-choco upgrade xmlstarlet -y --ignore-dependencies
-choco upgrade xmlstarlet.portable -y --ignore-dependencies
 winget install -e --id yt-dlg.yt-dlg
 winget install -e --id=Zoom.Zoom
 
