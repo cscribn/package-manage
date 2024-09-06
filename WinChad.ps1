@@ -30,7 +30,7 @@ if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
 $Id = Find-WinGetPackage Python.Python | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id; `
 python -m pip install -U pip
 
-choco upgrade rpi-imager -y
+winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 
 # ruby
 if ((Get-WinGetPackage -Name Ruby).Count -gt 1) { `
