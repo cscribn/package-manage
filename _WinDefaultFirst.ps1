@@ -8,6 +8,7 @@
 winget install -e --id Chocolatey.Chocolatey
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
+choco install chocolatey-font-helpers.extension -y --ignore-dependencies
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
@@ -50,7 +51,7 @@ winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
 winget install -e --id IrfanSkiljan.IrfanView
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns
-winget install -e --id TheDocumentFoundation.LibreOffice.LTS
+winget install -e --id TheDocumentFoundation.LibreOffice
 winget install -e --id DiskInternals.LinuxReader
 winget install -e --id lsd-rs.lsd
 winget install -e --id FlorianHeidenreich.Mp3tag
@@ -61,7 +62,7 @@ winget install -e --id Notepad++.Notepad++
 winget install -e --id gsass1.NTop
 winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id Microsoft.OneDrive
-winget install -e --id dotPDNLLC.paintdotnet
+winget install -e --id dotPDN.PaintDotNet
 winget install -e --id PDFLabs.PDFtk.Free
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
