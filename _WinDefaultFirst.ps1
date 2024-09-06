@@ -41,7 +41,7 @@ winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 winget install -e --id AcroSoftwareInc.CutePDFWriter
 winget install -e --id Spicebrains.Instant-Eyedropper
-winget install -e fastfetch
+winget install -e --id Fastfetch-cli.Fastfetch
 winget install -e --id Gyan.FFmpeg
 choco upgrade filezilla -y --ignore-dependencies
 winget install -e --id Mozilla.Firefox
