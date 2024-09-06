@@ -5,7 +5,6 @@
 
 . $PSScriptRoot\_WinDefaultRegistry.ps1
 
-winget install -e --id Chocolatey.Chocolatey
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco install chocolatey-font-helpers.extension -y --ignore-dependencies
