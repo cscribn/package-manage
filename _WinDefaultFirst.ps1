@@ -40,14 +40,12 @@ $Shortcut.Save()
 
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
-winget install -e --id AcroSoftwareInc.CutePDFWriter
 winget install -e --id Spicebrains.Instant-Eyedropper
 winget install -e --id Fastfetch-cli.Fastfetch
 winget install -e --id Gyan.FFmpeg
 choco upgrade filezilla -y --ignore-dependencies
 winget install -e --id Mozilla.Firefox
 winget install -e --id junegunn.fzf
-$Outdated = choco outdated -r; if ($Outdated -match "ghostscript") { choco uninstall ghostscript -f -y }; choco upgrade ghostscript -y --ignore-dependencies
 winget install -e --id Google.Chrome
 winget install -e --id GIMP.GIMP
 winget install -e --id Ridgecrop.guiformat
@@ -73,8 +71,7 @@ winget install -e --id PDFLabs.PDFtk.Free
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
 winget install -e --id Google.PlatformTools
-choco upgrade puretext -y
-$Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y --ignore-dependencies; python -m pip install -U pip
+choco upgrade puretext -y --ignore-dependencies
 
 # python
 if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
@@ -90,13 +87,10 @@ if ((Get-WinGetPackage -Name Ruby).Count -gt 1) { `
 $Id = (Find-WinGetPackage RubyInstallerTeam.Ruby).Id | Select-Object -Last 1; winget install -e --id $Id
 
 winget install -e --id Scribus.Scribus
-choco upgrade sd-card-formatter -y
 winget install -e --id RandyRants.SharpKeys
-winget install -e --id StrawberryPerl.StrawberryPerl
-$Outdated = choco outdated -r; if ($Outdated -match "sumatrapdf") { choco uninstall sumatrapdf -f -y }; choco upgrade sumatrapdf -y --params="'/NoDesktop /WithPreview'" --ignore-dependencies
+winget install -e --id SumatraPDF.SumatraPDF
 choco upgrade tftpd32 -y
 winget install -e --id VideoLAN.VLC
-$Outdated = choco outdated -r; if ($Outdated -match "vim") { choco uninstall vim -f -y }; choco upgrade vim -y --params "'/NoContextmenu /NoDesktopShortcut'"
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id WiresharkFoundation.Wireshark
