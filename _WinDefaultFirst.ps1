@@ -21,6 +21,7 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
+winget install -e --id=Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
 
 winget install -e --id 7zip.7zip
 winget install -e --id Mythicsoft.AgentRansack
@@ -72,23 +73,15 @@ winget install -e --id PDFLabs.PDFtk.Free
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
 winget install -e --id Google.PlatformTools
-winget install -e --id=Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
-
 choco upgrade puretext -y
 $Outdated = choco outdated -r; if ($Outdated -match "python") { choco uninstall python -f -y }; choco upgrade python -y --ignore-dependencies; python -m pip install -U pip
 
+# python
 # ruby
-$Count = 0; `
-$List = winget list -q Ruby; `
-$Array =($List -split '\n'); `
-for ($I = 0; $I -lt $Array.Length; $I++) { `
-    if ($Array[$I].StartsWith("Ruby")) { `
-        $Count++; `
-        if ($Count -gt 1) { winget uninstall $OldRuby[2]; Break }; `
-        $OldRuby = $Array[$I] -split ' '; `
-    } `
-}; `
-$Search = winget search RubyInstallerTeam.Ruby | Select-Object -Last 1; $Split = $Search -split ' '; $Ver = $Split[0] + "." + $Split[1]; winget install -e --id RubyInstallerTeam.$Ver
+if ((Get-WinGetPackage -Name Ruby).Count -gt 1) { `
+    $Id = (Get-WinGetPackage -Name Ruby).Id | Select-Object -First 1; winget uninstall -e --id $Id `
+} `
+$Id = (Find-WinGetPackage RubyInstallerTeam.Ruby).Id | Select-Object -Last 1; winget install -e --id $Id
 
 winget install -e --id Scribus.Scribus
 choco upgrade sd-card-formatter -y
