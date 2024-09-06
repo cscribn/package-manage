@@ -9,8 +9,9 @@
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id fotor.fotor
 winget install -e --id Google.GoogleDrive
-choco upgrade nextdns -y
-winget install -e --id Poly.PlantronicsHub # plantronics hub
+winget install -e --id Lenovo.SystemUpdate
+winget install -e --id NextDNS.NextDNS.Desktop
+winget install -e --id Poly.PlantronicsHub
 
 # config
 

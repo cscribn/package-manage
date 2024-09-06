@@ -1,13 +1,13 @@
 # Non-package installations (add/update these first)
-# alienware update universal
 # backblaze
-# papercut mobility print
 
 . $PSScriptRoot\_WinDefaultFirst.ps1
 
+winget install -e --id Dell.CommandUpdate.Universal
 winget install -e --id Google.GoogleDrive
-choco upgrade nextdns -y
-choco upgrade plexmediaserver -y
+winget install -e --id NextDNS.NextDNS.Desktop
+winget install -e --id PaperCutSoftware.MobilityPrint
+winget install -e --id Plex.Plex
 
 # config
 
