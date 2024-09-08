@@ -7,6 +7,9 @@
 . $PSScriptRoot\_WinDefaultFirst.ps1
 
 choco upgrade kitty -y --ignore-dependencies
+choco upgrade pngquant -y --ignore-dependencies
+choco upgrade pngyu -y --ignore-dependencies
+choco upgrade tftpd32 -y --ignore-dependencies
 choco upgrade win32diskimager --version 0.9.5 -y --ignore-dependencies
 choco pin add --name="'win32diskimager'" --version="'0.9.5'"
 choco upgrade xmlstarlet -y --ignore-dependencies
