@@ -22,9 +22,7 @@ $Shortcut.Save()
 
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
 choco upgrade filezilla -y --ignore-dependencies
-choco uninstall pngquant -y
-choco uninstall pngyu -y
-choco uninstall tftpd32 -y
+choco upgrade puretext -y --ignore-dependencies
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
