@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # bash
-curl -Lo "${HOME}/.profile" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-anbernic
+curl -Lo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-anbernic
 
 # oh-my-posh
 config_dir="${HOME}/.config/oh-my-posh"; \
