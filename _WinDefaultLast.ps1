@@ -1,6 +1,7 @@
 . $PSScriptRoot\_WinDefaultConfig.ps1
 
 # delete pesky desktop shortcuts
+Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "AOMEI Partition Assistant *.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Blender *.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "BlueStacks *.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Canon IJ Network Tool.lnk" | Remove-Item
