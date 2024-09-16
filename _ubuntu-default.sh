@@ -19,6 +19,8 @@ curl -s https://api.github.com/repos/lsd-rs/lsd/releases/latest \
 	| cut -d : -f 2,3 | tr -d \" | wget -qi -; \
 sudo dpkg -i lsd-musl_*_arm64.deb; rm -f lsd-musl_*_arm64.deb
 
+git_dir="${HOME}/motd"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/cscribn/motd" "$git_dir"; fi
+
 # oh-my-posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm -O /usr/local/bin/oh-my-posh; \
 sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notice
