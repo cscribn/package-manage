@@ -26,11 +26,6 @@ sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/
 sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notice
 
 sudo apt install python-pip -y; sudo apt install python3-pip -y
-
-# ruby
-sudo apt install rbenv -y; sudo apt remove ruby-build -y; export PATH="${HOME}/.rbenv/bin:${PATH}"; rm -rf "${HOME}/.rbenv/plugins/ruby-build"; \
-git clone https://github.com/rbenv/ruby-build.git "${HOME}/.rbenv/plugins/ruby-build"
-
 sudo apt install speedtest-cli -y
 sudo apt install unzip -y
 sudo apt install vim -y

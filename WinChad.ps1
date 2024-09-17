@@ -39,13 +39,6 @@ $Id = Find-WinGetPackage Python.Python | Where-Object { $_.Version -match '^\d+(
 python -m pip install -U pip
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
-
-# ruby
-if ((Get-WinGetPackage -Name Ruby).Count -gt 1) { `
-    $Id = (Get-WinGetPackage -Name Ruby).Id | Select-Object -First 1; winget uninstall -e --id $Id `
-} `
-$Id = (Find-WinGetPackage RubyInstallerTeam.Ruby).Id | Select-Object -Last 1; winget install -e --id $Id
-
 winget install -e --id WireGuard.WireGuard
 
 # config

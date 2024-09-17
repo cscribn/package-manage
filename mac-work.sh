@@ -55,7 +55,7 @@ brew install jq ||brew upgrade jq
 brew install libpq || brew upgrade libpq;brew link --force libpq
 brew install --cask libreoffice-still || brew upgrade --cask libreoffice-still
 brew install lsd || brew upgrade lsd
-brew install --cask microsoft-edge # Don't upgrade 
+brew install --cask microsoft-edge # Don't upgrade
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
 brew install nmap || brew upgrade nmap
 
@@ -80,11 +80,6 @@ brew install --cask postman || brew upgrade --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
 brew install --cask rectangle || brew upgrade --cask rectangle
-
-# ruby
-brew install rbenv || brew upgrade rbenv; rm -rf "${HOME}/.rbenv/plugins/ruby-build"; \
-git clone "https://github.com/rbenv/ruby-build.git" "${HOME}/.rbenv/plugins/ruby-build"
-
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install tsh || brew upgrade tsh
