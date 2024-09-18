@@ -8,7 +8,6 @@
 
 choco upgrade iconsext -y --ignore-dependencies
 choco upgrade iconsext.install -y --ignore-dependencies
-choco upgrade kitty -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
 choco upgrade tftpd32 -y --ignore-dependencies
