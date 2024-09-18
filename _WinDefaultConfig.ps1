@@ -6,7 +6,6 @@ curl -Lo "$Env:LOCALAPPDATA\clink\oh-my-posh.lua" https://raw.githubusercontent.
 
 # microsoft-windows-terminal
 New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons"; `
-curl -Lo "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons\git-for-windows.ico" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/ProfileIcons/git-for-windows.ico; `
 curl -Lo "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons\ssh.ico" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/ProfileIcons/ssh.ico; `
 curl -Lo "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons\zsh.ico" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/ProfileIcons/zsh.ico
 
