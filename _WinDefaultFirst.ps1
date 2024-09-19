@@ -31,7 +31,7 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"; `
 	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git" `
 }; `
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -Sy --needed --noconfirm --overwrite \* pacman"
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* pacman"
 
 # winget
 winget install -e --id cURL.cURL
@@ -80,7 +80,7 @@ winget install -e --id yt-dlg.yt-dlg
 winget install -e --id=Zoom.Zoom
 
 # zsh
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -Sy --needed --noconfirm --overwrite \* zsh"; `
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"; `
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; if (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir}; `
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; if (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
