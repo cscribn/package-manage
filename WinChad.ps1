@@ -19,7 +19,6 @@ choco upgrade xmlstarlet.portable -y --ignore-dependencies
 winget install -e --id DebaucheeOpenSourceGroup.Barrier
 winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
-winget install -e --id dbeaver.dbeaver
 winget install -e --id DVDFlick.DVDFlick
 winget install -e --id Fastfetch-cli.Fastfetch
 winget install -e --id GitHub.GitHubDesktop

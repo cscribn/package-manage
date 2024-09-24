@@ -4,6 +4,7 @@
 
 . $PSScriptRoot\_WinDefaultFirst.ps1
 
+winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 winget install -e --id Dell.CommandUpdate.Universal
 winget install -e --id Google.GoogleDrive
 winget install -e --id NextDNS.NextDNS.Desktop
