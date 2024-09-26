@@ -73,6 +73,7 @@ cd - || exit
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install --cask oracle-jdk@17 || brew upgrade --cask oracle-jdk@17
 brew install perl || brew upgrade perl
+brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
 brew install --cask pinta || brew upgrade --cask pinta
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
