@@ -82,7 +82,13 @@ brew install pre-commit || brew upgrade pre-commit
 brew install --cask rectangle || brew upgrade --cask rectangle
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
-brew install tsh || brew upgrade tsh
+
+# teleport/tsh
+if [[ -f "${HOME}/.zshrc1" ]]; then
+    source "${HOME}/.zshrc1"
+    update-teleport-client
+fi
+
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
