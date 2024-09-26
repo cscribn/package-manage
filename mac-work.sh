@@ -97,3 +97,6 @@ git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd 
 
 script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ); \
 source "${script_dir}/_mac-work-config.sh"
+
+# .zshrc1
+cp "${HOME}/.config/zsh/zshrc1-teleport" "${HOME}/.zshrc1"
