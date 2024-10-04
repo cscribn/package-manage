@@ -15,7 +15,7 @@ sudo apt install htop -y
 
 # lsd
 curl -s https://api.github.com/repos/lsd-rs/lsd/releases/latest \
-	| grep "https://github.com/lsd-rs/lsd/releases/download/.*/lsd-musl_.*_arm64.deb" \
+	| grep "https://github\.com/lsd-rs/lsd/releases/download/.*/lsd-musl_.*_arm64\.deb" \
 	| cut -d : -f 2,3 | tr -d \" | wget -qi -; \
 sudo dpkg -i lsd-musl_*_arm64.deb; rm -f lsd-musl_*_arm64.deb
 

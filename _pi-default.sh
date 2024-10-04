@@ -25,7 +25,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notic
 # pwsh
 rm -rf "${HOME}/powershell"; mkdir "${HOME}/powershell"; \
 curl -s https://api.github.com/repos/PowerShell/PowerShell/releases/latest \
-	| grep "https://github.com/PowerShell/PowerShell/releases/download/.*/powershell-.*-linux-arm32.tar.gz" \
+	| grep "https://github\.com/PowerShell/PowerShell/releases/download/.*/powershell-.*-linux-arm32\.tar\.gz" \
 	| cut -d : -f 2,3 | tr -d \" | wget -qi -
 tar -xvf ./powershell-*-linux-arm32.tar.gz -C "${HOME}/powershell"; rm -f ./powershell-*-linux-arm32.tar.gz; \
 "${HOME}/powershell/pwsh" ./PwshLinux.ps1
