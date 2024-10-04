@@ -2,7 +2,6 @@
 # backblaze
 # iso compressor
 # skraperui
-# spotdl
 
 . $PSScriptRoot\_WinDefaultFirst.ps1
 
@@ -41,6 +40,22 @@ python -m pip install -U pip
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id WireGuard.WireGuard
+
+# spotdl
+New-Item -ItemType Directory -Force -Path "C:\spotdl" | Out-Null; `
+$Destination = "C:\spotdl\spotdl-latest-win32.exe"; `
+if (Test-Path $Destination) { `
+    $FileAge = (Get-Item $Destination).LastWriteTime; `
+} else { `
+    $FileAge = (Get-Date -Year 1970 -Month 1 -Day 1 -Hour 0 -Minute 0 -Second 0 -Millisecond 0); `
+}; `
+$CurrentDate = Get-Date; `
+$DaysOld = ($CurrentDate - $FileAge).Days; `
+if ($DaysOld -ge 7) { `
+    $Response = Invoke-RestMethod -Uri "https://api.github.com/repos/spotDL/spotify-downloader/releases/latest"; `
+    $DownloadUrl = $Response.assets | Where-Object { $_.browser_download_url -match "spotdl-.*-win32.exe" } | Select-Object -ExpandProperty browser_download_url; `
+    Invoke-WebRequest -Uri $DownloadUrl -OutFile $Destination; `
+}
 
 # config
 
