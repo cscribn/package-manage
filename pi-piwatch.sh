@@ -21,7 +21,7 @@ git_dir="${HOME}/opt/game-and-watch-backup"; if [[ -d "$git_dir" ]]; then cd "$g
 # xpm
 npm install --global xpm@latest; \
 xpm install --global @xpack-dev-tools/openocd@latest; \
-sudo apt-get install binutils-arm-none-eabi libftdi1
+sudo apt-get install binutils-arm-none-eabi -y; sudo apt-get install libftdi1 -y
 
 # flashloader
 git_dir="${HOME}/opt/game-and-watch-flashloader"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/ghidraninja/game-and-watch-flashloader" "$git_dir"; fi
