@@ -19,6 +19,7 @@ export PATH=$PATH:/home/pi/opt/xpack-arm-none-eabi-gcc-10.2.1-1.1/bin/
 git_dir="${HOME}/opt/game-and-watch-backup"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/ghidraninja/game-and-watch-backup" "$git_dir"; fi
 
 # xpm
+sudo apt install npm -y; \
 npm install --global xpm@latest; \
 xpm install --global @xpack-dev-tools/openocd@latest; \
 sudo apt-get install binutils-arm-none-eabi -y; sudo apt-get install libftdi1 -y
