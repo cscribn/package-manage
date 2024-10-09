@@ -30,7 +30,7 @@ curl -s https://api.github.com/repos/PowerShell/PowerShell/releases/latest \
 tar -xvf ./powershell-*-linux-arm32.tar.gz -C "${HOME}/powershell"; rm -f ./powershell-*-linux-arm32.tar.gz; \
 "${HOME}/powershell/pwsh" ./PwshLinux.ps1
 
-sudo apt install python-pip -y; sudo apt install python3-pip -y
+sudo apt install python3-pip -y
 git clone https://github.com/AndrewFromMelbourne/raspi2png; sudo cp -a raspi2png/raspi2png /usr/local/bin; rm -rf ./raspi2png
 
 sudo apt install speedtest-cli -y
