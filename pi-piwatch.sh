@@ -6,10 +6,10 @@ source ./_pi-default.sh
 mkdir -p "${HOME}/opt"
 
 # xpack
-xpack_dir="${HOME}/opt/xpack-arm-none-eabi-gcc-10.2.1-1.1"; \
+rm -rf "${HOME}/opt/xpack-arm-none-eabi-gcc-10.2.1-1.1"; \
 cd "${HOME}" || exit; \
 wget "https://github.com/xpack-dev-tools/arm-none-eabi-gcc-xpack/releases/download/v10.2.1-1.1/xpack-arm-none-eabi-gcc-10.2.1-1.1-linux-arm.tar.gz" -O "xpack-arm-none-eabi-gcc-10.2.1-1.1-linux-arm.tar.gz"; \
-rm -rf "$xpack_dir"; mkdir -p "$xpack_dir"; tar xvf "./xpack-arm-none-eabi-gcc-10.2.1-1.1-linux-arm.tar.gz" -C "$xpack_dir"; \
+tar xvf "./xpack-arm-none-eabi-gcc-10.2.1-1.1-linux-arm.tar.gz" -C "${HOME}/opt"; \
 cd - || exit; \
 export PATH=$PATH:/home/pi/opt/xpack-arm-none-eabi-gcc-10.2.1-1.1/bin/
 
