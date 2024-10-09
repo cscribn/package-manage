@@ -28,7 +28,7 @@ curl -s https://api.github.com/repos/PowerShell/PowerShell/releases/latest \
 	| grep "https://github\.com/PowerShell/PowerShell/releases/download/.*/powershell-.*-linux-arm32\.tar\.gz" \
 	| cut -d : -f 2,3 | tr -d \" | wget -qi -
 tar -xvf ./powershell-*-linux-arm32.tar.gz -C "${HOME}/powershell"; rm -f ./powershell-*-linux-arm32.tar.gz; \
-"${HOME}/powershell/pwsh" ./PwshLinux.ps1
+chmod +x "${HOME}/powershell/pwsh"; "${HOME}/powershell/pwsh" ./PwshLinux.ps1
 
 sudo apt install python3-pip -y
 git clone https://github.com/AndrewFromMelbourne/raspi2png; sudo cp -a raspi2png/raspi2png /usr/local/bin; rm -rf ./raspi2png
