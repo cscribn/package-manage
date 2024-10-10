@@ -26,11 +26,9 @@ sudo apt-get install binutils-arm-none-eabi -y; sudo apt-get install libftdi1 -y
 git_dir="${HOME}/opt/game-and-watch-flashloader"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/ghidraninja/game-and-watch-flashloader" "$git_dir"; fi
 
 # retro-go
-sudo apt install python3-full -y; \
+sudo apt install python3 -y; \
 git_dir="${HOME}/opt/game-and-watch-retro-go"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone --recurse-submodules "https://github.com/kbeckmann/game-and-watch-retro-go.git" "$git_dir"; fi; \
 cd "$git_dir" || exit; \
-python3 -m venv ./.venv; \
-source ./.venv/bin/activate; \
 python3 -m pip install -r requirements.txt; \
 cd - || exit
 
