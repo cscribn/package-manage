@@ -18,8 +18,8 @@ git_dir="${HOME}/opt/game-and-watch-backup"; if [[ -d "$git_dir" ]]; then cd "$g
 
 # xpm
 sudo apt install npm -y; \
-sudo npm install --global xpm@latest; \
-xpm install --global @xpack-dev-tools/openocd@latest; \
+sudo npm install --global xpm@0.10.8; \
+xpm install --global @xpack-dev-tools/openocd@0.11.0-1.1; \
 sudo apt-get install binutils-arm-none-eabi -y; sudo apt-get install libftdi1 -y
 
 # flashloader
