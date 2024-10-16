@@ -77,7 +77,7 @@ brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
 brew install --cask pinta || brew upgrade --cask pinta
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
-brew install --cask postman || brew upgrade --cask postman
+brew install --cask postman || brew upgrade --cask postman || brew uninstall --cask postman --force && brew install --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
 brew install --cask rectangle || brew upgrade --cask rectangle
@@ -85,9 +85,9 @@ brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 
 # teleport/tsh
-if [[ -f "${HOME}/.zshrc1" ]]; then
-    source "${HOME}/.zshrc1"
-    update-teleport-client
+if [[ -f "${HOME}/.zshrc1" ]]; then \
+    source "${HOME}/.zshrc1"; \
+    update-teleport-client; \
 fi
 
 brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
