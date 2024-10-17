@@ -53,8 +53,8 @@ winget install -e --id GIMP.GIMP
 winget install -e --id HandBrake.HandBrake
 winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
-winget install -e --id IrfanSkiljan.IrfanView
-winget install -e --id IrfanSkiljan.IrfanView.PlugIns
+winget install -e --id IrfanSkiljan.IrfanView -v "4.67"
+winget install -e --id IrfanSkiljan.IrfanView.PlugIns -v "4.67"
 winget install -e --id TheDocumentFoundation.LibreOffice
 winget install -e --id DiskInternals.LinuxReader
 winget install -e --id lsd-rs.lsd
