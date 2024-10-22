@@ -10,7 +10,6 @@ sudo apt install wondershaper -y; sudo wondershaper eth0 10240 10240; sudo wonde
 mkdir -p "/home/pi/RetroPie-Setup/scriptmodules/libretrocores"
 
 # lr-ppsspp-dev
-rm -f /opt/retropie/configs/openbor; ln -s /opt/retropie/configs/psp /opt/retropie/configs/openbor
 mkdir -p "/home/pi/RetroPie-Setup/scriptmodules/emulators/ppsspp-dev"; \
 curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/emulators/ppsspp-dev/tinker.armv7.cmake" https://raw.githubusercontent.com/Exarkuniv/RetroPie-Extra/refs/heads/master/scriptmodules/emulators/ppsspp-dev/tinker.armv7.cmake; \
 curl -Lo "/home/pi/RetroPie-Setup/scriptmodules/emulators/ppsspp-dev.sh" https://raw.githubusercontent.com/Exarkuniv/RetroPie-Extra/refs/heads/master/scriptmodules/emulators/ppsspp-dev.sh; \
