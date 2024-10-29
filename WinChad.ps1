@@ -14,6 +14,7 @@ choco upgrade win32diskimager --version 0.9.5 -y --ignore-dependencies
 choco pin add --name="'win32diskimager'" --version="'0.9.5'"
 choco upgrade xmlstarlet -y --ignore-dependencies
 choco upgrade xmlstarlet.portable -y --ignore-dependencies
+choco upgrade xsltproc -y --ignore-dependencies
 
 winget install -e --id DebaucheeOpenSourceGroup.Barrier
 winget install -e --id sharkdp.bat
@@ -28,6 +29,7 @@ winget install -e --id MHNexus.HxD
 winget install -e --id ImageMagick.ImageMagick
 winget install -e --id GuinpinSoft.MakeMKV
 winget install -e --id NextDNS.NextDNS.Desktop
+winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id Postman.Postman
 
