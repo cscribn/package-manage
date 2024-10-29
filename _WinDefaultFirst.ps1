@@ -36,7 +36,7 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 # winget
 winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
-winget install -e --id=Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
+winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
 winget install -e --id 7zip.7zip
 winget install -e --id LSoftTechnologies.ActivePartitionManager
 winget install -e --id Mythicsoft.AgentRansack
