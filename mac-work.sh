@@ -104,6 +104,4 @@ source "${script_dir}/_mac-work-config.sh"
 cp "${HOME}/.config/zsh/zshrc1-teleport" "${HOME}/.zshrc1"
 
 # clean, fix brew
-brew autoremove
-brew cleanup
-brew doctor
+brew autoremove; brew cleanup; brew doctor

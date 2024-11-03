@@ -36,5 +36,4 @@ cd - || exit
 cp "${HOME}/.config/zsh/zshrc1-piwatch" "${HOME}/.zshrc1"
 
 # autoremove, clean
-sudo apt autoremove -y
-sudo apt clean -y
+sudo apt autoremove -y; sudo apt clean -y
