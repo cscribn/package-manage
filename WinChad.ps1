@@ -60,6 +60,12 @@ if ($DaysOld -ge 7) { `
     Invoke-WebRequest -Uri $DownloadUrl -OutFile $Destination; `
 }
 
+# wsl
+if (-Not (wsl --list -version)) { wsl --install }; `
+wsl -d "Ubuntu" -u root -e apt update -y; `
+wsl -d "Ubuntu" -u root -e apt full-upgrade -y; `
+wsl -d "Ubuntu" -u root -e do-release-upgrade
+
 # config
 
 # microsoft-windows-terminal
