@@ -53,7 +53,7 @@ brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask itsycal ||brew upgrade --cask itsycal
 brew install jq ||brew upgrade jq
 brew install libpq || brew upgrade libpq;brew link --force libpq
-brew install --cask libreoffice-still || brew upgrade --cask libreoffice-still
+brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-edge # Don't upgrade
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
