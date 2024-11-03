@@ -10,11 +10,6 @@
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# fix, clean, upgrade all brew
-brew doctor
-brew autoremove
-brew cleanup
 brew upgrade
 
 brew tap common-fate/granted
@@ -107,3 +102,8 @@ source "${script_dir}/_mac-work-config.sh"
 
 # .zshrc1
 cp "${HOME}/.config/zsh/zshrc1-teleport" "${HOME}/.zshrc1"
+
+# clean, fix brew
+brew autoremove
+brew cleanup
+brew doctor

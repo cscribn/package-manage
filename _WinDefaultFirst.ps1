@@ -9,7 +9,6 @@
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
-choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 
 # caffeine and startup shortcut
 choco upgrade caffeine -y --ignore-dependencies; `

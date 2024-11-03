@@ -11,3 +11,7 @@ sudo systemctl enable ssh
 
 # .zshrc1
 cp "${HOME}/.config/zsh/zshrc1-ark" "${HOME}/.zshrc1"
+
+# autoremove, clean
+sudo apt autoremove -y
+sudo apt clean -y
