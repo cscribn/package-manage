@@ -11,6 +11,7 @@ choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
 
 # caffeine and startup shortcut
+choco uninstall caffeine -y
 choco upgrade caffeine -y --ignore-dependencies; `
 $Shell = New-Object -comObject WScript.Shell; `
 $Shortcut = $Shell.CreateShortcut("$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Caffeine.lnk"); `
