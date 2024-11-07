@@ -37,6 +37,7 @@ winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
 winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
 winget install -e --id 7zip.7zip
+winget uninstall -e --id LSoftTechnologies.ActivePartitionManager
 winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Armin2208.WindowsAutoNightMode
 winget install -e --id TGRMNSoftware.BulkRenameUtility
