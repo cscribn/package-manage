@@ -6,6 +6,11 @@ source ./_pi-default.sh
 # wondershaper
 sudo apt install wondershaper -y; sudo wondershaper eth0 10240 10240; sudo wondershaper wlan0 10240 10240
 
+# retroarch info
+cd /opt/retropie/configs/all/retroarch/cores || exit; \
+git checkout -- px68k_libretro.info;\
+cd - || exit
+
 # retropie extras
 mkdir -p "/home/pi/RetroPie-Setup/scriptmodules/libretrocores"
 
