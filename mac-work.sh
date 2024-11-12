@@ -103,5 +103,6 @@ source "${script_dir}/_mac-work-config.sh"
 # .zshrc1
 cp "${HOME}/.config/zsh/zshrc1-teleport" "${HOME}/.zshrc1"
 
-# clean, fix brew
+# cleanup
 brew autoremove; brew cleanup; brew doctor
+docker system prune --volumes -f

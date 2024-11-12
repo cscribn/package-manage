@@ -76,3 +76,4 @@ curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscrib
 
 # cleanup
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
+docker system prune --volumes -f
