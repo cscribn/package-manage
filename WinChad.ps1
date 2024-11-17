@@ -38,6 +38,9 @@ if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
 $Id = Find-WinGetPackage Python.Python | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id; `
 python -m pip install -U pip
 
+# python packages
+pip install scour
+
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id WireGuard.WireGuard
 
