@@ -67,16 +67,16 @@ cd "${HOME}/.nvm/versions/node" || exit; \
 cd - || exit
 
 brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
-brew install --cask oracle-jdk@17 || brew upgrade --cask oracle-jdk@17
 brew install perl || brew upgrade perl
 brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
 brew install --cask pinta || brew upgrade --cask pinta
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
-brew install --cask postman || brew upgrade --cask postman || brew uninstall --cask postman --force && brew install --cask postman
+brew install --cask postman || brew upgrade --force --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
 brew install --cask rectangle || brew upgrade --cask rectangle
+curl -s "https://get.sdkman.io" | bash || sdk selfupdate
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 
@@ -86,7 +86,7 @@ if [[ -f "${HOME}/.zshrc1" ]]; then \
     update-teleport-client; \
 fi
 
-brew install --cask visual-studio-code || brew upgrade --cask visual-studio-code
+brew install --cask visual-studio-code || brew upgrade --force --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
 brew install --cask wireshark || brew upgrade --cask wireshark
