@@ -26,7 +26,7 @@ winget install -e --id Lenovo.SystemUpdate
 winget install -e --id MHNexus.HxD
 winget install -e --id ImageMagick.ImageMagick
 winget install -e --id GuinpinSoft.MakeMKV
-winget install -e --id NextDNS.NextDNS.Desktop
+winget install -e --id NextDNS.NextDNS
 winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id Postman.Postman

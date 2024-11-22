@@ -7,7 +7,7 @@
 winget install -e --id dbeaver.dbeaver
 winget install -e --id Dell.CommandUpdate.Universal
 winget install -e --id Google.GoogleDrive
-winget install -e --id NextDNS.NextDNS.Desktop
+winget install -e --id NextDNS.NextDNS
 winget install -e --id PaperCutSoftware.MobilityPrint
 
 # config
