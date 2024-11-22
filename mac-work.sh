@@ -76,7 +76,7 @@ brew install --cask postman || brew upgrade --force --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
 brew install --cask rectangle || brew upgrade --cask rectangle
-curl -s "https://get.sdkman.io" | bash || sdk selfupdate
+sdk selfupdate || curl -s "https://get.sdkman.io" | bash
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 
