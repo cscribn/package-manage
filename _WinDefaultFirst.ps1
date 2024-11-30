@@ -11,13 +11,8 @@ choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
 
 # caffeine and startup shortcut
-choco upgrade caffeine -y --ignore-dependencies; `
-$Shell = New-Object -comObject WScript.Shell; `
-$Shortcut = $Shell.CreateShortcut("$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Caffeine.lnk"); `
-$Shortcut.TargetPath = "C:\ProgramData\chocolatey\lib\caffeine\caffeine64.exe"; `
-$Shortcut.Arguments = "-allowss"; `
-$Shortcut.WorkingDirectory = "C:\ProgramData\chocolatey\lib\caffeine"; `
-$Shortcut.Save()
+Remove-Item -Path "$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Caffeine.lnk"; `
+choco uninstall caffeine -y
 
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies;robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
 choco upgrade filezilla -y --ignore-dependencies
