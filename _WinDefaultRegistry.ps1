@@ -120,3 +120,8 @@ Remove-ItemProperty –Path "HKCU:\SOFTWARE\Classes\AppX6eg8h5sxqq90pv53845wmnbe
 
 # Welcome Experience - disable
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager", "SubscribedContent-310093Enabled", 0)
+
+# Non-registry - disable hibernate and sleep
+powercfg -h off
+powercfg -change -standby-timeout-ac 0
+powercfg -change -standby-timeout-dc 0
