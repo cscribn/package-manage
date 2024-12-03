@@ -20,4 +20,4 @@ Set-FTA VLC.mpg .mpg; `
 Set-FTA VLC.rm .rm; `
 Set-FTA VLC.swf .swf; `
 Set-FTA VLC.wav .wav; `
-Set-FTA VLC.wmv .wmv; `
+Set-FTA VLC.wmv .wmv
