@@ -77,6 +77,6 @@ Set-FTA VLC.wmv .wmv
 
 # Config
 ## powershell-core
-$Line = "Import-Module posh-git; Import-Module PSReadLine; Set-PSReadLineOption -PredictionSource HistoryAndPlugin; Set-PSReadLineOption -EditMode Windows"; `
+$Line = "Import-Module posh-git; Import-Module PSReadLine; Set-PSReadLineOption -EditMode Windows -PredictionSource HistoryAndPlugin"; `
 if (-not (Get-Content $PROFILE -Raw).Contains($Line)) { Add-Content $PROFILE $Line }
 
