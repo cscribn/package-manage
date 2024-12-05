@@ -33,10 +33,10 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 Download and install the lates PowerShell Core release from [GitHub](https://github.com/PowerShell/PowerShell/releases).
 
-Unrestrict the Execution Policy in PowerShell Core
+Set the Execution Policy in PowerShell Core
 
 ```pwsh
-Set-ExecutionPolicy Unrestricted
+Set-ExecutionPolicy RemoteSigned
 ```
 
 Run all scripts using PowerShell Core
