@@ -3,6 +3,8 @@
 # git-sdk (uninstall once pacman is scriptable)
 # winget
 
+function prompt {}
+
 . $PSScriptRoot\_WinDefaultRegistry.ps1
 
 # chocolatey
@@ -25,7 +27,14 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 # winget
 winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
-winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
+
+## powershell
+winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; `
+Update-Module -Name Microsoft.WinGet.Client; `
+Remove-Module posh-git; Update-Module posh-git; `
+Remove-Module PSReadLine; Update-Module PSReadLine; `
+Remove-Module Terminal-Icons; Update-Module Terminal-Icons
+
 winget install -e --id 7zip.7zip
 winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Armin2208.WindowsAutoNightMode
