@@ -1,5 +1,6 @@
 # Non-package installations (add/update these first)
 # backblaze
+# mise (first install only from https://github.com/jdx/mise/releases)
 # iso compressor
 # skraperui
 
@@ -30,6 +31,9 @@ winget install -e --id NextDNS.NextDNS
 winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id Postman.Postman
+
+# mise
+mise self-update
 
 # python
 if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
