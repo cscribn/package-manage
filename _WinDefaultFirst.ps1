@@ -3,6 +3,7 @@
 # git-sdk (uninstall once pacman is scriptable)
 # winget
 
+function prompt {}
 . $PSScriptRoot\_WinDefaultRegistry.ps1
 
 # chocolatey
@@ -25,7 +26,14 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 # winget
 winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
-winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine; Install-Module Terminal-Icons
+
+## powershell
+winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; `
+try { Remove-Module Microsoft.WinGet.Client -Force -ErrorAction SilentlyContinue; Update-Module -Force Microsoft.WinGet.Client -ErrorAction Stop } catch { Uninstall-Module -Force Microsoft.WinGet.Client -ErrorAction SilentlyContinue; Install-Module -Force Microsoft.WinGet.Client }; `
+try { Remove-Module posh-git -Force -ErrorAction SilentlyContinue; Update-Module -Force posh-git -ErrorAction Stop } catch { Uninstall-Module -Force posh-git -ErrorAction SilentlyContinue; Install-Module -Force posh-git }; `
+try { Remove-Module PSReadLine -Force -ErrorAction SilentlyContinue; Update-Module -Force PSReadLine -ErrorAction Stop } catch { Uninstall-Module -Force PSReadLine -ErrorAction SilentlyContinue; Install-Module -Force PSReadLine }; `
+try { Remove-Module Terminal-Icons -Force -ErrorAction SilentlyContinue; Update-Module -Force Terminal-Icons -ErrorAction Stop } catch { Uninstall-Module -Force Terminal-Icons -ErrorAction SilentlyContinue; Install-Module -Force Terminal-Icons };
+
 winget install -e --id 7zip.7zip
 winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Armin2208.WindowsAutoNightMode
