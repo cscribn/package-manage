@@ -42,6 +42,7 @@ winget install -e --id Git.Git; git config --global http.sslBackend openssl
 winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine
 winget install -e --id 7zip.7zip
 winget install -e --id Google.Chrome
+winget install -e --id REALiX.HWiNFO
 winget install -e --id IrfanSkiljan.IrfanView -v "4.67"
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns -v "4.67"
 winget install -e --id Google.PlatformTools
