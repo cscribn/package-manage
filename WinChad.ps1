@@ -32,10 +32,12 @@ winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id Postman.Postman
 
-# mise
-mise self-update -y
-mise use -g python
-mise update
+# python
+if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
+    $Id = (Get-WinGetPackage -Name Python).Id | Select-Object -First 1; winget uninstall -e --id $Id `
+} `
+$Id = Find-WinGetPackage Python.Python | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id; `
+python -m pip install -U pip
 
 # python packages
 pip install scour
