@@ -33,7 +33,7 @@ winget install -e --id Poly.PlantronicsHub
 winget install -e --id Postman.Postman
 
 # mise
-mise self-update
+mise self-update -y
 mise use -g python
 mise update
 
