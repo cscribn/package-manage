@@ -65,6 +65,7 @@ winget install -e --id Microsoft.OneDrive
 winget install -e --id dotPDN.PaintDotNet
 winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id Google.PlatformTools
+winget install -e --id PuTTY.PuTTY
 winget install -e --id Scribus.Scribus
 winget install -e --id RandyRants.SharpKeys
 winget install -e --id SumatraPDF.SumatraPDF
