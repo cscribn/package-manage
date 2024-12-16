@@ -36,44 +36,44 @@ Remove-Module PSReadLine; Update-Module PSReadLine; `
 Remove-Module Terminal-Icons; Update-Module Terminal-Icons
 
 winget install -e --id 7zip.7zip
-winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Armin2208.WindowsAutoNightMode
-winget install -e --id TGRMNSoftware.BulkRenameUtility
-winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
-winget install -e --id Spicebrains.Instant-Eyedropper
-winget install -e --id Gyan.FFmpeg
-winget install -e --id Mozilla.Firefox
-winget install -e --id junegunn.fzf
-winget install -e --id Google.Chrome
+winget install -e --id DiskInternals.LinuxReader
+winget install -e --id dotPDN.PaintDotNet
+winget install -e --id FlorianHeidenreich.Mp3tag
 winget install -e --id GIMP.GIMP
+winget install -e --id Google.Chrome
+winget install -e --id Google.ChromeRemoteDesktopHost
+winget install -e --id Google.PlatformTools
+winget install -e --id gsass1.NTop
+winget install -e --id Gyan.FFmpeg
 winget install -e --id HandBrake.HandBrake
-winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
+winget install -e --id Insecure.Nmap
 winget install -e --id IrfanSkiljan.IrfanView -v "4.67"
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns -v "4.67"
-winget install -e --id TheDocumentFoundation.LibreOffice
-winget install -e --id DiskInternals.LinuxReader
-winget install -e --id lsd-rs.lsd
-winget install -e --id FlorianHeidenreich.Mp3tag
-winget install -e --id PFOJEnterprisesLLC.ModernCSV
-winget install -e --id Insecure.Nmap
-winget install -e --id Notepad++.Notepad++
-winget install -e --id gsass1.NTop
 winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
+winget install -e --id junegunn.fzf
+winget install -e --id LIGHTNINGUK.ImgBurn
+winget install -e --id lsd-rs.lsd
 winget install -e --id Microsoft.OneDrive
-winget install -e --id dotPDN.PaintDotNet
-winget install -e --id PDFLabs.PDFtk.Free
-winget install -e --id Google.PlatformTools
-winget install -e --id PuTTY.PuTTY
-winget install -e --id Scribus.Scribus
-winget install -e --id RandyRants.SharpKeys
-winget install -e --id SumatraPDF.SumatraPDF
-winget install -e --id VideoLAN.VLC
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.WindowsTerminal
-winget install -e --id WiresharkFoundation.Wireshark
+winget install -e --id Mozilla.Firefox
+winget install -e --id Mythicsoft.AgentRansack
+winget install -e --id Notepad++.Notepad++
+winget install -e --id PDFLabs.PDFtk.Free
+winget install -e --id PFOJEnterprisesLLC.ModernCSV
+winget install -e --id PuTTY.PuTTY
+winget install -e --id RandyRants.SharpKeys
+winget install -e --id Scribus.Scribus
+winget install -e --id Spicebrains.Instant-Eyedropper
+winget install -e --id SumatraPDF.SumatraPDF
+winget install -e --id TGRMNSoftware.BulkRenameUtility
+winget install -e --id TheDocumentFoundation.LibreOffice
+winget install -e --id VideoLAN.VLC
 winget install -e --id WinMerge.WinMerge
+winget install -e --id WiresharkFoundation.Wireshark
 winget install -e --id yt-dlg.yt-dlg
 winget install -e --id Zoom.Zoom
 

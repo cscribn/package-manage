@@ -14,23 +14,23 @@ choco upgrade win32diskimager --version 0.9.5 -y --ignore-dependencies; choco pi
 choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.portable -y --ignore-dependencies
 choco upgrade xsltproc -y --ignore-dependencies
 
-winget install -e --id DebaucheeOpenSourceGroup.Barrier
-winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id dbeaver.dbeaver
+winget install -e --id DebaucheeOpenSourceGroup.Barrier
 winget install -e --id Docker.DockerDesktop
 winget install -e --id DVDFlick.DVDFlick
 winget install -e --id Fastfetch-cli.Fastfetch
 winget install -e --id GitHub.GitHubDesktop
 winget install -e --id Google.GoogleDrive
+winget install -e --id GuinpinSoft.MakeMKV
+winget install -e --id ImageMagick.ImageMagick
 winget install -e --id Lenovo.SystemUpdate
 winget install -e --id MHNexus.HxD
-winget install -e --id ImageMagick.ImageMagick
-winget install -e --id GuinpinSoft.MakeMKV
 winget install -e --id NextDNS.NextDNS
 winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id Postman.Postman
+winget install -e --id sharkdp.bat
 
 # python
 if ((Get-WinGetPackage -Name Python).Count -gt 1) { `

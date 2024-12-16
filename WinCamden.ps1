@@ -37,19 +37,19 @@ powercfg -change -standby-timeout-ac 0
 powercfg -change -standby-timeout-dc 0
 
 # winget
+winget install -e --id 7zip.7zip
 winget install -e --id cURL.cURL
 winget install -e --id Git.Git; git config --global http.sslBackend openssl
-winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine
-winget install -e --id 7zip.7zip
 winget install -e --id Google.Chrome
-winget install -e --id REALiX.HWiNFO
+winget install -e --id Google.PlatformTools
 winget install -e --id IrfanSkiljan.IrfanView -v "4.67"
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns -v "4.67"
-winget install -e --id Google.PlatformTools
-winget install -e --id Valve.Steam
-winget install -e --id VideoLAN.VLC
+winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.WindowsTerminal
+winget install -e --id REALiX.HWiNFO
+winget install -e --id Valve.Steam
+winget install -e --id VideoLAN.VLC
 
 # File types
 $GitDir = "C:\PS-SFTA"; If (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } Else { & "C:\Program Files\Git\bin\git" clone "https://github.com/DanysysTeam/PS-SFTA.git" $GitDir }; `
