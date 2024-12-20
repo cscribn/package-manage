@@ -44,7 +44,14 @@ winget install -e --id Google.Chrome
 winget install -e --id Google.PlatformTools
 winget install -e --id IrfanSkiljan.IrfanView -v "4.67"
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns -v "4.67"
-winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; Install-Module -Name Microsoft.WinGet.Client; Install-Module posh-git; Install-Module PSReadLine
+
+## powershell
+winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; `
+Update-Module -Name Microsoft.WinGet.Client; `
+Remove-Module posh-git; Update-Module posh-git; `
+Remove-Module PSReadLine; Update-Module PSReadLine; `
+Remove-Module Terminal-Icons; Update-Module Terminal-Icons
+
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id REALiX.HWiNFO
