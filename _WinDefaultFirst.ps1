@@ -52,7 +52,7 @@ winget install -e --id Inkscape.Inkscape
 winget install -e --id Insecure.Nmap
 winget install -e --id IrfanSkiljan.IrfanView -v "4.67"
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns -v "4.67"
-winget uninstall -e --id JanDeDobbeleer.OhMyPosh; winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
+winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id junegunn.fzf
 winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id lsd-rs.lsd
@@ -65,7 +65,7 @@ winget install -e --id Notepad++.Notepad++
 winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id PFOJEnterprisesLLC.ModernCSV
 winget install -e --id PuTTY.PuTTY
-winget uninstall -e --id RandyRants.SharpKeys; winget install -e --id RandyRants.SharpKeys
+winget install -e --id RandyRants.SharpKeys
 winget install -e --id Scribus.Scribus
 winget install -e --id Spicebrains.Instant-Eyedropper
 winget install -e --id SumatraPDF.SumatraPDF
