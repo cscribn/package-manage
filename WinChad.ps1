@@ -24,7 +24,6 @@ winget install -e --id GitHub.GitHubDesktop
 winget install -e --id Google.GoogleDrive
 winget install -e --id GuinpinSoft.MakeMKV
 winget install -e --id ImageMagick.ImageMagick
-winget install -e --id Lenovo.SystemUpdate
 winget install -e --id MHNexus.HxD
 winget install -e --id NextDNS.NextDNS
 winget install -e --id Oracle.VirtualBox

@@ -9,7 +9,6 @@
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id fotor.fotor
 winget install -e --id Google.GoogleDrive
-winget install -e --id Lenovo.SystemUpdate
 winget install -e --id NextDNS.NextDNS
 winget install -e --id Poly.PlantronicsHub
 
