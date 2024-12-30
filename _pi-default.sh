@@ -6,6 +6,11 @@
 sudo apt update
 sudo apt dist-upgrade -y
 
+# btop
+wget -qO "${HOME}/btop.tbz" https://github.com/aristocratos/btop/releases/latest/download/btop-aarch64-linux-musl.tbz; \
+sudo tar xf "${HOME}/btop.tbz" -C /usr/local/bin --strip-components=3 ./btop/bin/btop; \
+rm -rf "${HOME}/btop.tbz"
+
 sudo apt install curl -y
 sudo apt install neofetch -y
 sudo apt install fzf -y

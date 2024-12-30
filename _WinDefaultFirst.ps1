@@ -36,6 +36,7 @@ Remove-Module PSReadLine; Update-Module PSReadLine; `
 Remove-Module Terminal-Icons; Update-Module Terminal-Icons
 
 winget install -e --id 7zip.7zip
+winget install -e --id aristocratos.btop4win
 winget install -e --id Armin2208.WindowsAutoNightMode
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 winget install -e --id DiskInternals.LinuxReader
