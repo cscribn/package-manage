@@ -19,6 +19,7 @@ winget install -e --id dbeaver.dbeaver
 winget install -e --id DebaucheeOpenSourceGroup.Barrier
 winget install -e --id Docker.DockerDesktop
 winget install -e --id DVDFlick.DVDFlick
+winget install -e --id Eassos.DiskGenius
 winget install -e --id Fastfetch-cli.Fastfetch
 winget install -e --id GitHub.GitHubDesktop
 winget install -e --id Google.GoogleDrive
