@@ -42,6 +42,7 @@ python -m pip install -U pip
 pip install scour
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
+winget install -e --id Rufus.Rufus
 winget install -e --id sharkdp.bat
 winget install -e --id srjuddington.slade
 winget install -e --id SQLite.SQLite
