@@ -47,10 +47,10 @@ winget install -e --id IrfanSkiljan.IrfanView.PlugIns -v "4.67"
 
 ## powershell
 winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; `
-Update-Module -Name Microsoft.WinGet.Client; `
-Remove-Module posh-git; Update-Module posh-git; `
-Remove-Module PSReadLine; Update-Module PSReadLine; `
-Remove-Module Terminal-Icons; Update-Module Terminal-Icons
+Install-Module -Name Microsoft.WinGet.Client -Force; `
+Install-Module posh-git -Force; `
+Install-Module PSReadLine -Force; `
+Install-Module Terminal-Icons;
 
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.WindowsTerminal
