@@ -2,14 +2,8 @@
 
 . $PSScriptRoot\_WinDefaultFirst.ps1
 
-choco upgrade hyperx-ngenuity -y --ignore-dependencies
-
-winget install -e --id EpicGames.EpicGamesLauncher
 winget install -e --id Lenovo.SystemUpdate
 winget install -e --id NextDNS.NextDNS
-winget install -e --id Open-Shell.Open-Shell-Menu
-winget install -e --id TechNobo.TcNoAccountSwitcher
-winget install -e --id Valve.Steam
 
 # config
 
