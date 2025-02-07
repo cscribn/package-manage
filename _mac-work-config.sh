@@ -17,10 +17,6 @@ curl -Lo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-mis
 git_dir="${HOME}/.config/zsh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/cscribn/dotfiles-zsh.git" "$git_dir"; fi; \
 cp "${HOME}/.config/zsh/zshrc-mac" "${HOME}/.zshrc"
 
-# pwsh
-mkdir -p "${HOME}/.config/powershell"; \
-curl -Lo "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
-
 # key bindings
 mkdir -p "${HOME}/Library/KeyBindings"
 
