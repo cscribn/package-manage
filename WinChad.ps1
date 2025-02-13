@@ -1,4 +1,5 @@
 # Non-package installations (add/update these first)
+# append C:\jdk to PATH
 # backblaze
 # mise (first install only from https://github.com/jdx/mise/releases)
 # iso compressor
@@ -20,12 +21,34 @@ winget install -e --id DebaucheeOpenSourceGroup.Barrier
 winget install -e --id Docker.DockerDesktop
 winget install -e --id DVDFlick.DVDFlick
 winget install -e --id Eassos.DiskGenius
+
+# java
+if ((Get-WinGetPackage -Name JDK).Count -gt 1) { `
+    $Id = (Get-WinGetPackage -Name JDK).Id | Select-Object -First 1; winget uninstall -e --id $Id `
+} `
+$Id = Find-WinGetPackage EclipseAdoptium.Temurin | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 2 | Select-Object -First 1 -ExpandProperty Id; winget install -e --id $Id
+
+# jdk shortcut
+$target = Get-ChildItem "C:\Program Files\Eclipse Adoptium" | `
+    Sort-Object Name | `
+    Select-Object -Last 1; `
+if ($target) { `
+    New-Item -ItemType SymbolicLink -Path "C:\jdk" -Target $target.FullName -Force `
+}
+
 winget install -e --id Fastfetch-cli.Fastfetch
 winget install -e --id GitHub.GitHubDesktop
 winget install -e --id Google.GoogleDrive
 winget install -e --id GuinpinSoft.MakeMKV
 winget install -e --id ImageMagick.ImageMagick
 winget install -e --id MHNexus.HxD
+
+# c++ buildtools
+if ((Get-WinGetPackage -Name BuildTools).Count -gt 1) { `
+    $Id = (Get-WinGetPackage -Name BuildTools).Id | Select-Object -First 1; winget uninstall -e --id $Id `
+} `
+$Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id
+
 winget install -e --id NextDNS.NextDNS
 winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
