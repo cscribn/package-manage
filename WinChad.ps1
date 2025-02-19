@@ -101,6 +101,9 @@ curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscrib
 
 . $PSScriptRoot\_WinDefaultLast.ps1
 
+# file types
+Set-FTA Applications\notepad++.exe .txt
+
 # cleanup
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 docker system prune --volumes -f
