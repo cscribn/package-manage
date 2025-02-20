@@ -72,7 +72,6 @@ brew install --cask pinta || brew upgrade --cask pinta
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
 brew install --cask postman || brew upgrade --force --cask postman
-brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
 sdk selfupdate || curl -s "https://get.sdkman.io" | bash
 brew install snyk || brew upgrade snyk
