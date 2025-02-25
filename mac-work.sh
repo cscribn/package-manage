@@ -36,6 +36,7 @@ brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || install --cask firefox
 brew install fzf || brew upgrade fzf
 brew install --cask gimp || brew upgrade --cask gimp
+brew install gh || brew upgrade gh
 brew install git-lfs || brew upgrade git-lfs; git lfs install
 brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg-nerd-font
 brew install gifsicle || brew upgrade gifsicle
