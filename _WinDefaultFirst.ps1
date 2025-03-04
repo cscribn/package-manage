@@ -57,7 +57,7 @@ winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id junegunn.fzf
 winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id lsd-rs.lsd
-winget install -e --id Microsoft.OneDrive
+winget uninstall -e --id Microsoft.OneDrive
 winget install -e --id Microsoft.VisualStudioCode
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id Mozilla.Firefox
