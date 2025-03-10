@@ -95,6 +95,9 @@ wsl -d "Ubuntu" -u root -e do-release-upgrade
 
 # config
 
+# barrier restart
+Stop-Service -Name "Barrier" -Force; Start-Service -Name "Barrier"
+
 # microsoft-windows-terminal
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-chad.json
