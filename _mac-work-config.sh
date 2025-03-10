@@ -7,6 +7,9 @@ curl -Lo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-mi
 curl -Lo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist; \
 curl -Lo "${HOME}/Library/Application Support/BBEdit/Language Modules/PowerShell.plist" https://raw.githubusercontent.com/doug-baer/BBEdit-PowerShell/master/PowerShell.plist
 
+# finder - show all files
+defaults write com.apple.finder "AppleShowAllFiles" -bool "true" && killall Finder
+
 # oh-my-posh
 git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
 
