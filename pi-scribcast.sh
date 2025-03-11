@@ -10,4 +10,3 @@ wget https://gist.githubusercontent.com/tgp-2/65e6f2f637bc81df2c9fd9ba33f73bc6/r
 
 # autoremove, clean
 sudo apt autoremove -y; sudo apt clean -y
-
