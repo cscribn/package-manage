@@ -1,6 +1,5 @@
 #!/bin/bash
 # Non-package installations (add these first)
-# rust (curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh)
 
 # update, autoremove, clean, upgrade all apt
 sudo apt update
@@ -15,9 +14,8 @@ sudo apt install curl -y
 sudo apt install neofetch -y
 sudo apt install fzf -y
 sudo apt install git -y
-rustup update
 sudo apt install htop -y
-cargo install lsd
+sudo apt install lsd -y
 
 git_dir="${HOME}/motd"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/cscribn/motd" "$git_dir"; fi
 
