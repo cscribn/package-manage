@@ -14,6 +14,7 @@ brew upgrade
 
 brew tap common-fate/granted
 brew tap snyk/tap
+brew tap theseal/blank-screensaver
 brew install libgit2@1.7 || brew upgrade libgit2@1.7
 brew install git || brew upgrade git
 
@@ -22,6 +23,7 @@ brew install --cask alt-tab || brew upgrade --cask alt-tab
 brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
+brew install blank-screensaver || brew upgrade blank-screensaver
 brew install btop || brew upgrade btop
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install curl || brew upgrade curl
