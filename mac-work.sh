@@ -3,9 +3,7 @@
 # Non-package installations (add/update these first)
 # embrava
 # filezilla
-# google chrome
 # google drive - don't use brew
-# microsoft edge
 # sudo git lfs install --system
 # paste plain text
 
@@ -42,6 +40,7 @@ brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg
 brew install gifsicle || brew upgrade gifsicle
 brew install git || brew upgrade git
 brew install --cask github || brew upgrade --cask github
+brew list --cask google-chrome || brew install --cask google-chrome
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install granted || brew upgrade granted
 brew install helm || brew upgrade helm
@@ -49,10 +48,11 @@ brew install --cask hex-fiend || brew upgrade --cask hex-fiend
 brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask itsycal ||brew upgrade --cask itsycal
 brew install jq ||brew upgrade jq
-brew install libpq || brew upgrade libpq;brew link --force libpq
+brew install libpq || brew upgrade libpq; brew link --force libpq
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
+brew list --cask microsoft-edge || brew install --cask microsoft-edge
 brew install nmap || brew upgrade nmap
 
 # node
@@ -85,7 +85,7 @@ if [[ -f "${HOME}/.zshrc1" ]]; then \
     update-teleport-client; \
 fi
 
-brew install --cask visual-studio-code || brew upgrade --force --cask visual-studio-code
+brew list --cask visual-studio-code || brew install --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
 brew install --cask wireshark || brew upgrade --cask wireshark

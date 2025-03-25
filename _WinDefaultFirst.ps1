@@ -43,7 +43,12 @@ winget install -e --id DiskInternals.LinuxReader
 winget install -e --id dotPDN.PaintDotNet
 winget install -e --id FlorianHeidenreich.Mp3tag
 winget install -e --id GIMP.GIMP
-winget install -e --id Google.Chrome
+
+# google chrome
+if ((Get-WinGetPackage -Name "Google Chrome").Count -eq 0) { `
+	winget install -e --id Google.Chrome `
+} `
+
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id Google.PlatformTools
 winget install -e --id gsass1.NTop
@@ -57,7 +62,17 @@ winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id junegunn.fzf
 winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id lsd-rs.lsd
-winget install -e --id Microsoft.VisualStudioCode
+
+# microsoft edge
+if ((Get-WinGetPackage -Id "Microsoft.Edge").Count -eq 0) { `
+	winget install -e --id Microsoft.Edge `
+} `
+
+# microsoft visual studio code
+if ((Get-WinGetPackage -Name "Microsoft Visual Studio Code").Count -eq 0) { `
+	winget install -e --id Microsoft.VisualStudioCode `
+} `
+
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id Mozilla.Firefox
 winget install -e --id Mythicsoft.AgentRansack
