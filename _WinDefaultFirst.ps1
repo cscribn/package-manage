@@ -42,7 +42,12 @@ winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\c
 winget install -e --id DiskInternals.LinuxReader
 winget install -e --id dotPDN.PaintDotNet
 winget install -e --id FlorianHeidenreich.Mp3tag
-winget install -e --id GIMP.GIMP
+
+# gimp
+if ((Get-WinGetPackage -Name GIMP).Count -gt 1) { `
+    $Id = Get-WinGetPackage -Name GIMP | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
+} `
+$Id = Find-WinGetPackage GIMP.GIMP | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id;
 
 # google chrome
 if ((Get-WinGetPackage -Name "Google Chrome").Count -eq 0) { `
