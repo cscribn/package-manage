@@ -24,7 +24,7 @@ winget install -e --id Eassos.DiskGenius
 
 # java
 if ((Get-WinGetPackage -Name JDK).Count -gt 1) { `
-    $Id = Get-WinGetPackage -Name JDK | Sort-Object Id -Descending | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
+    $Id = Get-WinGetPackage -Name JDK | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
 } `
 $Id = Find-WinGetPackage EclipseAdoptium.Temurin | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 2 | Select-Object -First 1 -ExpandProperty Id; winget install -e --id $Id
 
@@ -45,7 +45,7 @@ winget install -e --id MHNexus.HxD
 
 # c++ buildtools
 if ((Get-WinGetPackage -Name BuildTools).Count -gt 1) { `
-    $Id = Get-WinGetPackage -Name BuildTools | Sort-Object Id -Descending | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
+    $Id = Get-WinGetPackage -Name BuildTools | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
 } `
 $Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id
 
@@ -56,7 +56,7 @@ winget install -e --id Postman.Postman
 
 # python
 if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
-    $Id = Get-WinGetPackage -Name Python | Sort-Object Id -Descending | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
+    $Id = Get-WinGetPackage -Name Python | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
 } `
 $Id = Find-WinGetPackage Python.Python | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id; `
 python -m pip install -U pip
