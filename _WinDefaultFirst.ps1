@@ -41,7 +41,10 @@ winget install -e --id Armin2208.WindowsAutoNightMode
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 winget install -e --id DiskInternals.LinuxReader
 winget install -e --id dotPDN.PaintDotNet
+
+# mp3tag with right-click support
 winget install -e --id FlorianHeidenreich.Mp3tag
+regsvr32 "C:\Program Files\Mp3tag\Mp3tagShell.dll"
 
 # gimp
 if ((Get-WinGetPackage -Name GIMP).Count -gt 1) { `
