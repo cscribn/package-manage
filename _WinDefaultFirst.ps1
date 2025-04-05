@@ -44,7 +44,7 @@ winget install -e --id dotPDN.PaintDotNet
 
 # mp3tag with right-click support
 winget install -e --id FlorianHeidenreich.Mp3tag
-regsvr32 "C:\Program Files\Mp3tag\Mp3tagShell.dll"
+regsvr32 /s "C:\Program Files\Mp3tag\Mp3tagShell.dll"
 
 # gimp
 if ((Get-WinGetPackage -Name GIMP).Count -gt 1) { `
