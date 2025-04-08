@@ -55,6 +55,11 @@ brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
 brew list --cask microsoft-edge || brew install --force --cask microsoft-edge
+
+# netskope certificates
+[[ -f "${HOME}/netskope-cert-bundle.pem" ]] && [[ ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]] && \
+cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"
+
 brew install nmap || brew upgrade nmap
 
 # node
