@@ -43,7 +43,7 @@ winget install -e --id DiskInternals.LinuxReader
 winget install -e --id dotPDN.PaintDotNet
 
 # mp3tag with right-click support
-winget install -e --id FlorianHeidenreich.Mp3tag
+winget install -e --id FlorianHeidenreich.Mp3tag && `
 regsvr32 /s "C:\Program Files\Mp3tag\Mp3tagShell.dll"
 
 # gimp
