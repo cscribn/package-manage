@@ -1,7 +1,12 @@
+$version = (Get-CimInstance Win32_OperatingSystem).Version
+
 # install apps
 winget install 9NP83LWLPZ9K --silent --accept-package-agreements --accept-source-agreements # apple devices
 winget install 9PKTQ5699M62 --silent --accept-package-agreements --accept-source-agreements # icloud
-Get-AppxPackage Microsoft.MicrosoftSolitaireCollection -AllUsers | ForEach-Object {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} # microsoft solitaire
+
+if ($version -notlike '10.*') {
+    Get-AppxPackage Microsoft.MicrosoftSolitaireCollection -AllUsers | ForEach-Object {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} # microsoft solitaire
+}
 
 # remove apps all at once, due to https://github.com/PowerShell/PowerShell/issues/16652
 $Session = New-PSSession -UseWindowsPowerShell; Invoke-Command -Session $Session { `
