@@ -17,7 +17,11 @@ choco upgrade xsltproc -y --ignore-dependencies
 
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id dbeaver.dbeaver
-winget install -e --id DebaucheeOpenSourceGroup.Barrier
+
+if ((Get-WinGetPackage -Name "Barrier").Count -eq 0) { `
+	winget install -e --id DebaucheeOpenSourceGroup.Barrier `
+} `
+
 winget install -e --id Docker.DockerDesktop
 winget install -e --id DVDFlick.DVDFlick
 winget install -e --id Eassos.DiskGenius
