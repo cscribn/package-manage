@@ -3,6 +3,7 @@
 # git-sdk (uninstall once pacman is scriptable)
 # winget
 
+# remove customized prompt
 function prompt {}
 
 . $PSScriptRoot\_WinDefaultRegistry.ps1
@@ -89,7 +90,11 @@ winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id PFOJEnterprisesLLC.ModernCSV
 winget install -e --id RandyRants.SharpKeys
 winget install -e --id Scribus.Scribus
-winget install -e --id Spicebrains.Instant-Eyedropper
+
+if ((Get-WinGetPackage -Name "Instant-Eyedropper").Count -eq 0) { `
+	winget install -e --id Spicebrains.Instant-Eyedropper `
+} `
+
 winget install -e --id SumatraPDF.SumatraPDF
 winget install -e --id TGRMNSoftware.BulkRenameUtility
 winget install -e --id TheDocumentFoundation.LibreOffice
