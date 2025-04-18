@@ -82,7 +82,12 @@ brew install --cask postgres-unofficial || brew upgrade --cask postgres-unoffici
 brew install --cask postman || brew upgrade --force --cask postman
 brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
+
+# sdkman
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk selfupdate || curl -s "https://get.sdkman.io" | bash
+
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 
