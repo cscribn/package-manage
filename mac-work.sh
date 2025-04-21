@@ -91,12 +91,6 @@ sdk selfupdate || curl -s "https://get.sdkman.io" | bash
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 
-# teleport/tsh
-if [[ -f "${HOME}/.zshrc1" ]]; then \
-    source "${HOME}/.zshrc1"; \
-    update-teleport-client; \
-fi
-
 brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
@@ -111,9 +105,6 @@ git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd 
 
 script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ); \
 source "${script_dir}/_mac-work-config.sh"
-
-# .zshrc1
-cp "${HOME}/.config/zsh/zshrc1-teleport" "${HOME}/.zshrc1"
 
 # cleanup
 brew autoremove; brew cleanup; brew doctor
