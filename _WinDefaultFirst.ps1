@@ -31,10 +31,10 @@ winget install -e --id Git.Git; git config --global http.sslBackend openssl
 
 ## powershell
 winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; `
-Install-Module -Name Microsoft.WinGet.Client -Force; `
-Install-Module posh-git -Force; `
-Install-Module PSReadLine -Force; `
-Install-Module Terminal-Icons;
+Start-Process pwsh -ArgumentList { Install-Module -Name Microsoft.WinGet.Client -Force } -WindowStyle Hidden -Wait; `
+Start-Process pwsh -ArgumentList { Install-Module posh-git -Force } -WindowStyle Hidden -Wait; `
+Start-Process pwsh -ArgumentList { Install-Module PSReadLine -Force } -WindowStyle Hidden -Wait; `
+Start-Process pwsh -ArgumentList { Install-Module Terminal-Icons } -WindowStyle Hidden -Wait
 
 winget install -e --id 7zip.7zip
 winget install -e --id aristocratos.btop4win
