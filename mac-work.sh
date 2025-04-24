@@ -13,6 +13,7 @@ brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Home
 brew upgrade
 
 brew tap common-fate/granted
+brew tap sdkman/tap
 brew tap snyk/tap
 brew tap theseal/blank-screensaver
 brew install libgit2@1.7 || brew upgrade libgit2@1.7
@@ -73,7 +74,7 @@ cd "${HOME}/.nvm/versions/node" || exit; \
 \ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh; nvm deactivate {} && nvm uninstall {}"; \
 cd - || exit
 
-brew install jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
+brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
 brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
 brew install --cask pinta || brew upgrade --cask pinta
@@ -84,9 +85,9 @@ brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
 
 # sdkman
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk selfupdate || curl -s "https://get.sdkman.io" | bash
+brew install sdkman-cli || brew upgrade sdkman-cli
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
