@@ -8,6 +8,7 @@
 . $PSScriptRoot\_WinDefaultFirst.ps1
 
 choco upgrade iconsext -y --ignore-dependencies; choco upgrade iconsext.install -y --ignore-dependencies
+choco upgrade kitty -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
 choco upgrade tftpd32 -y --ignore-dependencies
@@ -16,15 +17,18 @@ choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.port
 choco upgrade xsltproc -y --ignore-dependencies
 
 winget install -e --id BlueStack.BlueStacks
-winget install -e --id dbeaver.dbeaver
+winget install -e --id DBeaver.DBeaver.Community
 
 if ((Get-WinGetPackage -Name "Barrier").Count -eq 0) { `
 	winget install -e --id DebaucheeOpenSourceGroup.Barrier `
-} `
+}
 
 winget install -e --id Docker.DockerDesktop
 winget install -e --id DVDFlick.DVDFlick
-winget install -e --id Eassos.DiskGenius
+
+if ((Get-WinGetPackage -Name "DiskGenius").Count -eq 0) { `
+    winget install -e --id Eassos.DiskGenius `
+}
 
 # java
 if ((Get-WinGetPackage -Name JDK).Count -gt 1) { `
