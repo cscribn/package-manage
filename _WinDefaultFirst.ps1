@@ -56,7 +56,7 @@ $Id = Find-WinGetPackage GIMP.GIMP | Where-Object { $_.Version -match '^\d+(\.\d
 # google chrome
 if ((Get-WinGetPackage -Name "Google Chrome").Count -eq 0) { `
 	winget install -e --id Google.Chrome `
-} `
+}
 
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id Google.PlatformTools
@@ -75,12 +75,12 @@ winget install -e --id lsd-rs.lsd
 # microsoft edge
 if ((Get-WinGetPackage -Id "Microsoft.Edge").Count -eq 0) { `
 	winget install -e --id Microsoft.Edge `
-} `
+}
 
 # microsoft visual studio code
 if ((Get-WinGetPackage -Name "Microsoft Visual Studio Code").Count -eq 0) { `
 	winget install -e --id Microsoft.VisualStudioCode `
-} `
+}
 
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id Mozilla.Firefox
@@ -91,9 +91,9 @@ winget install -e --id PFOJEnterprisesLLC.ModernCSV
 winget install -e --id RandyRants.SharpKeys
 winget install -e --id Scribus.Scribus
 
-if ((Get-WinGetPackage -Name "Instant-Eyedropper").Count -eq 0) { `
+if ((Get-WinGetPackage -Name "Instant Eyedropper").Count -eq 0) { `
 	winget install -e --id Spicebrains.Instant-Eyedropper `
-} `
+}
 
 winget install -e --id SumatraPDF.SumatraPDF
 winget install -e --id TGRMNSoftware.BulkRenameUtility
