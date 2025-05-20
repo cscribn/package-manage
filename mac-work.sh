@@ -78,6 +78,11 @@ brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jand
 brew install perl || brew upgrade perl
 brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
 brew install --cask pinta || brew upgrade --cask pinta
+
+# pipx
+brew install pipx || brew upgrade pipx; \
+pipx ensurepath
+
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
 brew install --cask postman || brew upgrade --force --cask postman
@@ -85,13 +90,12 @@ brew install --cask powershell || brew upgrade --cask powershell
 brew install pre-commit || brew upgrade pre-commit
 
 # sdkman
-brew install sdkman-cli || brew upgrade sdkman-cli
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+brew install sdkman-cli || brew upgrade sdkman-cli; \
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
-
 brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
