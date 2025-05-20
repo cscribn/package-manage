@@ -19,6 +19,10 @@ brew tap theseal/blank-screensaver
 brew install libgit2@1.7 || brew upgrade libgit2@1.7
 brew install git || brew upgrade git
 
+# pipx
+brew install pipx || brew upgrade pipx; \
+pipx ensurepath
+
 brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
 brew install --cask alt-tab || brew upgrade --cask alt-tab
 brew install --cask barrier || brew upgrade --cask barrier
@@ -26,6 +30,7 @@ brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
 brew install blank-screensaver || brew upgrade blank-screensaver
 brew install btop || brew upgrade btop
+if pipx list --json | jq -e '.venvs | has("busylight-for-humans")' >/dev/null; then pipx upgrade busylight-for-humans; else pipx install busylight-for-humans; fi
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install curl || brew upgrade curl
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
@@ -78,10 +83,6 @@ brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jand
 brew install perl || brew upgrade perl
 brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
 brew install --cask pinta || brew upgrade --cask pinta
-
-# pipx
-brew install pipx || brew upgrade pipx; \
-pipx ensurepath
 
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
