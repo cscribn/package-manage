@@ -8,7 +8,6 @@
 . $PSScriptRoot\_WinDefaultFirst.ps1
 
 choco upgrade iconsext -y --ignore-dependencies; choco upgrade iconsext.install -y --ignore-dependencies
-choco upgrade kitty -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
 choco upgrade tftpd32 -y --ignore-dependencies
@@ -49,6 +48,7 @@ winget install -e --id GitHub.GitHubDesktop
 winget install -e --id Google.GoogleDrive
 winget install -e --id GuinpinSoft.MakeMKV
 winget install -e --id ImageMagick.ImageMagick
+winget install -e --id JimRadford.SuperPuTTY
 winget install -e --id MHNexus.HxD
 
 # c++ buildtools
@@ -61,6 +61,7 @@ winget install -e --id NextDNS.NextDNS
 winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id Postman.Postman
+winget install -e --id PuTTY.PuTTY
 
 # python
 if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
@@ -75,8 +76,9 @@ pip install scour
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id Rufus.Rufus
 winget install -e --id sharkdp.bat
-winget install -e --id srjuddington.slade
+
 winget install -e --id SQLite.SQLite
+winget install -e --id srjuddington.slade
 winget install -e --id WireGuard.WireGuard
 
 # spotdl
