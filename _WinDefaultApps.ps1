@@ -43,7 +43,7 @@ $Session = New-PSSession -UseWindowsPowerShell; Invoke-Command -Session $Session
     Get-AppxPackage *LinkedInforWindows* -AllUsers | Remove-AppxPackage -AllUsers; `
     Get-AppxPackage *MarchofEmpires* -AllUsers | Remove-AppxPackage -AllUsers; `
     Get-AppxPackage *Microsoft.3DBuilder* -AllUsers | Remove-AppxPackage -AllUsers; `
-    Get-AppxPackage *Microsoft.549981C3F5F10* -AllUsers | Remove-AppxPackage -AllUsers; `
+    Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage; `
     Get-AppxPackage *Microsoft.BingFinance* -AllUsers | Remove-AppxPackage -AllUsers; `
     Get-AppxPackage *Microsoft.BingFoodAndDrink* -AllUsers | Remove-AppxPackage -AllUsers; `
     Get-AppxPackage *Microsoft.BingHealthAndFitness* -AllUsers | Remove-AppxPackage -AllUsers; `
