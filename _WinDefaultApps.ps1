@@ -67,6 +67,7 @@ $Session = New-PSSession -UseWindowsPowerShell; Invoke-Command -Session $Session
     Get-AppxPackage *Microsoft.OneConnect* | Remove-AppxPackage; `
     Get-AppxPackage *Microsoft.Print3D* | Remove-AppxPackage; `
     Get-AppxPackage *Microsoft.SkypeApp* | Remove-AppxPackage; `
+    Get-AppxPackage *Microsoft.StartExperiencesApp* | Remove-AppxPackage; `
     Get-AppxPackage *Microsoft.Todos* | Remove-AppxPackage; `
     Get-AppxPackage *Microsoft.WindowsAlarms* | Remove-AppxPackage; `
     Get-AppxPackage *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage; `
