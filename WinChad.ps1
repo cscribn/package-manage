@@ -99,6 +99,7 @@ if ($DaysOld -ge 7) { `
 # wsl
 if (-Not (wsl --list -version)) { wsl --install }; `
 wsl -d "Ubuntu" -u root -e apt update -y; `
+wsl -d "Ubuntu" -u root -e apt install expect -y; `
 wsl -d "Ubuntu" -u root -e apt full-upgrade -y; `
 wsl -d "Ubuntu" -u root -e do-release-upgrade; `
 wsl -d "Ubuntu" -u root -e apt autoremove -y; `
