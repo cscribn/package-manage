@@ -7,7 +7,9 @@ curl -Lo "$Env:LOCALAPPDATA\clink\oh-my-posh.lua" https://raw.githubusercontent.
 # microsoft-windows-terminal
 New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons"; `
 curl -Lo "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons\ssh.ico" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/ProfileIcons/ssh.ico; `
-curl -Lo "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons\zsh.ico" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/ProfileIcons/zsh.ico
+curl -Lo "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons\zsh.ico" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/ProfileIcons/zsh.ico; `
+New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\microsoft-windows-terminal\Scripts"; `
+curl -Lo "$Env:USERPROFILE\.config\microsoft-windows-terminal\Scripts\SshWithPassword.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/Scripts/SshWithPassword.ps1;
 
 # oh-my-posh
 $GitDir = "$Env:USERPROFILE\.config\oh-my-posh"; If (Test-Path $GitDir) { Set-Location $GitDir; git pull; Set-Location - } Else { git clone "https://github.com/cscribn/dotfiles-oh-my-posh.git" $GitDir}
