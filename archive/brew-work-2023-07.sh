@@ -3,7 +3,6 @@
 # Non-brew installations (add/update these first)
 # embrava
 # filezilla
-# paste plain text
 
 # settings
 set -o nounset
