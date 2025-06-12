@@ -14,7 +14,7 @@ choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies; robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
 choco upgrade filezilla -y --ignore-dependencies
-choco upgrade puretext -y --ignore-dependencies
+choco uninstall puretext -y --ignore-dependencies
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
@@ -90,10 +90,7 @@ winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id PFOJEnterprisesLLC.ModernCSV
 winget install -e --id RandyRants.SharpKeys
 winget install -e --id Scribus.Scribus
-
-if ((Get-WinGetPackage -Name "Instant Eyedropper").Count -eq 0) { `
-	winget install -e --id Spicebrains.Instant-Eyedropper `
-}
+winget uninstall -e --id Spicebrains.Instant-Eyedropper
 
 winget install -e --id SumatraPDF.SumatraPDF
 winget install -e --id TGRMNSoftware.BulkRenameUtility
