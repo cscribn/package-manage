@@ -89,7 +89,6 @@ winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id PFOJEnterprisesLLC.ModernCSV
 winget install -e --id RandyRants.SharpKeys
 winget install -e --id Scribus.Scribus
-winget uninstall -e --id Spicebrains.Instant-Eyedropper
 
 winget install -e --id SumatraPDF.SumatraPDF
 winget install -e --id TGRMNSoftware.BulkRenameUtility
