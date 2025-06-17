@@ -35,8 +35,13 @@ brew install --cask bbedit || brew upgrade --cask bbedit
 brew install curl || brew upgrade curl
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
 brew install direnv || brew upgrade direnv
+
+# docker
 brew install docker-compose || brew upgrade docker-compose
 brew install --cask docker || brew upgrade --cask docker
+docker pull crystaldba/postgres-mcp
+docker pull ghcr.io/sooperset/mcp-atlassian:latest
+
 brew install fastfetch || brew upgrade fastfetch
 brew install ffmpeg || brew upgrade ffmpeg
 brew install --cask firefox || install --cask firefox
