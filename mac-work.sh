@@ -9,9 +9,9 @@
 
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 
-# Pre-warm sudo with -A -n (fail immediately if password fails)
-if ! sudo -A -n true; then
-    echo "Password failed. Exiting."
+# Check password before proceeding
+if ! dscl /Search -authonly "$USERNAME" "$SUDO_ASKPASS" &>/dev/null; then
+    echo "Password is incorrect."
     exit 1
 fi
 
