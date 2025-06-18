@@ -9,6 +9,12 @@
 
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 
+# Pre-warm sudo with -A -n (fail immediately if password fails)
+if ! sudo -A -n true; then
+    echo "Password failed. Exiting."
+    exit 1
+fi
+
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew upgrade
 
