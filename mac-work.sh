@@ -10,7 +10,7 @@
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 
 # Check password before proceeding
-if dscl /Search -authonly "$USERNAME" "$SUDO_ASKPASS"; then
+if dscl /Search -authonly "$USERNAME" "$($SUDO_ASKPASS)"; then
     echo "Password is correct."
 else
     echo "Password is incorrect."
