@@ -64,8 +64,8 @@ winget install -e --id Gyan.FFmpeg
 winget install -e --id HandBrake.HandBrake
 winget install -e --id Inkscape.Inkscape
 winget install -e --id Insecure.Nmap
-winget install -e --id IrfanSkiljan.IrfanView -v "4.67"
-winget install -e --id IrfanSkiljan.IrfanView.PlugIns -v "4.67"
+winget install -e --id IrfanSkiljan.IrfanView
+winget install -e --id IrfanSkiljan.IrfanView.PlugIns
 winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id junegunn.fzf
 winget install -e --id LIGHTNINGUK.ImgBurn
