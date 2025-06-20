@@ -41,6 +41,7 @@ brew install btop || brew upgrade btop
 if pipx list --json | jq -e '.venvs | has("busylight-for-humans")' >/dev/null; then pipx upgrade busylight-for-humans; else pipx install busylight-for-humans; fi
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install curl || brew upgrade curl
+brew install --cask cursor || brew upgrade --cask cursor
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
 brew install direnv || brew upgrade direnv
 
