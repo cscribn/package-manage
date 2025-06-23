@@ -47,7 +47,7 @@ brew install direnv || brew upgrade direnv
 
 # docker
 brew install docker-compose || brew upgrade docker-compose
-brew install --cask docker || brew upgrade --cask docker
+brew install --cask docker-desktop || brew upgrade --cask docker-desktop
 docker pull crystaldba/postgres-mcp
 docker pull ghcr.io/sooperset/mcp-atlassian:latest
 
@@ -114,7 +114,7 @@ brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
-brew install --cask wireshark || brew upgrade --cask wireshark
+brew install --cask wireshark-app || brew upgrade --cask wireshark-app
 brew install yarn || brew upgrade yarn
 
 # zsh
