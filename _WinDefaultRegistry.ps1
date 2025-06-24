@@ -9,6 +9,9 @@
 # Data Collection - disable telemetry
 [Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection", "AllowTelemetry", 0)
 
+# Desktop - disable animations
+[Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Control Panel\Desktop", "UserPreferencesMask", [byte[]](0x90, 0x12, 0x07, 0x80, 0x10, 0x00, 0x00, 0x00), [Microsoft.Win32.RegistryValueKind]::Binary)
+
 # Display - disable adaptive brightness
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "EnableAdaptiveBrightness", 0)
 
