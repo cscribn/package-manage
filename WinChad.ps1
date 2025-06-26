@@ -78,6 +78,7 @@ winget install -e --id sharkdp.bat
 
 winget install -e --id SQLite.SQLite
 winget install -e --id srjuddington.slade
+winget install -e --id Codeium.Windsurf
 winget install -e --id WireGuard.WireGuard
 
 # spotdl
