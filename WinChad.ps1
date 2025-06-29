@@ -78,7 +78,25 @@ winget install -e --id sharkdp.bat
 
 winget install -e --id SQLite.SQLite
 winget install -e --id srjuddington.slade
-winget install -e --id Codeium.Windsurf
+
+# windsurf
+winget install -e --id Codeium.Windsurf; `
+$windsurfExePath = [System.IO.Path]::Combine($env:LOCALAPPDATA, "Programs", "windsurf", "Windsurf.exe"); `
+if (Test-Path $windsurfExePath) { `
+    $backgroundPath = "HKEY_CLASSES_ROOT\Directory\Background\shell\Open with Windsurf"; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$backgroundPath`" /ve /d `"Open with Windsurf`" /f" -NoNewWindow -Wait -PassThru; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$backgroundPath`" /v Icon /d `"$windsurfExePath`" /f" -NoNewWindow -Wait -PassThru; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$backgroundPath\command`" /ve /d `"\`"$windsurfExePath\`" \`"%V\`"`" /f" -NoNewWindow -Wait -PassThru; `
+    $folderPath = "HKEY_CLASSES_ROOT\Directory\shell\Open with Windsurf"; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$folderPath`" /ve /d `"Open with Windsurf`" /f" -NoNewWindow -Wait -PassThru; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$folderPath`" /v Icon /d `"$windsurfExePath`" /f" -NoNewWindow -Wait -PassThru; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$folderPath\command`" /ve /d `"\`"$windsurfExePath\`" \`"%1\`"`" /f" -NoNewWindow -Wait -PassThru; `
+    $filePath = "HKEY_CLASSES_ROOT\*\shell\Open with Windsurf"; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$filePath`" /ve /d `"Open with Windsurf`" /f" -NoNewWindow -Wait -PassThru; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$filePath`" /v Icon /d `"$windsurfExePath`" /f" -NoNewWindow -Wait -PassThru; `
+    Start-Process -FilePath "reg.exe" -ArgumentList "ADD `"$filePath\command`" /ve /d `"\`"$windsurfExePath\`" \`"%1\`"`" /f" -NoNewWindow -Wait -PassThru; `
+}
+
 winget install -e --id WireGuard.WireGuard
 
 # spotdl
