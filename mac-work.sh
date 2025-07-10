@@ -49,6 +49,7 @@ brew install direnv || brew upgrade direnv
 # docker
 brew install docker-compose || brew upgrade docker-compose
 brew install --cask docker-desktop || brew upgrade --cask docker-desktop
+# docker containers
 docker pull crystaldba/postgres-mcp
 docker pull ghcr.io/sooperset/mcp-atlassian:latest
 
@@ -74,6 +75,12 @@ brew install jq ||brew upgrade jq
 brew install libpq || brew upgrade libpq; brew link --force libpq
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
+
+# mcp-flow
+git_dir="${HOME}/projects/mcp-flow"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/Git-Prime/mcp-flow" "$git_dir"; fi; \
+cd "$git_dir"; \
+uv sync --dev
+
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
 brew list --cask microsoft-edge || brew install --force --cask microsoft-edge
 
@@ -88,11 +95,12 @@ brew install nvm || brew upgrade nvm; export NVM_DIR="${HOME}/.nvm"; \
 [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"; \
 [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"; \
 nvm install --lts; nvm use --lts;
-
 # remove old node versions
 cd "${HOME}/.nvm/versions/node" || exit; \
 \ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh; nvm deactivate {} && nvm uninstall {}"; \
 cd - || exit
+# npm packages
+npm install -g datadog-mcp-server
 
 brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
@@ -112,6 +120,7 @@ export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \
 
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
+brew install uv || brew upgrade uv
 brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
@@ -129,4 +138,7 @@ source "${script_dir}/_mac-work-config.sh"
 
 # cleanup
 brew autoremove; brew cleanup; brew doctor
+# mcp docker images
+docker stop $(docker ps -q --filter ancestor=$image) 2>/dev/null
+docker rm $(docker ps -aq --filter ancestor=$image) 2>/dev/null
 docker system prune --volumes -f
