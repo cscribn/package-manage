@@ -78,8 +78,9 @@ brew install lsd || brew upgrade lsd
 
 # mcp-flow
 git_dir="${HOME}/projects/mcp-flow"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/Git-Prime/mcp-flow" "$git_dir"; fi; \
-cd "$git_dir"; \
-uv sync --dev
+cd "$git_dir" || exit; \
+uv sync --dev; \
+cd - || exit
 
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
 brew list --cask microsoft-edge || brew install --force --cask microsoft-edge
@@ -133,7 +134,7 @@ brew install zsh || brew upgrade zsh
 git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
 git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
 
-script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ); \
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${script_dir}/_mac-work-config.sh"
 
 # cleanup
