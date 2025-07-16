@@ -7,7 +7,7 @@
 # sudo git lfs install --system
 # paste plain text
 
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin"
 
 # Check password before proceeding
 if dscl /Search -authonly "$USERNAME" "$($SUDO_ASKPASS)"; then
