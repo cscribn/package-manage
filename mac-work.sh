@@ -140,6 +140,6 @@ source "${script_dir}/_mac-work-config.sh"
 # cleanup
 brew autoremove; brew cleanup; brew doctor
 # mcp docker images
-docker stop $(docker ps -q --filter ancestor=$image) 2>/dev/null
-docker rm $(docker ps -aq --filter ancestor=$image) 2>/dev/null
+docker stop $(docker ps -q --filter ancestor=$image) 2>/dev/null; \
+docker rm $(docker ps -aq --filter ancestor=$image) 2>/dev/null; \
 docker system prune --volumes -f
