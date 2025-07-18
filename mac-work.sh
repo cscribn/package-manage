@@ -125,6 +125,7 @@ brew install uv || brew upgrade uv
 brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
+brew install wget || brew upgrade wget
 brew install --cask wireshark-app || brew upgrade --cask wireshark-app
 brew install yarn || brew upgrade yarn
 
