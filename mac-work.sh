@@ -51,7 +51,6 @@ brew install docker-compose || brew upgrade docker-compose
 brew install --cask docker-desktop || brew upgrade --cask docker-desktop
 # docker containers
 docker pull crystaldba/postgres-mcp
-docker pull ghcr.io/sooperset/mcp-atlassian:latest
 
 brew install fastfetch || brew upgrade fastfetch
 brew install ffmpeg || brew upgrade ffmpeg
@@ -141,6 +140,11 @@ source "${script_dir}/_mac-work-config.sh"
 # cleanup
 brew autoremove; brew cleanup; brew doctor
 # mcp docker images
-docker stop $(docker ps -q --filter ancestor=$image) 2>/dev/null; \
-docker rm $(docker ps -aq --filter ancestor=$image) 2>/dev/null; \
+docker stop $(docker ps -q --filter ancestor=crystaldba/postgres-mcp) 2>/dev/null; \
+docker rm $(docker ps -aq --filter ancestor=crystaldba/postgres-mcp) 2>/dev/null; \
 docker system prune --volumes -f
+
+# restart cursor to pick up any updates/changes
+osascript -e 'quit app "Cursor"' 2>/dev/null || true; \
+sleep 3; \
+open -a Cursor
