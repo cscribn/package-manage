@@ -38,7 +38,10 @@ brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
 brew install blank-screensaver || brew upgrade blank-screensaver
 brew install btop || brew upgrade btop
-if pipx list --json | jq -e '.venvs | has("busylight-for-humans")' >/dev/null; then pipx upgrade busylight-for-humans; else pipx install busylight-for-humans; fi
+
+if pipx list --json | jq -e '.venvs | has("busylight-for-humans")' >/dev/null; then pipx upgrade busylight-for-humans; else pipx install busylight-for-humans; fi; \
+pipx inject --force busylight-for-humans uvicorn
+
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install --cask claude || brew upgrade --cask claude
 brew install curl || brew upgrade curl
