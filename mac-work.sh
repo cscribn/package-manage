@@ -75,6 +75,7 @@ brew install --cask hex-fiend || brew upgrade --cask hex-fiend
 brew install --cask iterm2 || brew upgrade --cask iterm2
 brew install --cask itsycal ||brew upgrade --cask itsycal
 brew install jq ||brew upgrade jq
+brew install --cask krita || brew upgrade --cask krita
 brew install libpq || brew upgrade libpq; brew link --force libpq
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
@@ -109,8 +110,6 @@ npm install -g datadog-mcp-server
 brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
 brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
-brew install --cask pinta || brew upgrade --cask pinta
-
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
 brew install --cask postman || brew upgrade --force --cask postman
