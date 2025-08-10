@@ -51,7 +51,7 @@ winget install -e --id GuinpinSoft.MakeMKV
 winget install -e --id ImageMagick.ImageMagick
 winget install -e --id MHNexus.HxD
 
-# c++ buildtools
+# microsoft (c++) buildtools
 if ((Get-WinGetPackage -Name BuildTools).Count -gt 1) { `
     $Id = Get-WinGetPackage -Name BuildTools | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
 } `
