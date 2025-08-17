@@ -62,6 +62,7 @@ winget install -e --id Google.PlatformTools
 winget install -e --id gsass1.NTop
 winget install -e --id Gyan.FFmpeg
 winget install -e --id HandBrake.HandBrake
+winget install -e --id REALiX.HWiNFO
 winget install -e --id Inkscape.Inkscape
 winget install -e --id Insecure.Nmap
 winget install -e --id IrfanSkiljan.IrfanView
