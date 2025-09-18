@@ -84,6 +84,7 @@ if ((Get-WinGetPackage -Name "Microsoft Visual Studio Code").Count -eq 0) { `
 
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id Mozilla.Firefox
+winget uninstall -e --id Mythicsoft.AgentRansack
 winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Notepad++.Notepad++
 winget install -e --id PDFLabs.PDFtk.Free
