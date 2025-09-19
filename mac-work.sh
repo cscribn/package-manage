@@ -113,7 +113,7 @@ brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
 brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
 brew install --cask postman || brew upgrade --force --cask postman
-brew install --cask powershell || brew upgrade --cask powershell
+brew install powershell/tap/powershell ||brew upgrade powershell/tap/powershell; launchctl setenv POWERSHELL_UPDATECHECK Off
 brew install pre-commit || brew upgrade pre-commit
 
 # sdkman
