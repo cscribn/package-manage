@@ -116,6 +116,15 @@ brew install --cask postman || brew upgrade --force --cask postman
 brew install powershell/tap/powershell ||brew upgrade powershell/tap/powershell; launchctl setenv POWERSHELL_UPDATECHECK Off
 brew install pre-commit || brew upgrade pre-commit
 
+# python
+brew install python || brew upgrade python; brew link python; ln -sfn /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip; \
+mkdir -p ~/.pip; \
+cat <<EOF > ~/.pip/pip.conf
+[install]
+user = true
+break-system-packages = true
+EOF
+
 # sdkman
 brew install sdkman-cli || brew upgrade sdkman-cli; \
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \
