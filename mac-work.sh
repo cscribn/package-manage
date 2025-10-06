@@ -125,6 +125,8 @@ user = true
 break-system-packages = true
 EOF
 
+brew install sbcl || brew upgrade sbcl # steel bank common lisp
+
 # sdkman
 brew install sdkman-cli || brew upgrade sdkman-cli; \
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \

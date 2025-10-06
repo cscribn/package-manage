@@ -26,6 +26,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notic
 sudo apt install python3-pip -y
 git clone https://github.com/AndrewFromMelbourne/raspi2png; sudo cp -a raspi2png/raspi2png /usr/local/bin; rm -rf ./raspi2png
 
+sudo apt install sbcl -y
 sudo apt install speedtest-cli -y
 sudo apt install unzip -y
 sudo apt install vim -y
