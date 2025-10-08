@@ -54,7 +54,7 @@ brew install direnv || brew upgrade direnv
 brew install docker-compose || brew upgrade docker-compose
 brew install --cask docker-desktop || brew upgrade --cask docker-desktop
 # docker containers
-docker pull crystaldba/postgres-mcp
+docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
 
 brew install fastfetch || brew upgrade fastfetch
 brew install ffmpeg || brew upgrade ffmpeg
@@ -154,9 +154,16 @@ source "${script_dir}/_mac-work-config.sh"
 # cleanup
 brew autoremove; brew cleanup; brew doctor
 # mcp docker images
-docker stop $(docker ps -q --filter ancestor=crystaldba/postgres-mcp) 2>/dev/null; \
-docker rm $(docker ps -aq --filter ancestor=crystaldba/postgres-mcp) 2>/dev/null; \
-docker system prune --volumes -f
+docker info >/dev/null 2>&1 && docker stop $(docker ps -q --filter ancestor=crystaldba/postgres-mcp) 2>/dev/null; \
+docker info >/dev/null 2>&1 && docker rm $(docker ps -aq --filter ancestor=crystaldba/postgres-mcp) 2>/dev/null; \
+docker info >/dev/null 2>&1 && docker system prune --volumes -f
+
+# mcp docker images
+docker info >/dev/null 2>&1 && { \
+    docker stop $(docker ps -q --filter ancestor=crystaldba/postgres-mcp) 2>/dev/null; \
+    docker rm $(docker ps -aq --filter ancestor=crystaldba/postgres-mcp) 2>/dev/null; \
+    docker system prune --volumes -f; \
+}
 
 # restart cursor to pick up any updates/changes
 osascript -e 'quit app "Cursor"' 2>/dev/null || true; \
