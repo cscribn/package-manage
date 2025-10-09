@@ -72,7 +72,7 @@ winget install -e --id PuTTY.PuTTY
 
 # python
 if ((Get-WinGetPackage -Name Python).Count -gt 1) { `
-    $Id = Get-WinGetPackage -Name Python | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
+    $Id = Get-WinGetPackage -Name Python | Where-Object { $_.Id -notlike "*Launcher*" } | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
 } `
 $Id = Find-WinGetPackage Python.Python. | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id; `
 python -m pip install -U pip
