@@ -26,9 +26,15 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 
 # winget
 winget install -e --id cURL.cURL
-winget install -e --id Git.Git; git config --global http.sslBackend openssl
 
-## powershell
+# git
+$GitUpdate = winget upgrade -e --id Git.Git; `
+if (-Not ($GitUpdate -match "No available")) { `
+    winget uninstall -e --id Git.Git; `
+    winget install -e --id Git.Git; git config --global http.sslBackend openssl `
+}
+
+# powershell
 winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; `
 Start-Process pwsh -ArgumentList { Install-Module -Name Microsoft.WinGet.Client -Force } -WindowStyle Hidden -Wait; `
 Start-Process pwsh -ArgumentList { Install-Module posh-git -Force } -WindowStyle Hidden -Wait; `
