@@ -14,6 +14,7 @@ choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies; robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
 choco upgrade filezilla -y --ignore-dependencies
+choco upgrade ffmpeg -y --ignore-dependencies
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
@@ -66,7 +67,7 @@ if ((Get-WinGetPackage -Name "Google Chrome").Count -eq 0) { `
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id Google.PlatformTools
 winget install -e --id gsass1.NTop
-winget install -e --id Gyan.FFmpeg
+winget uninstall -e --id Gyan.FFmpeg
 winget install -e --id HandBrake.HandBrake
 winget install -e --id REALiX.HWiNFO
 winget install -e --id Inkscape.Inkscape
