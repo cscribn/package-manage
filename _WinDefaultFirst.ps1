@@ -67,7 +67,6 @@ if ((Get-WinGetPackage -Name "Google Chrome").Count -eq 0) { `
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id Google.PlatformTools
 winget install -e --id gsass1.NTop
-winget uninstall -e --id Gyan.FFmpeg
 winget install -e --id HandBrake.HandBrake
 winget install -e --id REALiX.HWiNFO
 winget install -e --id Inkscape.Inkscape
