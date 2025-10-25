@@ -8,8 +8,8 @@ source ./_pi-default.sh
 # plexamp - https://gist.github.com/tgp-2/fc34c5389bc3e4ef332e28d9430b0ebf
 wget -O "${HOME}/plexamp-install.sh" https://gist.githubusercontent.com/tgp-2/65e6f2f637bc81df2c9fd9ba33f73bc6/raw/e7e9e47046c29a6090042a9a0a868a5bf7cf48be/plexamp-install.sh
 
-# set volume to 100%. > bookworm uses 'Master', older versions use 'PCM'
-(amixer -q sset Master 100% unmute || amixer -q sset PCM 100% unmute) >/dev/null 2>&1
+# set volume to 85%. > bookworm uses 'Master', older versions use 'PCM'
+(amixer -q sset Master 85% unmute || amixer -q sset PCM 85% unmute) >/dev/null 2>&1
 
 
 # autoremove, clean
