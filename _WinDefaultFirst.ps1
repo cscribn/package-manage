@@ -36,8 +36,8 @@ if (-Not ($GitUpdate -match "No available")) { `
 }
 
 # powershell
-winget uninstall -e --id Microsoft.PowerShell; `
-winget install -e --id Microsoft.PowerShell; Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted; `
+winget install -e --id Microsoft.PowerShell | Select-String "technology is different"; `
+if ($?) { winget uninstall -e --id Microsoft.PowerShell; winget install -e --id Microsoft.PowerShell }; `
 Start-Process pwsh -ArgumentList { Install-Module -Name Microsoft.WinGet.Client -Force } -WindowStyle Hidden -Wait; `
 Start-Process pwsh -ArgumentList { Install-Module posh-git -Force } -WindowStyle Hidden -Wait; `
 Start-Process pwsh -ArgumentList { Install-Module PSReadLine -Force } -WindowStyle Hidden -Wait; `
