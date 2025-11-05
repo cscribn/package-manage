@@ -1,4 +1,4 @@
-# Disable Fireall for private network
+# Disable firewall for private network
 Set-NetFirewallProfile -Profile Private -Enabled False
 
 # Flush the DNS cache
