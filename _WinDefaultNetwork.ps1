@@ -1,3 +1,6 @@
+# Disable Fireall for private network
+Set-NetFirewallProfile -Profile Private -Enabled False
+
 # Flush the DNS cache
 ipconfig /flushdns
 
@@ -7,9 +10,6 @@ ipconfig /renew
 
 # Clear and rebuild the ARP cache
 arp -d *
-
-# Remove stale SMB sessions
-net use * /delete /y
 
 # Restart Workstation and Server services (these handle SMB connections)
 net stop workstation /y; `
