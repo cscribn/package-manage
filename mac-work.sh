@@ -4,8 +4,8 @@
 # embrava
 # filezilla
 # google drive - don't use brew
+# screen shot: In Finder locate Application/Utilities/ScreenShot.app, grab a hold of the app, and drag/drop onto the Dock.
 # sudo git lfs install --system
-# paste plain text
 
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin"
 
