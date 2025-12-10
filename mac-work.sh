@@ -47,7 +47,7 @@ pipx inject --force busylight-for-humans uvicorn
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install --cask claude || brew upgrade --cask claude
 brew install curl || brew upgrade curl
-brew install --cask cursor || brew upgrade --cask cursor
+#brew install --cask cursor || brew upgrade --cask cursor
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
 brew install direnv || brew upgrade direnv
 
