@@ -2,7 +2,10 @@
 # backblaze
 # floriani
 # designers galaxy studio iii
-# (check on other game apps)
+# microsoft mahjong
+# microsoft sodoku
+# microsoft ultimate word games
+# wordplay: exercise your brain
 
 
 . $PSScriptRoot\_WinDefaultFirstNieb.ps1
