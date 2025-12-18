@@ -21,7 +21,6 @@ fi
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew upgrade
 
-brew tap common-fate/granted
 brew tap sdkman/tap
 brew tap snyk/tap
 brew tap theseal/blank-screensaver
