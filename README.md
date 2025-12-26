@@ -39,4 +39,10 @@ Set the Execution Policy in PowerShell Core
 Set-ExecutionPolicy Unrestricted
 ```
 
+Unblock all script files in the package-manage directory
+
+```pwsh
+dir -r | Unblock-File
+```
+
 Run all scripts using PowerShell Core
