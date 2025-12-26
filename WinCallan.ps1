@@ -4,4 +4,4 @@
 
 winget install -e --id NextDNS.NextDNS
 
-. $PSScriptRoot\_WinDefaultLast.ps1
+. $PSScriptRoot\_WinDefaultLastCallan.ps1
