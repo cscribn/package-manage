@@ -36,7 +36,7 @@ Download and install the lates PowerShell Core release from [GitHub](https://git
 Set the Execution Policy in PowerShell Core
 
 ```pwsh
-Set-ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy Unrestricted
 ```
 
 Run all scripts using PowerShell Core
