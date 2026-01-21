@@ -11,7 +11,7 @@ Bash scripts that install/upgrade Raspberry Pi/Ubuntu packages. Different files 
 
 Bash scripts that install/upgrade Mac packages.
 
-### Prerequisites
+### mac prerequisites
 
 Install brew via Terminal
 
@@ -23,7 +23,7 @@ Install brew via Terminal
 
 Powershell scripts that install/upgrade Windows packages. Different files are used for different machines.
 
-### Prerequisites
+### Win prerequisites
 
 Install Chocolatey via PowerShell
 
