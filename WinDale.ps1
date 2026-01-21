@@ -1,4 +1,4 @@
 # Non-package installations (add/update these first)
 # (none)
 
-. $PSScriptRoot\_WinDefaultFirstNieb.ps1
+. $PSScriptRoot\_WinNiebFirst.ps1

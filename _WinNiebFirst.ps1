@@ -8,7 +8,7 @@
 # remove customized prompt
 function prompt {}
 
-. $PSScriptRoot\_WinDefaultRegistryNieb.ps1
+. $PSScriptRoot\_WinNiebRegistry.ps1
 
 # winget
 winget install -e --id cURL.cURL
@@ -54,5 +54,5 @@ winget install -e --id VideoLAN.VLC
 winget install -e --id Microsoft.WindowsPCHealthCheck
 winget install -e --id Zoom.Zoom
 
-. $PSScriptRoot\_WinDefaultAppsNieb.ps1
-. $PSScriptRoot\_WinDefaultFileTypesNieb.ps1
+. $PSScriptRoot\_WinNiebApps.ps1
+. $PSScriptRoot\_WinNiebFileTypes.ps1

@@ -4,7 +4,7 @@
 # remove customized prompt
 function prompt {}
 
-. $PSScriptRoot\_WinDefaultRegistryCallan.ps1
+. $PSScriptRoot\_WinCallanRegistry.ps1
 
 # winget
 winget install -e --id cURL.cURL

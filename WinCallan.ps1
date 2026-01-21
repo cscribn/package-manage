@@ -1,7 +1,7 @@
 # Non-package installations (add/update these first)
 
-. $PSScriptRoot\_WinDefaultFirstCallan.ps1
+. $PSScriptRoot\_WinCallanFirst.ps1
 
 winget install -e --id NextDNS.NextDNS
 
-. $PSScriptRoot\_WinDefaultLastCallan.ps1
+. $PSScriptRoot\_WinCallanLast.ps1
