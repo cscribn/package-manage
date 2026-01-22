@@ -116,3 +116,5 @@ Set-FTA Applications\notepad++.exe .txt
 # cleanup
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 if (docker info > $null 2>&1) { docker system prune --volumes -f }
+
+. $PSScriptRoot\_WinDefaultGaming.ps1
