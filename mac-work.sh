@@ -108,16 +108,8 @@ brew install --cask postgres-unofficial || brew upgrade --cask postgres-unoffici
 brew install --cask postman || brew upgrade --force --cask postman
 brew install powershell ||brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off
 brew install pre-commit || brew upgrade pre-commit
-
-# python - make like Windows
-brew install python || brew upgrade python; brew link python; ln -sfn /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip; \
-mkdir -p ~/.pip; \
-cat <<EOF > ~/.pip/pip.conf
-[install]
-user = true
-break-system-packages = true
-EOF
-
+brew install python || brew upgrade python;
+brew install python@3.12 || brew upgrade python@3.12
 brew install sbcl || brew upgrade sbcl # steel bank common lisp
 
 # sdkman
