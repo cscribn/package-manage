@@ -58,7 +58,7 @@ docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
 
 brew install fastfetch || brew upgrade fastfetch
 brew install ffmpeg || brew upgrade ffmpeg
-brew install --cask firefox || install --cask firefox
+brew list --cask firefox || brew install --force --cask firefox
 brew install fzf || brew upgrade fzf
 brew install --cask gimp || brew upgrade --cask gimp
 brew install gh || brew upgrade gh
@@ -68,6 +68,7 @@ brew install gifsicle || brew upgrade gifsicle
 brew install git || brew upgrade git
 brew install --cask github || brew upgrade --cask github
 brew list --cask google-chrome || brew install --force --cask google-chrome
+brew list --cask google-chrome@beta || brew install --force --cask google-chrome@beta
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install granted || brew upgrade granted
 brew install helm || brew upgrade helm
