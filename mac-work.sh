@@ -100,6 +100,7 @@ cd "${HOME}/.nvm/versions/node" || exit; \
 cd - || exit
 # npm packages
 npm install -g datadog-mcp-server
+npm install -g @google/gemini-cli@latest
 
 brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
