@@ -79,8 +79,8 @@ $Id = Find-WinGetPackage Python.Python. | Where-Object { $_.Version -match '^\d+
 python -m pip install -U pip
 
 # python packages
-pip install --upgrade scour
-pip install --upgrade spotdl
+pip install --upgrade scour --ignore-requires-python
+pip install --upgrade spotdl --ignore-requires-python
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id Rufus.Rufus
