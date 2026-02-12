@@ -31,6 +31,8 @@ if ((Get-WinGetPackage -Name "DiskGenius").Count -eq 0) { `
     winget install -e --id Eassos.DiskGenius `
 }
 
+winget install -e --id direnv.direnv
+
 # java
 if ((Get-WinGetPackage -Name JDK).Count -gt 1) { `
     $Id = Get-WinGetPackage -Name JDK | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
