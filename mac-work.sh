@@ -4,7 +4,6 @@
 # embrava
 # filezilla
 # google drive - don't use brew
-# nightowl
 # screen shot: In Finder locate Application/Utilities/ScreenShot.app, grab a hold of the app, and drag/drop onto the Dock.
 # sudo git lfs install --system
 
