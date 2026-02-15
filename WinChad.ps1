@@ -61,13 +61,7 @@ if ((Get-WinGetPackage -Name BuildTools).Count -gt 1) { `
 $Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id
 
 winget install -e --id NextDNS.NextDNS
-
-# node
-winget install -e --id CoreyButler.NVMforWindows; `
-nvm install lts; nvm use lts
-# remove old node versions
-Get-ChildItem $env:NVM_HOME -Directory | Sort-Object Name -Descending | Select-Object -Skip 1 | ForEach-Object { nvm uninstall $_.Name }
-
+winget install -e --id OpenJS.NodeJS.LTS
 winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id Postman.Postman
