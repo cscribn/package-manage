@@ -4,7 +4,7 @@
 # scansnap
 # silhouette studio
 
-. $PSScriptRoot\_WinDefaultFirst.ps1
+. $PSScriptRoot\_WinDefaultPrograms.ps1
 
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id fotor.fotor

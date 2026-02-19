@@ -1,6 +1,6 @@
 # Non-package installations (add/update these first)
 
-. $PSScriptRoot\_WinDefaultFirst.ps1
+. $PSScriptRoot\_WinDefaultPrograms.ps1
 
 winget install -e --id Lenovo.SystemUpdate
 winget install -e --id NextDNS.NextDNS

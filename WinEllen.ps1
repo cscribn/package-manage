@@ -8,4 +8,4 @@
 # wordplay: exercise your brain
 
 
-. $PSScriptRoot\_WinNiebFirst.ps1
+. $PSScriptRoot\_WinNiebPrograms.ps1

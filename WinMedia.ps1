@@ -2,7 +2,7 @@
 # backblaze
 # plex media server
 
-. $PSScriptRoot\_WinDefaultFirst.ps1
+. $PSScriptRoot\_WinDefaultPrograms.ps1
 
 winget install -e --id DBeaver.DBeaver.Community
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite

@@ -5,7 +5,7 @@
 # iso compressor
 # skraperui
 
-. $PSScriptRoot\_WinDefaultFirst.ps1
+. $PSScriptRoot\_WinDefaultPrograms.ps1
 
 choco upgrade iconsext -y --ignore-dependencies; choco upgrade iconsext.install -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
