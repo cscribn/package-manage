@@ -104,7 +104,7 @@ Stop-Service -Name "Barrier" -Force; Start-Service -Name "Barrier"
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-chad.json
 
-. $PSScriptRoot\_WinDefaultLast.ps1
+. $PSScriptRoot\_WinDefaultCleanup.ps1
 
 # file types
 Set-FTA Applications\notepad++.exe .txt
