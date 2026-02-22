@@ -18,6 +18,9 @@
 # Display - disable adaptive brightness
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "EnableAdaptiveBrightness", 0)
 
+# Drag Tray - disable
+[Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\CDP", "DragTrayEnabled", 0)
+
 # Edge - disable news feed, sponsored links, shopping assistant and more
 [Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge", "NewTabPageContentEnabled", 0); `
 [Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge", "NewTabPageHideDefaultTopSites", 1); `
