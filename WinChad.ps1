@@ -99,7 +99,7 @@ wsl -d "Ubuntu" -u root -e apt clean -y
 # yt-dlp
 winget install -e --id DenoLand.Deno
 winget install -e --id yt-dlp.FFmpeg
-winget install -e --id yt-dlp.yt-dlp
+winget install -e --id yt-dlp.yt-dlp --skip-dependencies
 
 # config
 
