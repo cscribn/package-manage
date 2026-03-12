@@ -105,7 +105,6 @@ winget install -e --id VideoLAN.VLC
 winget install -e --id Microsoft.WindowsPCHealthCheck
 winget install -e --id WinMerge.WinMerge
 winget install -e --id WiresharkFoundation.Wireshark
-winget uninstall -e --id yt-dlg.yt-dlg
 winget install -e --id Zoom.Zoom
 
 # zsh
