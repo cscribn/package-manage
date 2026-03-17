@@ -75,6 +75,11 @@ if (-Not $p) { Stop-Process -name ollama -force }
 winget install -e --id OpenJS.NodeJS.LTS
 winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
+
+# poppler
+winget install -e --id Microsoft.VCRedist.2015+.x64; `
+winget install -e --id oschwartz10612.Poppler --skip-dependencies
+
 winget install -e --id Postman.Postman
 winget install -e --id PuTTY.PuTTY
 
@@ -94,7 +99,13 @@ winget install -e --id Rufus.Rufus
 winget install -e --id SBCL.SBCL # steel bank common lisp
 winget install -e --id sharkdp.bat
 winget install -e --id SQLite.SQLite
+winget install -e --id UB-Mannheim.TesseractOCR
 winget install -e --id srjuddington.slade
+
+# uv
+winget install -e --id Microsoft.VCRedist.2015+.x64; `
+winget install -e --id astral-sh.uv --skip-dependencies
+
 winget install -e --id WireGuard.WireGuard
 
 # wsl
