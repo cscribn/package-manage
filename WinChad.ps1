@@ -1,4 +1,5 @@
 # Non-package installations (add/update these first)
+# anythingllm
 # append C:\jdk to PATH
 # backblaze
 # mise (first install only from https://github.com/jdx/mise/releases)
@@ -62,6 +63,15 @@ if ((Get-WinGetPackage -Name BuildTools).Count -gt 1) { `
 $Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id
 
 winget install -e --id NextDNS.NextDNS
+
+# ollama
+winget install -e --id Ollama.Ollama; `
+$p = Get-Process ollama -ErrorAction SilentlyContinue; `
+if (-Not $p) { Start-Process ollama serve -WindowStyle Hidden; Start-Sleep 5 }; `
+ollama pull llama3.2:3b; `
+ollama pull nomic-embed-text; `
+if (-Not $p) { Stop-Process -name ollama -force }
+
 winget install -e --id OpenJS.NodeJS.LTS
 winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
