@@ -20,7 +20,6 @@ choco upgrade xsltproc -y --ignore-dependencies
 winget install -e --id Balena.Etcher
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
-winget install -e --id DBeaver.DBeaver.Community
 
 if ((Get-WinGetPackage -Name "Barrier").Count -eq 0) { `
 	winget install -e --id DebaucheeOpenSourceGroup.Barrier `
