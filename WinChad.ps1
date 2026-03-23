@@ -24,6 +24,7 @@ winget install -e --id DBeaver.DBeaver.Community
 
 if ((Get-WinGetPackage -Name "Barrier").Count -eq 0) { `
 	winget install -e --id DebaucheeOpenSourceGroup.Barrier `
+    powercfg /requestsoverride PROCESS "barrierc.exe" DISPLAY SYSTEM`
 }
 
 winget install -e --id Docker.DockerDesktop
