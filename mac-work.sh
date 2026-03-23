@@ -47,7 +47,6 @@ brew install --cask claude || brew upgrade --cask claude
 brew install curl || brew upgrade curl
 brew list --cask cursor || brew install --force --cask cursor
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
-brew install direnv || brew upgrade direnv
 
 # docker
 brew install docker-compose || brew upgrade docker-compose
