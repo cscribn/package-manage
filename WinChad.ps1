@@ -5,6 +5,7 @@
 # mise (first install only from https://github.com/jdx/mise/releases)
 # iso compressor
 # skraperui
+# yt-dlp-gui (https://github.com/dsymbol/yt-dlp-gui/releases)
 
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
@@ -100,8 +101,6 @@ wsl -d "Ubuntu" -u root -e apt full-upgrade -y; `
 wsl -d "Ubuntu" -u root -e do-release-upgrade; `
 wsl -d "Ubuntu" -u root -e apt autoremove -y; `
 wsl -d "Ubuntu" -u root -e apt clean -y
-
-winget install -e --id yt-dlp.yt-dlp
 
 # config
 
