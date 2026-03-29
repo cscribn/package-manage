@@ -80,13 +80,7 @@ winget install -e --id PuTTY.PuTTY
 # python
 if ((Get-WinGetPackage Python.Python).Count -gt 1) { `
     $Id = Get-WinGetPackage Python.Python | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
-} `
-$Id = Find-WinGetPackage Python.Python. | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id; `
-python -m pip install -U pip
-
-# python packages
-pip install --upgrade scour --ignore-requires-python
-pip install --upgrade spotdl --ignore-requires-python
+}
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id Rufus.Rufus
