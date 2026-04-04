@@ -94,6 +94,7 @@ winget install -e --id Mozilla.Firefox
 winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Notepad++.Notepad++
 winget install -e --id OPAutoClicker.OPAutoClicker
+winget install -e --id JohnMacFarlane.Pandoc
 winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id PFOJEnterprisesLLC.ModernCSV
 winget install -e --id RandyRants.SharpKeys

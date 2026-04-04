@@ -107,6 +107,9 @@ wsl -d "Ubuntu" -u root -e apt clean -y
 # barrier restart
 Stop-Service -Name "Barrier" -Force; Start-Service -Name "Barrier"
 
+# git
+git config --global diff.word.textconv pandoc --to=markdown
+
 # microsoft-windows-terminal
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-chad.json
