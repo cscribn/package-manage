@@ -18,7 +18,6 @@ choco upgrade win32diskimager --version 0.9.5 -y --ignore-dependencies; choco pi
 choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.portable -y --ignore-dependencies
 choco upgrade xsltproc -y --ignore-dependencies
 
-winget install -e --id Balena.Etcher
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
