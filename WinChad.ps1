@@ -63,12 +63,21 @@ $Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\
 winget install -e --id NextDNS.NextDNS
 
 # ollama
+$ollamaWasRunning = @(Get-Process -Name ollama -ErrorAction SilentlyContinue).Count -gt 0; `
 winget install -e --id Ollama.Ollama; `
-$p = Get-Process ollama -ErrorAction SilentlyContinue; `
-if (-Not $p) { Start-Process ollama serve -WindowStyle Hidden; Start-Sleep 5 }; `
-ollama pull llama3.2:3b; `
-ollama pull nomic-embed-text; `
-if (-Not $p) { Stop-Process -name ollama -force }
+try { `
+    if (-Not @(Get-Process -Name ollama -ErrorAction SilentlyContinue)) { `
+        Start-Process ollama serve -WindowStyle Hidden; `
+        Start-Sleep 5 `
+    } `
+    ollama pull llama3.2:3b; `
+    ollama pull nomic-embed-text `
+} `
+finally { `
+    if (-Not $ollamaWasRunning) { `
+        Stop-Process -Name ollama -Force -ErrorAction SilentlyContinue `
+    } `
+}
 
 winget install -e --id OpenJS.NodeJS.LTS
 winget install -e --id Oracle.VirtualBox
