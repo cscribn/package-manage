@@ -8,6 +8,13 @@ Set-FTA IrfanView.jpg .jpg; `
 Set-FTA IrfanView.png .png; `
 Set-FTA IrfanView.tif .tif; `
 Set-FTA IrfanView.webp .webp; `
+Set-FTA LibreOffice.CalcDocument.1 .csv; `
+Set-FTA LibreOffice.CalcDocument.1 .xls; `
+Set-FTA LibreOffice.CalcDocument.1 .xlsx; `
+Set-FTA LibreOffice.WriterDocument.1 .doc; `
+Set-FTA LibreOffice.WriterDocument.1 .docx; `
+Set-FTA LibreOffice.ImpressDocument.1 .ppt; `
+Set-FTA LibreOffice.ImpressDocument.1 .pptx; `
 Set-FTA VLC.avi .avi; `
 Set-FTA VLC.flac .flac; `
 Set-FTA VLC.flv .flv; `

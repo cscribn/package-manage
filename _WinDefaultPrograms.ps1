@@ -1,6 +1,7 @@
 # Non-package installations (add/update these first)
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
+# libreoffice settings: disable jre, enable quickstarter, set default saves to office formats.
 # winget
 
 # remove customized prompt
