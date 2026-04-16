@@ -83,7 +83,8 @@ brew list --cask microsoft-edge || brew install --force --cask microsoft-edge
 
 # netskope certificates
 [[ -f "${HOME}/netskope-cert-bundle.pem" ]] && [[ ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]] && \
-cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"
+cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"; \
+"${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
 
 brew install nmap || brew upgrade nmap
 
