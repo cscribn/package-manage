@@ -68,6 +68,7 @@ brew install --cask github || brew upgrade --cask github
 brew list --cask google-chrome || brew install --force --cask google-chrome
 brew list --cask google-chrome@beta || brew install --force --cask google-chrome@beta
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
+brew install gradle || brew upgrade gradle
 brew install granted || brew upgrade granted
 brew install helm || brew upgrade helm
 brew install --cask hex-fiend || brew upgrade --cask hex-fiend

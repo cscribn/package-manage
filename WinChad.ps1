@@ -10,6 +10,7 @@
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
 choco upgrade fluidsynth -y --ignore-dependencies
+choco install gradle -y --ignore-dependencies
 choco upgrade iconsext -y --ignore-dependencies; choco upgrade iconsext.install -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
