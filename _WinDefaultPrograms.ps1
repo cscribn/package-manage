@@ -17,15 +17,6 @@ choco upgrade nerd-fonts-meslo -y --ignore-dependencies; robocopy  C:\Windows\Fo
 choco upgrade filezilla -y --ignore-dependencies
 choco upgrade ffmpeg -y --ignore-dependencies
 
-# pacman
-if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
-	Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"; `
-	Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"; `
-	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"; `
-	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git" `
-}; `
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* pacman"
-
 # winget
 winget install -e --id cURL.cURL
 
@@ -35,6 +26,15 @@ if (-Not ($GitUpdate -match "No available")) { `
     winget uninstall -e --id Git.Git; `
     winget install -e --id Git.Git; git config --global http.sslBackend openssl `
 }
+
+# pacman
+if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
+	Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"; `
+	Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"; `
+	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"; `
+	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"; `
+}; `
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* pacman"
 
 # powershell
 if (winget install -e --id Microsoft.PowerShell | Select-String "technology is different") { `
