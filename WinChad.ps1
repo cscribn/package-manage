@@ -64,10 +64,10 @@ $Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\
 winget install -e --id NextDNS.NextDNS
 
 # ollama
-$ollamaWasRunning = @(Get-Process -Name ollama -ErrorAction SilentlyContinue).Count -gt 0; `
+$originalOllamaPids = @(Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.ProcessName -like 'ollama*' } | Select-Object -ExpandProperty Id); `
 winget install -e --id Ollama.Ollama; `
 try { `
-    if (-Not @(Get-Process -Name ollama -ErrorAction SilentlyContinue)) { `
+    if ($originalOllamaPids.Count -eq 0) { `
         Start-Process ollama serve -WindowStyle Hidden; `
         Start-Sleep 5 `
     } `
@@ -75,8 +75,9 @@ try { `
     ollama pull nomic-embed-text `
 } `
 finally { `
-    if (-Not $ollamaWasRunning) { `
-        Stop-Process -Name ollama -Force -ErrorAction SilentlyContinue `
+    $newOllamaPids = @(Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.ProcessName -like 'ollama*' } | Select-Object -ExpandProperty Id | Where-Object { $originalOllamaPids -notcontains $_ }); `
+    if ($newOllamaPids.Count -gt 0) { `
+        Stop-Process -Id $newOllamaPids -Force -ErrorAction SilentlyContinue `
     } `
 }
 
