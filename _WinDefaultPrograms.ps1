@@ -72,6 +72,8 @@ winget install -e --id gsass1.NTop
 winget install -e --id HandBrake.HandBrake
 winget install -e --id REALiX.HWiNFO
 winget install -e --id Inkscape.Inkscape
+winget install -e --id KDE.Kdenlive
+winget install -e --id KDE.KMahjongg
 winget install -e --id Insecure.Nmap
 winget install -e --id IrfanSkiljan.IrfanView
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns
@@ -96,7 +98,6 @@ winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id Notepad++.Notepad++
 winget install -e --id OPAutoClicker.OPAutoClicker
 winget install -e --id JohnMacFarlane.Pandoc
-winget install -e --id KDE.Kdenlive
 winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id PFOJEnterprisesLLC.ModernCSV
 winget install -e --id RandyRants.SharpKeys
