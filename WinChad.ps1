@@ -19,20 +19,27 @@ choco upgrade win32diskimager --version 0.9.5 -y --ignore-dependencies; choco pi
 choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.portable -y --ignore-dependencies
 choco upgrade xsltproc -y --ignore-dependencies
 
+winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
-winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
 if ((Get-WinGetPackage -Name "Barrier").Count -eq 0) { `
 	winget install -e --id DebaucheeOpenSourceGroup.Barrier `
     powercfg /requestsoverride PROCESS "barrierc.exe" DISPLAY SYSTEM`
 }
 
-winget install -e --id Docker.DockerDesktop
-winget install -e --id DVDFlick.DVDFlick
+winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
 if ((Get-WinGetPackage -Name "DiskGenius").Count -eq 0) { `
     winget install -e --id Eassos.DiskGenius `
 }
+
+winget install -e --id Docker.DockerDesktop
+winget install -e --id DVDFlick.DVDFlick
+winget install -e --id Fastfetch-cli.Fastfetch
+winget install -e --id GitHub.GitHubDesktop
+winget install -e --id Google.GoogleDrive
+winget install -e --id MHNexus.HxD
+winget install -e --id ImageMagick.ImageMagick
 
 # java
 if ((Get-WinGetPackage -Name JDK).Count -gt 1) { `
@@ -48,12 +55,8 @@ if ($target) { `
     New-Item -ItemType SymbolicLink -Path "C:\jdk" -Target $target.FullName -Force `
 }
 
-winget install -e --id Fastfetch-cli.Fastfetch
-winget install -e --id GitHub.GitHubDesktop
-winget install -e --id Google.GoogleDrive
+winget install -e --id KDE.Krita
 winget install -e --id GuinpinSoft.MakeMKV
-winget install -e --id ImageMagick.ImageMagick
-winget install -e --id MHNexus.HxD
 
 # microsoft (c++) buildtools
 if ((Get-WinGetPackage -Name BuildTools).Count -gt 1) { `
@@ -62,6 +65,7 @@ if ((Get-WinGetPackage -Name BuildTools).Count -gt 1) { `
 $Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id
 
 winget install -e --id NextDNS.NextDNS
+winget install -e --id OpenJS.NodeJS.LTS
 
 # ollama
 $originalOllamaPids = @(Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.ProcessName -like 'ollama*' } | Select-Object -ExpandProperty Id); `
@@ -81,8 +85,6 @@ finally { `
     } `
 }
 
-winget install -e --id OpenJS.NodeJS.LTS
-winget install -e --id Oracle.VirtualBox
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id oschwartz10612.Poppler
 winget install -e --id Postman.Postman
@@ -96,11 +98,11 @@ if ((Get-WinGetPackage Python.Python).Count -gt 1) { `
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id Rufus.Rufus
 winget install -e --id SBCL.SBCL # steel bank common lisp
-winget install -e --id sharkdp.bat
+winget install -e --id srjuddington.slade
 winget install -e --id SQLite.SQLite
 winget install -e --id UB-Mannheim.TesseractOCR
-winget install -e --id srjuddington.slade
 winget install -e --id astral-sh.uv
+winget install -e --id Oracle.VirtualBox
 winget install -e --id WireGuard.WireGuard
 
 # wsl

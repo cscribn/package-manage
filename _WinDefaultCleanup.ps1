@@ -27,6 +27,7 @@ Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "ImgBur
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Inkscape.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Instant Eyedropper.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "IrfanView*.lnk" | Remove-Item
+Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Krita.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "LibreOffice *.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "MakeMKV.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Microsoft Edge.lnk" | Remove-Item
