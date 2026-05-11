@@ -2,8 +2,9 @@
 # anythingllm
 # append C:\jdk to PATH
 # backblaze
-# mise (first install only from https://github.com/jdx/mise/releases)
 # iso compressor
+# mise (first install only from https://github.com/jdx/mise/releases)
+# ollama
 # skraperui
 # yt-dlp-gui (https://github.com/dsymbol/yt-dlp-gui/releases)
 
@@ -66,25 +67,6 @@ $Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\
 
 winget install -e --id NextDNS.NextDNS
 winget install -e --id OpenJS.NodeJS.LTS
-
-# ollama
-$originalOllamaPids = @(Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.ProcessName -like 'ollama*' } | Select-Object -ExpandProperty Id); `
-winget install -e --id Ollama.Ollama; `
-try { `
-    if ($originalOllamaPids.Count -eq 0) { `
-        Start-Process ollama serve -WindowStyle Hidden; `
-        Start-Sleep 5 `
-    } `
-    ollama pull llama3.2:3b; `
-    ollama pull nomic-embed-text `
-} `
-finally { `
-    $newOllamaPids = @(Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.ProcessName -like 'ollama*' } | Select-Object -ExpandProperty Id | Where-Object { $originalOllamaPids -notcontains $_ }); `
-    if ($newOllamaPids.Count -gt 0) { `
-        Stop-Process -Id $newOllamaPids -Force -ErrorAction SilentlyContinue `
-    } `
-}
-
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id oschwartz10612.Poppler
 winget install -e --id Postman.Postman
