@@ -1,10 +1,8 @@
 # Non-package installations (add/update these first)
-# anythingllm
 # append C:\jdk to PATH
 # backblaze
 # iso compressor
 # mise (first install only from https://github.com/jdx/mise/releases)
-# ollama
 # skraperui
 # yt-dlp-gui (https://github.com/dsymbol/yt-dlp-gui/releases)
 
