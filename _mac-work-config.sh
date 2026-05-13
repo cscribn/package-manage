@@ -11,6 +11,9 @@ defaults write com.barebones.bbedit ZoomWindowsInPlace -bool NO
 # finder - show all files
 defaults write com.apple.finder "AppleShowAllFiles" -bool "true" && killall Finder
 
+# hammerspoon
+curl -Lo "${HOME}/.hammerspoon/init.lua" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/hammerspoon/init.lua
+
 # oh-my-posh
 git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
 

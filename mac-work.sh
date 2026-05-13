@@ -70,6 +70,7 @@ brew list --cask google-chrome@beta || brew install --force --cask google-chrome
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install gradle || brew upgrade gradle
 brew install granted || brew upgrade granted
+brew install --cask hammerspoon || brew upgrade --cask hammerspoon
 brew install helm || brew upgrade helm
 brew install --cask hex-fiend || brew upgrade --cask hex-fiend
 brew install --cask iterm2 || brew upgrade --cask iterm2
