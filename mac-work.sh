@@ -20,6 +20,7 @@ fi
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew upgrade
 
+brew tap deskflow/tap
 brew tap sdkman/tap
 brew tap snyk/tap
 brew tap theseal/blank-screensaver
@@ -32,7 +33,6 @@ pipx ensurepath
 
 brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
 brew install --cask alt-tab || brew upgrade --cask alt-tab
-brew install --cask barrier || brew upgrade --cask barrier
 brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
 brew install blank-screensaver || brew upgrade blank-screensaver
@@ -47,6 +47,7 @@ brew install --cask claude || brew upgrade --cask claude
 brew install curl || brew upgrade curl
 brew list --cask cursor || brew install --force --cask cursor
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
+brew install deskflow || brew upgrade deskflow
 
 # docker
 brew install docker-compose || brew upgrade docker-compose

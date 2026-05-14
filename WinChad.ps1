@@ -21,17 +21,13 @@ choco upgrade xsltproc -y --ignore-dependencies
 winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
 
-if ((Get-WinGetPackage -Name "Barrier").Count -eq 0) { `
-	winget install -e --id DebaucheeOpenSourceGroup.Barrier `
-    powercfg /requestsoverride PROCESS "barrierc.exe" DISPLAY SYSTEM`
-}
-
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
 if ((Get-WinGetPackage -Name "DiskGenius").Count -eq 0) { `
     winget install -e --id Eassos.DiskGenius `
 }
 
+winget install -e --id Deskflow.Deskflow
 winget install -e --id Docker.DockerDesktop
 winget install -e --id DVDFlick.DVDFlick
 winget install -e --id Fastfetch-cli.Fastfetch
@@ -96,8 +92,6 @@ wsl -d "Ubuntu" -u root -e apt clean -y
 
 # config
 
-# barrier restart
-Stop-Service -Name "Barrier" -Force; Start-Service -Name "Barrier"
 
 # git
 git config --global diff.word.textconv pandoc --to=markdown
