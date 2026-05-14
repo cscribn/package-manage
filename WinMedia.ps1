@@ -7,7 +7,7 @@ winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 winget install -e --id Google.GoogleDrive
 winget install -e --id PaperCutSoftware.MobilityPrint
 winget install -e --id NextDNS.NextDNS
-winget install -e --id Plex.Plex
+winget install -e --id Plex.PlexMediaServer
 
 # config
 
