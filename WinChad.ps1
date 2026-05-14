@@ -4,7 +4,6 @@
 # iso compressor
 # mise (first install only from https://github.com/jdx/mise/releases)
 # skraperui
-# yt-dlp-gui (https://github.com/dsymbol/yt-dlp-gui/releases)
 
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
@@ -90,8 +89,11 @@ wsl -d "Ubuntu" -u root -e do-release-upgrade; `
 wsl -d "Ubuntu" -u root -e apt autoremove -y; `
 wsl -d "Ubuntu" -u root -e apt clean -y
 
-# config
+# yt-dlp
+winget install -e --id yt-dlp.yt-dlp
+winget install -e --id wez.atomicparsley
 
+# config
 
 # git
 git config --global diff.word.textconv pandoc --to=markdown
