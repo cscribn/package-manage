@@ -38,11 +38,12 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 
 # powershell
 if (winget install -e --id Microsoft.PowerShell | Select-String "technology is different") { `
-winget uninstall -e --id Microsoft.PowerShell; winget install -e --id Microsoft.PowerShell }; `
-Start-Process pwsh -ArgumentList { Install-Module -Name Microsoft.WinGet.Client -Force } -WindowStyle Hidden -Wait; `
-Start-Process pwsh -ArgumentList { Install-Module posh-git -Force } -WindowStyle Hidden -Wait; `
-Start-Process pwsh -ArgumentList { Install-Module PSReadLine -Force } -WindowStyle Hidden -Wait; `
-Start-Process pwsh -ArgumentList { Install-Module Terminal-Icons } -WindowStyle Hidden -Wait
+	winget uninstall -e --id Microsoft.PowerShell; winget install -e --id Microsoft.PowerShell
+}; `
+Install-Module -Name Microsoft.WinGet.Client -Force; `
+Install-Module -Name posh-git -Force; `
+Install-Module -Name PSReadLine -Force; `
+Install-Module -Name Terminal-Icons -Force
 
 winget install -e --id 7zip.7zip
 winget install -e --id aristocratos.btop4win
@@ -121,8 +122,20 @@ winget install -e --id Zoom.Zoom
 
 # zsh
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"; `
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; if (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir}; `
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; if (Test-Path $GitDir) { Set-Location $GitDir; & "C:\Program Files\Git\bin\git" pull; Set-Location - } else { & "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir }; `
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; `
+if (Test-Path $GitDir) { `
+	Set-Location $GitDir; `
+	& "C:\Program Files\Git\bin\git" pull; Set-Location - `
+} else { `
+	& "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir `
+}; `
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; `
+if (Test-Path $GitDir) { `
+	Set-Location $GitDir; `
+	& "C:\Program Files\Git\bin\git" pull; Set-Location - `
+} else { `
+	& "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir `
+}; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
 . $PSScriptRoot\_WinDefaultApps.ps1
