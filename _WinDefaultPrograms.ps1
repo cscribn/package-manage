@@ -106,7 +106,14 @@ winget install -e --id Meltytech.Shotcut
 winget install -e --id SumatraPDF.SumatraPDF
 winget install -e --id TGRMNSoftware.BulkRenameUtility
 winget install -e --id TheDocumentFoundation.LibreOffice
-winget install -e --id VideoLAN.VLC
+
+# vlc
+$VlcUpdate = winget upgrade -e --id VideoLAN.VLC; `
+if (-Not ($VlcUpdate -match "No available")) { `
+    winget install -e --id VideoLAN.VLC; `
+	& "C:\Program Files\VideoLAN\VLC\vlc-cache-gen.exe" "C:\Program Files\VideoLAN\VLC\plugins"
+}
+
 winget install -e --id Microsoft.WindowsPCHealthCheck
 winget install -e --id WinMerge.WinMerge
 winget install -e --id WiresharkFoundation.Wireshark
