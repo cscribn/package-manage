@@ -15,7 +15,6 @@ choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies; robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
 choco upgrade filezilla -y --ignore-dependencies
-choco upgrade ffmpeg -y --ignore-dependencies
 
 # winget
 winget install -e --id cURL.cURL
@@ -51,6 +50,7 @@ winget install -e --id ArminOsaj.AutoDarkMode
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
 winget install -e --id DiskInternals.LinuxReader
 winget install -e --id dotPDN.PaintDotNet
+winget install -e --id Gyan.FFmpeg
 
 # mp3tag with right-click support
 winget install -e --id FlorianHeidenreich.Mp3tag && `
