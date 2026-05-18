@@ -8,7 +8,6 @@
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
 choco upgrade fluidsynth -y --ignore-dependencies
-choco upgrade iconsext -y --ignore-dependencies; choco upgrade iconsext.install -y --ignore-dependencies
 choco upgrade gradle -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
@@ -33,6 +32,7 @@ winget install -e --id Fastfetch-cli.Fastfetch
 winget install -e --id GitHub.GitHubDesktop
 winget install -e --id Google.GoogleDrive
 winget install -e --id MHNexus.HxD
+winget install -e --id NirSoft.IconsExtract
 winget install -e --id ImageMagick.ImageMagick
 
 # java
