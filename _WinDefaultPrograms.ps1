@@ -100,7 +100,7 @@ winget install -e --id Notepad++.Notepad++
 winget install -e --id OPAutoClicker.OPAutoClicker
 winget install -e --id JohnMacFarlane.Pandoc
 winget install -e --id PDFLabs.PDFtk.Free
-winget install -e --id PFOJEnterprisesLLC.ModernCSV
+winget uninstall -e --id PFOJEnterprisesLLC.ModernCSV
 winget install -e --id RandyRants.SharpKeys
 winget install -e --id Scribus.Scribus
 winget install -e --id Meltytech.Shotcut
