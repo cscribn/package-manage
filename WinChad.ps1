@@ -19,7 +19,6 @@ choco upgrade xsltproc -y --ignore-dependencies
 
 winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
-
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
 if ((Get-WinGetPackage -Name "DiskGenius").Count -eq 0) { `

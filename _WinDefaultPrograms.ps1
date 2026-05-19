@@ -46,16 +46,14 @@ Install-Module -Name PSReadLine -Force; `
 Install-Module -Name Terminal-Icons -Force
 
 winget install -e --id 7zip.7zip
-winget install -e --id aristocratos.btop4win
+winget install -e --id Mythicsoft.AgentRansack
 winget install -e --id ArminOsaj.AutoDarkMode
+winget install -e --id aristocratos.btop4win
+winget install -e --id TGRMNSoftware.BulkRenameUtility
 winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
-winget install -e --id DiskInternals.LinuxReader
-winget install -e --id dotPDN.PaintDotNet
 winget install -e --id Gyan.FFmpeg
-
-# mp3tag with right-click support
-winget install -e --id FlorianHeidenreich.Mp3tag && `
-regsvr32 /s "C:\Program Files\Mp3tag\Mp3tagShell.dll"
+winget install -e --id Mozilla.Firefox
+winget install -e --id junegunn.fzf
 
 # gimp
 if ((Get-WinGetPackage -Name GIMP).Count -gt 1) { `
@@ -70,18 +68,16 @@ if ((Get-WinGetPackage -Name "Google Chrome").Count -eq 0) { `
 
 winget install -e --id Google.ChromeRemoteDesktopHost
 winget install -e --id Google.PlatformTools
-winget install -e --id gsass1.NTop
 winget install -e --id HandBrake.HandBrake
 winget install -e --id REALiX.HWiNFO
+winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
-winget install -e --id KDE.Kdenlive
-winget install -e --id KDE.KMahjongg
-winget install -e --id Insecure.Nmap
 winget install -e --id IrfanSkiljan.IrfanView
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns
-winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
-winget install -e --id junegunn.fzf
-winget install -e --id LIGHTNINGUK.ImgBurn
+winget install -e --id KDE.Kdenlive
+winget install -e --id KDE.KMahjongg
+winget install -e --id TheDocumentFoundation.LibreOffice
+winget install -e --id DiskInternals.LinuxReader
 winget install -e --id lsd-rs.lsd
 
 # microsoft edge
@@ -95,19 +91,23 @@ if ((Get-WinGetPackage -Name "Microsoft Visual Studio Code").Count -eq 0) { `
 }
 
 winget install -e --id Microsoft.WindowsTerminal
-winget install -e --id Mozilla.Firefox
-winget install -e --id Mythicsoft.AgentRansack
+
+# mp3tag with right-click support
+winget install -e --id FlorianHeidenreich.Mp3tag && `
+regsvr32 /s "C:\Program Files\Mp3tag\Mp3tagShell.dll"
+
+winget install -e --id Insecure.Nmap
 winget install -e --id Notepad++.Notepad++
+winget install -e --id gsass1.NTop
+winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id OPAutoClicker.OPAutoClicker
+winget install -e --id dotPDN.PaintDotNet
 winget install -e --id JohnMacFarlane.Pandoc
 winget install -e --id PDFLabs.PDFtk.Free
-winget uninstall -e --id PFOJEnterprisesLLC.ModernCSV
-winget install -e --id RandyRants.SharpKeys
 winget install -e --id Scribus.Scribus
+winget install -e --id RandyRants.SharpKeys
 winget install -e --id Meltytech.Shotcut
 winget install -e --id SumatraPDF.SumatraPDF
-winget install -e --id TGRMNSoftware.BulkRenameUtility
-winget install -e --id TheDocumentFoundation.LibreOffice
 
 # vlc
 $VlcUpdate = winget upgrade -e --id VideoLAN.VLC; `
