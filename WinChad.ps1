@@ -9,7 +9,6 @@
 
 choco upgrade fluidsynth -y --ignore-dependencies
 choco upgrade gradle -y --ignore-dependencies
-choco uninstall iconsext -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
 choco upgrade pngyu -y --ignore-dependencies
 choco upgrade tftpd32 -y --ignore-dependencies
