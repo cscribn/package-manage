@@ -2,11 +2,6 @@
 # Non-package installations (add this last)
 # bash ${HOME}/plexamp-install.sh
 
-# settings
-set -o errexit
-set -o pipefail
-[[ "${TRACE-0}" = "1" ]] && set -o xtrace
-
 # global variables
 SCRIPT_NAME="$(basename "${0}")"
 readonly SCRIPT_NAME
