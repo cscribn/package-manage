@@ -21,6 +21,8 @@ wget -O "${HOME}/plexamp-install.sh" https://gist.githubusercontent.com/tgp-2/65
 sudo apt autoremove -y; sudo apt clean -y
 
 # plexamp instructions
-echo "Copy and paste the following to upgrade plexamp:"; \
+echo "Copy and paste the following to UPGRADE plexamp:"; \
+echo "cd ${HOME}/.plexamp && bash ./upgrade.sh"; \
+echo "Or copy and paste the following to INSTALL plexamp:"; \
 echo "cd ${HOME} && bash ./plexamp-install.sh"; \
 echo "After installation, make sure Settings -> Playback -> Audio Output -> Audio Device is set correctly."
