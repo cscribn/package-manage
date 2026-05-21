@@ -5,13 +5,9 @@
 sudo apt update
 sudo apt dist-upgrade -y
 
-# btop
-wget -qO "${HOME}/btop.tbz" https://github.com/aristocratos/btop/releases/latest/download/btop-aarch64-linux-musl.tbz; \
-sudo tar xf "${HOME}/btop.tbz" -C /usr/local/bin --strip-components=3 ./btop/bin/btop; \
-rm -rf "${HOME}/btop.tbz"
-
+sudo apt install btop -y
 sudo apt install curl -y
-sudo apt install neofetch -y
+sudo apt install fastfetch -y
 sudo apt install fzf -y
 sudo apt install git -y
 sudo apt install htop -y
