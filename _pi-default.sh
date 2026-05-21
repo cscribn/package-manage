@@ -1,6 +1,17 @@
 #!/bin/bash
 # Non-package installations (add these first)
 
+# settings
+set -o errexit
+set -o pipefail
+[[ "${TRACE-0}" = "1" ]] && set -o xtrace
+
+# global variables
+SCRIPT_NAME="$(basename "${0}")"
+readonly SCRIPT_NAME
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+readonly SCRIPT_DIR
+
 # update, autoremove, clean, upgrade all apt
 sudo apt update
 sudo apt dist-upgrade -y
@@ -30,5 +41,4 @@ sudo apt install zsh -y
 git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
 git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
 
-script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ); \
-source "${script_dir}/_pi-default-config.sh"
+source "${SCRIPT_DIR}/_pi-default-config.sh"
