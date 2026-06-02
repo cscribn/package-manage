@@ -114,6 +114,7 @@ brew install powershell ||brew upgrade powershell; launchctl setenv POWERSHELL_U
 brew install pre-commit || brew upgrade pre-commit
 brew install python || brew upgrade python;
 brew install python@3.12 || brew upgrade python@3.12
+brew install ripgrep || brew upgrade ripgrep
 brew install sbcl || brew upgrade sbcl # steel bank common lisp
 
 # sdkman
