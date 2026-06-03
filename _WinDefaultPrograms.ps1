@@ -73,7 +73,7 @@ winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
 winget install -e --id IrfanSkiljan.IrfanView
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns
-winget install -e --id KDE.Kdenlive
+winget uninstall -e --id KDE.Kdenlive
 winget install -e --id KDE.KMahjongg
 winget install -e --id TheDocumentFoundation.LibreOffice
 winget install -e --id DiskInternals.LinuxReader
@@ -106,7 +106,7 @@ winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id BurntSushi.ripgrep.MSVC
 winget install -e --id Scribus.Scribus
 winget install -e --id RandyRants.SharpKeys
-winget install -e --id Meltytech.Shotcut
+winget uninstall -e --id Meltytech.Shotcut
 winget install -e --id SumatraPDF.SumatraPDF
 
 # vlc
