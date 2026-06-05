@@ -107,7 +107,6 @@ npm install -g @google/gemini-cli@latest
 brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
 brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
-brew install poetry || brew upgrade poetry
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
 brew install --cask postman || brew upgrade --force --cask postman
 brew install powershell ||brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off
