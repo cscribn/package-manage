@@ -20,7 +20,17 @@ Move-Item (Join-Path $extractedDir.FullName "lsd") (Join-Path $path "lsd-aarch64
 Remove-Item $extractedDir.FullName -Recurse; Remove-Item $targetFile
 
 # oh-my-posh
-curl -Lo "$Env:USERPROFILE\Projects\gaming-utils\sync\mirror\batocera\userdata\system\custom\usr\bin\posh-linux-amd64" https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
-curl -Lo "$Env:USERPROFILE\Projects\gaming-utils\sync\mirror\batocera\userdata\system\custom\usr\bin\posh-linux-arm64" https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm64
-
+$binDir = "$Env:USERPROFILE\Projects\gaming-utils\sync\mirror\batocera\userdata\system\custom\usr\bin"; `
+$poshFiles = @{ `
+    "posh-linux-amd64" = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64"; `
+    "posh-linux-arm64" = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm64"; }; `
+foreach ($fileName in $poshFiles.Keys) { `
+    $destination = Join-Path $binDir $fileName; $tempFile = [System.IO.Path]::GetTempFileName(); `
+    Invoke-WebRequest -Uri $poshFiles[$fileName] -OutFile $tempFile; `
+    if (-not (Test-Path $destination)) { Move-Item $tempFile $destination -Force; } `
+    else { `
+        $sourceHash = Get-FileHash $tempFile -Algorithm SHA256; $destHash = Get-FileHash $destination -Algorithm SHA256; `
+        if ($sourceHash.Hash -ne $destHash.Hash) { Move-Item $tempFile $destination -Force; } `
+        else { Remove-Item $tempFile -Force; } } `
+}; `
 $GitDir = "$Env:USERPROFILE\Projects\gaming-utils\sync\mirror\batocera\userdata\system\.config\oh-my-posh"; If (Test-Path $GitDir) { Set-Location $GitDir; git pull; Set-Location - } Else { git clone "https://github.com/cscribn/dotfiles-oh-my-posh.git" $GitDir}
