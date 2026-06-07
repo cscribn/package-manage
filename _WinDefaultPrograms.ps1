@@ -1,4 +1,5 @@
 # Non-package installations (add/update these first)
+# davinici resolve, set video directory to Documents\DavinciResolve
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
 # libreoffice settings: disable jre, enable quickstarter, set default saves to office formats.
@@ -73,7 +74,6 @@ winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
 winget install -e --id IrfanSkiljan.IrfanView
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns
-winget uninstall -e --id KDE.Kdenlive
 winget install -e --id KDE.KMahjongg
 winget install -e --id TheDocumentFoundation.LibreOffice
 winget install -e --id DiskInternals.LinuxReader
@@ -106,7 +106,6 @@ winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id BurntSushi.ripgrep.MSVC
 winget install -e --id Scribus.Scribus
 winget install -e --id RandyRants.SharpKeys
-winget uninstall -e --id Meltytech.Shotcut
 winget install -e --id SumatraPDF.SumatraPDF
 
 # vlc
