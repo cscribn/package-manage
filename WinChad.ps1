@@ -60,7 +60,12 @@ $Id = Find-WinGetPackage BuildTools | Where-Object { $_.Version -match '^\d+(\.\
 
 winget install -e --id NextDNS.NextDNS
 winget install -e --id OpenJS.NodeJS.LTS
-winget install -e --id Ollama.Ollama
+
+# ollama
+if ((Get-WinGetPackage -Name "Ollama").Count -eq 0) { `
+	winget install -e --id Ollama.Ollama `
+}
+
 winget install -e --id Poly.PlantronicsHub
 winget install -e --id oschwartz10612.Poppler
 winget install -e --id Postman.Postman
