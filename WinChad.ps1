@@ -82,13 +82,7 @@ winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id rtk-ai.rtk; `
 New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.claude"; `
 rtk init -g --auto-patch; `
-rtk init -g --gemini; `
-$p = "$env:APPDATA\Code\User\settings.json"; `
-$i = "Before suggesting or executing terminal commands, you must format them according to the RTK proxy guidelines found in ~/.claude/CLAUDE.md. Always wrap terminal tools like git, cargo, npm, test runners, and directory listings using the rtk prefix when applicable." ; `
-$j = if (Test-Path $p) { Get-Content $p -Raw | ConvertFrom-Json } else { [pscustomobject]@{} } ; `
-$k = "github.copilot.chat.codeGeneration.instructions" ; `
-if (!$j.$k) { $j | Add-Member -NotePropertyName $k -NotePropertyValue @() } ; `
-if ($j.$k -notcontains $i) { $j.$k += @($i); $j | ConvertTo-Json -Depth 100 | Set-Content $p -Encoding utf8 }
+rtk init -g --gemini
 
 winget install -e --id Rufus.Rufus
 winget install -e --id SBCL.SBCL # steel bank common lisp
