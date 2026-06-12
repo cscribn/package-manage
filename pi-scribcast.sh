@@ -3,7 +3,6 @@
 # bash ${HOME}/plexamp-install.sh
 # Manual updates for after install/upgrade:
 #
-# bash ${HOME}/plexamp/upgrade.sh
 # cd ${HOME}/plexamp && bash ./upgrade.sh
 # OR
 # cd ${HOME} && bash ./plexamp-install.sh
