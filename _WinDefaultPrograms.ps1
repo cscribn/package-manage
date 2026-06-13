@@ -31,8 +31,8 @@ winget install -e --id cURL.cURL
 # git
 $GitUpdate = winget upgrade -e --id Git.Git; `
 if (-Not ($GitUpdate -match "No available")) { `
-    winget uninstall -e --id Git.Git; `
-    winget install -e --id Git.Git; git config --global http.sslBackend openssl `
+	winget uninstall -e --id Git.Git; `
+	winget install -e --id Git.Git; git config --global http.sslBackend openssl `
 }
 
 # pacman
@@ -65,7 +65,7 @@ winget install -e --id junegunn.fzf
 
 # gimp
 if ((Get-WinGetPackage -Name GIMP).Count -gt 1) { `
-    $Id = Get-WinGetPackage -Name GIMP | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
+	$Id = Get-WinGetPackage -Name GIMP | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
 } `
 $Id = Find-WinGetPackage GIMP.GIMP | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id;
 
@@ -119,7 +119,7 @@ winget install -e --id SumatraPDF.SumatraPDF
 # vlc
 $VlcUpdate = winget upgrade -e --id VideoLAN.VLC; `
 if (-Not ($VlcUpdate -match "No available")) { `
-    winget install -e --id VideoLAN.VLC; `
+	winget install -e --id VideoLAN.VLC; `
 	& "C:\Program Files\VideoLAN\VLC\vlc-cache-gen.exe" "C:\Program Files\VideoLAN\VLC\plugins"
 }
 
