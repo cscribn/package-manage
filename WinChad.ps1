@@ -8,6 +8,10 @@
 
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
+# copilot instructions - copy early for appending later
+New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.copilot"; `
+curl -Lo "$Env:USERPROFILE\.copilot\copilot-instructions.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md
+
 choco upgrade fluidsynth -y --ignore-dependencies
 choco upgrade gradle -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
@@ -19,6 +23,11 @@ choco upgrade xsltproc -y --ignore-dependencies
 
 winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
+
+# caveman ai
+"`n## Caveman AI`n`n" | Add-Content -Path "$env:USERPROFILE\.copilot\copilot-instructions.md"; `
+(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JuliusBrussee/caveman/main/src/rules/caveman-activate.md" -UseBasicParsing).Content | Add-Content -Path "$env:USERPROFILE\.copilot\copilot-instructions.md"
+
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
 if ((Get-WinGetPackage -Name "DiskGenius").Count -eq 0) { `
@@ -77,13 +86,7 @@ if ((Get-WinGetPackage Python.Python).Count -gt 1) { `
 }
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
-
-# rtk
-winget install -e --id rtk-ai.rtk; `
-New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.claude"; `
-rtk init -g --auto-patch; `
-rtk init -g --gemini
-
+winget install -e --id rtk-ai.rtk; rtk init --global --copilot
 winget install -e --id Rufus.Rufus
 winget install -e --id SBCL.SBCL # steel bank common lisp
 winget install -e --id srjuddington.slade
