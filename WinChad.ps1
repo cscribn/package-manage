@@ -23,11 +23,6 @@ choco upgrade xsltproc -y --ignore-dependencies
 
 winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
-
-# caveman ai
-"`n## Caveman AI`n" | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"; `
-(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JuliusBrussee/caveman/main/src/rules/caveman-activate.md" -UseBasicParsing).Content | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"
-
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
 if ((Get-WinGetPackage -Name "DiskGenius").Count -eq 0) { `
@@ -86,11 +81,7 @@ if ((Get-WinGetPackage Python.Python).Count -gt 1) { `
 }
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
-
-# rtk ai
 winget install -e --id rtk-ai.rtk; rtk init --global --copilot; `
-Get-Content -Path "$Env:USERPROFILE\.copilot\copilot-instructions.md" | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"
-
 winget install -e --id Rufus.Rufus
 winget install -e --id SBCL.SBCL # steel bank common lisp
 winget install -e --id srjuddington.slade
@@ -101,14 +92,6 @@ winget install -e --id UB-Mannheim.TesseractOCR
 (scoop bucket list | Select-String -Pattern "^tokensave\s") || scoop bucket add tokensave https://github.com/aovestdipaperino/scoop-bucket; `
 (scoop list | Select-String -Pattern "^tokensave\s") && scoop update tokensave || scoop install tokensave; `
 , "Y" | tokensave install --agent copilot
-$d="$Env:USERPROFILE\.git_global_hooks"; `
-if (!(Test-Path $d)) { New-Item -ItemType Directory -Path $d | Out-Null }; `
-git config --global core.hooksPath "$d"; @'
-#!/bin/bash
-if [ "$3" = "1" ] && command -v tokensave >/dev/null 2>&1; then
-    yes Y | tokensave init >/dev/null 2>&1 &
-fi
-'@ | Out-File -FilePath "$d\post-checkout" -Encoding utf8NoBOM
 
 winget install -e --id astral-sh.uv
 winget install -e --id Oracle.VirtualBox
@@ -129,6 +112,13 @@ winget install -e --id wez.atomicparsley
 
 # config
 
+# caveman ai
+"`n## Caveman AI`n" | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"; `
+(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JuliusBrussee/caveman/main/src/rules/caveman-activate.md" -UseBasicParsing).Content | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"
+
+# copilot instructions
+Get-Content -Path "$Env:USERPROFILE\.copilot\copilot-instructions.md" | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"
+
 # git
 git config --global diff.word.textconv pandoc --to=markdown
 
@@ -139,7 +129,17 @@ curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscrib
 . $PSScriptRoot\_WinDefaultCleanup.ps1
 
 # file types
-Set-FTA Applications\notepad++.exe .txt
+Set-FTA Applications\notepad++.exe .
+
+# tokensave git hook
+$d="$Env:USERPROFILE\.git_global_hooks"; `
+if (!(Test-Path $d)) { New-Item -ItemType Directory -Path $d | Out-Null }; `
+git config --global core.hooksPath "$d"; @'
+#!/bin/bash
+if [ "$3" = "1" ] && command -v tokensave >/dev/null 2>&1; then
+    yes Y | tokensave init >/dev/null 2>&1 &
+fi
+'@ | Out-File -FilePath "$d\post-checkout" -Encoding utf8NoBOM
 
 # cleanup
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
