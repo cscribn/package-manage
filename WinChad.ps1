@@ -86,11 +86,7 @@ if ((Get-WinGetPackage Python.Python).Count -gt 1) { `
 }
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
-
-# rtk ai
-winget install -e --id rtk-ai.rtk; rtk init --global --copilot; `
-Get-Content -Path "$Env:USERPROFILE\.copilot\copilot-instructions.md" | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"
-
+winget install -e --id rtk-ai.rtk;
 winget install -e --id Rufus.Rufus
 winget install -e --id SBCL.SBCL # steel bank common lisp
 winget install -e --id srjuddington.slade
