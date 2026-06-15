@@ -9,8 +9,8 @@
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
 # copilot instructions - copy early for appending later
-New-Item -ItemType Directory -Force -Path "$Env:APPDATA\Code\User\prompts";
-curl -Lo "$Env:APPDATA\Code\User\prompts\copilot-instructions.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md
+New-Item -ItemType Directory -Force -Path "$Env:APPDATA\Roaming\Code\User\prompts";
+curl -Lo "$Env:APPDATA\Roaming\Code\User\prompts\copilot-instructions.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md
 
 choco upgrade fluidsynth -y --ignore-dependencies
 choco upgrade gradle -y --ignore-dependencies
@@ -25,8 +25,8 @@ winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
 
 # caveman ai
-"`n## Caveman AI`n" | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"; `
-(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JuliusBrussee/caveman/main/src/rules/caveman-activate.md" -UseBasicParsing).Content | Add-Content -Path "$Env:APPDATA\Code\User\prompts\copilot-instructions.md"
+"`n## Caveman AI`n" | Add-Content -Path "$Env:APPDATA\Roaming\Code\User\prompts\copilot-instructions.md"; `
+(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JuliusBrussee/caveman/main/src/rules/caveman-activate.md" -UseBasicParsing).Content | Add-Content -Path "$Env:APPDATA\Roaming\Code\User\prompts\copilot-instructions.md"
 
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
@@ -97,7 +97,7 @@ winget install -e --id UB-Mannheim.TesseractOCR
 (scoop bucket list | Select-String -Pattern "^tokensave\s") || scoop bucket add tokensave https://github.com/aovestdipaperino/scoop-bucket; `
 (scoop list | Select-String -Pattern "^tokensave\s") && scoop update tokensave || scoop install tokensave; `
 , "Y" | tokensave install --agent copilot
-$d="$Env:USERPROFILE\.git_global_hooks"; `
+$d="$env:USERPROFILE\.git_global_hooks"; `
 if (!(Test-Path $d)) { New-Item -ItemType Directory -Path $d | Out-Null }; `
 git config --global core.hooksPath "$d"; @'
 #!/bin/bash
