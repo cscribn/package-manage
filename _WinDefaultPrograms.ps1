@@ -82,6 +82,7 @@ winget install -e --id LIGHTNINGUK.ImgBurn
 winget install -e --id Inkscape.Inkscape
 winget install -e --id IrfanSkiljan.IrfanView
 winget install -e --id IrfanSkiljan.IrfanView.PlugIns
+winget install -e --id jqlang.jq
 winget install -e --id KDE.KMahjongg
 winget install -e --id TheDocumentFoundation.LibreOffice
 winget install -e --id DiskInternals.LinuxReader
