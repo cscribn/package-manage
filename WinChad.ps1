@@ -97,14 +97,6 @@ winget install -e --id UB-Mannheim.TesseractOCR
 (scoop bucket list | Select-String -Pattern "^tokensave\s") || scoop bucket add tokensave https://github.com/aovestdipaperino/scoop-bucket; `
 (scoop list | Select-String -Pattern "^tokensave\s") && scoop update tokensave || scoop install tokensave; `
 , "Y" | tokensave install --agent copilot
-$d="$env:USERPROFILE\.git_global_hooks"; `
-if (!(Test-Path $d)) { New-Item -ItemType Directory -Path $d | Out-Null }; `
-git config --global core.hooksPath "$d"; @'
-#!/bin/bash
-if [ "$3" = "1" ] && command -v tokensave >/dev/null 2>&1; then
-    yes Y | tokensave init >/dev/null 2>&1 &
-fi
-'@ | Out-File -FilePath "$d\post-checkout" -Encoding utf8NoBOM
 
 winget install -e --id astral-sh.uv
 winget install -e --id Oracle.VirtualBox
