@@ -92,12 +92,6 @@ winget install -e --id SBCL.SBCL # steel bank common lisp
 winget install -e --id srjuddington.slade
 winget install -e --id SQLite.SQLite
 winget install -e --id UB-Mannheim.TesseractOCR
-
-# tokensave
-(scoop bucket list | Select-String -Pattern "^tokensave\s") || scoop bucket add tokensave https://github.com/aovestdipaperino/scoop-bucket; `
-(scoop list | Select-String -Pattern "^tokensave\s") && scoop update tokensave || scoop install tokensave; `
-, "Y" | tokensave install --agent copilot
-
 winget install -e --id astral-sh.uv
 winget install -e --id Oracle.VirtualBox
 winget install -e --id WireGuard.WireGuard

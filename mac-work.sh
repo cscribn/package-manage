@@ -131,20 +131,6 @@ export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \
 
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
-
-# tokensave
-brew install aovestdipaperino/tap/tokensave || brew upgrade aovestdipaperino/tap/tokensave; \
-yes Y | tokensave install --agent cursor; \
-d="${HOME}/.git_global_hooks"; mkdir -p "$d"; \
-git config --global core.hooksPath "$d"; \
-cat > "$d/post-checkout" <<'EOF'
-#!/bin/bash
-if [ "$3" = "1" ] && command -v tokensave >/dev/null 2>&1; then
-    yes Y | tokensave init >/dev/null 2>&1 &
-fi
-EOF
-chmod +x "$d/post-checkout"
-
 brew install uv || brew upgrade uv
 brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
