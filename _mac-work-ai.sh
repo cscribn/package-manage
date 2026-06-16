@@ -2,7 +2,8 @@
 
 # cursor instructions - download
 mkdir -p "${HOME}/.config/cursor"; \
-curl -fsSL -o "${HOME}/.config/cursor/instructions.mdc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md
+{ printf '%s\n' '---' 'alwaysApply: true' '---' ''; \
+    curl -fsSL https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md; } > "${HOME}/.config/cursor/instructions.mdc"
 
 # caveman ai
 printf '\n## Response Style\n' >> "${HOME}/.config/cursor/instructions.mdc"; \
