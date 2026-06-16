@@ -5,6 +5,7 @@
 # scansnap
 # silhouette studio
 
+Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
 winget install -e --id BlueStack.BlueStacks

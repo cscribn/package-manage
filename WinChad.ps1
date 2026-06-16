@@ -6,6 +6,7 @@
 # mise (first install only from https://github.com/jdx/mise/releases)
 # skraperui
 
+Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
 # copilot instructions - copy early for appending later
