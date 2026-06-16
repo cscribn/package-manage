@@ -114,14 +114,7 @@ brew install pre-commit || brew upgrade pre-commit
 brew install python || brew upgrade python;
 brew install python@3.12 || brew upgrade python@3.12
 brew install ripgrep || brew upgrade ripgrep
-
-# rtk
-brew install rtk || brew upgrade rtk; \
-mkdir -p "${HOME}/.claude"; \
-rtk init -g --auto-patch; \
-rtk init -g --agent cursor; \
-rtk init -g --gemini
-
+brew install rtk || brew upgrade rtk; mkdir -p "${HOME}/.claude"; yes Y | rtk init -g --agent cursor
 brew install sbcl || brew upgrade sbcl # steel bank common lisp
 
 # sdkman
