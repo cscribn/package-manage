@@ -7,6 +7,7 @@
 # screen shot: In Finder locate Application/Utilities/ScreenShot.app, grab a hold of the app, and drag/drop onto the Dock.
 # sudo git lfs install --system
 
+date "+%A, %B %d, %Y - %I:%M %p"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin"
 
 # Check password before proceeding
@@ -17,7 +18,6 @@ else
     exit 1
 fi
 
-date "+%A, %B %d, %Y - %I:%M %p"
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew upgrade
 
