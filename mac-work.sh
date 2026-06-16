@@ -124,6 +124,7 @@ export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \
 
 brew install snyk || brew upgrade snyk
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
+brew install tokensave || brew upgrade tokensave; yes Y | tokensave install --agent cursor
 brew install uv || brew upgrade uv
 brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
