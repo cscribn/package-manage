@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# cursor instructions - download
+mkdir -p "${HOME}/.config/cursor"; \
+curl -fsSL -o "${HOME}/.config/cursor/instructions.mdc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md
+
+# caveman ai
+printf '\n## Response Style\n' >> "${HOME}/.config/cursor/instructions.mdc"; \
+curl -fsSL "https://raw.githubusercontent.com/JuliusBrussee/caveman/main/src/rules/caveman-activate.md" >> "${HOME}/.config/cursor/instructions.mdc"
+
+# cursor instructions - copy
+src="${HOME}/.config/cursor/instructions.mdc"; \
+for dir in "${HOME}/projects"/*/; do \
+    [[ -d "$dir" ]] || continue; \
+    target="${dir}.cursor/rules/instructions.mdc"; \
+    if [[ -f "$target" ]]; then \
+        if [[ "$(shasum -a 256 "$target" | awk '{print $1}')" != "$(shasum -a 256 "$src" | awk '{print $1}')" ]]; then \
+            cp "$src" "$target"; \
+            cd "$dir" || exit 1; \
+            git add .cursor/rules/instructions.mdc && git commit -m "Update cursor rules" && git remote | grep -q '^origin$' && git push origin HEAD; \
+            cd - || exit 1; \
+        fi; \
+    fi; \
+done
+
+# tokensave
+for dir in "${HOME}/projects"/*/; do \
+    [[ -d "$dir" ]] || continue; \
+    if [[ -d "${dir}.tokensave" ]]; then \
+        cd "$dir" || exit 1; \
+        tokensave sync; \
+        cd - || exit 1; \
+    fi; \
+done
