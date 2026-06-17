@@ -14,5 +14,5 @@ Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object { `
             Pop-Location; `
         } `
     } `
-} `
+}; `
 Clear-Content -Path $src
