@@ -5,10 +5,6 @@ mkdir -p "${HOME}/.config/cursor"; \
 { printf '%s\n' '---' 'alwaysApply: true' '---' ''; \
     curl -fsSL https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md; } > "${HOME}/.config/cursor/instructions.mdc"
 
-# caveman ai
-printf '\n## Response Style\n' >> "${HOME}/.config/cursor/instructions.mdc"; \
-curl -fsSL "https://raw.githubusercontent.com/JuliusBrussee/caveman/main/src/rules/caveman-activate.md" >> "${HOME}/.config/cursor/instructions.mdc"
-
 # cursor instructions - copy
 src="${HOME}/.config/cursor/instructions.mdc"; \
 for dir in "${HOME}/projects"/*/; do \

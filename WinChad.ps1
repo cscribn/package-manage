@@ -24,11 +24,6 @@ choco upgrade xsltproc -y --ignore-dependencies
 
 winget install -e --id sharkdp.bat
 winget install -e --id BlueStack.BlueStacks
-
-# caveman ai
-"`n## Response Style`n" | Add-Content -Path "$env:USERPROFILE\.copilot\copilot-instructions.md"; `
-(Invoke-WebRequest -Uri "https://raw.githubusercontent.com/JuliusBrussee/caveman/main/src/rules/caveman-activate.md" -UseBasicParsing).Content | Add-Content -Path "$env:USERPROFILE\.copilot\copilot-instructions.md"
-
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
 if ((Get-WinGetPackage -Name "DiskGenius").Count -eq 0) { `
