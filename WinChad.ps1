@@ -87,7 +87,6 @@ if ((Get-WinGetPackage Python.Python).Count -gt 1) { `
 }
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
-winget install -e --id rtk-ai.rtk; rtk init --global --copilot
 winget install -e --id Rufus.Rufus
 winget install -e --id SBCL.SBCL # steel bank common lisp
 winget install -e --id srjuddington.slade
