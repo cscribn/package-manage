@@ -23,13 +23,3 @@ for dir in "${HOME}/projects"/*/; do \
         fi; \
     fi; \
 done
-
-# tokensave
-for dir in "${HOME}/projects"/*/; do \
-    [[ -d "$dir" ]] || continue; \
-    if [[ -d "${dir}.tokensave" ]]; then \
-        cd "$dir" || exit 1; \
-        tokensave sync; \
-        cd - || exit 1; \
-    fi; \
-done
