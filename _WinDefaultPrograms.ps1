@@ -17,14 +17,6 @@ choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies; robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
 choco upgrade filezilla -y --ignore-dependencies
 
-# scoop
-if (!(Get-Command scoop -ErrorAction SilentlyContinue)) { `
-	$p = Get-ExecutionPolicy -Scope CurrentUser; `
-	Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force; `
-	Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"; `
-	Set-ExecutionPolicy $p -Scope CurrentUser -Force `
-} else { scoop update }
-
 # winget
 winget install -e --id cURL.cURL
 
