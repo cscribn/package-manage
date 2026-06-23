@@ -79,7 +79,8 @@ winget install -e --id PuTTY.PuTTY
 # python
 if ((Get-WinGetPackage Python.Python).Count -gt 1) { `
     $Id = Get-WinGetPackage Python.Python | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
-}
+} `
+python -m pip install --upgrade pip
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id Rufus.Rufus
