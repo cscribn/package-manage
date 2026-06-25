@@ -1,6 +1,7 @@
 # Non-package installations (add/update these first)
 # append C:\jdk to PATH
 # backblaze
+# github desktop
 # iso compressor
 # krita generative AI - https://github.com/Acly/krita-ai-diffusion
 # mise (first install only from https://github.com/jdx/mise/releases)
@@ -34,7 +35,6 @@ winget install -e --id Deskflow.Deskflow
 winget install -e --id Docker.DockerDesktop
 winget install -e --id DVDFlick.DVDFlick
 winget install -e --id Fastfetch-cli.Fastfetch
-winget install -e --id GitHub.GitHubDesktop
 winget install -e --id Google.GoogleDrive
 winget install -e --id MHNexus.HxD
 winget install -e --id NirSoft.IconsExtract
