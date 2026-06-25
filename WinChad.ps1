@@ -112,6 +112,21 @@ git config --global diff.word.textconv pandoc --to=markdown
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-chad.json
 
+# requirements
+$GitDir = "$Env:USERPROFILE\.config\dotfiles-misc"; `
+if (Test-Path $GitDir) { `
+    Set-Location $GitDir; `
+    git pull origin; Set-Location - `
+} else { `
+    git init $GitDir; `
+    Set-Location $GitDir; `
+    git checkout -b main; `
+    git remote add origin "https://github.com/cscribn/dotfiles-misc"; `
+    git sparse-checkout set "requirements"; `
+    git pull --set-upstream origin main; `
+    Set-Location - `
+}
+
 . $PSScriptRoot\_WinDefaultCleanup.ps1
 
 # file types
