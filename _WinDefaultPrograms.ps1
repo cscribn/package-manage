@@ -126,16 +126,16 @@ winget install -e --id Zoom.Zoom
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; `
 if (Test-Path $GitDir) { `
 	Set-Location $GitDir; `
-	& "C:\Program Files\Git\bin\git" pull; Set-Location - `
+	git pull; Set-Location - `
 } else { `
-	& "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir `
+	git clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir `
 }; `
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; `
 if (Test-Path $GitDir) { `
 	Set-Location $GitDir; `
-	& "C:\Program Files\Git\bin\git" pull; Set-Location - `
+	git pull; Set-Location - `
 } else { `
-	& "C:\Program Files\Git\bin\git" clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir `
+	git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir `
 }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
