@@ -39,6 +39,7 @@ brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
 brew install blank-screensaver || brew upgrade blank-screensaver
 brew install btop || brew upgrade btop
+brew install bun || brew upgrade bun
 
 # busylight-for-humans
 if pipx list --json | jq -e '.venvs | has("busylight-for-humans")' >/dev/null; then pipx upgrade busylight-for-humans; else pipx install busylight-for-humans; fi; \
@@ -103,6 +104,7 @@ cd "${HOME}/.nvm/versions/node" || exit; \
 \ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh; nvm deactivate {} && nvm uninstall {}"; \
 cd - || exit
 # npm packages
+npm install -g @pilatos/bitbucket-cli
 npm install -g datadog-mcp-server
 npm install -g @google/gemini-cli@latest
 
