@@ -19,3 +19,46 @@ for dir in "${HOME}/projects"/*/; do \
         fi; \
     fi; \
 done
+
+# requirements - download
+git_dir="${HOME}/.config/dotfiles-misc"; \
+if [ -d "$git_dir" ]; then \
+    cd "$git_dir" || exit 1; \
+    git pull origin || exit 1; cd - || exit 1; \
+else \
+    git init "$git_dir"; \
+    cd "$git_dir" || exit 1; \
+    git checkout -b main; \
+    git remote add origin "https://github.com/cscribn/dotfiles-misc"; \
+    git sparse-checkout set "requirements"; \
+    git pull --set-upstream origin main; \
+    cd - || exit 1; \
+fi
+
+# requirements - sync
+src_dir="$HOME/.config/dotfiles-misc/requirements"; \
+mapfile -t md_files < <(find "$src_dir" -maxdepth 1 -type f -name "*.md"); \
+find "$HOME/Projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_root; do \
+    [[ -d "$project_root/requirements" ]] || continue; \
+    has_changes="false"; \
+    for src in "${md_files[@]}"; do \
+        file_name=$(basename "$src"); \
+        target="$project_root/requirements/$file_name"; \
+        if [[ -f "$target" ]]; then \
+            src_hash=$(sha256sum "$src" | awk '{print $1}'); \
+            tgt_hash=$(sha256sum "$target" | awk '{print $1}'); \
+            if [[ "$src_hash" != "$tgt_hash" ]]; then \
+                cp "$src" "$target"; \
+                has_changes="true"; \
+            fi; \
+        fi; \
+    done; \
+    if [[ "$has_changes" == "true" ]]; then \
+        cd "$project_root" || exit 1; \
+        git add requirements/; \
+        git commit -m "Update requirements"; \
+        if git remote | grep -qx "origin"; then git push origin HEAD; fi; \
+        cd - || exit 1; \
+    fi; \
+done
+
