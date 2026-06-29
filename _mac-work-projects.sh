@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/opt/homebrew/bin/bash
 
 # cursor instructions - download
 mkdir -p "${HOME}/.config/cursor"; \
@@ -37,8 +37,8 @@ fi
 
 # requirements - sync
 src_dir="$HOME/.config/dotfiles-misc/requirements"; \
-mapfile -t md_files < <(find "$src_dir" -maxdepth 1 -type f -name "*.md"); \
-find "$HOME/Projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_root; do \
+md_files=(); while IFS= read -r _md; do md_files+=("$_md"); done < <(find "$src_dir" -maxdepth 1 -type f -name "*.md"); \
+find "$HOME/projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_root; do \
     [[ -d "$project_root/requirements" ]] || continue; \
     has_changes="false"; \
     for src in "${md_files[@]}"; do \
