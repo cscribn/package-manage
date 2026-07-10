@@ -86,6 +86,7 @@ brew install libpq || brew upgrade libpq; brew link --force libpq
 brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 brew install maven || brew upgrade maven
+brew install mermaid-cli || brew upgrade mermaid-cli
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
 brew list --cask microsoft-edge || brew install --force --cask microsoft-edge
 
