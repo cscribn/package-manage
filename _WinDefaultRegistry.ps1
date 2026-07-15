@@ -100,13 +100,13 @@ Remove-ItemProperty –Path "HKCU:\SOFTWARE\Classes\AppX6eg8h5sxqq90pv53845wmnbe
 # Phone Link - disable suggestions
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Mobility", "OptedIn", 0)
 
-# Right-Click - add edit with vscode
-[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\OpenWithVSCode", "", "Edit with VS Code"); `
-[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\OpenWithVSCode", "Icon", "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe,0"); `
-[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\OpenWithVSCode\command", "", "`"C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe`" `"%1`""); `
-[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\Directory\shell\vscode", "", "Open Folder as VS Code Project"); `
-[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\Directory\shell\vscode", "Icon", "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe,0"); `
-[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\Directory\shell\vscode\command", "", "`"C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe`" `"%1`"")
+# Right-Click - add open with (vs) code
+[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\VSCode", "", "Open w&ith Code"); `
+[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\VSCode", "Icon", "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe,0"); `
+[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\VSCode\command", "", "`"C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe`" `"%1`""); `
+[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\Directory\shell\VSCode", "", "Open w&ith Code"); `
+[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\Directory\shell\VSCode", "Icon", "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe,0"); `
+[Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\Directory\shell\VSCode\command", "", "`"C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe`" `"%1`"")
 
 # Right-Click - use old
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32", "", "")
