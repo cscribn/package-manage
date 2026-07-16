@@ -101,6 +101,7 @@ wsl -d "Ubuntu" -u root -e do-release-upgrade; `
 wsl -d "Ubuntu" -u root -e apt autoremove -y; `
 wsl -d "Ubuntu" -u root -e apt clean -y
 
+winget install -e --id MikeFarah.yq
 pip install "yt-dlp[default]"
 
 # config
