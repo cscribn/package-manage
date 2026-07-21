@@ -41,7 +41,7 @@ brew install btop || brew upgrade btop
 brew install bun || brew upgrade bun
 
 # busylight-for-humans
-if pipx list --json | jq -e '.venvs | has("busylight-for-humans")' >/dev/null; then pipx upgrade busylight-for-humans; else pipx install busylight-for-humans; fi; \
+pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans
 pipx inject --force busylight-for-humans uvicorn
 
 brew install --cask bbedit || brew upgrade --cask bbedit
