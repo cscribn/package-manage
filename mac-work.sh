@@ -36,6 +36,7 @@ brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-re
 brew install --cask alt-tab || brew upgrade --cask alt-tab
 brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
+brew install bats-core || brew upgrade bats-core
 brew install blank-screensaver || brew upgrade blank-screensaver
 brew install btop || brew upgrade btop
 brew install bun || brew upgrade bun
