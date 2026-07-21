@@ -80,7 +80,9 @@ winget install -e --id PuTTY.PuTTY
 if ((Get-WinGetPackage Python.Python).Count -gt 1) { `
     $Id = Get-WinGetPackage Python.Python | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
 } `
-python -m pip install --upgrade pip
+python -m pip install --upgrade pip; `
+python -m pip install --user pipx; `
+python -m pipx ensurepath
 
 winget install -e --id RaspberryPiFoundation.RaspberryPiImager
 winget install -e --id Rufus.Rufus
@@ -102,7 +104,7 @@ wsl -d "Ubuntu" -u root -e apt autoremove -y; `
 wsl -d "Ubuntu" -u root -e apt clean -y
 
 winget install -e --id MikeFarah.yq
-pip install "yt-dlp[default]"
+pipx upgrade "yt-dlp[default]" 2>$null || pipx install "yt-dlp[default]"
 
 # config
 
