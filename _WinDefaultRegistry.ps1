@@ -101,7 +101,6 @@ Remove-ItemProperty –Path "HKCU:\SOFTWARE\Classes\AppX6eg8h5sxqq90pv53845wmnbe
 [Microsoft.Win32.Registry]::SetValue("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Mobility", "OptedIn", 0)
 
 # Right-Click - add open with (vs) code
-[Microsoft.Win32.Registry]::ClassesRoot.DeleteSubKeyTree("*\shell\OpenWithVSCode"); `
 [Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\VSCode", "", "Open w&ith Code"); `
 [Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\VSCode", "Icon", "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe,0"); `
 [Microsoft.Win32.Registry]::SetValue("HKEY_CLASSES_ROOT\*\shell\VSCode\command", "", "`"C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe`" `"%1`""); `
