@@ -24,6 +24,11 @@ choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.port
 choco upgrade xsltproc -y --ignore-dependencies
 
 winget install -e --id sharkdp.bat
+
+# bats-core
+git clone https://github.com/bats-core/bats-core.git; Set-Location bats-core; bash ./install.sh "$HOME"; Set-Location -; `
+Remove-Item -Recurse -Force bats-core
+
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
 
