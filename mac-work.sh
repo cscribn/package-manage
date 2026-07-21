@@ -135,6 +135,7 @@ brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
 brew install wget || brew upgrade wget
 brew install --cask wireshark-app || brew upgrade --cask wireshark-app
+pipx upgrade openai-whisper 2>/dev/null || pipx install openai-whisper
 brew install yarn || brew upgrade yarn
 
 # zsh
