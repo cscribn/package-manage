@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Find staged files matching .ps1 or .sh and force executable mode
+git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(ps1|sh)$' | while read -r file; do
+    if [ -f "$file" ]; then
+        git update-index --chmod=+x "$file"
+    fi
+done

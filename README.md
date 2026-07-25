@@ -3,6 +3,14 @@
 * Scripts beginning with "_" are meant to be included in other scripts.
 * Scripts are formatted to ease copying/pasting single lines. The code is therefore not DRY and sometimes lines are long running.
 
+## Configure
+
+Configure project after cloning.
+
+```zsh
+git config core.hooksPath .githooks
+```
+
 ## pi* & ubuntu*
 
 Bash scripts that install/upgrade Raspberry Pi/Ubuntu packages. Different files are used for different machines.
