@@ -74,7 +74,6 @@ $Session = New-PSSession -UseWindowsPowerShell; Invoke-Command -Session $Session
     Get-AppxPackage *Microsoft.XboxApp* | Remove-AppxPackage; `
     Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage; `
     Get-AppxPackage *MicrosoftCorporationII.MicrosoftFamily* | Remove-AppxPackage; `
-    Get-AppxPackage *MicrosoftTeams* | Remove-AppxPackage; `
     Get-AppxPackage *MirametrixInc.GlancebyMirametrix* | Remove-AppxPackage; `
     Get-AppxPackage *Netflix* | Remove-AppxPackage; `
     Get-AppxPackage *NYTCrossword* | Remove-AppxPackage; `
