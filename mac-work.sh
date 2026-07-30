@@ -5,6 +5,7 @@
 # google drive - don't use brew
 # screen shot: In Finder locate Application/Utilities/ScreenShot.app, grab a hold of the app, and drag/drop onto the Dock.
 # sudo git lfs install --system
+# twg: bash <(curl -fsSL https://teamwork-graph.atlassian.com/cli/install)
 
 date "+%A, %B %d, %Y - %I:%M %p"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin"
@@ -129,6 +130,7 @@ export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 brew install snyk || brew upgrade snyk
+twg update
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install uv || brew upgrade uv
 brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
