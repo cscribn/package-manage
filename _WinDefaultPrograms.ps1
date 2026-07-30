@@ -86,7 +86,6 @@ if ((Get-WinGetPackage -Id "Microsoft.Edge").Count -eq 0) { `
 }
 
 winget install -e --id Microsoft.Teams
-Start-Process "$env:LOCALAPPDATA\Microsoft\Teams\Update.exe" -ArgumentList "--uninstall -s" -Wait
 
 # microsoft visual studio code
 if ((Get-WinGetPackage -Name "Microsoft Visual Studio Code").Count -eq 0) { `

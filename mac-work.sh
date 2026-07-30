@@ -35,6 +35,7 @@ pipx ensurepath
 
 brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
 brew install --cask alt-tab || brew upgrade --cask alt-tab
+brew install --cask antigravity-cli || brew upgrade --cask antigravity-cli
 brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
 brew install bats-core || brew upgrade bats-core
@@ -110,7 +111,6 @@ cd - || exit
 # npm packages
 npm install -g @pilatos/bitbucket-cli
 npm install -g datadog-mcp-server
-npm install -g @google/gemini-cli@latest
 
 brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
