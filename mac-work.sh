@@ -50,7 +50,7 @@ pipx inject --force busylight-for-humans uvicorn
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install --cask claude || brew upgrade --cask claude
 brew install curl || brew upgrade curl
-brew list --cask cursor || brew install --force --cask cursor
+brew list --cask cursor >/dev/null || brew install --force --cask cursor
 brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
 brew install deskflow || brew upgrade deskflow
 
@@ -62,7 +62,7 @@ docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
 
 brew install fastfetch || brew upgrade fastfetch
 brew install ffmpeg || brew upgrade ffmpeg
-brew list --cask firefox || brew install --force --cask firefox
+brew list --cask firefox >/dev/null || brew install --force --cask firefox
 brew install fzf || brew upgrade fzf
 brew install --cask gimp || brew upgrade --cask gimp
 brew install gh || brew upgrade gh
@@ -72,8 +72,8 @@ brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg
 brew install gifsicle || brew upgrade gifsicle
 brew install git || brew upgrade git
 brew install --cask github || brew upgrade --cask github
-brew list --cask google-chrome || brew install --force --cask google-chrome
-brew list --cask google-chrome@beta || brew install --force --cask google-chrome@beta
+brew list --cask google-chrome >/dev/null || brew install --force --cask google-chrome
+brew list --cask google-chrome@beta >/dev/null || brew install --force --cask google-chrome@beta
 brew install --cask gpg-suite || brew upgrade --cask gpg-suite
 brew install gradle || brew upgrade gradle
 brew install granted || brew upgrade granted
@@ -90,7 +90,7 @@ brew install lsd || brew upgrade lsd
 brew install maven || brew upgrade maven
 brew install mermaid-cli || brew upgrade mermaid-cli
 brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
-brew list --cask microsoft-edge || brew install --force --cask microsoft-edge
+brew list --cask microsoft-edge >/dev/null || brew install --force --cask microsoft-edge
 
 # netskope certificates
 [[ -f "${HOME}/netskope-cert-bundle.pem" ]] && [[ ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]] && \
@@ -107,7 +107,8 @@ nvm install --lts; nvm use --lts;
 # remove old node versions
 cd "${HOME}/.nvm/versions/node" || exit; \
 \ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh; nvm deactivate {} && nvm uninstall {}"; \
-cd - || exit
+cd - || exit; \
+npm config set fund false
 # npm packages
 npm install -g @pilatos/bitbucket-cli
 npm install -g datadog-mcp-server
@@ -133,7 +134,7 @@ brew install snyk || brew upgrade snyk
 twg update
 brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install uv || brew upgrade uv
-brew list --cask visual-studio-code || brew install --force --cask visual-studio-code
+brew list --cask visual-studio-code >/dev/null || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
 brew install wget || brew upgrade wget
