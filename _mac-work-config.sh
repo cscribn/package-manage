@@ -8,8 +8,9 @@ curl -Lo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLang
 curl -Lo "${HOME}/Library/Application Support/BBEdit/Language Modules/PowerShell.plist" https://raw.githubusercontent.com/doug-baer/BBEdit-PowerShell/master/PowerShell.plist
 defaults write com.barebones.bbedit ZoomWindowsInPlace -bool NO
 
-# finder - show all files
-defaults write com.apple.finder "AppleShowAllFiles" -bool "true" && killall Finder
+# finder - show all files (launchctl restarts Finder without the TCC popup from killall)
+defaults write com.apple.finder "AppleShowAllFiles" -bool "true" && \
+launchctl kickstart -k "gui/$(id -u)/com.apple.finder"
 
 # hammerspoon
 curl -Lo "${HOME}/.hammerspoon/init.lua" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/hammerspoon/init.lua

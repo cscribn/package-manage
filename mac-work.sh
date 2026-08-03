@@ -7,8 +7,8 @@
 # sudo git lfs install --system
 # twg: bash <(curl -fsSL https://teamwork-graph.atlassian.com/cli/install)
 
-date "+%A, %B %d, %Y - %I:%M %p"
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin:${HOME}/.local/bin"
+export JAVA_HOME="/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/current"
 
 # Check password before proceeding
 if dscl /Search -authonly "$USERNAME" "$($SUDO_ASKPASS)"; then
