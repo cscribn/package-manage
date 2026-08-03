@@ -117,7 +117,7 @@ brew install perl || brew upgrade perl
 brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
 brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
 brew install --cask postman || brew upgrade --force --cask postman
-brew install powershell ||brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off
+(brew install powershell || brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off) && brew link powershell
 brew install pre-commit || brew upgrade pre-commit
 brew install python || brew upgrade python;
 brew install python@3.12 || brew upgrade python@3.12
