@@ -3,6 +3,7 @@
 # Non-package installations (add/update these first)
 # filezilla
 # google drive - don't use brew
+# pdfgear
 # screen shot: In Finder locate Application/Utilities/ScreenShot.app, grab a hold of the app, and drag/drop onto the Dock.
 # sudo git lfs install --system
 # twg: bash <(curl -fsSL https://teamwork-graph.atlassian.com/cli/install)

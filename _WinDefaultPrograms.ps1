@@ -105,6 +105,7 @@ winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
 winget install -e --id OPAutoClicker.OPAutoClicker
 winget install -e --id dotPDN.PaintDotNet
 winget install -e --id JohnMacFarlane.Pandoc
+winget install -e --id PDFgear.PDFgear
 winget install -e --id PDFLabs.PDFtk.Free
 winget install -e --id BurntSushi.ripgrep.MSVC
 winget install -e --id Scribus.Scribus
