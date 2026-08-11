@@ -102,6 +102,13 @@ winget install -e --id Insecure.Nmap
 winget install -e --id Notepad++.Notepad++
 winget install -e --id gsass1.NTop
 winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
+
+# oh-my-posh
+if (winget install -e --id JanDeDobbeleer.OhMyPosh | Select-String "technology is different") { `
+	winget uninstall -e --all-versions --id JanDeDobbeleer.OhMyPosh; winget install -e --id JanDeDobbeleer.OhMyPosh; `
+	oh-my-posh disable notice `
+}
+
 winget install -e --id OPAutoClicker.OPAutoClicker
 winget install -e --id dotPDN.PaintDotNet
 winget install -e --id JohnMacFarlane.Pandoc
