@@ -38,8 +38,9 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 
 # powershell
 if (winget install -e --id Microsoft.PowerShell | Select-String "technology is different") { `
-	winget uninstall -e --id Microsoft.PowerShell; winget install -e --id Microsoft.PowerShell
-}; `
+	winget uninstall -e --all-versions --id Microsoft.PowerShell; winget install -e --id Microsoft.PowerShell `
+}
+
 Install-Module -Name Microsoft.WinGet.Client -Force; `
 Install-Module -Name posh-git -Force; `
 Install-Module -Name PSReadLine -Force; `
