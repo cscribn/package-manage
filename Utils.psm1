@@ -35,7 +35,7 @@ function Install-WinGetPackageClean {
 
         # Resolve Dynamic Base ID
         if ($PSCmdlet.ParameterSetName -eq 'DynamicId') {
-            Write-Verbose "Resolving latest package for dynamic base ID '$DynamicBaseId'..."
+            Write-Host "Resolving latest package for dynamic base ID '$DynamicBaseId'..."
 
             $escapedBase = [regex]::Escape($DynamicBaseId)
 
@@ -48,7 +48,7 @@ function Install-WinGetPackageClean {
 
             # Force update local source index if initial package resolution returns empty
             if ($availablePackages.Count -eq 0) {
-                Write-Verbose "No local index matches found. Refreshing WinGet sources..."
+                Write-Host "No local index matches found. Refreshing WinGet sources..."
                 Start-Process $WinGetExe -ArgumentList @("source", "update") -NoNewWindow -Wait
 
                 $availablePackages = @(Find-WinGetPackage -Query $DynamicBaseId -ErrorAction SilentlyContinue |
@@ -73,7 +73,7 @@ function Install-WinGetPackageClean {
             } | Select-Object -Last 1
 
             $Id = if ($targetPackage.PackageIdentifier) { $targetPackage.PackageIdentifier } else { $targetPackage.Id }
-            Write-Verbose "Resolved dynamic target ID to: '$Id'"
+            Write-Host "Resolved dynamic target ID to: '$Id'"
         }
 
         # Fetch currently installed versions for the target ID cleanly as an array
@@ -81,7 +81,7 @@ function Install-WinGetPackageClean {
 
         # Skip early if target is already present
         if ($SkipIfInstalled -and $installed.Count -gt 0) {
-            Write-Verbose "Package $Id is already installed. Skipping due to -SkipIfInstalled flag."
+            Write-Host "Package $Id is already installed. Skipping due to -SkipIfInstalled flag."
             if ($PassThru) { return $installed }
             return
         }
@@ -94,7 +94,7 @@ function Install-WinGetPackageClean {
             })
 
             foreach ($legacyPkg in $legacyInstalled) {
-                Write-Verbose "Uninstalling older major version package ID: $($legacyPkg.Id)"
+                Write-Host "Uninstalling older major version package ID: $($legacyPkg.Id)"
                 $unProc = Start-Process $WinGetExe -ArgumentList (@("uninstall", "--id", $legacyPkg.Id) + $UninstallArgs) -NoNewWindow -Wait -PassThru
                 if ($unProc.ExitCode -ne 0) {
                     Write-Warning "Failed to cleanly uninstall legacy package '$($legacyPkg.Id)' (Exit Code: $($unProc.ExitCode))."
@@ -123,7 +123,7 @@ function Install-WinGetPackageClean {
 
             foreach ($pkg in $olderVersions) {
                 $ver = if ($pkg.InstalledVersion) { $pkg.InstalledVersion } else { $pkg.Version }
-                Write-Verbose "Removing older version of current ID: $ver"
+                Write-Host "Removing older version of current ID: $ver"
                 $unProc = Start-Process $WinGetExe -ArgumentList (@("uninstall", "--id", $Id, "--version", $ver) + $UninstallArgs) -NoNewWindow -Wait -PassThru
                 if ($unProc.ExitCode -ne 0) {
                     Write-Warning "Failed to uninstall minor version '$ver' of '$Id' (Exit Code: $($unProc.ExitCode))."
@@ -132,7 +132,7 @@ function Install-WinGetPackageClean {
         }
 
         # Perform Installation/Upgrade
-        Write-Verbose "Attempting to install/upgrade package: $Id"
+        Write-Host "Attempting to install/upgrade package: $Id"
         $process = Start-Process $WinGetExe -ArgumentList (@("install") + $CommonInstallArgs) -NoNewWindow -Wait -PassThru
 
         # Success Codes: 0 = OK, -1978335189 = Already Installed, -1978335180 = No Update Found, -1978335188 = Reboot Required
