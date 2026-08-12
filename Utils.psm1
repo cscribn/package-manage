@@ -30,7 +30,6 @@ function Install-WinGetPackageClean {
     $UninstallArgs = @(
         "-e",
         "--id", $Id,
-        "--scope", "machine",
         "--silent"
     )
 
@@ -68,7 +67,7 @@ function Install-WinGetPackageClean {
         $retryProcess = Start-Process winget -ArgumentList (@("install") + $CommonInstallArgs) -NoNewWindow -Wait -PassThru
 
         if ($retryProcess.ExitCode -notin $successCodes) {
-            Throw "Failed to install $Id after clean-up. Exit Code: $($retryProcess.ExitCode)"
+            Write-Warning "Failed to install $Id after clean-up. Exit Code: $($retryProcess.ExitCode)"
         }
     }
 }
