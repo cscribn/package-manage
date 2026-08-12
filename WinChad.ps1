@@ -7,7 +7,7 @@
 # mise (first install only from https://github.com/jdx/mise/releases)
 # skraperui
 
-Import-Module -Path "$PSScriptRoot\Utils.psm1" -Force
+Import-Module "$PSScriptRoot\Utils.psm1" -Force
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\_WinDefaultPrograms.ps1
