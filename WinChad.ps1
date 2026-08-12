@@ -7,6 +7,8 @@
 # mise (first install only from https://github.com/jdx/mise/releases)
 # skraperui
 
+Import-Module -Path "$PSScriptRoot\Utils.psm1" -Force
+
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\_WinDefaultPrograms.ps1
 
@@ -23,7 +25,7 @@ choco upgrade win32diskimager --version 0.9.5 -y --ignore-dependencies; choco pi
 choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.portable -y --ignore-dependencies
 choco upgrade xsltproc -y --ignore-dependencies
 
-winget install -e --id sharkdp.bat
+Install-WinGetPackageClean -Id sharkdp.bat
 
 # bats-core
 git clone https://github.com/bats-core/bats-core.git; Set-Location bats-core; bash ./install.sh "$HOME"; Set-Location -; `
