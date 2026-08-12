@@ -68,7 +68,7 @@ if ((Get-WinGetPackage -Name "Google Chrome").Count -eq 0) { `
 }
 
 winget install -e --id Google.ChromeRemoteDesktopHost
-winget install -e --id Google.PlatformTools
+winget install -e --id Google.PlatformTools --scope machine
 winget install -e --id HandBrake.HandBrake
 winget install -e --id REALiX.HWiNFO
 winget install -e --id LIGHTNINGUK.ImgBurn
