@@ -46,6 +46,29 @@ function Resolve-WinGetDynamicPackageId {
     return $resolved.Id
 }
 
+function Resolve-WinGetUnknownPackageId {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Id
+    )
+
+    $searchResults = Find-WinGetPackage $Id -ErrorAction SilentlyContinue
+    if (-not $searchResults) {
+        throw "No winget search results found for '$Id'."
+    }
+
+    $resolved = $searchResults |
+        Sort-Object -Property @{ Expression = { try { [version](Get-WinGetPackageVersion $_) } catch { [version]'0.0.0.0' } } } -Descending |
+        Select-Object -First 1
+
+    if (-not $resolved) {
+        throw "Unable to resolve newest winget package id for '$Id'."
+    }
+
+    return $resolved.Id
+}
+
 function Invoke-WinGetCommand {
     [CmdletBinding()]
     param(
@@ -222,7 +245,7 @@ function Install-WinGetPackageClean {
         [string]$Id,
 
         [Parameter(Mandatory=$true)]
-        [ValidateSet('SkipIfInstalled','FixedId','DynamicId')]
+        [ValidateSet('SkipIfInstalled','FixedId','DynamicId','UnknownId')]
         [string]$InstallType,
 
         [Parameter(Mandatory=$false)]
@@ -256,6 +279,13 @@ function Install-WinGetPackageClean {
 
                 $resolvedId = Resolve-WinGetDynamicPackageId -Id $Id -Like $Like
                 Write-Information "Attempting to install resolved package id '$resolvedId' for dynamic id '$Id'."
+                $targetId = $resolvedId
+                $installResult = Invoke-WinGetInstall -Id $targetId
+            }
+            'UnknownId' {
+                Write-Information "Attempting to install '$Id'."
+                $resolvedId = Resolve-WinGetUnknownPackageId -Id $Id
+                Write-Information "Attempting to install resolved package id '$resolvedId' for unknown id '$Id'."
                 $targetId = $resolvedId
                 $installResult = Invoke-WinGetInstall -Id $targetId
             }
