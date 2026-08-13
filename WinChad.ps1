@@ -129,4 +129,3 @@ choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; 
 if (docker info > $null 2>&1) { docker system prune --volumes -f }
 
 . $PSScriptRoot\_WinChadProjects.ps1
-. $PSScriptRoot\_WinDefaultGaming.ps1
