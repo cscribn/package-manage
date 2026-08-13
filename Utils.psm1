@@ -136,7 +136,7 @@ function Get-WinGetInstalledPackagesForCleanup {
     return Get-WinGetInstalledPackagesById -Id $Id
 }
 
-function Cleanup-OldWinGetPackageVersions {
+function Remove-OldWinGetPackageVersions {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
@@ -233,7 +233,7 @@ function Install-WinGetPackageClean {
         }
 
         Write-Information "Installation succeeded for '$targetId'. Cleaning up older versions."
-        Cleanup-OldWinGetPackageVersions -Id $targetId -IsDynamic ($InstallType -eq 'DynamicId') -Like $Like
+        Remove-OldWinGetPackageVersions -Id $targetId -IsDynamic ($InstallType -eq 'DynamicId') -Like $Like
         Write-Information "Completed install and cleanup for '$targetId'."
     } catch {
         Write-Information "Error in Install-WinGetPackageClean: $($_.Exception.Message)"
