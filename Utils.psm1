@@ -8,7 +8,8 @@ function Get-WinGetInstalledPackagesById {
     )
 
     try {
-        return Get-WinGetPackage -Id $Id -ErrorAction Stop
+        $packages = Get-WinGetPackage -Id $Id -ErrorAction Stop
+        return @($packages)
     } catch {
         return @()
     }
@@ -122,14 +123,14 @@ function Get-WinGetInstalledPackagesForCleanup {
 
     $pattern = Get-WinGetPackageFamilyPattern -Id $Id
     $packages = Get-WinGetPackage -ErrorAction SilentlyContinue | Where-Object { $_.Id -like $pattern }
-    if ($packages.Count -gt 0) {
-        return $packages
+    if (@($packages).Count -gt 0) {
+        return @($packages)
     }
 
     if ($Like) {
         $packages = Get-WinGetPackage -ErrorAction SilentlyContinue | Where-Object { $_.Name -like $Like }
-        if ($packages.Count -gt 0) {
-            return $packages
+        if (@($packages).Count -gt 0) {
+            return @($packages)
         }
     }
 
@@ -150,11 +151,11 @@ function Remove-OldWinGetPackageVersions {
     )
 
     $installed = Get-WinGetInstalledPackagesForCleanup -Id $Id -IsDynamic $IsDynamic -Like $Like
-    if (-not $installed -or $installed.Count -le 1) {
+    if (-not $installed -or @($installed).Count -le 1) {
         return
     }
 
-    $sorted = $installed |
+    $sorted = @($installed) |
         Sort-Object -Property @{ Expression = { try { [version]$_.Version } catch { [version]'0.0.0.0' } } } -Descending
 
     $packagesToRemove = $sorted | Select-Object -Skip 1
@@ -189,7 +190,7 @@ function Install-WinGetPackageClean {
         switch ($InstallType) {
             'SkipIfInstalled' {
                 $installedPackages = Get-WinGetInstalledPackagesById -Id $Id
-                if ($installedPackages.Count -gt 0) {
+                if (@($installedPackages).Count -gt 0) {
                     Write-Information "Application '$Id' is already installed."
                     return
                 }
