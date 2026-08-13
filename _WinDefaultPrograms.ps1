@@ -5,6 +5,11 @@
 # libreoffice settings: disable jre, enable quickstarter, set default saves to office formats.
 # winget
 
+[CmdletBinding()]
+$Global:InformationPreference = 'Continue'
+
+Import-Module "$PSScriptRoot\WingetUtils.psm1" -Force
+
 # remove customized prompt
 function prompt {}
 
@@ -17,15 +22,9 @@ choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
 choco upgrade nerd-fonts-meslo -y --ignore-dependencies; robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
 choco upgrade filezilla -y --ignore-dependencies
 
-# winget
-winget install -e --id cURL.cURL
-
-# git
-$GitUpdate = winget upgrade -e --id Git.Git; `
-if (-Not ($GitUpdate -match "No available")) { `
-	winget uninstall -e --id Git.Git; `
-	winget install -e --id Git.Git; git config --global http.sslBackend openssl `
-}
+# winget installs
+Install-WinGetPackageClean -Id cURL.cURL
+Install-WinGetPackageClean -Id Git.Git; git config --global http.sslBackend openssl
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
@@ -36,101 +35,59 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 }; `
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* pacman"
 
-# powershell
-if (winget install -e --id Microsoft.PowerShell | Select-String "technology is different") { `
-	winget uninstall -e --all-versions --id Microsoft.PowerShell; winget install -e --id Microsoft.PowerShell `
-}
-
+Install-WinGetPackageClean -Id Microsoft.PowerShell
 Install-Module -Name Microsoft.WinGet.Client -Force; `
 Install-Module -Name posh-git -Force; `
 Install-Module -Name PSReadLine -Force; `
 Install-Module -Name Terminal-Icons -Force
 
-winget install -e --id 7zip.7zip
-winget install -e --id Mythicsoft.AgentRansack
-winget install -e --id ArminOsaj.AutoDarkMode
-winget install -e --id aristocratos.btop4win
-winget install -e --id TGRMNSoftware.BulkRenameUtility
-winget install -e --id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S";cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
-winget install -e --id Gyan.FFmpeg
-winget install -e --id Mozilla.Firefox
-winget install -e --id junegunn.fzf
-
-# gimp
-if ((Get-WinGetPackage -Name GIMP).Count -gt 1) { `
-	$Id = Get-WinGetPackage -Name GIMP | Sort-Object Id | Select-Object -ExpandProperty Id | Select-Object -First 1; winget uninstall -e --id $Id `
-} `
-$Id = Find-WinGetPackage GIMP.GIMP | Where-Object { $_.Version -match '^\d+(\.\d+)*$' } | Sort-Object -Property { [version]$_.Version } | Select-Object -Last 1 -ExpandProperty Id; winget install -e --id $Id;
-
-# google chrome
-if ((Get-WinGetPackage -Name "Google Chrome").Count -eq 0) { `
-	winget install -e --id Google.Chrome `
-}
-
-winget install -e --id Google.ChromeRemoteDesktopHost
-winget install -e --id Google.PlatformTools --scope machine
-winget install -e --id HandBrake.HandBrake
-winget install -e --id REALiX.HWiNFO
-winget install -e --id LIGHTNINGUK.ImgBurn
-winget install -e --id Inkscape.Inkscape
-winget install -e --id IrfanSkiljan.IrfanView
-winget install -e --id IrfanSkiljan.IrfanView.PlugIns
-winget install -e --id jqlang.jq
-winget install -e --id KDE.KMahjongg
-winget install -e --id TheDocumentFoundation.LibreOffice
-winget install -e --id DiskInternals.LinuxReader
-winget install -e --id lsd-rs.lsd
-
-# microsoft edge
-if ((Get-WinGetPackage -Id "Microsoft.Edge").Count -eq 0) { `
-	winget install -e --id Microsoft.Edge `
-}
-
-winget install -e --id Microsoft.Teams
-
-# microsoft visual studio code
-if ((Get-WinGetPackage -Name "Microsoft Visual Studio Code").Count -eq 0) { `
-	winget install -e --id Microsoft.VisualStudioCode `
-}
-
-winget install -e --id Microsoft.WindowsTerminal
-
-# mp3tag with right-click support
-winget install -e --id FlorianHeidenreich.Mp3tag && `
-regsvr32 /s "C:\Program Files\Mp3tag\Mp3tagShell.dll"
-
-winget install -e --id Insecure.Nmap
-winget install -e --id Notepad++.Notepad++
-winget install -e --id gsass1.NTop
-winget install -e --id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
-
-# oh-my-posh
-if (winget install -e --id JanDeDobbeleer.OhMyPosh | Select-String "technology is different") { `
-	winget uninstall -e --all-versions --id JanDeDobbeleer.OhMyPosh; winget install -e --id JanDeDobbeleer.OhMyPosh; `
-	oh-my-posh disable notice `
-}
-
-winget install -e --id OPAutoClicker.OPAutoClicker
-winget install -e --id dotPDN.PaintDotNet
-winget install -e --id JohnMacFarlane.Pandoc
-winget install -e --id PDFgear.PDFgear
-winget install -e --id PDFLabs.PDFtk.Free
-winget install -e --id BurntSushi.ripgrep.MSVC
-winget install -e --id Scribus.Scribus
-winget install -e --id RandyRants.SharpKeys
-winget install -e --id SumatraPDF.SumatraPDF
-
-# vlc
-$VlcUpdate = winget upgrade -e --id VideoLAN.VLC; `
-if (-Not ($VlcUpdate -match "No available")) { `
-	winget install -e --id VideoLAN.VLC; `
-	& "C:\Program Files\VideoLAN\VLC\vlc-cache-gen.exe" "C:\Program Files\VideoLAN\VLC\plugins"
-}
-
-winget install -e --id Microsoft.WindowsPCHealthCheck
-winget install -e --id WinMerge.WinMerge
-winget install -e --id WiresharkFoundation.Wireshark
-winget install -e --id Zoom.Zoom
+Install-WinGetPackageClean -Id 7zip.7zip
+Install-WinGetPackageClean -Id Mythicsoft.AgentRansack
+Install-WinGetPackageClean -Id ArminOsaj.AutoDarkMode
+Install-WinGetPackageClean -Id aristocratos.btop4win
+Install-WinGetPackageClean -Id TGRMNSoftware.BulkRenameUtility
+Install-WinGetPackageClean -Id chrisant996.Clink; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" update /S"; cmd.exe /c "`"C:\Program Files (x86)\clink\clink`" autorun uninstall"
+Install-WinGetPackageClean -Id Gyan.FFmpeg
+Install-WinGetPackageClean -Id Mozilla.Firefox
+Install-WinGetPackageClean -Id junegunn.fzf
+Install-WinGetPackageClean -Id GIMP.GIMP
+Install-WinGetPackageClean -Id Google.Chrome -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Google.ChromeRemoteDesktopHost
+Install-WinGetPackageClean -Id Google.PlatformTools
+Install-WinGetPackageClean -Id HandBrake.HandBrake
+Install-WinGetPackageClean -Id REALiX.HWiNFO
+Install-WinGetPackageClean -Id LIGHTNINGUK.ImgBurn
+Install-WinGetPackageClean -Id Inkscape.Inkscape
+Install-WinGetPackageClean -Id IrfanSkiljan.IrfanView
+Install-WinGetPackageClean -Id IrfanSkiljan.IrfanView.PlugIns
+Install-WinGetPackageClean -Id jqlang.jq
+Install-WinGetPackageClean -Id KDE.KMahjongg
+Install-WinGetPackageClean -Id TheDocumentFoundation.LibreOffice
+Install-WinGetPackageClean -Id DiskInternals.LinuxReader
+Install-WinGetPackageClean -Id lsd-rs.lsd
+Install-WinGetPackageClean -Id Microsoft.Edge -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Microsoft.Teams
+Install-WinGetPackageClean -Id Microsoft.VisualStudioCode -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Microsoft.WindowsTerminal
+Install-WinGetPackageClean -Id FlorianHeidenreich.Mp3tag; regsvr32 /s "C:\Program Files\Mp3tag\Mp3tagShell.dll"
+Install-WinGetPackageClean -Id Insecure.Nmap
+Install-WinGetPackageClean -Id Notepad++.Notepad++
+Install-WinGetPackageClean -Id gsass1.NTop
+Install-WinGetPackageClean -Id JanDeDobbeleer.OhMyPosh; oh-my-posh disable notice
+Install-WinGetPackageClean -Id OPAutoClicker.OPAutoClicker
+Install-WinGetPackageClean -Id dotPDN.PaintDotNet
+Install-WinGetPackageClean -Id JohnMacFarlane.Pandoc
+Install-WinGetPackageClean -Id PDFgear.PDFgear
+Install-WinGetPackageClean -Id PDFLabs.PDFtk.Free
+Install-WinGetPackageClean -Id BurntSushi.ripgrep.MSVC
+Install-WinGetPackageClean -Id Scribus.Scribus
+Install-WinGetPackageClean -Id RandyRants.SharpKeys
+Install-WinGetPackageClean -Id SumatraPDF.SumatraPDF
+Install-WinGetPackageClean -Id VideoLAN.VLC; & "C:\Program Files\VideoLAN\VLC\vlc-cache-gen.exe" "C:\Program Files\VideoLAN\VLC\plugins"
+Install-WinGetPackageClean -Id Microsoft.WindowsPCHealthCheck
+Install-WinGetPackageClean -Id WinMerge.WinMerge
+Install-WinGetPackageClean -Id WiresharkFoundation.Wireshark
+Install-WinGetPackageClean -Id Zoom.Zoom
 
 # zsh
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"; `

@@ -1,8 +1,11 @@
-$version = (Get-CimInstance Win32_OperatingSystem).Version
+[CmdletBinding()]
+$Global:InformationPreference = 'Continue'
+
+Import-Module "$PSScriptRoot\WingetUtils.psm1" -Force
 
 # install apps
-winget install 9NP83LWLPZ9K --silent --accept-package-agreements --accept-source-agreements # apple devices
-winget install 9PKTQ5699M62 --silent --accept-package-agreements --accept-source-agreements # icloud
+Install-WinGetPackageClean -Id 9NP83LWLPZ9K # apple devices
+Install-WinGetPackageClean -Id 9PKTQ5699M62 # icloud
 
 Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | ForEach-Object {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} # microsoft solitaire
 
