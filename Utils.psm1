@@ -230,10 +230,10 @@ function Remove-OldWinGetPackageVersions {
 
     $packagesToRemove = $sorted | Select-Object -Skip 1
     foreach ($package in $packagesToRemove) {
-        Write-Information "Uninstalling older package version $($package.Id) ($([string](Get-WinGetPackageVersion $package)))."
+        Write-Output "Uninstalling older package version $($package.Id) ($([string](Get-WinGetPackageVersion $package)))."
         $result = Invoke-WinGetUninstall -Id $package.Id -AllVersions
         if (-not $result.Success) {
-            Write-Information "Failed to uninstall older package version $($package.Id): ExitCode=$($result.ExitCode) Output=$($result.Output)"
+            Write-Output "Failed to uninstall older package version $($package.Id): ExitCode=$($result.ExitCode) Output=$($result.Output)"
         }
     }
 }
@@ -269,15 +269,15 @@ function Install-WinGetPackageClean {
             'SkipIfInstalled' {
                 $installedPackages = Get-WinGetInstalledPackagesById -Id $Id
                 if (@($installedPackages).Count -gt 0) {
-                    Write-Information "Application '$Id' is already installed."
+                    Write-Output "Application '$Id' is already installed."
                     return
                 }
 
-                Write-Information "Attempting to install '$Id'."
+                Write-Output "Attempting to install '$Id'."
                 $installResult = Invoke-WinGetInstall -Id $Id
             }
             'FixedId' {
-                Write-Information "Attempting to install '$Id'."
+                Write-Output "Attempting to install '$Id'."
                 $installResult = Invoke-WinGetInstall -Id $Id
             }
             'DynamicId' {
@@ -286,14 +286,14 @@ function Install-WinGetPackageClean {
                 }
 
                 $resolvedId = Resolve-WinGetDynamicPackageId -Id $Id -Like $Like
-                Write-Information "Attempting to install resolved package id '$resolvedId' for '$Id'."
+                Write-Output "Attempting to install resolved package id '$resolvedId' for '$Id'."
                 $targetId = $resolvedId
                 $installResult = Invoke-WinGetInstall -Id $targetId
             }
             'UnknownId' {
-                Write-Information "Attempting to install '$Id'."
+                Write-Output "Attempting to install '$Id'."
                 $resolvedId = Resolve-WinGetUnknownPackageId -Id $Id
-                Write-Information "Attempting to install resolved package id '$resolvedId' for '$Id'."
+                Write-Output "Attempting to install resolved package id '$resolvedId' for '$Id'."
                 $targetId = $resolvedId
                 $installResult = Invoke-WinGetInstall -Id $targetId
             }
@@ -304,28 +304,28 @@ function Install-WinGetPackageClean {
 
         if (-not $installResult.Success) {
             if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $installResult -Id $targetId) {
-                Write-Information "Application '$targetId' is already installed and no upgrade is pending"
+                Write-Output "Application '$targetId' is already installed and no upgrade is pending"
                 $installResult = [pscustomobject]@{
                     Success = $true
                     ExitCode = 0
                     Output = $installResult.Output
                 }
             } else {
-                Write-Information "Initial install failed for '$targetId'. Attempting fresh install."
-                Write-Information "Attempting to uninstall '$targetId'."
+                Write-Output "Initial install failed for '$targetId'. Attempting fresh install."
+                Write-Output "Attempting to uninstall '$targetId'."
                 $uninstallResult = Invoke-WinGetUninstall -Id $targetId
                 if (-not $uninstallResult.Success) {
-                    Write-Information "Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
+                    Write-Output "Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
                 }
 
-                Write-Information "Attempting to install '$targetId' again."
+                Write-Output "Attempting to install '$targetId' again."
                 $installResult = Invoke-WinGetInstall -Id $targetId
             }
         }
 
         if (-not $installResult.Success) {
             if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $installResult -Id $targetId) {
-                Write-Information "Application '$targetId' is already installed and no upgrade is pending on retry."
+                Write-Output "Application '$targetId' is already installed and no upgrade is pending on retry."
                 $installResult = [pscustomobject]@{
                     Success = $true
                     ExitCode = 0
@@ -338,10 +338,10 @@ function Install-WinGetPackageClean {
             throw "Installation failed for '$targetId'. Output: $($installResult.Output)"
         }
 
-        Write-Information "Cleaning up any older versions of '$targetId'."
+        Write-Output "Cleaning up any older versions of '$targetId'."
         Remove-OldWinGetPackageVersions -Id $targetId -IsDynamic ($InstallType -eq 'DynamicId') -Like $Like
     } catch {
-        Write-Information "Error in Install-WinGetPackageClean: $($_.Exception.Message)"
+        Write-Output "Error in Install-WinGetPackageClean: $($_.Exception.Message)"
     }
 }
 
