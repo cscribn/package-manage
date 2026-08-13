@@ -244,7 +244,7 @@ function Install-WinGetPackageClean {
         [Parameter(Mandatory=$true)]
         [string]$Id,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$false)]
         [ValidateSet('SkipIfInstalled','FixedId','DynamicId','UnknownId')]
         [string]$InstallType,
 
@@ -254,6 +254,14 @@ function Install-WinGetPackageClean {
 
     Set-StrictMode -Version 2.0
     $ErrorActionPreference = 'Stop'
+
+    if (-not $PSBoundParameters.ContainsKey('InstallType')) {
+        if ($Like) {
+            $InstallType = 'DynamicId'
+        } else {
+            $InstallType = 'FixedId'
+        }
+    }
 
     try {
         $targetId = $Id
@@ -278,14 +286,14 @@ function Install-WinGetPackageClean {
                 }
 
                 $resolvedId = Resolve-WinGetDynamicPackageId -Id $Id -Like $Like
-                Write-Information "Attempting to install resolved package id '$resolvedId' for dynamic id '$Id'."
+                Write-Information "Attempting to install resolved package id '$resolvedId' for '$Id'."
                 $targetId = $resolvedId
                 $installResult = Invoke-WinGetInstall -Id $targetId
             }
             'UnknownId' {
                 Write-Information "Attempting to install '$Id'."
                 $resolvedId = Resolve-WinGetUnknownPackageId -Id $Id
-                Write-Information "Attempting to install resolved package id '$resolvedId' for unknown id '$Id'."
+                Write-Information "Attempting to install resolved package id '$resolvedId' for '$Id'."
                 $targetId = $resolvedId
                 $installResult = Invoke-WinGetInstall -Id $targetId
             }
