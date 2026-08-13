@@ -167,8 +167,16 @@ function Get-WinGetPackageFamilyPattern {
         [string]$Id
     )
 
-    if ($Id -match '^(.*?)(\.[0-9]+(?:\.[0-9]+)*)(\..*)$') {
-        return "$($matches[1])*$($matches[3])"
+    if ($Id -like '*.') {
+        return "$Id*"
+    }
+
+    if ($Id -match '^(.*?)(\.[0-9]+(?:\.[0-9]+)*)(\..*)?$') {
+        if ($matches[3]) {
+            return "$($matches[1])*$($matches[3])"
+        }
+
+        return "$($matches[1])*"
     }
 
     return $Id
@@ -339,7 +347,8 @@ function Install-WinGetPackageClean {
         }
 
         Write-Output "Cleaning up any older versions of '$targetId'."
-        Remove-OldWinGetPackageVersions -Id $targetId -IsDynamic ($InstallType -eq 'DynamicId') -Like $Like
+        $cleanupAsDynamic = $InstallType -in @('DynamicId','UnknownId')
+        Remove-OldWinGetPackageVersions -Id $targetId -IsDynamic $cleanupAsDynamic -Like $Like
     } catch {
         Write-Output "Error in Install-WinGetPackageClean: $($_.Exception.Message)"
     }
