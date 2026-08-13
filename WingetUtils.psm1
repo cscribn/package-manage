@@ -9,6 +9,16 @@ function Get-WinGetInstalledPackagesById {
 
     try {
         $packages = Get-WinGetPackage -Id $Id -ErrorAction Stop
+        if (@($packages).Count -gt 0) {
+            return @($packages)
+        }
+    } catch {
+        # If the winget provider does not support filtering by msstore alias ID,
+        # fall back to enumerating installed packages and matching the package Id.
+    }
+
+    try {
+        $packages = Get-WinGetPackage -ErrorAction Stop | Where-Object { $_.Id -eq $Id }
         return @($packages)
     } catch {
         return @()
@@ -319,11 +329,11 @@ function Install-WinGetPackageClean {
                     Output = $installResult.Output
                 }
             } else {
-                Write-Output "Initial install failed for '$targetId'. Attempting fresh install."
+                Write-Output "WARNING: Initial install failed for '$targetId'. Attempting fresh install."
                 Write-Output "Attempting to uninstall '$targetId'."
                 $uninstallResult = Invoke-WinGetUninstall -Id $targetId
                 if (-not $uninstallResult.Success) {
-                    Write-Output "Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
+                    Write-Output "WARNING: Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
                 }
 
                 Write-Output "Attempting to install '$targetId' again."
@@ -343,14 +353,16 @@ function Install-WinGetPackageClean {
         }
 
         if (-not $installResult.Success) {
-            throw "Installation failed for '$targetId'. Output: $($installResult.Output)"
+            Write-Output "ERROR: Final installation failure for '$targetId'. ExitCode=$($installResult.ExitCode) Output=$($installResult.Output)"
+            throw "Installation failed for '$targetId'. ExitCode=$($installResult.ExitCode) Output: $($installResult.Output)"
         }
 
         Write-Output "Cleaning up any older versions of '$targetId'."
         $cleanupAsDynamic = $InstallType -in @('DynamicId','UnknownId')
         Remove-OldWinGetPackageVersions -Id $targetId -IsDynamic $cleanupAsDynamic -Like $Like
     } catch {
-        Write-Output "Error in Install-WinGetPackageClean: $($_.Exception.Message)"
+        Write-Output "ERROR: Caught exception in Install-WinGetPackageClean: $($_.Exception.Message)"
+        throw
     }
 }
 
