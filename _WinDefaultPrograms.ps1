@@ -151,4 +151,3 @@ if (Test-Path $GitDir) { `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
 . $PSScriptRoot\_WinDefaultApps.ps1
-. $PSScriptRoot\_WinDefaultFileTypes.ps1

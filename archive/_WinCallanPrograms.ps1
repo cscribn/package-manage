@@ -49,4 +49,3 @@ winget install -e --id Microsoft.WindowsPCHealthCheck
 winget install -e --id Zoom.Zoom
 
 . $PSScriptRoot\_WinDefaultApps.ps1
-. $PSScriptRoot\_WinDefaultFileTypes.ps1
