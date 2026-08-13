@@ -36,7 +36,7 @@ function Resolve-WinGetDynamicPackageId {
     }
 
     $resolved = $filtered |
-        Sort-Object -Property @{ Expression = { try { [version]$_.Version } catch { [version]'0.0.0.0' } } } -Descending |
+        Sort-Object -Property @{ Expression = { try { [version](Get-WinGetPackageVersion $_) } catch { [version]'0.0.0.0' } } } -Descending |
         Select-Object -First 1
 
     if (-not $resolved) {
@@ -66,6 +66,28 @@ function Invoke-WinGetCommand {
         ExitCode = $exitCode
         Output = ($output | Out-String).Trim()
     }
+}
+
+function Get-WinGetPackageVersion {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [psobject]$Package
+    )
+
+    if ($null -ne $Package.PSObject.Properties['Version']) {
+        return $Package.Version
+    }
+
+    if ($null -ne $Package.PSObject.Properties['InstalledVersion']) {
+        return $Package.InstalledVersion
+    }
+
+    if ($null -ne $Package.PSObject.Properties['AvailableVersion']) {
+        return $Package.AvailableVersion
+    }
+
+    return $null
 }
 
 function Get-WinGetInstallAlreadyInstalledNoUpgrade {
@@ -101,10 +123,17 @@ function Invoke-WinGetUninstall {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [string]$Id
+        [string]$Id,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$AllVersions
     )
 
-    $args = @('uninstall', '-e', '--silent', '--accept-source-agreements', '--id', $Id)
+    $args = @('uninstall', '-e', '--accept-source-agreements', '--id', $Id)
+    if ($AllVersions) {
+        $args += '--all-versions'
+    }
+
     return Invoke-WinGetCommand -Arguments $args
 }
 
@@ -174,14 +203,14 @@ function Remove-OldWinGetPackageVersions {
     }
 
     $sorted = @($installed) |
-        Sort-Object -Property @{ Expression = { try { [version]$_.Version } catch { [version]'0.0.0.0' } } } -Descending
+        Sort-Object -Property @{ Expression = { try { [version](Get-WinGetPackageVersion $_) } catch { [version]'0.0.0.0' } } } -Descending
 
     $packagesToRemove = $sorted | Select-Object -Skip 1
     foreach ($package in $packagesToRemove) {
-        Write-Information "Uninstalling older package version $($package.Id) ($($package.Version))."
-        $result = Invoke-WinGetUninstall -Id $package.Id
+        Write-Information "Uninstalling older package version $($package.Id) ($([string](Get-WinGetPackageVersion $package)))."
+        $result = Invoke-WinGetUninstall -Id $package.Id -AllVersions
         if (-not $result.Success) {
-            Write-Information "Failed to uninstall older package version $($package.Id): $($result.Output)"
+            Write-Information "Failed to uninstall older package version $($package.Id): ExitCode=$($result.ExitCode) Output=$($result.Output)"
         }
     }
 }
