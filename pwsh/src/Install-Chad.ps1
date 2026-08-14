@@ -10,10 +10,10 @@
 [CmdletBinding()]
 $Global:InformationPreference = 'Continue'
 
-Import-Module "$PSScriptRoot\WingetUtils.psm1" -Force
+Import-Module "$PSScriptRoot\Private\WingetUtils.psm1" -Force
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
-. $PSScriptRoot\_WinDefaultPrograms.ps1
+. $PSScriptRoot\Private\Install-Programs.ps1
 
 # copilot instructions - copy early for appending later
 New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.copilot"; `
@@ -116,10 +116,10 @@ if (Test-Path $GitDir) { `
     Set-Location - `
 }
 
-. $PSScriptRoot\_WinDefaultCleanup.ps1
+. $PSScriptRoot\Private\Remove-Unwanted.ps1
 
 # cleanup
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
 if (docker info > $null 2>&1) { docker system prune --volumes -f }
 
-. $PSScriptRoot\_WinChadProjects.ps1
+. $PSScriptRoot\Private\Copy-ProjectsChad.ps1

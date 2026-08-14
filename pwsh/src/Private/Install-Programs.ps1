@@ -13,7 +13,7 @@ Import-Module "$PSScriptRoot\WingetUtils.psm1" -Force
 # remove customized prompt
 function prompt {}
 
-. $PSScriptRoot\_WinDefaultRegistry.ps1
+. $PSScriptRoot\Set-Registry.ps1
 
 # chocolatey
 choco upgrade chocolatey -y
@@ -119,4 +119,4 @@ if (Test-Path $GitDir) { `
 }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
 
-. $PSScriptRoot\_WinDefaultApps.ps1
+. $PSScriptRoot\Install-Apps.ps1

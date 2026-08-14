@@ -6,7 +6,7 @@
 # silhouette studio
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
-. $PSScriptRoot\_WinDefaultPrograms.ps1
+. $PSScriptRoot\Private\Install-Programs.ps1
 
 winget install -e --id BlueStack.BlueStacks
 winget install -e --id fotor.fotor
@@ -21,7 +21,7 @@ winget install -e --id Poly.PlantronicsHub
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
 
-. $PSScriptRoot\_WinDefaultCleanup.ps1
+. $PSScriptRoot\Private\Remove-Unwanted.ps1
 
 # cleanup
 choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait

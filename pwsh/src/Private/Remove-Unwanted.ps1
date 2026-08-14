@@ -1,4 +1,4 @@
-. $PSScriptRoot\_WinDefaultConfig.ps1
+. $PSScriptRoot\Copy-Config.ps1
 
 # delete pesky desktop shortcuts
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Blender *.lnk" | Remove-Item
@@ -53,4 +53,4 @@ Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Unity*
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "VLC media player.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Zoom*.lnk" | Remove-Item
 
-. $PSScriptRoot\_WinDefaultNetwork.ps1
+. $PSScriptRoot\Reset-Network.ps1
