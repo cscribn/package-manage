@@ -45,12 +45,13 @@ Install-WinGetPackageClean -Id Google.GoogleDrive
 Install-WinGetPackageClean -Id MHNexus.HxD
 Install-WinGetPackageClean -Id NirSoft.IconsExtract
 Install-WinGetPackageClean -Id ImageMagick.ImageMagick
-if (Install-WinGetPackageClean -Id EclipseAdoptium.Temurin -Like "*JDK*") {
+if (($Output = Install-WinGetPackageClean -Id EclipseAdoptium.Temurin -InstallType "UnknownId") -eq $INSTALLED_OR_UPGRADED) {
     $target = Get-ChildItem "C:\Program Files\Eclipse Adoptium" | Sort-Object Name | Select-Object -Last 1
     if ($target) {
         New-Item -ItemType SymbolicLink -Path "C:\jdk" -Target $target.FullName -Force
     }
 }
+Write-Output $Output
 Install-WinGetPackageClean -Id KDE.Krita
 Install-WinGetPackageClean -Id GuinpinSoft.MakeMKV
 Install-WinGetPackageClean -Id Microsoft.VisualStudio.BuildTools

@@ -1,5 +1,7 @@
 #Requires -Modules Microsoft.WinGet.Client
 
+New-Variable -Name "INSTALLED_OR_UPGRADED" -Value "Install/Upgrade performed." -Option Constant -Scope Global
+
 function Get-WinGetInstalledPackagesById {
     [CmdletBinding()]
     param(
@@ -328,7 +330,7 @@ function Install-WinGetPackageClean {
 
         if (-not $installResult.Success) {
             if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $installResult -Id $targetId) {
-                Write-Output "Application '$targetId' is already installed and no upgrade is pending"
+                Write-Output "Application '$targetId' is already installed and no upgrade is pending."
                 $installResult = [pscustomobject]@{
                     Success = $true
                     ExitCode = 0
@@ -383,7 +385,7 @@ function Install-WinGetPackageClean {
         }
 
         if ($didInstallOrUpgrade) {
-            return $true
+            return $INSTALLED_OR_UPGRADED
         }
 
         return
@@ -392,4 +394,6 @@ function Install-WinGetPackageClean {
         throw
     }
 }
+
+Export-ModuleMember -Function * -Variable "INSTALLED_OR_UPGRADED"
 
