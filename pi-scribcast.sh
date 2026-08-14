@@ -56,7 +56,7 @@ if [[ "$HOSTNAME" == "scribcast2" ]]; then
 elif [[ "$HOSTNAME" == "scribcast1" ]]; then
     # raspotify
     wget -O "${HOME}/raspotify-latest_arm64.deb" https://dtcooper.github.io/raspotify/raspotify-latest_arm64.deb; \
-    sudo apt install -f "${HOME}/raspotify-latest_arm64.deb" -y; \
+    sudo dpkg -i "${HOME}/raspotify-latest_arm64.deb" && sudo apt-get install -f -y; \
     sudo systemctl enable raspotify; \
     sudo systemctl start raspotify; \
     sudo sed -i 's/^#LIBRESPOT_DEVICE=.*/LIBRESPOT_DEVICE=plughw:1,0/' /etc/raspotify/conf
