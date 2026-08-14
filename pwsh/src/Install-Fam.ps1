@@ -3,8 +3,8 @@
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\Private\Install-Programs.ps1
 
-winget install -e --id Lenovo.SystemUpdate
-winget install -e --id NextDNS.NextDNS
+Install-WinGetPackageClean -Id Lenovo.SystemUpdate
+Install-WinGetPackageClean -Id NextDNS.NextDNS
 
 # config
 

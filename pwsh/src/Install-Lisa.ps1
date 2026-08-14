@@ -8,12 +8,12 @@
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\Private\Install-Programs.ps1
 
-winget install -e --id BlueStack.BlueStacks
-winget install -e --id fotor.fotor
-winget install -e --id Google.GoogleDrive
-winget install -e --id KDE.Krita
-winget install -e --id NextDNS.NextDNS
-winget install -e --id Poly.PlantronicsHub
+Install-WinGetPackageClean -Id BlueStack.BlueStacks
+Install-WinGetPackageClean -Id fotor.fotor
+Install-WinGetPackageClean -Id Google.GoogleDrive
+Install-WinGetPackageClean -Id KDE.Krita
+Install-WinGetPackageClean -Id NextDNS.NextDNS
+Install-WinGetPackageClean -Id Poly.PlantronicsHub
 
 # config
 

@@ -4,14 +4,11 @@
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\Private\Install-Programs.ps1
 
-winget install -e --id DBBrowserForSQLite.DBBrowserForSQLite
-winget install -e --id Google.GoogleDrive
-winget install -e --id PaperCutSoftware.MobilityPrint
-winget install -e --id NextDNS.NextDNS
-
-if ((Get-WinGetPackage -Name "Plex").Count -eq 0) { `
-    winget install -e --id Plex.PlexMediaServer `
-}
+Install-WinGetPackageClean -Id DBBrowserForSQLite.DBBrowserForSQLite
+Install-WinGetPackageClean -Id Google.GoogleDrive
+Install-WinGetPackageClean -Id PaperCutSoftware.MobilityPrint
+Install-WinGetPackageClean -Id NextDNS.NextDNS
+Install-WinGetPackageClean -Id Plex.PlexMediaServer -InstallType SkipIfInstalled
 
 # config
 
