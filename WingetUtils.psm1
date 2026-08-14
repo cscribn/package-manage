@@ -272,6 +272,8 @@ function Install-WinGetPackageClean {
 
     Set-StrictMode -Version 2.0
     $ErrorActionPreference = 'Stop'
+    $didInstallOrUpgrade = $false
+    $preInstallPackages = @()
 
     if (-not $PSBoundParameters.ContainsKey('InstallType')) {
         if ($Like) {
@@ -292,10 +294,12 @@ function Install-WinGetPackageClean {
                 }
 
                 Write-Output "Attempting to install '$Id'."
+                $preInstallPackages = @()
                 $installResult = Invoke-WinGetInstall -Id $Id
             }
             'FixedId' {
                 Write-Output "Attempting to install '$Id'."
+                $preInstallPackages = Get-WinGetInstalledPackagesById -Id $Id
                 $installResult = Invoke-WinGetInstall -Id $Id
             }
             'DynamicId' {
@@ -306,6 +310,7 @@ function Install-WinGetPackageClean {
                 $resolvedId = Resolve-WinGetDynamicPackageId -Id $Id -Like $Like
                 Write-Output "Attempting to install resolved package id '$resolvedId' for '$Id'."
                 $targetId = $resolvedId
+                $preInstallPackages = Get-WinGetInstalledPackagesById -Id $targetId
                 $installResult = Invoke-WinGetInstall -Id $targetId
             }
             'UnknownId' {
@@ -313,6 +318,7 @@ function Install-WinGetPackageClean {
                 $resolvedId = Resolve-WinGetUnknownPackageId -Id $Id
                 Write-Output "Attempting to install resolved package id '$resolvedId' for '$Id'."
                 $targetId = $resolvedId
+                $preInstallPackages = Get-WinGetInstalledPackagesById -Id $targetId
                 $installResult = Invoke-WinGetInstall -Id $targetId
             }
             default {
@@ -360,6 +366,27 @@ function Install-WinGetPackageClean {
         Write-Output "Cleaning up any older versions of '$targetId'."
         $cleanupAsDynamic = $InstallType -in @('DynamicId','UnknownId')
         Remove-OldWinGetPackageVersions -Id $targetId -IsDynamic $cleanupAsDynamic -Like $Like
+
+        $postInstallPackages = Get-WinGetInstalledPackagesById -Id $targetId
+        if (@($postInstallPackages).Count -gt 0) {
+            if (@($preInstallPackages).Count -eq 0) {
+                $didInstallOrUpgrade = $true
+            } else {
+                $preVersions = @($preInstallPackages | ForEach-Object { [string](Get-WinGetPackageVersion $_) })
+                $postVersions = @($postInstallPackages | ForEach-Object { [string](Get-WinGetPackageVersion $_) })
+                if (@($postVersions | Where-Object { $_ -notin $preVersions }).Count -gt 0) {
+                    $didInstallOrUpgrade = $true
+                } elseif (@($postInstallPackages).Count -ne @($preInstallPackages).Count) {
+                    $didInstallOrUpgrade = $true
+                }
+            }
+        }
+
+        if ($didInstallOrUpgrade) {
+            return $true
+        }
+
+        return
     } catch {
         Write-Output "ERROR: Caught exception in Install-WinGetPackageClean: $($_.Exception.Message)"
         throw
