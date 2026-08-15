@@ -29,11 +29,6 @@ choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.port
 choco upgrade xsltproc -y --ignore-dependencies
 
 Install-WinGetPackageClean -Id sharkdp.bat
-
-# bats-core
-git clone https://github.com/bats-core/bats-core.git; Set-Location bats-core; bash ./install.sh "$HOME"; Set-Location -; `
-Remove-Item -Recurse -Force bats-core
-
 Install-WinGetPackageClean -Id BlueStack.BlueStacks
 Install-WinGetPackageClean -Id DBBrowserForSQLite.DBBrowserForSQLite
 Install-WinGetPackageClean -Id Eassos.DiskGenius -InstallType SkipIfInstalled
