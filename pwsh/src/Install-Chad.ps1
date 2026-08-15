@@ -19,14 +19,15 @@ Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\Private\Install-Apps.ps1
 
 # chocolatey
-choco upgrade fluidsynth -y --ignore-dependencies
-choco upgrade gradle -y --ignore-dependencies
-choco upgrade pngquant -y --ignore-dependencies
-choco upgrade pngyu -y --ignore-dependencies
-choco upgrade tftpd32 -y --ignore-dependencies
-choco upgrade win32diskimager --version 0.9.5 -y --ignore-dependencies; choco pin add --name="'win32diskimager'" --version="'0.9.5'"
-choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.portable -y --ignore-dependencies
-choco upgrade xsltproc -y --ignore-dependencies
+choco feature enable -n='useRememberedArgumentsForUpgrades'
+choco upgrade fluidsynth -y -r -q --ignore-dependencies
+choco upgrade gradle -y -r -q --ignore-dependencies
+choco upgrade pngquant -y -r -q --ignore-dependencies
+choco upgrade pngyu -y -r -q --ignore-dependencies
+choco upgrade tftpd32 -y -r -q --ignore-dependencies
+choco upgrade win32diskimager --version 0.9.5 -y -r -q --ignore-dependencies; choco pin add --name="'win32diskimager'" --version="'0.9.5'"
+choco upgrade xmlstarlet -y -r -q --ignore-dependencies; choco upgrade xmlstarlet.portable -y -r -q --ignore-dependencies
+choco upgrade xsltproc -y -r -q --ignore-dependencies
 
 # winget
 Install-WinGetPackageClean -Id sharkdp.bat
@@ -121,5 +122,4 @@ if (Test-Path $GitDir) {
 . $PSScriptRoot\Private\Reset-Network.ps1
 
 # cleanup
-choco uninstall choco-cleaner -y
 if (docker info > $null 2>&1) { docker system prune --volumes -f }

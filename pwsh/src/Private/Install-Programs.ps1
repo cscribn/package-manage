@@ -21,11 +21,11 @@ Import-Module "$PSScriptRoot\WingetUtils.psm1" -Force
 function prompt {}
 
 # chocolatey
-choco upgrade chocolatey -y
+choco upgrade chocolatey -y -r -q
 choco feature enable -n='useRememberedArgumentsForUpgrades'
-choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
-choco upgrade nerd-fonts-meslo -y --ignore-dependencies
-choco upgrade filezilla -y --ignore-dependencies
+choco upgrade chocolatey-font-helpers.extension -y -r -q --ignore-dependencies
+choco upgrade nerd-fonts-meslo -y -r -q --ignore-dependencies
+choco upgrade filezilla -y -r -q --ignore-dependencies
 
 # winget
 Install-WinGetPackageClean -Id cURL.cURL
