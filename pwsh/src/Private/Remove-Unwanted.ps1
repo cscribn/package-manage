@@ -1,5 +1,3 @@
-. $PSScriptRoot\Copy-Config.ps1
-
 # delete pesky desktop shortcuts
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Blender *.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "BlueStacks *.lnk" | Remove-Item
@@ -52,5 +50,3 @@ Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Twitch
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Unity*.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "VLC media player.lnk" | Remove-Item
 Get-ChildItem -Path $env:PUBLIC\Desktop,$env:USERPROFILE\Desktop -Filter "Zoom*.lnk" | Remove-Item
-
-. $PSScriptRoot\Reset-Network.ps1

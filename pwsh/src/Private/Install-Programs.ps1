@@ -13,8 +13,6 @@ Import-Module "$PSScriptRoot\WingetUtils.psm1" -Force
 # remove customized prompt
 function prompt {}
 
-. $PSScriptRoot\Set-Registry.ps1
-
 # chocolatey
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
@@ -118,5 +116,3 @@ if (Test-Path $GitDir) { `
 	git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir `
 }; `
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item
-
-. $PSScriptRoot\Install-Apps.ps1

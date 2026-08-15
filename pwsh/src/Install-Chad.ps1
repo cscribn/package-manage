@@ -13,7 +13,9 @@ $Global:InformationPreference = 'Continue'
 Import-Module "$PSScriptRoot\Private\WingetUtils.psm1" -Force
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
+. $PSScriptRoot\Private\Set-Registry.ps1
 . $PSScriptRoot\Private\Install-Programs.ps1
+. $PSScriptRoot\Private\Install-Apps.ps1
 
 # copilot instructions - copy early for appending later
 New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.copilot"; `
@@ -111,10 +113,11 @@ if (Test-Path $GitDir) { `
     Set-Location - `
 }
 
+. $PSScriptRoot\Private\Copy-ProjectsChad.ps1
+. $PSScriptRoot\Private\Copy-Config.ps1
 . $PSScriptRoot\Private\Remove-Unwanted.ps1
+. $PSScriptRoot\Private\Reset-Network.ps1
 
 # cleanup
 choco uninstall choco-cleaner -y
 if (docker info > $null 2>&1) { docker system prune --volumes -f }
-
-. $PSScriptRoot\Private\Copy-ProjectsChad.ps1
