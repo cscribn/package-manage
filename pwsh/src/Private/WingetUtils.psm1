@@ -29,6 +29,24 @@ function Get-WinGetInstalledPackagesById {
     }
 }
 
+function Get-WinGetNewestPackageId {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [psobject[]]$Packages
+    )
+
+    if (-not $Packages) {
+        return $null
+    }
+
+    $resolved = $Packages |
+        Sort-Object -Property @{ Expression = { try { [version](Get-WinGetPackageVersion $_) } catch { [version]'0.0.0.0' } } } -Descending |
+        Select-Object -First 1
+
+    return $resolved.Id
+}
+
 function Resolve-WinGetDynamicPackageId {
     [CmdletBinding()]
     param(
@@ -49,15 +67,12 @@ function Resolve-WinGetDynamicPackageId {
         throw "No winget search results found for '$Id' matching '$Like'."
     }
 
-    $resolved = $filtered |
-        Sort-Object -Property @{ Expression = { try { [version](Get-WinGetPackageVersion $_) } catch { [version]'0.0.0.0' } } } -Descending |
-        Select-Object -First 1
-
-    if (-not $resolved) {
+    $resolvedId = Get-WinGetNewestPackageId -Packages $filtered
+    if (-not $resolvedId) {
         throw "Unable to resolve dynamic winget package id for '$Id'."
     }
 
-    return $resolved.Id
+    return $resolvedId
 }
 
 function Resolve-WinGetUnknownPackageId {
@@ -72,15 +87,12 @@ function Resolve-WinGetUnknownPackageId {
         throw "No winget search results found for '$Id'."
     }
 
-    $resolved = $searchResults |
-        Sort-Object -Property @{ Expression = { try { [version](Get-WinGetPackageVersion $_) } catch { [version]'0.0.0.0' } } } -Descending |
-        Select-Object -First 1
-
-    if (-not $resolved) {
+    $resolvedId = Get-WinGetNewestPackageId -Packages $searchResults
+    if (-not $resolvedId) {
         throw "Unable to resolve newest winget package id for '$Id'."
     }
 
-    return $resolved.Id
+    return $resolvedId
 }
 
 function Invoke-WinGetCommand {
@@ -295,6 +307,7 @@ function Install-WinGetPackageClean {
     )
 
     Set-StrictMode -Version 2.0
+    $originalErrorActionPreference = $ErrorActionPreference
     $ErrorActionPreference = 'Stop'
     $didInstallOrUpgrade = $false
     $preInstallPackages = @()
@@ -414,6 +427,8 @@ function Install-WinGetPackageClean {
     } catch {
         Write-Output "ERROR: Caught exception in Install-WinGetPackageClean: $($_.Exception.Message)"
         throw
+    } finally {
+        $ErrorActionPreference = $originalErrorActionPreference
     }
 }
 
