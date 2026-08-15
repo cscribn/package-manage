@@ -28,18 +28,18 @@ if (($Output = Install-WinGetPackageClean -Id Git.Git) -eq $INSTALLED_OR_UPGRADE
 Write-Output $Output
 
 # pacman
-if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) { `
-	Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"; `
-	Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"; `
-	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"; `
-	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"; `
-}; `
+if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) {
+	Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"
+	Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"
+	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"
+	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"
+}
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* pacman"
 
 Install-WinGetPackageClean -Id Microsoft.PowerShell
-Install-Module -Name Microsoft.WinGet.Client -Force; `
-Install-Module -Name posh-git -Force; `
-Install-Module -Name PSReadLine -Force; `
+Install-Module -Name Microsoft.WinGet.Client -Force
+Install-Module -Name posh-git -Force
+Install-Module -Name PSReadLine -Force
 Install-Module -Name Terminal-Icons -Force
 
 Install-WinGetPackageClean -Id 7zip.7zip
@@ -100,19 +100,19 @@ Install-WinGetPackageClean -Id WiresharkFoundation.Wireshark
 Install-WinGetPackageClean -Id Zoom.Zoom
 
 # zsh
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"; `
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"; `
-if (Test-Path $GitDir) { `
-	Set-Location $GitDir; `
-	git pull; Set-Location - `
-} else { `
-	git clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir `
-}; `
-$GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"; `
-if (Test-Path $GitDir) { `
-	Set-Location $GitDir; `
-	git pull; Set-Location - `
-} else { `
-	git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir `
-}; `
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
+if (Test-Path $GitDir) {
+	Set-Location $GitDir
+	git pull; Set-Location -
+} else {
+	git clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir
+}
+$GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
+if (Test-Path $GitDir) {
+	Set-Location $GitDir
+	git pull; Set-Location -
+} else {
+	git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir
+}
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item

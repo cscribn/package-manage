@@ -80,12 +80,12 @@ python -m pip install --user pipx
 python -m pipx ensurepath
 
 # wsl
-if (-Not (wsl --list -version)) { wsl --install }; `
-wsl -d "Ubuntu" -u root -e apt update -y; `
-wsl -d "Ubuntu" -u root -e apt install expect -y; `
-wsl -d "Ubuntu" -u root -e apt full-upgrade -y; `
-wsl -d "Ubuntu" -u root -e do-release-upgrade; `
-wsl -d "Ubuntu" -u root -e apt autoremove -y; `
+if (-Not (wsl --list -version)) { wsl --install }
+wsl -d "Ubuntu" -u root -e apt update -y
+wsl -d "Ubuntu" -u root -e apt install expect -y
+wsl -d "Ubuntu" -u root -e apt full-upgrade -y
+wsl -d "Ubuntu" -u root -e do-release-upgrade
+wsl -d "Ubuntu" -u root -e apt autoremove -y
 wsl -d "Ubuntu" -u root -e apt clean -y
 
 # config
@@ -93,26 +93,26 @@ wsl -d "Ubuntu" -u root -e apt clean -y
 git config --global diff.word.textconv pandoc --to=markdown
 
 ## copilot instructions
-New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.copilot"; `
+New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.copilot"
 curl -Lo "$Env:USERPROFILE\.copilot\copilot-instructions.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md
 
 ## microsoft-windows-terminal
-$LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
+$LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-chad.json
 
 # requirements
-$GitDir = "$Env:USERPROFILE\.config\dotfiles-misc"; `
-if (Test-Path $GitDir) { `
-    Set-Location $GitDir; `
-    git pull origin; Set-Location - `
-} else { `
-    git init $GitDir; `
-    Set-Location $GitDir; `
-    git checkout -b main; `
-    git remote add origin "https://github.com/cscribn/dotfiles-misc"; `
-    git sparse-checkout set "requirements"; `
-    git pull --set-upstream origin main; `
-    Set-Location - `
+$GitDir = "$Env:USERPROFILE\.config\dotfiles-misc"
+if (Test-Path $GitDir) {
+    Set-Location $GitDir
+    git pull origin; Set-Location -
+} else {
+    git init $GitDir
+    Set-Location $GitDir
+    git checkout -b main
+    git remote add origin "https://github.com/cscribn/dotfiles-misc"
+    git sparse-checkout set "requirements"
+    git pull --set-upstream origin main
+    Set-Location -
 }
 
 . $PSScriptRoot\Private\Copy-ProjectsChad.ps1
