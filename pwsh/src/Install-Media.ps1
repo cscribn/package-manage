@@ -18,7 +18,7 @@ Install-WinGetPackageClean -Id Plex.PlexMediaServer -InstallType SkipIfInstalled
 
 ## microsoft-windows-terminal
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
-curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
+curl -sSLo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-default.json
 
 . $PSScriptRoot\Private\Copy-Config.ps1
 . $PSScriptRoot\Private\Remove-Unwanted.ps1
