@@ -92,9 +92,14 @@ Install-WinGetPackageClean -Id WiresharkFoundation.Wireshark
 Install-WinGetPackageClean -Id Zoom.Zoom
 
 # fonts backup
-$out = robocopy C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /R:0 /W:0 | Select-String "Files :"
-$out.Line -match 'Files\s*:\s*\d+\s+(?<copied>\d+)\s+(?<skipped>\d+)\s+\d+\s+(?<failed>\d+)' | Out-Null
-"Fonts Backup Finished — Copied: $($Matches.copied), Skipped: $($Matches.skipped), Failed: $($Matches.failed)"
+$FontBackupPath = Join-Path $Env:USERPROFILE 'Fonts Backup'
+$summary = robocopy C:\Windows\Fonts $FontBackupPath /XO /R:0 /W:0 |
+    Select-String '^[ \t]*Files\s*:' | Select-Object -Last 1
+if ($summary -and $summary.Line -match 'Files\s*:\s*\d+\s+(\d+)\s+(\d+)\s+\d+\s+(\d+)') {
+    "Fonts Backup Finished — Copied: $($Matches[1]), Skipped: $($Matches[2]), Failed: $($Matches[3])"
+} else {
+    Write-Output "ERROR: Unable to parse robocopy summary line: '$($summary?.Line)'"
+}
 
 # pacman
 if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) {
