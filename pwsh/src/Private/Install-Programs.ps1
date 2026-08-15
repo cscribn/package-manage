@@ -3,6 +3,7 @@
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
 # libreoffice settings: disable jre, enable quickstarter, set default saves to office formats.
+# powershell
 # winget
 #
 # file type associations:
@@ -33,7 +34,6 @@ if (($Output = Install-WinGetPackageClean -Id Git.Git) -eq $INSTALLED_OR_UPGRADE
 	git config --global http.sslBackend openssl
 }
 Write-Output $Output
-Install-WinGetPackageClean -Id Microsoft.PowerShell
 Install-WinGetPackageClean -Id 7zip.7zip
 Install-WinGetPackageClean -Id Mythicsoft.AgentRansack
 Install-WinGetPackageClean -Id ArminOsaj.AutoDarkMode
