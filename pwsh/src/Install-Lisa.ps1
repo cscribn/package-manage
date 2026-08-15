@@ -24,4 +24,4 @@ curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscrib
 . $PSScriptRoot\Private\Remove-Unwanted.ps1
 
 # cleanup
-choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
+choco uninstall choco-cleaner -y

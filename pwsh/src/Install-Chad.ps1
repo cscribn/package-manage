@@ -114,7 +114,7 @@ if (Test-Path $GitDir) { `
 . $PSScriptRoot\Private\Remove-Unwanted.ps1
 
 # cleanup
-choco upgrade choco-cleaner --params "'/NOTASK:TRUE'" -y --ignore-dependencies; Start-Process -FilePath "C:\ProgramData\chocolatey\bin\choco-cleaner.bat" -Wait
+choco uninstall choco-cleaner -y
 if (docker info > $null 2>&1) { docker system prune --volumes -f }
 
 . $PSScriptRoot\Private\Copy-ProjectsChad.ps1
