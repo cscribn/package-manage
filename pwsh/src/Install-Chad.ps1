@@ -13,14 +13,12 @@ $Global:InformationPreference = 'Continue'
 Import-Module "$PSScriptRoot\Private\WingetUtils.psm1" -Force
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
+
 . $PSScriptRoot\Private\Set-Registry.ps1
 . $PSScriptRoot\Private\Install-Programs.ps1
 . $PSScriptRoot\Private\Install-Apps.ps1
 
-# copilot instructions - copy early for appending later
-New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.copilot"; `
-curl -Lo "$Env:USERPROFILE\.copilot\copilot-instructions.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md
-
+# chocolatey
 choco upgrade fluidsynth -y --ignore-dependencies
 choco upgrade gradle -y --ignore-dependencies
 choco upgrade pngquant -y --ignore-dependencies
@@ -30,6 +28,7 @@ choco upgrade win32diskimager --version 0.9.5 -y --ignore-dependencies; choco pi
 choco upgrade xmlstarlet -y --ignore-dependencies; choco upgrade xmlstarlet.portable -y --ignore-dependencies
 choco upgrade xsltproc -y --ignore-dependencies
 
+# winget
 Install-WinGetPackageClean -Id sharkdp.bat
 Install-WinGetPackageClean -Id BlueStack.BlueStacks
 Install-WinGetPackageClean -Id DBBrowserForSQLite.DBBrowserForSQLite
@@ -53,20 +52,13 @@ Install-WinGetPackageClean -Id KDE.Krita
 Install-WinGetPackageClean -Id GuinpinSoft.MakeMKV
 Install-WinGetPackageClean -Id Microsoft.VisualStudio.BuildTools
 Install-WinGetPackageClean -Id NextDNS.NextDNS
-pipx upgrade openai-whisper 2>$null || pipx install openai-whisper
 Install-WinGetPackageClean -Id OpenJS.NodeJS.LTS
 Install-WinGetPackageClean -Id Ollama.Ollama -InstallType SkipIfInstalled
 Install-WinGetPackageClean -Id Poly.PlantronicsHub
 Install-WinGetPackageClean -Id oschwartz10612.Poppler
 Install-WinGetPackageClean -Id Postman.Postman
 Install-WinGetPackageClean -Id PuTTY.PuTTY
-
-# python
 Install-WinGetPackageClean -Id "Python.Python." -InstallType "UnknownId"
-python -m pip install --upgrade pip; `
-python -m pip install --user pipx; `
-python -m pipx ensurepath
-
 Install-WinGetPackageClean -Id RaspberryPiFoundation.RaspberryPiImager
 Install-WinGetPackageClean -Id Rufus.Rufus
 Install-WinGetPackageClean -Id SBCL.SBCL # steel bank common lisp
@@ -76,6 +68,16 @@ Install-WinGetPackageClean -Id UB-Mannheim.TesseractOCR
 Install-WinGetPackageClean -Id astral-sh.uv
 Install-WinGetPackageClean -Id Oracle.VirtualBox
 Install-WinGetPackageClean -Id WireGuard.WireGuard
+Install-WinGetPackageClean -Id MikeFarah.yq
+
+# pipx
+pipx upgrade openai-whisper 2>$null || pipx install openai-whisper
+pipx upgrade "yt-dlp[default]" 2>$null || pipx install "yt-dlp[default]"
+
+# python
+python -m pip install --upgrade pip
+python -m pip install --user pipx
+python -m pipx ensurepath
 
 # wsl
 if (-Not (wsl --list -version)) { wsl --install }; `
@@ -86,15 +88,15 @@ wsl -d "Ubuntu" -u root -e do-release-upgrade; `
 wsl -d "Ubuntu" -u root -e apt autoremove -y; `
 wsl -d "Ubuntu" -u root -e apt clean -y
 
-Install-WinGetPackageClean -Id MikeFarah.yq
-pipx upgrade "yt-dlp[default]" 2>$null || pipx install "yt-dlp[default]"
-
 # config
-
-# git
+## git
 git config --global diff.word.textconv pandoc --to=markdown
 
-# microsoft-windows-terminal
+## copilot instructions
+New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.copilot"; `
+curl -Lo "$Env:USERPROFILE\.copilot\copilot-instructions.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/github/copilot-instructions.md
+
+## microsoft-windows-terminal
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"; `
 curl -Lo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-chad.json
 

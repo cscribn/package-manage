@@ -3,13 +3,14 @@ $Global:InformationPreference = 'Continue'
 
 Import-Module "$PSScriptRoot\WingetUtils.psm1" -Force
 
-# install apps
+# appx
+Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | ForEach-Object {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} # microsoft solitaire
+
+# winget
 Install-WinGetPackageClean -Id 9NP83LWLPZ9K # apple devices
 Install-WinGetPackageClean -Id 9PKTQ5699M62 # icloud
 
-Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | ForEach-Object {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} # microsoft solitaire
-
-# remove apps all at once, due to https://github.com/PowerShell/PowerShell/issues/16652
+# remove apps; do all at once, due to https://github.com/PowerShell/PowerShell/issues/16652
 $Session = New-PSSession -UseWindowsPowerShell; Invoke-Command -Session $Session { `
     Get-AppxPackage *ACGMediaPlayer* | Remove-AppxPackage; `
     Get-AppxPackage *ActiproSoftwareLLC* | Remove-AppxPackage; `
