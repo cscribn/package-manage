@@ -90,7 +90,6 @@ function Invoke-WinGetCommand {
         [string[]]$Arguments
     )
 
-    $timeoutMs = 300000 # 5 minutes
     $argumentsText = $Arguments | ForEach-Object {
         if ($_ -match '\s') { "`"$_`"" } else { $_ }
     } | Join-String ' '
@@ -110,16 +109,7 @@ function Invoke-WinGetCommand {
 
         $stdout = $process.StandardOutput.ReadToEnd()
         $stderr = $process.StandardError.ReadToEnd()
-        if (-not $process.WaitForExit($timeoutMs)) {
-            try { $process.Kill() | Out-Null } catch { }
-            $output = ($stdout + [Environment]::NewLine + $stderr).Trim()
-            return [pscustomobject]@{
-                Success = $false
-                ExitCode = 124
-                Output = "winget command timed out after $($timeoutMs / 1000) seconds.`n$output"
-                TimedOut = $true
-            }
-        }
+        $process.WaitForExit()
 
         $exitCode = $process.ExitCode
         $output = ($stdout + [Environment]::NewLine + $stderr).Trim()
@@ -132,7 +122,6 @@ function Invoke-WinGetCommand {
         Success = $exitCode -eq 0
         ExitCode = $exitCode
         Output = $output
-        TimedOut = $false
     }
 }
 
@@ -362,11 +351,6 @@ function Install-WinGetPackageClean {
         }
 
         if (-not $installResult.Success) {
-            if ($installResult.TimedOut) {
-                Write-Output "ERROR: winget command timed out for '$targetId'. Output: $($installResult.Output)"
-                throw "winget install timed out for '$targetId'."
-            }
-
             if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $installResult -Id $targetId) {
                 Write-Output "Application '$targetId' is already installed and no upgrade is pending."
                 $installResult = [pscustomobject]@{
@@ -379,11 +363,7 @@ function Install-WinGetPackageClean {
                 Write-Output "Attempting to uninstall '$targetId'."
                 $uninstallResult = Invoke-WinGetUninstall -Id $targetId
                 if (-not $uninstallResult.Success) {
-                    if ($uninstallResult.TimedOut) {
-                        Write-Output "WARNING: Uninstall of '$targetId' timed out; retrying install anyway."
-                    } else {
-                        Write-Output "WARNING: Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
-                    }
+                    Write-Output "WARNING: Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
                 }
 
                 Write-Output "Attempting to install '$targetId' again."
@@ -392,11 +372,6 @@ function Install-WinGetPackageClean {
         }
 
         if (-not $installResult.Success) {
-            if ($installResult.TimedOut) {
-                Write-Output "ERROR: winget command timed out for '$targetId' on retry. Output: $($installResult.Output)"
-                throw "winget install retry timed out for '$targetId'."
-            }
-
             if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $installResult -Id $targetId) {
                 Write-Output "Application '$targetId' is already installed and no upgrade is pending on retry."
                 $installResult = [pscustomobject]@{
