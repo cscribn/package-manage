@@ -24,31 +24,16 @@ function prompt {}
 choco upgrade chocolatey -y
 choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y --ignore-dependencies
-choco upgrade nerd-fonts-meslo -y --ignore-dependencies; robocopy  C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /NFL /NDL /NJH /NC /NS /NP
+choco upgrade nerd-fonts-meslo -y --ignore-dependencies
 choco upgrade filezilla -y --ignore-dependencies
 
-# winget installs
+# winget
 Install-WinGetPackageClean -Id cURL.cURL
 if (($Output = Install-WinGetPackageClean -Id Git.Git) -eq $INSTALLED_OR_UPGRADED) {
 	git config --global http.sslBackend openssl
 }
 Write-Output $Output
-
-# pacman
-if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) {
-	Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"
-	Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"
-	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"
-	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"
-}
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* pacman"
-
 Install-WinGetPackageClean -Id Microsoft.PowerShell
-Install-Module -Name Microsoft.WinGet.Client -Force
-Install-Module -Name posh-git -Force
-Install-Module -Name PSReadLine -Force
-Install-Module -Name Terminal-Icons -Force
-
 Install-WinGetPackageClean -Id 7zip.7zip
 Install-WinGetPackageClean -Id Mythicsoft.AgentRansack
 Install-WinGetPackageClean -Id ArminOsaj.AutoDarkMode
@@ -105,6 +90,26 @@ Install-WinGetPackageClean -Id Microsoft.WindowsPCHealthCheck
 Install-WinGetPackageClean -Id WinMerge.WinMerge
 Install-WinGetPackageClean -Id WiresharkFoundation.Wireshark
 Install-WinGetPackageClean -Id Zoom.Zoom
+
+# fonts backup
+$out = robocopy C:\Windows\Fonts "$Env:USERPROFILE\Fonts Backup" /XO /R:0 /W:0 | Select-String "Files :"
+$out.Line -match 'Files\s*:\s*\d+\s+(?<copied>\d+)\s+(?<skipped>\d+)\s+\d+\s+(?<failed>\d+)' | Out-Null
+"Fonts Backup Finished — Copied: $($Matches.copied), Skipped: $($Matches.skipped), Failed: $($Matches.failed)"
+
+# pacman
+if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "C:\git-sdk-64\usr\bin\pacman.exe")) {
+	Copy-Item "C:\git-sdk-64\usr\bin\pacman.exe" -Destination "C:\Program Files\Git\usr\bin"
+	Copy-Item "C:\git-sdk-64\etc\pacman.conf" -Destination "C:\Program Files\Git\etc"
+	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"
+	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"
+}
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* pacman"
+
+# powershell modules
+Update-Module -Name Microsoft.WinGet.Client
+Update-Module -Name posh-git
+Update-Module -Name PSReadLine
+Update-Module -Name Terminal-Icons
 
 # zsh
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"
