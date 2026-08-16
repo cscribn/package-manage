@@ -225,27 +225,21 @@ function Invoke-WinGetCommandAsStandardUser {
     }
     $wingetArguments = $escapedArgs -join ' '
 
-    $innerCommand = @"
-try {
-    & winget $wingetArguments 2> \"$stderrPath\" | Out-String | Set-Content -LiteralPath \"$stdoutPath\"
+    $scriptPath = [IO.Path]::ChangeExtension([IO.Path]::GetTempFileName(), '.ps1')
+    $scriptContent = @'
+try {{
+    & winget {0} 2> "{1}" | Out-String | Set-Content -LiteralPath "{2}"
     $exitCode = $LASTEXITCODE
-} catch {
-    $error[0].ToString() | Set-Content -LiteralPath \"$stderrPath\"
+}} catch {{
+    $error[0].ToString() | Set-Content -LiteralPath "{1}"
     $exitCode = 1
-}
-Set-Content -LiteralPath \"$exitPath\" -Value $exitCode
-"@
-    $encodedCommand = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($innerCommand))
-    $shellArguments = "-NoProfile -NonInteractive -WindowStyle Hidden -EncodedCommand $encodedCommand"
+}}
+Set-Content -LiteralPath "{3}" -Value $exitCode
+'@ -f $wingetArguments, $stderrPath, $stdoutPath, $exitPath
+    Set-Content -LiteralPath $scriptPath -Value $scriptContent -Encoding UTF8
 
     try {
-        $shell = New-Object -ComObject Shell.Application
-        $shellExecuteResult = $shell.ShellExecute($powershellPath, $shellArguments, '', 'open', 0)
-        if ($shellExecuteResult -is [int]) {
-            if ($shellExecuteResult -lt 32) {
-                throw "ShellExecute failed with code $shellExecuteResult"
-            }
-        }
+        Start-Process -FilePath $powershellPath -ArgumentList @('-NoProfile','-NonInteractive','-WindowStyle','Hidden','-File',$scriptPath) -NoNewWindow -Wait -ErrorAction Stop | Out-Null
     } catch {
         return [pscustomobject]@{
             Success = $false
@@ -289,6 +283,9 @@ Set-Content -LiteralPath \"$exitPath\" -Value $exitCode
         }
     } finally {
         Remove-Item -Path $stdoutPath, $stderrPath, $exitPath -Force -ErrorAction SilentlyContinue
+        if (Test-Path $scriptPath) {
+            Remove-Item -Path $scriptPath -Force -ErrorAction SilentlyContinue
+        }
     }
 }
 
