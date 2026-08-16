@@ -18,7 +18,4 @@ curl -sSLo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscr
 
 . $PSScriptRoot\Private\Copy-Config.ps1
 . $PSScriptRoot\Private\Remove-Unwanted.ps1
-
-# cleanup
-choco uninstall choco-cleaner -y
 . $PSScriptRoot\Private\Reset-Network.ps1
