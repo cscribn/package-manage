@@ -186,7 +186,22 @@ function Invoke-WinGetInstall {
 
     $commandArguments = @('install', '-e', '--silent', '--accept-package-agreements', '--accept-source-agreements', '--id', $Id)
     $result = Invoke-WinGetCommand -Arguments $commandArguments
-    return Normalize-WinGetResult -Result $result
+    $result = Normalize-WinGetResult -Result $result
+
+    if (-not $result.Success -and Test-WinGetBlockedByAdminUserScope -Output $result.Output) {
+        Write-Output "WARNING: Winget install failed because a user-scope package cannot be uninstalled while elevated. Retrying without administrator privileges."
+        $fallbackResult = Invoke-WinGetCommandAsStandardUser -Arguments $commandArguments
+        $fallbackResult = Normalize-WinGetResult -Result $fallbackResult
+
+        if ($fallbackResult.Success) {
+            return $fallbackResult
+        }
+
+        Write-Output "WARNING: Non-elevated install retry failed: ExitCode=$($fallbackResult.ExitCode) Output=$($fallbackResult.Output)"
+        return $fallbackResult
+    }
+
+    return $result
 }
 
 function Invoke-WinGetUninstall {
@@ -208,7 +223,7 @@ function Invoke-WinGetUninstall {
     $result = Normalize-WinGetResult -Result $result
 
     if (-not $result.Success) {
-        if (Test-WinGetUninstallBlockedByAdmin -Output $result.Output) {
+        if (Test-WinGetBlockedByAdminUserScope -Output $result.Output) {
             Write-Output "WARNING: Winget uninstall failed because the package was installed for user scope and cannot be uninstalled while running elevated. Retrying without administrator privileges."
             $fallbackResult = Invoke-WinGetCommandAsStandardUser -Arguments $commandArguments
             $fallbackResult = Normalize-WinGetResult -Result $fallbackResult
@@ -225,7 +240,7 @@ function Invoke-WinGetUninstall {
     return $result
 }
 
-function Test-WinGetUninstallBlockedByAdmin {
+function Test-WinGetBlockedByAdminUserScope {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
@@ -238,7 +253,7 @@ function Test-WinGetUninstallBlockedByAdmin {
         return $false
     }
 
-    return $Output -match '(?i)(user scope.*cannot.*uninstall|installed for user scope.*cannot be uninstalled|cannot be uninstalled.*administrator privileges)'
+    return $Output -match '(?si)(user scope[\s\S]*cannot[\s\S]*uninstall|installed for user scope[\s\S]*cannot be uninstalled|cannot be uninstalled[\s\S]*administrator privileges|installed for user scope[\s\S]*administrator privileges)'
 }
 
 function Invoke-WinGetCommandAsStandardUser {
@@ -264,19 +279,23 @@ function Invoke-WinGetCommandAsStandardUser {
 
     $scriptPath = [IO.Path]::ChangeExtension([IO.Path]::GetTempFileName(), '.ps1')
     $scriptContent = @'
-try {{
+try {
     & winget {0} 2> "{1}" | Out-String | Set-Content -LiteralPath "{2}"
     $exitCode = $LASTEXITCODE
-}} catch {{
+} catch {
     $error[0].ToString() | Set-Content -LiteralPath "{1}"
     $exitCode = 1
-}}
+}
 Set-Content -LiteralPath "{3}" -Value $exitCode
 '@ -f $wingetArguments, $stderrPath, $stdoutPath, $exitPath
     Set-Content -LiteralPath $scriptPath -Value $scriptContent -Encoding UTF8
 
     try {
-        Start-Process -FilePath $powershellPath -ArgumentList @('-NoProfile','-NonInteractive','-WindowStyle','Hidden','-File',$scriptPath) -NoNewWindow -Wait -ErrorAction Stop | Out-Null
+        $shell = New-Object -ComObject Shell.Application
+        $shellExecuteResult = $shell.ShellExecute($powershellPath, "-NoProfile -NonInteractive -WindowStyle Hidden -File `"$scriptPath`"", '', 'open', 0)
+        if ($shellExecuteResult -is [int] -and $shellExecuteResult -lt 32) {
+            throw "ShellExecute failed with code $shellExecuteResult"
+        }
     } catch {
         return Normalize-WinGetResult -Result ([pscustomobject]@{
             Success = $false
