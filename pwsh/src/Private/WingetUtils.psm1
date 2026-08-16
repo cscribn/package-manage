@@ -27,11 +27,56 @@ function Invoke-AsUserAndWait {
     $powershellArgs = "-NoProfile -ExecutionPolicy Bypass -Command `"\`$PID | Out-File -FilePath '$pidFile' -Encoding utf8; Start-Process -FilePath '$Command' -ArgumentList $argumentListLiteral -RedirectStandardOutput '$stdoutFile' -RedirectStandardError '$stderrFile' -Wait -NoNewWindow; \`$LASTEXITCODE | Out-File -FilePath '$exitCodeFile' -Encoding utf8`""
     (New-Object -ComObject Shell.Application).ShellExecute('pwsh.exe', $powershellArgs, '', 'open', 0)
 
-    while ((-not (Test-Path $pidFile)) -or ((Get-Content $pidFile).Length -eq 0)) {
-        Start-Sleep -Milliseconds 100
+    while ($true) {
+        if (-not (Test-Path $pidFile)) {
+            Start-Sleep -Milliseconds 100
+            continue
+        }
+
+        $pidText = Get-Content -Path $pidFile -Raw -ErrorAction SilentlyContinue
+        if ([string]::IsNullOrWhiteSpace($pidText)) {
+            Start-Sleep -Milliseconds 100
+            continue
+        }
+
+        try {
+            $childPid = [int]$pidText.Trim()
+            break
+        } catch {
+            Start-Sleep -Milliseconds 100
+        }
     }
 
-    $childPid = [int](Get-Content $pidFile)
+
+        $pidText = Get-Content -Path $pidFile -Raw -ErrorAction SilentlyContinue
+        if ([string]::IsNullOrWhiteSpace($pidText)) {
+            Start-Sleep -Milliseconds 100
+            continue
+        }
+
+        try {
+            $childPid = [int]$pidText.Trim()
+            break
+        } catch {
+            Start-Sleep -Milliseconds 100
+        }
+    }
+
+
+        $pidText = Get-Content -Path $pidFile -Raw -ErrorAction SilentlyContinue
+        if ([string]::IsNullOrWhiteSpace($pidText)) {
+            Start-Sleep -Milliseconds 100
+            continue
+        }
+
+        try {
+            $childPid = [int]$pidText.Trim()
+            break
+        } catch {
+            Start-Sleep -Milliseconds 100
+        }
+    }
+
     Remove-Item $pidFile -ErrorAction SilentlyContinue
 
     Wait-Process -Id $childPid -ErrorAction SilentlyContinue
