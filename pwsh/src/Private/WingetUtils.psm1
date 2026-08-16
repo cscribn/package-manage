@@ -225,7 +225,16 @@ function Invoke-WinGetCommandAsStandardUser {
     }
     $wingetArguments = $escapedArgs -join ' '
 
-    $innerCommand = "try { & winget $wingetArguments 2> \"$stderrPath\" | Out-String | Set-Content -LiteralPath \"$stdoutPath\"; $exitCode = $LASTEXITCODE } catch { $error[0].ToString() | Set-Content -LiteralPath \"$stderrPath\"; $exitCode = 1 }; Set-Content -LiteralPath \"$exitPath\" -Value $exitCode }"
+    $innerCommand = @"
+try {
+    & winget $wingetArguments 2> \"$stderrPath\" | Out-String | Set-Content -LiteralPath \"$stdoutPath\"
+    $exitCode = $LASTEXITCODE
+} catch {
+    $error[0].ToString() | Set-Content -LiteralPath \"$stderrPath\"
+    $exitCode = 1
+}
+Set-Content -LiteralPath \"$exitPath\" -Value $exitCode
+"@
     $encodedCommand = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($innerCommand))
     $shellArguments = "-NoProfile -NonInteractive -WindowStyle Hidden -EncodedCommand $encodedCommand"
 
