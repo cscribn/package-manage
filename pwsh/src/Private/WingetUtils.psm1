@@ -193,11 +193,13 @@ function Test-WinGetUninstallBlockedByAdmin {
         [string]$Output
     )
 
+    # Winget emits a specific failure when a user-scoped app is installed in the current user
+    # profile and the caller is elevated. This should be retried in a standard shell.
     if (-not $Output) {
         return $false
     }
 
-    return $Output -match '(?i)user scope.*cannot be uninstalled.*administrator privileges'
+    return $Output -match '(?i)(user scope.*cannot.*uninstall|installed for user scope.*cannot be uninstalled|cannot be uninstalled.*administrator privileges)'
 }
 
 function Invoke-WinGetCommandAsStandardUser {
@@ -222,9 +224,22 @@ function Invoke-WinGetCommandAsStandardUser {
     $wingetArguments = $escapedArgs -join ' '
 
     $innerCommand = "try { & winget $wingetArguments 2> \"$stderrPath\" | Out-String | Set-Content -LiteralPath \"$stdoutPath\"; $exitCode = $LASTEXITCODE } catch { $error[0].ToString() | Set-Content -LiteralPath \"$stderrPath\"; $exitCode = 1 }; Set-Content -LiteralPath \"$exitPath\" -Value $exitCode }"
+    $encodedCommand = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($innerCommand))
+    $shellArguments = "-NoProfile -NonInteractive -WindowStyle Hidden -EncodedCommand $encodedCommand"
 
-    $shell = New-Object -ComObject Shell.Application
-    $shell.ShellExecute($powershellPath, "-NoProfile -NonInteractive -WindowStyle Hidden -Command '$innerCommand'", '', 'open', 0) | Out-Null
+    try {
+        $shell = New-Object -ComObject Shell.Application
+        $shellExecuteResult = $shell.ShellExecute($powershellPath, $shellArguments, '', 'open', 0)
+        if ($shellExecuteResult -is [int] -and $shellExecuteResult -lt 32) {
+            throw "ShellExecute failed with code $shellExecuteResult"
+        }
+    } catch {
+        return [pscustomobject]@{
+            Success = $false
+            ExitCode = 1
+            Output = "Failed to launch non-elevated Winget command: $($_.Exception.Message)"
+        }
+    }
 
     $timeout = [DateTime]::UtcNow.AddSeconds(30)
     while ((-not (Test-Path $exitPath)) -and ([DateTime]::UtcNow -lt $timeout)) {
@@ -234,11 +249,15 @@ function Invoke-WinGetCommandAsStandardUser {
     try {
         $stdout = if (Test-Path $stdoutPath) { Get-Content -Path $stdoutPath -Raw -ErrorAction SilentlyContinue } else { '' }
         $stderr = if (Test-Path $stderrPath) { Get-Content -Path $stderrPath -Raw -ErrorAction SilentlyContinue } else { '' }
-        $exitCode = if (Test-Path $exitPath) { [int](Get-Content -Path $exitPath -Raw -ErrorAction SilentlyContinue) } else { 1 }
+        $timedOut = -not (Test-Path $exitPath)
+        $exitCode = if (-not $timedOut) { [int](Get-Content -Path $exitPath -Raw -ErrorAction SilentlyContinue) } else { 1 }
         $output = ($stdout + [Environment]::NewLine + $stderr).Trim()
+        if ($timedOut) {
+            $output = ($output + [Environment]::NewLine + 'Non-elevated Winget helper timed out.').Trim()
+        }
 
         return [pscustomobject]@{
-            Success = $exitCode -eq 0
+            Success = ($exitCode -eq 0 -and -not $timedOut)
             ExitCode = $exitCode
             Output = $output
         }
