@@ -152,8 +152,8 @@ function Invoke-WinGetInstall {
         [string]$Id
     )
 
-    $args = @('install', '-e', '--silent', '--accept-package-agreements', '--accept-source-agreements', '--id', $Id)
-    return Invoke-WinGetCommand -Arguments $args
+    $commandArguments = @('install', '-e', '--silent', '--accept-package-agreements', '--accept-source-agreements', '--id', $Id)
+    return Invoke-WinGetCommand -Arguments $commandArguments
 }
 
 function Invoke-WinGetUninstall {
@@ -166,12 +166,85 @@ function Invoke-WinGetUninstall {
         [switch]$AllVersions
     )
 
-    $args = @('uninstall', '-e', '--accept-source-agreements', '--id', $Id)
+    $commandArguments = @('uninstall', '-e', '--accept-source-agreements', '--id', $Id)
     if ($AllVersions) {
-        $args += '--all-versions'
+        $commandArguments += '--all-versions'
     }
 
-    return Invoke-WinGetCommand -Arguments $args
+    $result = Invoke-WinGetCommand -Arguments $commandArguments
+    if (-not $result.Success -and Test-WinGetUninstallBlockedByAdmin -Output $result.Output) {
+        Write-Output "WARNING: Winget uninstall failed because the package was installed for user scope and cannot be uninstalled while running elevated. Retrying without administrator privileges."
+        $fallbackResult = Invoke-WinGetCommandAsStandardUser -Arguments $commandArguments
+        if ($fallbackResult.Success) {
+            return $fallbackResult
+        }
+
+        Write-Output "WARNING: Non-elevated uninstall retry failed: ExitCode=$($fallbackResult.ExitCode) Output=$($fallbackResult.Output)"
+        return $fallbackResult
+    }
+
+    return $result
+}
+
+function Test-WinGetUninstallBlockedByAdmin {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Output
+    )
+
+    if (-not $Output) {
+        return $false
+    }
+
+    return $Output -match '(?i)user scope.*cannot be uninstalled.*administrator privileges'
+}
+
+function Invoke-WinGetCommandAsStandardUser {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string[]]$Arguments
+    )
+
+    $stdoutPath = [IO.Path]::GetTempFileName()
+    $stderrPath = [IO.Path]::GetTempFileName()
+    $exitPath = [IO.Path]::GetTempFileName()
+    $powershellPath = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+
+    $escapedArgs = $Arguments | ForEach-Object {
+        if ($_ -match '\s') {
+            '"' + $_.Replace('"', '\"') + '"'
+        } else {
+            $_
+        }
+    }
+    $wingetArguments = $escapedArgs -join ' '
+
+    $innerCommand = "try { & winget $wingetArguments 2> \"$stderrPath\" | Out-String | Set-Content -LiteralPath \"$stdoutPath\"; $exitCode = $LASTEXITCODE } catch { $error[0].ToString() | Set-Content -LiteralPath \"$stderrPath\"; $exitCode = 1 }; Set-Content -LiteralPath \"$exitPath\" -Value $exitCode }"
+
+    $shell = New-Object -ComObject Shell.Application
+    $shell.ShellExecute($powershellPath, "-NoProfile -NonInteractive -WindowStyle Hidden -Command '$innerCommand'", '', 'open', 0) | Out-Null
+
+    $timeout = [DateTime]::UtcNow.AddSeconds(30)
+    while ((-not (Test-Path $exitPath)) -and ([DateTime]::UtcNow -lt $timeout)) {
+        Start-Sleep -Milliseconds 200
+    }
+
+    try {
+        $stdout = if (Test-Path $stdoutPath) { Get-Content -Path $stdoutPath -Raw -ErrorAction SilentlyContinue } else { '' }
+        $stderr = if (Test-Path $stderrPath) { Get-Content -Path $stderrPath -Raw -ErrorAction SilentlyContinue } else { '' }
+        $exitCode = if (Test-Path $exitPath) { [int](Get-Content -Path $exitPath -Raw -ErrorAction SilentlyContinue) } else { 1 }
+        $output = ($stdout + [Environment]::NewLine + $stderr).Trim()
+
+        return [pscustomobject]@{
+            Success = $exitCode -eq 0
+            ExitCode = $exitCode
+            Output = $output
+        }
+    } finally {
+        Remove-Item -Path $stdoutPath, $stderrPath, $exitPath -Force -ErrorAction SilentlyContinue
+    }
 }
 
 function Get-WinGetPackageFamilyPattern {
