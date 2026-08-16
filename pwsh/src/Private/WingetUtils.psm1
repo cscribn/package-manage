@@ -98,10 +98,42 @@ function Invoke-WinGetCommand {
         $exitCode = 1
     }
 
-    return [pscustomobject]@{
+    return Normalize-WinGetResult -Result ([pscustomobject]@{
         Success = $exitCode -eq 0
         ExitCode = $exitCode
         Output = ($output | Out-String).Trim()
+    })
+}
+
+function Normalize-WinGetResult {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [psobject]$Result
+    )
+
+    if ($null -eq $Result) {
+        return [pscustomobject]@{
+            Success = $false
+            ExitCode = 1
+            Output = 'WinGet result was null.'
+        }
+    }
+
+    if ($Result.PSObject.Properties['Success'] -and $Result.PSObject.Properties['ExitCode'] -and $Result.PSObject.Properties['Output']) {
+        return $Result
+    }
+
+    $output = if ($Result -is [System.Management.Automation.ErrorRecord]) {
+        $Result.Exception.Message
+    } else {
+        ($Result | Out-String).Trim()
+    }
+
+    return [pscustomobject]@{
+        Success = $false
+        ExitCode = 1
+        Output = $output
     }
 }
 
@@ -153,7 +185,8 @@ function Invoke-WinGetInstall {
     )
 
     $commandArguments = @('install', '-e', '--silent', '--accept-package-agreements', '--accept-source-agreements', '--id', $Id)
-    return Invoke-WinGetCommand -Arguments $commandArguments
+    $result = Invoke-WinGetCommand -Arguments $commandArguments
+    return Normalize-WinGetResult -Result $result
 }
 
 function Invoke-WinGetUninstall {
@@ -172,10 +205,14 @@ function Invoke-WinGetUninstall {
     }
 
     $result = Invoke-WinGetCommand -Arguments $commandArguments
+    $result = Normalize-WinGetResult -Result $result
+
     if (-not $result.Success) {
         if (Test-WinGetUninstallBlockedByAdmin -Output $result.Output) {
             Write-Output "WARNING: Winget uninstall failed because the package was installed for user scope and cannot be uninstalled while running elevated. Retrying without administrator privileges."
             $fallbackResult = Invoke-WinGetCommandAsStandardUser -Arguments $commandArguments
+            $fallbackResult = Normalize-WinGetResult -Result $fallbackResult
+
             if ($fallbackResult.Success) {
                 return $fallbackResult
             }
@@ -241,11 +278,11 @@ Set-Content -LiteralPath "{3}" -Value $exitCode
     try {
         Start-Process -FilePath $powershellPath -ArgumentList @('-NoProfile','-NonInteractive','-WindowStyle','Hidden','-File',$scriptPath) -NoNewWindow -Wait -ErrorAction Stop | Out-Null
     } catch {
-        return [pscustomobject]@{
+        return Normalize-WinGetResult -Result ([pscustomobject]@{
             Success = $false
             ExitCode = 1
             Output = "Failed to launch non-elevated Winget command: $($_.Exception.Message)"
-        }
+        })
     }
 
     $timeout = [DateTime]::UtcNow.AddSeconds(30)
@@ -276,11 +313,11 @@ Set-Content -LiteralPath "{3}" -Value $exitCode
             $success = $true
         }
 
-        return [pscustomobject]@{
+        return Normalize-WinGetResult -Result ([pscustomobject]@{
             Success = $success
             ExitCode = $exitCode
             Output = $output
-        }
+        })
     } finally {
         Remove-Item -Path $stdoutPath, $stderrPath, $exitPath -Force -ErrorAction SilentlyContinue
         if (Test-Path $scriptPath) {
@@ -457,6 +494,7 @@ function Install-WinGetPackageClean {
                 Write-Output "WARNING: Initial install failed for '$targetId'. Attempting fresh install."
                 Write-Output "Attempting to uninstall '$targetId'."
                 $uninstallResult = Invoke-WinGetUninstall -Id $targetId
+                $uninstallResult = Normalize-WinGetResult -Result $uninstallResult
                 if (-not $uninstallResult.Success) {
                     Write-Output "WARNING: Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
                 }
