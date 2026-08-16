@@ -3,6 +3,7 @@
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
 # libreoffice settings: disable jre, enable quickstarter, set default saves to office formats.
+# powershell msi https://github.com/powershell/powershell/releases
 # winget
 #
 # file type associations:
@@ -26,7 +27,6 @@ choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y -r -q --ignore-dependencies
 choco upgrade filezilla -y -r -q --ignore-dependencies
 choco upgrade nerd-fonts-meslo -y -r -q --ignore-dependencies
-choco upgrade powershell-core -y -r -q --ignore-dependencies; [Environment]::SetEnvironmentVariable('POWERSHELL_UPDATECHECK', 'Off', 'User')
 
 # winget
 Install-WinGetPackageClean -Id cURL.cURL
