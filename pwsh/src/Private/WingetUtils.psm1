@@ -4,6 +4,59 @@ if (-not (Get-Variable -Name 'INSTALLED_OR_UPGRADED' -Scope Global -ErrorAction 
     New-Variable -Name "INSTALLED_OR_UPGRADED" -Value "Install/Upgrade performed." -Option Constant -Scope Global
 }
 
+function Invoke-AsUserAndWait {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Command,
+
+        [Parameter()]
+        [string[]]$Arguments = @()
+    )
+
+    $pidFile = [System.IO.Path]::GetTempFileName()
+    $stdoutFile = [System.IO.Path]::GetTempFileName()
+    $stderrFile = [System.IO.Path]::GetTempFileName()
+    $exitCodeFile = [System.IO.Path]::GetTempFileName()
+
+    $quotedArguments = $Arguments | ForEach-Object { "'" + ($_ -replace "'", "''") + "'" }
+    $argumentListLiteral = '@()'
+    if ($quotedArguments.Count -gt 0) {
+        $argumentListLiteral = "@($($quotedArguments -join ', '))"
+    }
+
+    $powershellArgs = "-NoProfile -ExecutionPolicy Bypass -Command `"\`$PID | Out-File -FilePath '$pidFile' -Encoding utf8; Start-Process -FilePath '$Command' -ArgumentList $argumentListLiteral -RedirectStandardOutput '$stdoutFile' -RedirectStandardError '$stderrFile' -Wait -NoNewWindow; \`$LASTEXITCODE | Out-File -FilePath '$exitCodeFile' -Encoding utf8`""
+    (New-Object -ComObject Shell.Application).ShellExecute('pwsh.exe', $powershellArgs, '', 'open', 0)
+
+    while ((-not (Test-Path $pidFile)) -or ((Get-Content $pidFile).Length -eq 0)) {
+        Start-Sleep -Milliseconds 100
+    }
+
+    $childPid = [int](Get-Content $pidFile)
+    Remove-Item $pidFile -ErrorAction SilentlyContinue
+
+    Wait-Process -Id $childPid -ErrorAction SilentlyContinue
+
+    $stdout = Get-Content -Path $stdoutFile -Raw -ErrorAction SilentlyContinue
+    $stderr = Get-Content -Path $stderrFile -Raw -ErrorAction SilentlyContinue
+    $exitCode = 1
+    if (Test-Path $exitCodeFile) {
+        $exitCode = [int](Get-Content -Path $exitCodeFile -Raw -ErrorAction SilentlyContinue)
+    }
+
+    Remove-Item $stdoutFile, $stderrFile, $exitCodeFile -ErrorAction SilentlyContinue
+
+    $stderrText = ''
+    if ($stderr) {
+        $stderrText = "`r`n$stderr"
+    }
+
+    return [pscustomobject]@{
+        Success = $exitCode -eq 0
+        ExitCode = $exitCode
+        Output = (($stdout + $stderrText) | Out-String).Trim()
+    }
+}
+
 function Get-WinGetInstalledPackagesById {
     [CmdletBinding()]
     param(
@@ -91,8 +144,9 @@ function Invoke-WinGetCommand {
     )
 
     try {
-        $output = & winget @Arguments 2>&1
-        $exitCode = $LASTEXITCODE
+        $wingetResult = Invoke-AsUserAndWait -Command 'winget' -Arguments $Arguments
+        $output = $wingetResult.Output
+        $exitCode = $wingetResult.ExitCode
     } catch {
         $output = $_.Exception.Message
         $exitCode = 1
