@@ -176,50 +176,13 @@ function Invoke-WinGetCommand {
     )
 
     try {
-        $wingetResult = Invoke-AsUserAndWait -Command 'winget' -Arguments $Arguments
-        $output = $wingetResult.Output
-        $exitCode = $wingetResult.ExitCode
+        return Invoke-AsUserAndWait -Command 'winget' -Arguments $Arguments
     } catch {
-        $output = $_.Exception.Message
-        $exitCode = 1
-    }
-
-    return Convert-WingetResult -Result ([pscustomobject]@{
-        Success = $exitCode -eq 0
-        ExitCode = $exitCode
-        Output = ($output | Out-String).Trim()
-    })
-}
-
-function Convert-WingetResult {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [psobject]$Result
-    )
-
-    if ($null -eq $Result) {
         return [pscustomobject]@{
             Success = $false
             ExitCode = 1
-            Output = 'WinGet result was null.'
+            Output = ($_.Exception.Message | Out-String).Trim()
         }
-    }
-
-    if ($Result.PSObject.Properties['Success'] -and $Result.PSObject.Properties['ExitCode'] -and $Result.PSObject.Properties['Output']) {
-        return $Result
-    }
-
-    $output = if ($Result -is [System.Management.Automation.ErrorRecord]) {
-        $Result.Exception.Message
-    } else {
-        ($Result | Out-String).Trim()
-    }
-
-    return [pscustomobject]@{
-        Success = $false
-        ExitCode = 1
-        Output = $output
     }
 }
 
@@ -263,6 +226,35 @@ function Get-WinGetInstallAlreadyInstalledNoUpgrade {
     return @($installedPackages).Count -gt 0
 }
 
+function Convert-WinGetInstallResult {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [pscustomobject]$InstallResult,
+
+        [Parameter(Mandatory=$true)]
+        [string]$Id,
+
+        [Parameter(Mandatory=$false)]
+        [string]$ActionLabel = 'already installed and no upgrade is pending.'
+    )
+
+    if ($InstallResult.Success) {
+        return $InstallResult
+    }
+
+    if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $InstallResult -Id $Id) {
+        Write-Output "Application '$Id' is $ActionLabel"
+        return [pscustomobject]@{
+            Success = $true
+            ExitCode = 0
+            Output = $InstallResult.Output
+        }
+    }
+
+    return $InstallResult
+}
+
 function Invoke-WinGetInstall {
     [CmdletBinding()]
     param(
@@ -271,8 +263,7 @@ function Invoke-WinGetInstall {
     )
 
     $commandArguments = @('install', '-e', '--silent', '--accept-package-agreements', '--accept-source-agreements', '--id', $Id)
-    $result = Invoke-WinGetCommand -Arguments $commandArguments
-    return Convert-WingetResult -Result $result
+    return Invoke-WinGetCommand -Arguments $commandArguments
 }
 
 function Invoke-WinGetUninstall {
@@ -290,8 +281,7 @@ function Invoke-WinGetUninstall {
         $commandArguments += '--all-versions'
     }
 
-    $result = Invoke-WinGetCommand -Arguments $commandArguments
-    return Convert-WingetResult -Result $result
+    return Invoke-WinGetCommand -Arguments $commandArguments
 }
 
 function Get-WinGetPackageFamilyPattern {
@@ -418,7 +408,6 @@ function Install-WinGetPackageClean {
                 }
 
                 Write-Output "Attempting to install '$Id'."
-                $preInstallPackages = @()
                 $installResult = Invoke-WinGetInstall -Id $Id
             }
             'FixedId' {
@@ -451,18 +440,11 @@ function Install-WinGetPackageClean {
         }
 
         if (-not $installResult.Success) {
-            if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $installResult -Id $targetId) {
-                Write-Output "Application '$targetId' is already installed and no upgrade is pending."
-                $installResult = [pscustomobject]@{
-                    Success = $true
-                    ExitCode = 0
-                    Output = $installResult.Output
-                }
-            } else {
+            $installResult = Convert-WinGetInstallResult -InstallResult $installResult -Id $targetId -ActionLabel 'already installed and no upgrade is pending.'
+            if (-not $installResult.Success) {
                 Write-Output "WARNING: Initial install failed for '$targetId'. Attempting fresh install."
                 Write-Output "Attempting to uninstall '$targetId'."
                 $uninstallResult = Invoke-WinGetUninstall -Id $targetId
-                $uninstallResult = Convert-WingetResult -Result $uninstallResult
                 if (-not $uninstallResult.Success) {
                     Write-Output "WARNING: Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
                 }
@@ -473,14 +455,7 @@ function Install-WinGetPackageClean {
         }
 
         if (-not $installResult.Success) {
-            if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $installResult -Id $targetId) {
-                Write-Output "Application '$targetId' is already installed and no upgrade is pending on retry."
-                $installResult = [pscustomobject]@{
-                    Success = $true
-                    ExitCode = 0
-                    Output = $installResult.Output
-                }
-            }
+            $installResult = Convert-WinGetInstallResult -InstallResult $installResult -Id $targetId -ActionLabel 'already installed and no upgrade is pending on retry.'
         }
 
         if (-not $installResult.Success) {
