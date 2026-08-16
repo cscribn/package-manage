@@ -17,25 +17,37 @@ function Invoke-AsUserAndWait {
     $stdoutFile = [System.IO.Path]::GetTempFileName()
     $stderrFile = [System.IO.Path]::GetTempFileName()
     $exitCodeFile = [System.IO.Path]::GetTempFileName()
+    $wrapperScript = [System.IO.Path]::ChangeExtension([System.IO.Path]::GetTempFileName(), '.ps1')
 
-    $quotedArguments = $Arguments | ForEach-Object { "'" + ($_ -replace "'", "''") + "'" }
+    $escapedArguments = $Arguments | ForEach-Object { "'" + ($_ -replace "'", "''") + "'" }
     $argumentListLiteral = '@()'
-    if ($quotedArguments.Count -gt 0) {
-        $argumentListLiteral = "@($($quotedArguments -join ', '))"
+    if ($escapedArguments.Count -gt 0) {
+        $argumentListLiteral = "@($($escapedArguments -join ', '))"
     }
 
-    $powershellArgs = "-NoProfile -ExecutionPolicy Bypass -Command `"\`$PID | Out-File -FilePath '$pidFile' -Encoding utf8; Start-Process -FilePath '$Command' -ArgumentList $argumentListLiteral -RedirectStandardOutput '$stdoutFile' -RedirectStandardError '$stderrFile' -Wait -NoNewWindow; \`$LASTEXITCODE | Out-File -FilePath '$exitCodeFile' -Encoding utf8`""
-    (New-Object -ComObject Shell.Application).ShellExecute('pwsh.exe', $powershellArgs, '', 'open', 0)
+    $wrapperContent = @"
+`$PID | Out-File -FilePath '$pidFile' -Encoding utf8
+`$arguments = $argumentListLiteral
+Start-Process -FilePath '$Command' -ArgumentList `$arguments -RedirectStandardOutput '$stdoutFile' -RedirectStandardError '$stderrFile' -Wait -NoNewWindow
+`$LASTEXITCODE | Out-File -FilePath '$exitCodeFile' -Encoding utf8
+"@
 
-    while ($true) {
+    Set-Content -Path $wrapperScript -Value $wrapperContent -Encoding UTF8
+
+    $shell = New-Object -ComObject Shell.Application
+    $shell.ShellExecute('powershell.exe', "-NoProfile -ExecutionPolicy Bypass -File `"$wrapperScript`"", '', 'open', 0)
+
+    $childPid = $null
+    $waitUntil = (Get-Date).AddSeconds(30)
+    while ((Get-Date) -lt $waitUntil) {
         if (-not (Test-Path $pidFile)) {
-            Start-Sleep -Milliseconds 100
+            Start-Sleep -Milliseconds 200
             continue
         }
 
         $pidText = Get-Content -Path $pidFile -Raw -ErrorAction SilentlyContinue
         if ([string]::IsNullOrWhiteSpace($pidText)) {
-            Start-Sleep -Milliseconds 100
+            Start-Sleep -Milliseconds 200
             continue
         }
 
@@ -43,41 +55,16 @@ function Invoke-AsUserAndWait {
             $childPid = [int]$pidText.Trim()
             break
         } catch {
-            Start-Sleep -Milliseconds 100
+            Start-Sleep -Milliseconds 200
         }
     }
 
-
-        $pidText = Get-Content -Path $pidFile -Raw -ErrorAction SilentlyContinue
-        if ([string]::IsNullOrWhiteSpace($pidText)) {
-            Start-Sleep -Milliseconds 100
-            continue
-        }
-
-        try {
-            $childPid = [int]$pidText.Trim()
-            break
-        } catch {
-            Start-Sleep -Milliseconds 100
-        }
+    if (-not $childPid) {
+        Remove-Item -Path $pidFile,$wrapperScript -ErrorAction SilentlyContinue
+        throw "Invoke-AsUserAndWait failed to start the child process or capture its PID."
     }
 
-
-        $pidText = Get-Content -Path $pidFile -Raw -ErrorAction SilentlyContinue
-        if ([string]::IsNullOrWhiteSpace($pidText)) {
-            Start-Sleep -Milliseconds 100
-            continue
-        }
-
-        try {
-            $childPid = [int]$pidText.Trim()
-            break
-        } catch {
-            Start-Sleep -Milliseconds 100
-        }
-    }
-
-    Remove-Item $pidFile -ErrorAction SilentlyContinue
+    Remove-Item -Path $pidFile -ErrorAction SilentlyContinue
 
     Wait-Process -Id $childPid -ErrorAction SilentlyContinue
 
@@ -88,7 +75,7 @@ function Invoke-AsUserAndWait {
         $exitCode = [int](Get-Content -Path $exitCodeFile -Raw -ErrorAction SilentlyContinue)
     }
 
-    Remove-Item $stdoutFile, $stderrFile, $exitCodeFile -ErrorAction SilentlyContinue
+    Remove-Item -Path $stdoutFile,$stderrFile,$exitCodeFile,$wrapperScript -ErrorAction SilentlyContinue
 
     $stderrText = ''
     if ($stderr) {
