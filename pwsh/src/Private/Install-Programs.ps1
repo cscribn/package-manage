@@ -62,6 +62,7 @@ Install-WinGetPackageClean -Id TheDocumentFoundation.LibreOffice
 Install-WinGetPackageClean -Id DiskInternals.LinuxReader
 Install-WinGetPackageClean -Id lsd-rs.lsd
 Install-WinGetPackageClean -Id Microsoft.Edge -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Microsoft.PowerShell -InstallType UpgradeOnly
 Install-WinGetPackageClean -Id Microsoft.Teams
 Install-WinGetPackageClean -Id Microsoft.VisualStudioCode -InstallType SkipIfInstalled
 Install-WinGetPackageClean -Id Microsoft.WindowsTerminal
