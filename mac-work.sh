@@ -39,7 +39,6 @@ brew install --cask alt-tab || brew upgrade --cask alt-tab
 brew install --cask antigravity-cli || brew upgrade --cask antigravity-cli
 brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
-brew uninstall bats-core
 brew install blank-screensaver || brew upgrade blank-screensaver
 brew install btop || brew upgrade btop
 brew install bun || brew upgrade bun
