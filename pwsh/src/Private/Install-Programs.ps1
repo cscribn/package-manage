@@ -27,8 +27,6 @@ choco feature enable -n='useRememberedArgumentsForUpgrades'
 choco upgrade chocolatey-font-helpers.extension -y -r -q --ignore-dependencies
 choco upgrade filezilla -y -r -q --ignore-dependencies
 choco upgrade nerd-fonts-meslo -y -r -q --ignore-dependencies
-choco uninstall powershell
-choco uninstall powershell-core
 
 # winget
 Install-WinGetPackageClean -Id cURL.cURL
