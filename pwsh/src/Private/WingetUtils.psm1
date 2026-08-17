@@ -266,6 +266,17 @@ function Invoke-WinGetInstall {
     return Invoke-WinGetCommand -Arguments $commandArguments
 }
 
+function Invoke-WinGetUpgrade {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Id
+    )
+
+    $commandArguments = @('upgrade', '-e', '--silent', '--accept-package-agreements', '--accept-source-agreements', '--id', $Id)
+    return Invoke-WinGetCommand -Arguments $commandArguments
+}
+
 function Invoke-WinGetUninstall {
     [CmdletBinding()]
     param(
@@ -377,7 +388,7 @@ function Install-WinGetPackageClean {
         [string]$Id,
 
         [Parameter(Mandatory=$false)]
-        [ValidateSet('SkipIfInstalled','FixedId','DynamicId','UnknownId')]
+        [ValidateSet('SkipIfInstalled','FixedId','DynamicId','UnknownId','UpgradeOnly')]
         [string]$InstallType,
 
         [Parameter(Mandatory=$false)]
@@ -433,6 +444,11 @@ function Install-WinGetPackageClean {
                 $targetId = $resolvedId
                 $preInstallPackages = Get-WinGetInstalledPackagesById -Id $targetId
                 $installResult = Invoke-WinGetInstall -Id $targetId
+            }
+            'UpgradeOnly' {
+                Write-Output "Attempting to upgrade '$Id'."
+                $preInstallPackages = Get-WinGetInstalledPackagesById -Id $Id
+                $installResult = Invoke-WinGetUpgrade -Id $Id
             }
             default {
                 throw "Unsupported install type '$InstallType'."
