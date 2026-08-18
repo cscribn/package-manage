@@ -122,14 +122,14 @@ Update-Module -Name Terminal-Icons
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 if (Test-Path $GitDir) {
 	Set-Location $GitDir
-	git pull; Set-Location -
+	git pull -q; Set-Location -
 } else {
 	git clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir
 }
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 if (Test-Path $GitDir) {
 	Set-Location $GitDir
-	git pull; Set-Location -
+	git pull -q; Set-Location -
 } else {
 	git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir
 }

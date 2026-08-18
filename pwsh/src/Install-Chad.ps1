@@ -105,14 +105,14 @@ curl -sSLo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscr
 $GitDir = "$Env:USERPROFILE\.config\dotfiles-misc"
 if (Test-Path $GitDir) {
     Set-Location $GitDir
-    git pull origin; Set-Location -
+    git pull -q origin; Set-Location -
 } else {
-    git init $GitDir
+    git init -q $GitDir
     Set-Location $GitDir
-    git checkout -b main
+    git checkout -q -b main
     git remote add origin "https://github.com/cscribn/dotfiles-misc"
     git sparse-checkout set "requirements"
-    git pull --set-upstream origin main
+    git pull -q --set-upstream origin main
     Set-Location -
 }
 

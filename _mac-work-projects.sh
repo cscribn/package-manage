@@ -24,14 +24,14 @@ done
 git_dir="${HOME}/.config/dotfiles-misc"; \
 if [ -d "$git_dir" ]; then \
     cd "$git_dir" || exit 1; \
-    git pull origin || exit 1; cd - || exit 1; \
+    git pull -q origin || exit 1; cd - || exit 1; \
 else \
-    git init "$git_dir"; \
+    git init -q "$git_dir"; \
     cd "$git_dir" || exit 1; \
-    git checkout -b main; \
+    git checkout -q -b main; \
     git remote add origin "https://github.com/cscribn/dotfiles-misc"; \
     git sparse-checkout set "requirements"; \
-    git pull --set-upstream origin main; \
+    git pull -q --set-upstream origin main; \
     cd - || exit 1; \
 fi
 

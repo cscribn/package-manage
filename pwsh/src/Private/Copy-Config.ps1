@@ -12,7 +12,7 @@ New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\microsoft-wi
 curl -sSLo "$Env:USERPROFILE\.config\microsoft-windows-terminal\Scripts\SshWithPassword.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/Scripts/SshWithPassword.ps1;
 
 # oh-my-posh
-$GitDir = "$Env:USERPROFILE\.config\oh-my-posh"; If (Test-Path $GitDir) { Set-Location $GitDir; git pull; Set-Location - } Else { git clone "https://github.com/cscribn/dotfiles-oh-my-posh.git" $GitDir}
+$GitDir = "$Env:USERPROFILE\.config\oh-my-posh"; If (Test-Path $GitDir) { Set-Location $GitDir; git pull -q; Set-Location - } Else { git clone "https://github.com/cscribn/dotfiles-oh-my-posh.git" $GitDir}
 
 # powershell-core
 curl -sSLo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
@@ -21,5 +21,5 @@ curl -sSLo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.p
 Set-Location "$Env:USERPROFILE"; curl -sSLo ".vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc; Set-Location -
 
 # zsh
-$GitDir = "$Env:USERPROFILE\.config\zsh"; If (Test-Path $GitDir) { Set-Location $GitDir; git pull; Set-Location - } Else { git clone "https://github.com/cscribn/dotfiles-zsh.git" $GitDir}
+$GitDir = "$Env:USERPROFILE\.config\zsh"; If (Test-Path $GitDir) { Set-Location $GitDir; git pull -q; Set-Location - } Else { git clone "https://github.com/cscribn/dotfiles-zsh.git" $GitDir}
 Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
