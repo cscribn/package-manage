@@ -72,13 +72,13 @@ Install-WinGetPackageClean -Id WireGuard.WireGuard
 Install-WinGetPackageClean -Id MikeFarah.yq
 
 # pipx
-pipx -q upgrade openai-whisper 2>$null || pipx -q install openai-whisper
-pipx -q upgrade "yt-dlp[default]" 2>$null || pipx -q install "yt-dlp[default]"
+pipx upgrade openai-whisper 2>$null || pipx install openai-whisper
+pipx upgrade "yt-dlp[default]" 2>$null || pipx install "yt-dlp[default]"
 
 # python
 python -m pip install --upgrade pip -q
 python -m pip install --user pipx -q
-python -m pipx -q ensurepath
+python -m pipx ensurepath
 
 # wsl
 if (-Not (wsl --list -version)) { wsl --install }

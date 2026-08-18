@@ -122,4 +122,5 @@ Remove-AppxPackagesFromSession -PackagePatterns @(
     '*WinZipUniversal*',
     '*Wunderlist*',
     '*XING*'
-) ]
+)
+
