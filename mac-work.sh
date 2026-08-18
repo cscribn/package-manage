@@ -57,19 +57,19 @@ brew install maven || brew upgrade maven
 brew install mermaid-cli || brew upgrade mermaid-cli
 brew install nmap || brew upgrade nmap
 
-# nvm, node, and npm
+# nvm and node
 brew install nvm || brew upgrade nvm; export NVM_DIR="${HOME}/.nvm"
 [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 [[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 nvm install --lts; nvm use --lts;
 # remove old node versions
-cd "${HOME}/.nvm/versions/node" || exit
-\ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh; nvm deactivate {} && nvm uninstall {}"
-cd - || exit
-npm config set fund false
-# npm packages
-npm install -g @pilatos/bitbucket-cli
-npm install -g datadog-mcp-server
+node_versions_dir="${HOME}/.nvm/versions/node"
+if [[ -d "${node_versions_dir}" ]]; then
+    (
+        cd "${node_versions_dir}" || exit
+        ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && . $NVM_DIR/nvm.sh && nvm deactivate {} && nvm uninstall {}"
+    )
+fi
 
 brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
@@ -129,9 +129,13 @@ docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
 cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"
 "${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
 
+# npm
+npm config set fund false
+npm install -g @pilatos/bitbucket-cli
+npm install -g datadog-mcp-server
+
 # pipx
-pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans
-pipx inject --force busylight-for-humans uvicorn
+pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans; pipx inject --force busylight-for-humans uvicorn
 pipx upgrade openai-whisper 2>/dev/null || pipx install openai-whisper
 
 twg update
