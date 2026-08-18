@@ -33,7 +33,7 @@ choco upgrade xsltproc -y -r -q --ignore-dependencies
 Install-WinGetPackageClean -Id sharkdp.bat
 Install-WinGetPackageClean -Id BlueStack.BlueStacks
 Install-WinGetPackageClean -Id DBBrowserForSQLite.DBBrowserForSQLite
-Install-WinGetPackageClean -Id Eassos.DiskGenius -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Eassos.DiskGenius -InstallType "SkipIfInstalled"
 Install-WinGetPackageClean -Id Deskflow.Deskflow
 Install-WinGetPackageClean -Id Docker.DockerDesktop
 Install-WinGetPackageClean -Id DVDFlick.DVDFlick
@@ -54,7 +54,7 @@ Install-WinGetPackageClean -Id GuinpinSoft.MakeMKV
 Install-WinGetPackageClean -Id Microsoft.VisualStudio.BuildTools
 Install-WinGetPackageClean -Id NextDNS.NextDNS
 Install-WinGetPackageClean -Id OpenJS.NodeJS.LTS
-Install-WinGetPackageClean -Id Ollama.Ollama -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Ollama.Ollama -InstallType "SkipIfInstalled"
 Install-WinGetPackageClean -Id Poly.PlantronicsHub
 Install-WinGetPackageClean -Id oschwartz10612.Poppler
 Install-WinGetPackageClean -Id Postman.Postman

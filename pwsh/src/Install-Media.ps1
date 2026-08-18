@@ -12,7 +12,7 @@ Install-WinGetPackageClean -Id DBBrowserForSQLite.DBBrowserForSQLite
 Install-WinGetPackageClean -Id Google.GoogleDrive
 Install-WinGetPackageClean -Id PaperCutSoftware.MobilityPrint
 Install-WinGetPackageClean -Id NextDNS.NextDNS
-Install-WinGetPackageClean -Id Plex.PlexMediaServer -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Plex.PlexMediaServer -InstallType "SkipIfInstalled"
 
 # config
 

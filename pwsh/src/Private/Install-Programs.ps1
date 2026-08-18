@@ -47,7 +47,7 @@ Install-WinGetPackageClean -Id Gyan.FFmpeg
 Install-WinGetPackageClean -Id Mozilla.Firefox
 Install-WinGetPackageClean -Id junegunn.fzf
 Install-WinGetPackageClean -Id GIMP.GIMP
-Install-WinGetPackageClean -Id Google.Chrome -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Google.Chrome -InstallType "SkipIfInstalled"
 Install-WinGetPackageClean -Id Google.ChromeRemoteDesktopHost
 Install-WinGetPackageClean -Id Google.PlatformTools
 Install-WinGetPackageClean -Id HandBrake.HandBrake
@@ -61,10 +61,10 @@ Install-WinGetPackageClean -Id KDE.KMahjongg
 Install-WinGetPackageClean -Id TheDocumentFoundation.LibreOffice
 Install-WinGetPackageClean -Id DiskInternals.LinuxReader
 Install-WinGetPackageClean -Id lsd-rs.lsd
-Install-WinGetPackageClean -Id Microsoft.Edge -InstallType SkipIfInstalled
-Install-WinGetPackageClean -Id Microsoft.PowerShell -InstallType UpgradeOnly
+Install-WinGetPackageClean -Id Microsoft.Edge -InstallType "SkipIfInstalled"
+Install-WinGetPackageClean -Id Microsoft.PowerShell -InstallType "UpgradeOnly"
 Install-WinGetPackageClean -Id Microsoft.Teams
-Install-WinGetPackageClean -Id Microsoft.VisualStudioCode -InstallType SkipIfInstalled
+Install-WinGetPackageClean -Id Microsoft.VisualStudioCode -InstallType "SkipIfInstalled"
 Install-WinGetPackageClean -Id Microsoft.WindowsTerminal
 if (($Output = Install-WinGetPackageClean -Id FlorianHeidenreich.Mp3tag) -eq $INSTALLED_OR_UPGRADED) {
 	regsvr32 /s "C:\Program Files\Mp3tag\Mp3tagShell.dll"
