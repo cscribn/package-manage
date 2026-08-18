@@ -76,9 +76,9 @@ pipx -q upgrade openai-whisper 2>$null || pipx -q install openai-whisper
 pipx -q upgrade "yt-dlp[default]" 2>$null || pipx -q install "yt-dlp[default]"
 
 # python
-python -m pip install --upgrade pip
-python -m pip install --user pipx
-python -m pipx ensurepath
+python -m pip install --upgrade pip -q
+python -m pip install --user pipx -q
+python -m pipx -q ensurepath
 
 # wsl
 if (-Not (wsl --list -version)) { wsl --install }
