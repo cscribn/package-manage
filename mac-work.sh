@@ -57,15 +57,15 @@ brew install maven || brew upgrade maven
 brew install mermaid-cli || brew upgrade mermaid-cli
 brew install nmap || brew upgrade nmap
 
-# node
-brew install nvm || brew upgrade nvm; export NVM_DIR="${HOME}/.nvm"; \
-[[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"; \
-[[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"; \
+# nvm, node, and npm
+brew install nvm || brew upgrade nvm; export NVM_DIR="${HOME}/.nvm"
+[[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 nvm install --lts; nvm use --lts;
 # remove old node versions
-cd "${HOME}/.nvm/versions/node" || exit; \
-\ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh; nvm deactivate {} && nvm uninstall {}"; \
-cd - || exit; \
+cd "${HOME}/.nvm/versions/node" || exit
+\ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && \. $NVM_DIR/nvm.sh; nvm deactivate {} && nvm uninstall {}"
+cd - || exit
 npm config set fund false
 # npm packages
 npm install -g @pilatos/bitbucket-cli
@@ -73,23 +73,14 @@ npm install -g datadog-mcp-server
 
 brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
-
-# pipx
-brew install pipx || brew upgrade pipx; \
-pipx ensurepath
-
+brew install pipx || brew upgrade pipx; pipx ensurepath
 (brew install powershell || brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off) && brew link powershell
 brew install pre-commit || brew upgrade pre-commit
 brew install python || brew upgrade python;
 brew install python@3.12 || brew upgrade python@3.12
 brew install ripgrep || brew upgrade ripgrep
 brew install sbcl || brew upgrade sbcl # steel bank common lisp
-
-# sdkman
-brew install sdkman-cli || brew upgrade sdkman-cli; \
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
+brew install sdkman-cli || brew upgrade sdkman-cli; export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 brew install snyk || brew upgrade snyk
 brew install uv || brew upgrade uv
 brew install vim || brew upgrade vim
@@ -130,21 +121,20 @@ brew list --cask visual-studio-code >/dev/null || brew install --force --cask vi
 brew install --cask vlc || brew upgrade --cask vlc
 brew install --cask wireshark-app || brew upgrade --cask wireshark-app
 
-# busylight-for-humans
-pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans
-pipx inject --force busylight-for-humans uvicorn
-
-# netskope certificates
-[[ -f "${HOME}/netskope-cert-bundle.pem" ]] && [[ ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]] && \
-cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"; \
-"${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
-
-# docker
 # docker containers
 docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
 
-twg update
+# netskope certificates
+[[ -f "${HOME}/netskope-cert-bundle.pem" ]] && [[ ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]] && \
+cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"
+"${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
+
+# pipx
+pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans
+pipx inject --force busylight-for-humans uvicorn
 pipx upgrade openai-whisper 2>/dev/null || pipx install openai-whisper
+
+twg update
 
 # zsh
 git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
