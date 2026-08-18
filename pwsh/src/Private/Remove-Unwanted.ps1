@@ -62,8 +62,8 @@ function Remove-UnwantedShortcuts {
 
     if (-not $Paths -or $Paths.Count -eq 0) {
         $Paths = @(
-            Join-Path -Path $env:PUBLIC -ChildPath 'Desktop',
-            Join-Path -Path $env:USERPROFILE -ChildPath 'Desktop'
+            (Join-Path -Path $env:PUBLIC -ChildPath 'Desktop'),
+            (Join-Path -Path $env:USERPROFILE -ChildPath 'Desktop')
         )
     }
 
