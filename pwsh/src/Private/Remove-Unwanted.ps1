@@ -3,11 +3,7 @@ function Remove-UnwantedShortcuts {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$false)]
-        [string[]]$Paths = @(
-            $env:PUBLIC\Desktop,
-            $env:USERPROFILE\Desktop
-        ),
-
+        [string[]]$Paths = @(),
         [Parameter(Mandatory=$false)]
         [string[]]$Patterns = @(
             'Blender *.lnk',
@@ -63,6 +59,10 @@ function Remove-UnwantedShortcuts {
             'Zoom*.lnk'
         )
     )
+
+    if (-not $Paths -or $Paths.Count -eq 0) {
+        $Paths = @(Join-Path -Path $env:PUBLIC -ChildPath 'Desktop', Join-Path -Path $env:USERPROFILE -ChildPath 'Desktop')
+    }
 
     foreach ($pattern in $Patterns) {
         Get-ChildItem -Path $Paths -Filter $pattern -ErrorAction SilentlyContinue |
