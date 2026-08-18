@@ -4,91 +4,6 @@ if (-not (Get-Variable -Name 'INSTALLED_OR_UPGRADED' -Scope Global -ErrorAction 
     New-Variable -Name "INSTALLED_OR_UPGRADED" -Value "Install/Upgrade performed." -Option Constant -Scope Global
 }
 
-function Invoke-AsUserAndWait {
-    param (
-        [Parameter(Mandatory = $true)]
-        [string]$Command,
-
-        [Parameter()]
-        [string[]]$Arguments = @()
-    )
-
-    $pidFile = [System.IO.Path]::GetTempFileName()
-    $stdoutFile = [System.IO.Path]::GetTempFileName()
-    $stderrFile = [System.IO.Path]::GetTempFileName()
-    $exitCodeFile = [System.IO.Path]::GetTempFileName()
-    $wrapperScript = [System.IO.Path]::ChangeExtension([System.IO.Path]::GetTempFileName(), '.ps1')
-
-    $escapedArguments = $Arguments | ForEach-Object { "'" + ($_ -replace "'", "''") + "'" }
-    $argumentListLiteral = '@()'
-    if ($escapedArguments.Count -gt 0) {
-        $argumentListLiteral = "@($($escapedArguments -join ', '))"
-    }
-
-    $wrapperContent = @"
-`$PID | Out-File -FilePath '$pidFile' -Encoding utf8
-`$arguments = $argumentListLiteral
-Start-Process -FilePath '$Command' -ArgumentList `$arguments -RedirectStandardOutput '$stdoutFile' -RedirectStandardError '$stderrFile' -Wait -NoNewWindow
-`$LASTEXITCODE | Out-File -FilePath '$exitCodeFile' -Encoding utf8
-"@
-
-    Set-Content -Path $wrapperScript -Value $wrapperContent -Encoding UTF8
-
-    $shell = New-Object -ComObject Shell.Application
-    $shell.ShellExecute('powershell.exe', "-NoProfile -ExecutionPolicy Bypass -File `"$wrapperScript`"", '', 'open', 0)
-
-    $childPid = $null
-    $waitUntil = (Get-Date).AddSeconds(30)
-    while ((Get-Date) -lt $waitUntil) {
-        if (-not (Test-Path $pidFile)) {
-            Start-Sleep -Milliseconds 200
-            continue
-        }
-
-        $pidText = Get-Content -Path $pidFile -Raw -ErrorAction SilentlyContinue
-        if ([string]::IsNullOrWhiteSpace($pidText)) {
-            Start-Sleep -Milliseconds 200
-            continue
-        }
-
-        try {
-            $childPid = [int]$pidText.Trim()
-            break
-        } catch {
-            Start-Sleep -Milliseconds 200
-        }
-    }
-
-    if (-not $childPid) {
-        Remove-Item -Path $pidFile,$wrapperScript -ErrorAction SilentlyContinue
-        throw "Invoke-AsUserAndWait failed to start the child process or capture its PID."
-    }
-
-    Remove-Item -Path $pidFile -ErrorAction SilentlyContinue
-
-    Wait-Process -Id $childPid -ErrorAction SilentlyContinue
-
-    $stdout = Get-Content -Path $stdoutFile -Raw -ErrorAction SilentlyContinue
-    $stderr = Get-Content -Path $stderrFile -Raw -ErrorAction SilentlyContinue
-    $exitCode = 1
-    if (Test-Path $exitCodeFile) {
-        $exitCode = [int](Get-Content -Path $exitCodeFile -Raw -ErrorAction SilentlyContinue)
-    }
-
-    Remove-Item -Path $stdoutFile,$stderrFile,$exitCodeFile,$wrapperScript -ErrorAction SilentlyContinue
-
-    $stderrText = ''
-    if ($stderr) {
-        $stderrText = "`r`n$stderr"
-    }
-
-    return [pscustomobject]@{
-        Success = $exitCode -eq 0
-        ExitCode = $exitCode
-        Output = (($stdout + $stderrText) | Out-String).Trim()
-    }
-}
-
 function Get-WinGetInstalledPackagesById {
     [CmdletBinding()]
     param(
@@ -176,7 +91,13 @@ function Invoke-WinGetCommand {
     )
 
     try {
-        return Invoke-AsUserAndWait -Command 'winget' -Arguments $Arguments
+        $output = & 'winget' @Arguments 2>&1 | Out-String
+        $exitCode = $LASTEXITCODE
+        return [pscustomobject]@{
+            Success = $exitCode -eq 0
+            ExitCode = $exitCode
+            Output = $output.Trim()
+        }
     } catch {
         return [pscustomobject]@{
             Success = $false
