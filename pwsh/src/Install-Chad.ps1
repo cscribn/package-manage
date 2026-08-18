@@ -82,12 +82,12 @@ python -m pipx ensurepath
 
 # wsl
 if (-Not (wsl --list -version)) { wsl --install }
-wsl -d "Ubuntu" -u root -e apt -q update -y
-wsl -d "Ubuntu" -u root -e apt -q install expect -y
-wsl -d "Ubuntu" -u root -e apt -q full-upgrade -y
+wsl -d "Ubuntu" -u root -e apt-get -q update -y
+wsl -d "Ubuntu" -u root -e apt-get -q install expect -y
+wsl -d "Ubuntu" -u root -e apt-get -q full-upgrade -y
 wsl -d "Ubuntu" -u root -e do-release-upgrade
-wsl -d "Ubuntu" -u root -e apt -q autoremove -y
-wsl -d "Ubuntu" -u root -e apt clean -y
+wsl -d "Ubuntu" -u root -e apt-get -q autoremove -y
+wsl -d "Ubuntu" -u root -e apt-get clean -y
 
 # config
 ## git

@@ -66,4 +66,4 @@ fi
 (amixer -q sset Master 85% unmute || amixer -q sset PCM 85% unmute) >/dev/null 2>&1
 
 # autoremove, clean
-sudo apt autoremove -y; sudo apt clean -y
+sudo apt-get autoremove -y; sudo apt-get clean -y

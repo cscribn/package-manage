@@ -2,16 +2,16 @@
 # Non-package installations (add these first)
 
 # update, autoremove, clean, upgrade all apt
-sudo apt update
-sudo apt dist-upgrade -y
+sudo apt-get update
+sudo apt-get dist-upgrade -y
 
-sudo apt install btop -y
-sudo apt install curl -y
-sudo apt install fastfetch -y
-sudo apt install fzf -y
-sudo apt install git -y
-sudo apt install htop -y
-sudo apt install lsd -y
+sudo apt-get install btop -y
+sudo apt-get install curl -y
+sudo apt-get install fastfetch -y
+sudo apt-get install fzf -y
+sudo apt-get install git -y
+sudo apt-get install htop -y
+sudo apt-get install lsd -y
 
 git_dir="${HOME}/motd"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/cscribn/motd" "$git_dir"; fi
 
