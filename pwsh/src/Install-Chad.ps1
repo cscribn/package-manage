@@ -122,4 +122,4 @@ if (Test-Path $GitDir) {
 . $PSScriptRoot\Private\Reset-Network.ps1
 
 # cleanup
-if (docker info > $null 2>&1) { docker system prune --volumes -f }
+if (docker info > $null 2>&1) { docker system prune --volumes -f -q }
