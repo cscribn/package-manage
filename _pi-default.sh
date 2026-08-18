@@ -20,13 +20,13 @@ sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/
 sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notice
 
 git clone https://github.com/AndrewFromMelbourne/raspi2png; sudo cp -a raspi2png/raspi2png /usr/local/bin; rm -rf ./raspi2png
-sudo apt install ripgrep -y
-sudo apt install speedtest-cli -y
-sudo apt install unzip -y
-sudo apt install vim -y
+sudo apt-get install ripgrep -y
+sudo apt-get install speedtest-cli -y
+sudo apt-get install unzip -y
+sudo apt-get install vim -y
 
 # zsh
-sudo apt install zsh -y
+sudo apt-get install zsh -y
 
 git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
 git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
