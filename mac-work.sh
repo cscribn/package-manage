@@ -32,7 +32,7 @@ brew install git || brew upgrade git
 
 # pipx
 brew install pipx || brew upgrade pipx; \
-pipx -q ensurepath
+pipx ensurepath
 
 brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
 brew install --cask alt-tab || brew upgrade --cask alt-tab
@@ -44,8 +44,8 @@ brew install btop || brew upgrade btop
 brew install bun || brew upgrade bun
 
 # busylight-for-humans
-pipx -q upgrade busylight-for-humans 2>/dev/null || pipx -q install busylight-for-humans
-pipx -q inject --force busylight-for-humans uvicorn
+pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans
+pipx inject --force busylight-for-humans uvicorn
 
 brew install --cask bbedit || brew upgrade --cask bbedit
 brew install --cask claude || brew upgrade --cask claude
@@ -139,7 +139,7 @@ brew install vim || brew upgrade vim
 brew install --cask vlc || brew upgrade --cask vlc
 brew install wget || brew upgrade wget
 brew install --cask wireshark-app || brew upgrade --cask wireshark-app
-pipx -q upgrade openai-whisper 2>/dev/null || pipx -q install openai-whisper
+pipx upgrade openai-whisper 2>/dev/null || pipx install openai-whisper
 brew install yarn || brew upgrade yarn
 
 # zsh
