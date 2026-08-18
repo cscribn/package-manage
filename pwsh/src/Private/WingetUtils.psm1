@@ -277,7 +277,7 @@ function Invoke-WinGetUpgrade {
     return Invoke-WinGetCommand -Arguments $commandArguments
 }
 
-function Invoke-WinGetUninstall {
+function Get-WinGetUninstallArguments {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
@@ -292,7 +292,62 @@ function Invoke-WinGetUninstall {
         $commandArguments += '--all-versions'
     }
 
+    return $commandArguments
+}
+
+function Invoke-WinGetUninstall {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Id,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$AllVersions
+    )
+
+    $commandArguments = Get-WinGetUninstallArguments -Id $Id -AllVersions:$AllVersions
     return Invoke-WinGetCommand -Arguments $commandArguments
+}
+
+function Get-CurrentProcessIsElevated {
+    try {
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $principal = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        return $principal.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
+    } catch {
+        return $false
+    }
+}
+
+function Invoke-WinGetUninstallWithFallback {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Id,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$AllVersions
+    )
+
+    $primaryResult = Invoke-WinGetUninstall -Id $Id -AllVersions:$AllVersions
+    if ($primaryResult.Success) {
+        return $primaryResult
+    }
+
+    if (-not (Get-CurrentProcessIsElevated)) {
+        return $primaryResult
+    }
+
+    Write-Output "Primary winget uninstall failed in elevated session. Retrying uninstall from a non-administrator shell."
+    $fallbackArguments = Get-WinGetUninstallArguments -Id $Id -AllVersions:$AllVersions
+    $fallbackResult = Invoke-AsUserAndWait -Command 'winget' -Arguments $fallbackArguments
+
+    if ($fallbackResult.Success) {
+        return $fallbackResult
+    }
+
+    Write-Output "Fallback uninstall also failed. Returning the fallback result."
+    return $fallbackResult
 }
 
 function Get-WinGetPackageFamilyPattern {
