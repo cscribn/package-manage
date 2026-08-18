@@ -109,7 +109,7 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
 	Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"
 	Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"
 }
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* pacman"
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S -q --needed --noconfirm --overwrite \* pacman"
 
 # powershell modules
 Update-Module -Name Microsoft.WinGet.Client
@@ -118,7 +118,7 @@ Update-Module -Name PSReadLine
 Update-Module -Name Terminal-Icons
 
 # zsh
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S --needed --noconfirm --overwrite \* zsh"
+& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S -q --needed --noconfirm --overwrite \* zsh"
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
 if (Test-Path $GitDir) {
 	Set-Location $GitDir
