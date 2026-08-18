@@ -124,13 +124,13 @@ if (Test-Path $GitDir) {
 	Set-Location $GitDir
 	git pull -q; Set-Location -
 } else {
-	git clone "https://github.com/zsh-users/zsh-autosuggestions" $GitDir
+	git clone -q "https://github.com/zsh-users/zsh-autosuggestions" $GitDir
 }
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
 if (Test-Path $GitDir) {
 	Set-Location $GitDir
 	git pull -q; Set-Location -
 } else {
-	git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir
+	git clone -q "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir
 }
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item

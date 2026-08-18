@@ -16,13 +16,13 @@ launchctl kickstart -k "gui/$(id -u)/com.apple.finder"
 curl -sSLo "${HOME}/.hammerspoon/init.lua" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/hammerspoon/init.lua
 
 # oh-my-posh
-git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
+git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
 
 # vim
 curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc
 
 # zsh
-git_dir="${HOME}/.config/zsh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone "https://github.com/cscribn/dotfiles-zsh.git" "$git_dir"; fi; \
+git_dir="${HOME}/.config/zsh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-zsh.git" "$git_dir"; fi; \
 cp "${HOME}/.config/zsh/zshrc-mac" "${HOME}/.zshrc"
 
 # pwsh
