@@ -24,6 +24,7 @@ fi
 brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew upgrade
 
+# taps
 brew trust deskflow/tap && brew tap deskflow/tap
 brew trust powershell/tap && brew tap powershell/tap
 brew trust sdkman/tap && brew tap sdkman/tap
@@ -121,7 +122,7 @@ brew list --cask visual-studio-code >/dev/null || brew install --force --cask vi
 brew install --cask vlc || brew upgrade --cask vlc
 brew install --cask wireshark-app || brew upgrade --cask wireshark-app
 
-# docker containers
+# docker
 docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
 
 # netskope certificates
@@ -138,6 +139,7 @@ npm install -g datadog-mcp-server
 pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans; pipx inject --force busylight-for-humans uvicorn
 pipx upgrade openai-whisper 2>/dev/null || pipx install openai-whisper
 
+# teamwork graph
 twg update
 
 # zsh
