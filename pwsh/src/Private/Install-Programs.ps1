@@ -57,7 +57,7 @@ Install-WinGetPackageClean -Id Inkscape.Inkscape
 Install-WinGetPackageClean -Id IrfanSkiljan.IrfanView
 Install-WinGetPackageClean -Id IrfanSkiljan.IrfanView.PlugIns
 Install-WinGetPackageClean -Id jqlang.jq
-winget uninstall -e --id KDE.KMahjongg
+Install-WinGetPackageClean -Id KDE.KMahjongg
 Install-WinGetPackageClean -Id TheDocumentFoundation.LibreOffice
 Install-WinGetPackageClean -Id DiskInternals.LinuxReader
 Install-WinGetPackageClean -Id lsd-rs.lsd
