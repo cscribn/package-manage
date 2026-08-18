@@ -1,14 +1,8 @@
 [CmdletBinding()]
 $Global:InformationPreference = 'Continue'
 
-Import-Module "$PSScriptRoot\WingetUtils.psm1" -Force
-
 # appx
-Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | ForEach-Object {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} # microsoft solitaire
-
-# winget
-Install-WinGetPackageClean -Id 9NP83LWLPZ9K # apple devices
-Install-WinGetPackageClean -Id 9PKTQ5699M62 # icloud
+Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | ForEach-Object { Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml" }
 
 function Remove-AppxPackagesFromSession {
     param(
@@ -123,4 +117,3 @@ Remove-AppxPackagesFromSession -PackagePatterns @(
     '*Wunderlist*',
     '*XING*'
 )
-

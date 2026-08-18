@@ -1,18 +1,11 @@
-# Non-package installations (add/update these first)
-# backblaze
+[CmdletBinding()]
+$Global:InformationPreference = 'Continue'
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 
 . $PSScriptRoot\Private\Set-Registry.ps1
-. $PSScriptRoot\Private\Install-Programs.ps1
-. $PSScriptRoot\Private\Install-Apps.ps1
-
-# winget
-Install-WinGetPackageClean -Id DBBrowserForSQLite.DBBrowserForSQLite
-Install-WinGetPackageClean -Id Google.GoogleDrive
-Install-WinGetPackageClean -Id PaperCutSoftware.MobilityPrint
-Install-WinGetPackageClean -Id NextDNS.NextDNS
-Install-WinGetPackageClean -Id Plex.PlexMediaServer -InstallType "SkipIfInstalled"
+. $PSScriptRoot\Private\Install-Programs-Elevated.ps1
+. $PSScriptRoot\Private\Install-Apps-Elevated.ps1
 
 # config
 

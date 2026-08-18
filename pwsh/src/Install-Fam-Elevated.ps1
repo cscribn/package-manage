@@ -1,14 +1,7 @@
-# Non-package installations (add/update these first)
+[CmdletBinding()]
+$Global:InformationPreference = 'Continue'
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
-
-. $PSScriptRoot\Private\Set-Registry.ps1
-. $PSScriptRoot\Private\Install-Programs.ps1
-. $PSScriptRoot\Private\Install-Apps.ps1
-
-# winget
-Install-WinGetPackageClean -Id Lenovo.SystemUpdate
-Install-WinGetPackageClean -Id NextDNS.NextDNS
 
 # config
 
