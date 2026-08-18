@@ -72,8 +72,8 @@ Install-WinGetPackageClean -Id WireGuard.WireGuard
 Install-WinGetPackageClean -Id MikeFarah.yq
 
 # pipx
-pipx upgrade openai-whisper 2>$null || pipx install openai-whisper
-pipx upgrade "yt-dlp[default]" 2>$null || pipx install "yt-dlp[default]"
+pipx -q upgrade openai-whisper 2>$null || pipx -q install openai-whisper
+pipx -q upgrade "yt-dlp[default]" 2>$null || pipx -q install "yt-dlp[default]"
 
 # python
 python -m pip install --upgrade pip
