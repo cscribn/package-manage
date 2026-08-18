@@ -29,76 +29,32 @@ brew trust powershell/tap && brew tap powershell/tap
 brew trust sdkman/tap && brew tap sdkman/tap
 brew trust snyk/tap && brew tap snyk/tap
 brew trust theseal/blank-screensaver && brew tap theseal/blank-screensaver
-brew install libgit2@1.7 || brew upgrade libgit2@1.7
-brew install git || brew upgrade git
 
-# pipx
-brew install pipx || brew upgrade pipx; \
-pipx ensurepath
-
-brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
-brew install --cask alt-tab || brew upgrade --cask alt-tab
-brew install --cask antigravity-cli || brew upgrade --cask antigravity-cli
+# formulae
 brew install bash || brew upgrade bash
 brew install bat || brew upgrade bat
 brew install blank-screensaver || brew upgrade blank-screensaver
 brew install btop || brew upgrade btop
 brew install bun || brew upgrade bun
-
-# busylight-for-humans
-pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans
-pipx inject --force busylight-for-humans uvicorn
-
-brew install --cask bbedit || brew upgrade --cask bbedit
-brew install --cask claude || brew upgrade --cask claude
 brew install curl || brew upgrade curl
-brew list --cask cursor >/dev/null || brew install --force --cask cursor
-brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
 brew install deskflow || brew upgrade deskflow
-
-# docker
 brew install docker-compose || brew upgrade docker-compose
-brew install --cask docker-desktop || brew upgrade --cask docker-desktop
-# docker containers
-docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
-
 brew install fastfetch || brew upgrade fastfetch
 brew install ffmpeg || brew upgrade ffmpeg
-brew list --cask firefox >/dev/null || brew install --force --cask firefox
 brew install fzf || brew upgrade fzf
-brew install --cask gimp || brew upgrade --cask gimp
 brew install gh || brew upgrade gh
-brew install --cask git-credential-manager || brew upgrade --cask git-credential-manager
-brew install git-lfs || brew upgrade git-lfs; git lfs install
-brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg-nerd-font
 brew install gifsicle || brew upgrade gifsicle
 brew install git || brew upgrade git
-brew install --cask github || brew upgrade --cask github
-brew list --cask google-chrome >/dev/null || brew install --force --cask google-chrome
-brew list --cask google-chrome@beta >/dev/null || brew install --force --cask google-chrome@beta
-brew install --cask gpg-suite || brew upgrade --cask gpg-suite
+brew install git-lfs || brew upgrade git-lfs; git lfs install
 brew install gradle || brew upgrade gradle
 brew install granted || brew upgrade granted
-brew install --cask hammerspoon || brew upgrade --cask hammerspoon
 brew install helm || brew upgrade helm
-brew install --cask hex-fiend || brew upgrade --cask hex-fiend
-brew install --cask iterm2 || brew upgrade --cask iterm2
-brew install --cask itsycal ||brew upgrade --cask itsycal
-brew install jq ||brew upgrade jq
-brew install --cask krita || brew upgrade --cask krita
+brew install jq || brew upgrade jq
+brew install libgit2@1.7 || brew upgrade libgit2@1.7
 brew install libpq || brew upgrade libpq; brew link --force libpq
-brew install --cask libreoffice || brew upgrade --cask libreoffice
 brew install lsd || brew upgrade lsd
 brew install maven || brew upgrade maven
 brew install mermaid-cli || brew upgrade mermaid-cli
-brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
-brew list --cask microsoft-edge >/dev/null || brew install --force --cask microsoft-edge
-
-# netskope certificates
-[[ -f "${HOME}/netskope-cert-bundle.pem" ]] && [[ ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]] && \
-cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"; \
-"${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
-
 brew install nmap || brew upgrade nmap
 
 # node
@@ -117,9 +73,11 @@ npm install -g datadog-mcp-server
 
 brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
 brew install perl || brew upgrade perl
-brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
-brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
-brew install --cask postman || brew upgrade --force --cask postman
+
+# pipx
+brew install pipx || brew upgrade pipx; \
+pipx ensurepath
+
 (brew install powershell || brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off) && brew link powershell
 brew install pre-commit || brew upgrade pre-commit
 brew install python || brew upgrade python;
@@ -133,20 +91,62 @@ export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; \
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 brew install snyk || brew upgrade snyk
-twg update
-brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
 brew install uv || brew upgrade uv
-brew list --cask visual-studio-code >/dev/null || brew install --force --cask visual-studio-code
 brew install vim || brew upgrade vim
-brew install --cask vlc || brew upgrade --cask vlc
 brew install wget || brew upgrade wget
-brew install --cask wireshark-app || brew upgrade --cask wireshark-app
-pipx upgrade openai-whisper 2>/dev/null || pipx install openai-whisper
 brew install yarn || brew upgrade yarn
-
-# zsh
 brew install zsh || brew upgrade zsh
 
+# casks
+brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
+brew install --cask alt-tab || brew upgrade --cask alt-tab
+brew install --cask antigravity-cli || brew upgrade --cask antigravity-cli
+brew install --cask bbedit || brew upgrade --cask bbedit
+brew install --cask claude || brew upgrade --cask claude
+brew list --cask cursor >/dev/null || brew install --force --cask cursor
+brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
+brew install --cask docker-desktop || brew upgrade --cask docker-desktop
+brew list --cask firefox >/dev/null || brew install --force --cask firefox
+brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg-nerd-font
+brew install --cask gimp || brew upgrade --cask gimp
+brew install --cask git-credential-manager || brew upgrade --cask git-credential-manager
+brew install --cask github || brew upgrade --cask github
+brew list --cask google-chrome >/dev/null || brew install --force --cask google-chrome
+brew list --cask google-chrome@beta >/dev/null || brew install --force --cask google-chrome@beta
+brew install --cask gpg-suite || brew upgrade --cask gpg-suite
+brew install --cask hammerspoon || brew upgrade --cask hammerspoon
+brew install --cask hex-fiend || brew upgrade --cask hex-fiend
+brew install --cask iterm2 || brew upgrade --cask iterm2
+brew install --cask itsycal || brew upgrade --cask itsycal
+brew install --cask krita || brew upgrade --cask krita
+brew install --cask libreoffice || brew upgrade --cask libreoffice
+brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
+brew list --cask microsoft-edge >/dev/null || brew install --force --cask microsoft-edge
+brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
+brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
+brew install --cask postman || brew upgrade --force --cask postman
+brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
+brew list --cask visual-studio-code >/dev/null || brew install --force --cask visual-studio-code
+brew install --cask vlc || brew upgrade --cask vlc
+brew install --cask wireshark-app || brew upgrade --cask wireshark-app
+
+# busylight-for-humans
+pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans
+pipx inject --force busylight-for-humans uvicorn
+
+# netskope certificates
+[[ -f "${HOME}/netskope-cert-bundle.pem" ]] && [[ ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]] && \
+cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"; \
+"${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
+
+# docker
+# docker containers
+docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
+
+twg update
+pipx upgrade openai-whisper 2>/dev/null || pipx install openai-whisper
+
+# zsh
 git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
 git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
 
