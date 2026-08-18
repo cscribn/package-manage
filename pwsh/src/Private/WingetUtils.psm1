@@ -165,7 +165,6 @@ function Convert-WinGetInstallResult {
     }
 
     if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $InstallResult -Id $Id) {
-        Write-Output "Application '$Id' is $ActionLabel"
         return [pscustomobject]@{
             Success = $true
             ExitCode = 0
