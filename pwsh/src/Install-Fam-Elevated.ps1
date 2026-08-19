@@ -3,6 +3,10 @@ $Global:InformationPreference = 'Continue'
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 
+. $PSScriptRoot\Private\Set-Registry.ps1
+. $PSScriptRoot\Private\Install-Programs-Elevated.ps1
+. $PSScriptRoot\Private\Install-Apps-Elevated.ps1
+
 # config
 
 ## microsoft-windows-terminal
