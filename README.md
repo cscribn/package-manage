@@ -24,6 +24,34 @@ Install brew via Terminal
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
+### mac launchd (setup/update)
+
+Use launchd to run the daily mac package workflow.
+
+First-time setup
+
+```zsh
+cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
+```
+
+Update existing setup after script path changes
+
+```zsh
+launchctl bootout gui/$(id -u)/com.appfire-chadscribner.package-manage
+cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
+launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.package-manage
+```
+
+Verify and monitor logs
+
+```zsh
+launchctl print gui/$(id -u)/com.appfire-chadscribner.package-manage
+tail -f ./bash/macos/logs/package-manage.log
+tail -f ./bash/macos/logs/package-manage-launchd.log
+```
+
 ## pwsh/
 
 Powershell scripts that install/upgrade Windows packages. Different files are used for different machines.

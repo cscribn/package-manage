@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+First-time setup:
+  cp /Users/appfire-chadscribner/projects/package-manage/bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/; \
+  launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
+
+Update existing setup:
+  launchctl bootout gui/$(id -u)/com.appfire-chadscribner.package-manage; \
+  cp /Users/appfire-chadscribner/projects/package-manage/bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/; \
+  launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
+
+Logs:
+  bash/macos/logs/package-manage.log         Workload output (git pull, bash/macos/bin/install-chad.sh, pwsh/src/Private/Update-Modules-Mac.ps1)
+  bash/macos/logs/package-manage-launchd.log Bootstrap failures only (empty when healthy)
+
+Test now (kickstart prints nothing on success; watch package-manage.log):
+  launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.package-manage
+  tail -f /Users/appfire-chadscribner/projects/package-manage/bash/macos/logs/package-manage.log
+
+Uninstall:
+  launchctl bootout gui/$(id -u)/com.appfire-chadscribner.package-manage
+  rm ~/Library/LaunchAgents/package-manage.plist
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.appfire-chadscribner.package-manage</string>
+
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/bin/bash</string>
+		<string>-c</string>
+		<string>date "+%A, %B %d, %Y - %I:%M %p - launchd start" > ./bash/macos/logs/package-manage.log; { git pull; ./bash/macos/bin/install-chad.sh; /usr/local/bin/pwsh ./pwsh/src/Private/Update-Modules-Mac.ps1; } >> ./bash/macos/logs/package-manage.log 2>&amp;1</string>
+	</array>
+
+	<key>WorkingDirectory</key>
+	<string>/Users/appfire-chadscribner/projects/package-manage</string>
+
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>HOME</key>
+		<string>/Users/appfire-chadscribner</string>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+		<key>USERNAME</key>
+		<string>appfire-chadscribner</string>
+		<key>SUDO_ASKPASS</key>
+		<string>/Users/appfire-chadscribner/.ssh/secrets/.supwd.sh</string>
+	</dict>
+
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>4</integer>
+		<key>Minute</key>
+		<integer>0</integer>
+	</dict>
+
+	<key>StandardOutPath</key>
+	<string>/Users/appfire-chadscribner/projects/package-manage/bash/macos/logs/package-manage-launchd.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/appfire-chadscribner/projects/package-manage/bash/macos/logs/package-manage-launchd.log</string>
+
+	<key>RunAtLoad</key>
+	<false/>
+</dict>
+</plist>
