@@ -17,7 +17,7 @@ HOSTNAME="$(hostname)"
 readonly HOSTNAME
 
 # include
-source "${SCRIPT_DIR}/_pi-default.sh"
+source "${SCRIPT_DIR}/../lib/install-programs.sh"
 
 # asound.conf
 sudo tee /etc/asound.conf > /dev/null << 'EOF'
