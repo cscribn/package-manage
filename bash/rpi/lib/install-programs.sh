@@ -1,7 +1,7 @@
 #!/bin/bash
 # Non-package installations (add these first)
 
-# update, autoremove, clean, upgrade all apt
+# update, autoremove, clean, upgrade all apt-get
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 
@@ -30,8 +30,3 @@ sudo apt-get install zsh -y
 
 git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
 git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
-
-LIB_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-readonly LIB_DIR
-source "${LIB_DIR}/copy-config.sh"
-

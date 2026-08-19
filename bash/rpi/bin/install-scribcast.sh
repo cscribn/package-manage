@@ -18,6 +18,7 @@ readonly HOSTNAME
 
 # include
 source "${SCRIPT_DIR}/../lib/install-programs.sh"
+source "${SCRIPT_DIR}/../lib/copy-config.sh"
 
 # asound.conf
 sudo tee /etc/asound.conf > /dev/null << 'EOF'
