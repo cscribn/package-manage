@@ -126,9 +126,11 @@ brew install --cask wireshark-app || brew upgrade --cask wireshark-app
 docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
 
 # netskope certificates
-[[ -f "${HOME}/netskope-cert-bundle.pem" ]] && [[ ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]] && \
-cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"; cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"
-"${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
+if [[ -f "${HOME}/netskope-cert-bundle.pem" && ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]]; then
+    cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"
+    cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"
+    "${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
+fi
 
 # npm
 npm config set fund false

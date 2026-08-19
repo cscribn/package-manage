@@ -56,10 +56,10 @@ if [[ "$HOSTNAME" == "scribcast2" ]]; then
     wget -O "${HOME}/plexamp-install.sh" https://gist.githubusercontent.com/tgp-2/65e6f2f637bc81df2c9fd9ba33f73bc6/raw/e7e9e47046c29a6090042a9a0a868a5bf7cf48be/plexamp-install.sh
 elif [[ "$HOSTNAME" == "scribcast1" ]]; then
     # raspotify
-    wget -O "${HOME}/raspotify-latest_arm64.deb" https://dtcooper.github.io/raspotify/raspotify-latest_arm64.deb; \
-    sudo dpkg -i "${HOME}/raspotify-latest_arm64.deb" && sudo apt-get install -f -y; \
-    sudo systemctl enable raspotify; \
-    sudo systemctl start raspotify; \
+    wget -O "${HOME}/raspotify-latest_arm64.deb" https://dtcooper.github.io/raspotify/raspotify-latest_arm64.deb
+    sudo dpkg -i "${HOME}/raspotify-latest_arm64.deb" && sudo apt-get install -f -y
+    sudo systemctl enable raspotify
+    sudo systemctl start raspotify
     sudo sed -i 's/^#LIBRESPOT_DEVICE=.*/LIBRESPOT_DEVICE=plughw:1,0/' /etc/raspotify/conf
 fi
 

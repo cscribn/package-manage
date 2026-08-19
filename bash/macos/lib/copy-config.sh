@@ -4,13 +4,12 @@
 curl -sSLo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-mac
 
 # bbedit
-curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist; \
+curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist
 curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/PowerShell.plist" https://raw.githubusercontent.com/doug-baer/BBEdit-PowerShell/master/PowerShell.plist
 defaults write com.barebones.bbedit ZoomWindowsInPlace -bool NO
 
 # finder - show all files (launchctl restarts Finder without the TCC popup from killall)
-defaults write com.apple.finder "AppleShowAllFiles" -bool "true" && \
-launchctl kickstart -k "gui/$(id -u)/com.apple.finder"
+defaults write com.apple.finder "AppleShowAllFiles" -bool "true" && launchctl kickstart -k "gui/$(id -u)/com.apple.finder"
 
 # hammerspoon
 curl -sSLo "${HOME}/.hammerspoon/init.lua" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/hammerspoon/init.lua
@@ -22,11 +21,11 @@ git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"
 curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc
 
 # zsh
-git_dir="${HOME}/.config/zsh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-zsh.git" "$git_dir"; fi; \
+git_dir="${HOME}/.config/zsh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-zsh.git" "$git_dir"; fi
 cp "${HOME}/.config/zsh/zshrc-mac" "${HOME}/.zshrc"
 
 # pwsh
-mkdir -p "${HOME}/.config/powershell"; \
+mkdir -p "${HOME}/.config/powershell"
 curl -sSLo "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
 
 # key bindings
