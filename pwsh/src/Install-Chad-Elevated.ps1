@@ -19,8 +19,8 @@ choco upgrade xmlstarlet -y -r -q --ignore-dependencies; choco upgrade xmlstarle
 choco upgrade xsltproc -y -r -q --ignore-dependencies
 
 # pipx
-pipx upgrade openai-whisper 2>$null || pipx install openai-whisper
-pipx upgrade "yt-dlp[default]" 2>$null || pipx install "yt-dlp[default]"
+pipx upgrade openai-whisper -q 2>$null || pipx install openai-whisper -q
+pipx upgrade "yt-dlp[default]" -q 2>$null || pipx install "yt-dlp[default]" -q
 
 # python
 python -m pip install --upgrade pip -q

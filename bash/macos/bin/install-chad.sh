@@ -132,12 +132,12 @@ cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"
 
 # npm
 npm config set fund false
-npm install -g @pilatos/bitbucket-cli
-npm install -g datadog-mcp-server
+npm install -g @pilatos/bitbucket-cli -q
+npm install -g datadog-mcp-server -q
 
 # pipx
-pipx upgrade busylight-for-humans 2>/dev/null || pipx install busylight-for-humans; pipx inject --force busylight-for-humans uvicorn
-pipx upgrade openai-whisper 2>/dev/null || pipx install openai-whisper
+pipx upgrade busylight-for-humans -q 2>/dev/null || pipx install busylight-for-humans -q; pipx inject --force busylight-for-humans uvicorn
+pipx upgrade openai-whisper -q 2>/dev/null || pipx install openai-whisper -q
 
 # teamwork graph
 twg update
