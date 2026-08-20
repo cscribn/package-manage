@@ -380,7 +380,7 @@ function Install-WinGetPackageClean {
             if (-not $installResult.Success) {
                 Write-Output "WARNING: Initial install failed for '$targetId'. Attempting fresh install."
                 Write-Output "Attempting to uninstall '$targetId'."
-                $uninstallResult = Invoke-WinGetUninstall -Id $targetId
+                $uninstallResult = Invoke-WinGetUninstall -Id $targetId -AllVersions
                 if (-not $uninstallResult.Success) {
                     Write-Output "WARNING: Uninstall of '$targetId' returned nonzero exit code but retrying install anyway."
                 }
