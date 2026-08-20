@@ -1,7 +1,7 @@
 #Requires -Modules Microsoft.WinGet.Client
 
 if (-not (Get-Variable -Name 'INSTALLED_OR_UPGRADED' -Scope Global -ErrorAction SilentlyContinue)) {
-    New-Variable -Name "INSTALLED_OR_UPGRADED" -Value "Install/Upgrade performed." -Option Constant -Scope Global
+    New-Variable -Name "INSTALLED_OR_UPGRADED" -Value "SUCCESS: Install/Upgrade performed." -Option Constant -Scope Global
 }
 
 function Get-WinGetInstalledPackagesById {
