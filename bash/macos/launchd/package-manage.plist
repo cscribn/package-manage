@@ -8,8 +8,7 @@
 	<key>ProgramArguments</key>
 	<array>
 		<string>/opt/homebrew/bin/bash</string>
-		<string>-c</string>
-		<string>date "+%A, %B %d, %Y - %I:%M %p - launchd start" > ./bash/macos/logs/package-manage.log; { git pull; ./bash/macos/bin/install-chad.sh; /usr/local/bin/pwsh ./pwsh/src/Private/Update-Modules-Mac.ps1; } >> ./bash/macos/logs/package-manage.log 2>&amp;1</string>
+		<string>/Users/appfire-chadscribner/projects/package-manage/bash/macos/bin/run-package-manage.sh</string>
 	</array>
 
 	<key>WorkingDirectory</key>
