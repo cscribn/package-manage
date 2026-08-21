@@ -52,35 +52,6 @@ tail -f ./bash/macos/logs/package-manage.log
 tail -f ./bash/macos/logs/package-manage-launchd.log
 ```
 
-See [mac launchd troubleshooting](#mac-launchd-troubleshooting) if a scheduled run did not happen.
-
-### mac launchd troubleshooting
-
-Diagnose:
-
-```zsh
-launchctl print gui/$(id -u)/com.appfire-chadscribner.package-manage | rg "state|runs|last exit|pid"
-ls -la ./bash/macos/logs/package-manage*.log
-tail ./bash/macos/logs/package-manage.log
-pgrep -lf "install-chad|package-manage|brew upgrade"
-cat ./bash/macos/logs/package-manage-launchd.log   # empty = healthy
-```
-
-- `state = running` with an old log → stuck prior run blocked the schedule.
-- No ~4 AM entry today, or log ends mid-`brew upgrade`/download → missed or hung run.
-- Also check: Mac asleep at 4 AM, `Password is incorrect.` in the log, or repo moved (re-bootstrap).
-
-Recover:
-
-| Symptom | Action |
-| --- | --- |
-| Stuck or missed run | `launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.package-manage` |
-| Kickstart does not clear children | Kill PID from `launchctl print`, then kickstart again |
-| Hung Homebrew download | Remove `*.incomplete` in `~/Library/Caches/Homebrew/downloads/`, retry |
-| Job not loaded or plist changed | Re-run setup/update steps above |
-
-A healthy run writes `launchd start` and `launchd finish (exit N)` to `package-manage.log`.
-
 ## pwsh/
 
 Powershell scripts that install/upgrade Windows packages. Different files are used for different machines.
