@@ -24,6 +24,19 @@ Install brew via Terminal
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
+### mac askpass (unattended sudo)
+
+Some brew cask installs/upgrades require sudo. For launchd runs (no terminal), create an askpass script outside this repo:
+
+```zsh
+mkdir -p ~/.ssh/secrets
+cat > ~/.ssh/secrets/.supwd.sh <<'EOF'
+#!/opt/homebrew/bin/bash
+echo 'YOUR_MACOS_PASSWORD'
+EOF
+chmod 700 ~/.ssh/secrets/.supwd.sh
+```
+
 ### mac launchd (setup/update)
 
 Use launchd to run the daily mac package workflow.
