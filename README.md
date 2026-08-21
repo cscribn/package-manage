@@ -57,6 +57,14 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
 launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.package-manage
 ```
 
+Manual run (same as scheduled launchd job)
+
+Run the full daily workflow now with the same environment and logging as launchd (`git pull`, `install-chad.sh`, and `Update-Modules-Mac.ps1`):
+
+```zsh
+launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.package-manage
+```
+
 Verify and monitor logs
 
 ```zsh
