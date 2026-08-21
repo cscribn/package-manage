@@ -11,7 +11,6 @@
 export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_UPDATE_REPORT_NEW=1
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin:${HOME}/.local/bin"
-export JAVA_HOME="/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/current"
 
 # Check password before proceeding
 if dscl /Search -authonly "$USERNAME" "$($SUDO_ASKPASS)"; then
@@ -27,7 +26,6 @@ brew upgrade
 # taps
 brew trust deskflow/tap && brew tap deskflow/tap
 brew trust powershell/tap && brew tap powershell/tap
-brew trust sdkman/tap && brew tap sdkman/tap
 brew trust snyk/tap && brew tap snyk/tap
 brew trust theseal/blank-screensaver && brew tap theseal/blank-screensaver
 
