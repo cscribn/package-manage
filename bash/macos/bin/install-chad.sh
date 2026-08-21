@@ -77,12 +77,11 @@ brew install perl || brew upgrade perl
 brew install pipx || brew upgrade pipx; pipx ensurepath
 (brew install powershell || brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off) && brew link powershell
 brew install pre-commit || brew upgrade pre-commit
-brew install python || brew upgrade python;
-brew install python@3.12 || brew upgrade python@3.12
+brew install python@3.13 || brew upgrade python@3.13
 brew install ripgrep || brew upgrade ripgrep
 brew install sbcl || brew upgrade sbcl # steel bank common lisp
-brew install sdkman-cli || brew upgrade sdkman-cli; export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec; [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 brew install snyk || brew upgrade snyk
+brew install --cask temurin@21 || brew upgrade --cask temurin@21
 brew install uv || brew upgrade uv
 brew install vim || brew upgrade vim
 brew install wget || brew upgrade wget
