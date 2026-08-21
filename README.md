@@ -54,7 +54,6 @@ Update existing setup after script path changes
 launchctl bootout gui/$(id -u)/com.appfire-chadscribner.package-manage
 cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
-launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.package-manage
 ```
 
 Manual run (same as scheduled launchd job)
