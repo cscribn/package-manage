@@ -9,7 +9,11 @@ curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/PowerShe
 defaults write com.barebones.bbedit ZoomWindowsInPlace -bool NO
 
 # finder - show all files (launchctl restarts Finder without the TCC popup from killall)
-defaults write com.apple.finder "AppleShowAllFiles" -bool "true" && launchctl kickstart -k "gui/$(id -u)/com.apple.finder"
+defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
+finder_service="gui/$(id -u)/com.apple.Finder"
+if launchctl print "$finder_service" &>/dev/null; then
+    launchctl kickstart -k "$finder_service"
+fi
 
 # hammerspoon
 curl -sSLo "${HOME}/.hammerspoon/init.lua" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/hammerspoon/init.lua
