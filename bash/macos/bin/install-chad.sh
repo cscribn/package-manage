@@ -78,11 +78,11 @@ brew install perl || brew upgrade perl
 brew install pipx || brew upgrade pipx; pipx ensurepath
 (brew install powershell || brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off) && brew link powershell
 brew install pre-commit || brew upgrade pre-commit
-brew install python@3.13 || brew upgrade python@3.13
+brew install python || brew upgrade python
 brew install ripgrep || brew upgrade ripgrep
 brew install sbcl || brew upgrade sbcl # steel bank common lisp
 brew install snyk || brew upgrade snyk
-brew install --cask temurin@21 || brew upgrade --cask temurin@21
+brew install --cask temurin || brew upgrade --cask temurin
 brew install uv || brew upgrade uv
 brew install vim || brew upgrade vim
 brew install wget || brew upgrade wget
