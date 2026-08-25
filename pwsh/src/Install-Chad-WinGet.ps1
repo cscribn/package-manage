@@ -21,7 +21,7 @@ Install-WinGetPackageClean -Id Google.GoogleDrive
 Install-WinGetPackageClean -Id MHNexus.HxD
 Install-WinGetPackageClean -Id NirSoft.IconsExtract
 Install-WinGetPackageClean -Id ImageMagick.ImageMagick
-Install-WinGetPackageClean -Id EclipseAdoptium.Temurin.21.JDK
+Install-WinGetPackageClean -Id EclipseAdoptium.Temurin -Like "*JDK*"
 Install-WinGetPackageClean -Id KDE.Krita
 Install-WinGetPackageClean -Id GuinpinSoft.MakeMKV
 Install-WinGetPackageClean -Id Microsoft.VisualStudio.BuildTools
@@ -32,7 +32,7 @@ Install-WinGetPackageClean -Id Poly.PlantronicsHub
 Install-WinGetPackageClean -Id oschwartz10612.Poppler
 Install-WinGetPackageClean -Id Postman.Postman
 Install-WinGetPackageClean -Id PuTTY.PuTTY
-Install-WinGetPackageClean -Id Python.Python.3.13
+Install-WinGetPackageClean -Id "Python.Python." -InstallType "UnknownId"
 Install-WinGetPackageClean -Id RaspberryPiFoundation.RaspberryPiImager
 Install-WinGetPackageClean -Id Rufus.Rufus
 Install-WinGetPackageClean -Id SBCL.SBCL # steel bank common lisp
