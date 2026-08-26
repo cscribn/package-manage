@@ -22,27 +22,59 @@ done
 
 # skills - download
 git_dir="${HOME}/.config/dotfiles-misc"
-if [ -d "${git_dir}/skills" ]; then
+if [ -d "${git_dir}/.agents/skills" ]; then
     cd "$git_dir" || exit 1
-    git pull -q origin || exit 1; cd - || exit 1
+    git pull -q origin || exit 1
+    cd - || exit 1
 else
     git init -q "$git_dir"
     cd "$git_dir" || exit 1
     git checkout -q -b main
     git remote add origin "https://github.com/cscribn/dotfiles-misc"
-    git sparse-checkout set "skills"
+    git sparse-checkout set ".agents/skills"
     git pull -q --set-upstream origin main
     cd - || exit 1
 fi
 
 # skills - sync
-# TODO - sync everything from "$HOME/.config/dotfiles-misc/skills" to each project's "".cursor/skills" directory, if one exists
+src_dir="$HOME/.config/dotfiles-misc/.agents/skills"
+find "$HOME/projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_root; do
+    [[ -d "$project_root/.cursor/skills" ]] || continue
+    has_changes="false"
+    for src_skill_dir in "$src_dir"/*/; do
+        [[ -d "$src_skill_dir" ]] || continue
+        skill_name=$(basename "$src_skill_dir")
+        target_skill_dir="$project_root/.cursor/skills/$skill_name"
+        [[ -d "$target_skill_dir" ]] || continue
+        while IFS= read -r src_file; do
+            rel_path="${src_file#$src_skill_dir/}"
+            target="$target_skill_dir/$rel_path"
+            if [[ -f "$target" ]]; then
+                src_hash=$(sha256sum "$src_file" | awk '{print $1}')
+                tgt_hash=$(sha256sum "$target" | awk '{print $1}')
+                if [[ "$src_hash" != "$tgt_hash" ]]; then
+                    mkdir -p "$(dirname "$target")"
+                    cp "$src_file" "$target"
+                    has_changes="true"
+                fi
+            fi
+        done < <(find "$src_skill_dir" -type f)
+    done
+    if [[ "$has_changes" == "true" ]]; then
+        cd "$project_root" || exit 1
+        git add .cursor/skills/
+        git commit -m "Update cursor skills"
+        if git remote | grep -qx "origin"; then git push origin HEAD; fi
+        cd - || exit 1
+    fi
+done
 
 # requirements - download
 git_dir="${HOME}/.config/dotfiles-misc"
 if [ -d "${git_dir}/requirements" ]; then
     cd "$git_dir" || exit 1
-    git pull -q origin || exit 1; cd - || exit 1
+    git pull -q origin || exit 1
+    cd - || exit 1
 else
     git init -q "$git_dir"
     cd "$git_dir" || exit 1
