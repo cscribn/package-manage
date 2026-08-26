@@ -18,6 +18,12 @@ choco upgrade win32diskimager --version 0.9.5 -y -r -q --ignore-dependencies; ch
 choco upgrade xmlstarlet -y -r -q --ignore-dependencies; choco upgrade xmlstarlet.portable -y -r -q --ignore-dependencies
 choco upgrade xsltproc -y -r -q --ignore-dependencies
 
+# npx
+## skills
+Set-Location "$Env:USERPROFILE\Projects\dotfiles-misc"
+npx --silent -y skills@latest update --yes
+Set-Location -
+
 # pipx
 pipx upgrade ipython -q 2>$null || pipx install ipython -q
 pipx upgrade openai-whisper -q 2>$null || pipx install openai-whisper -q
