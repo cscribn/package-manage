@@ -20,9 +20,27 @@ for dir in "${HOME}/projects"/*/; do
     fi
 done
 
+# skills - download
+git_dir="${HOME}/.config/dotfiles-misc"
+if [ -d "${git_dir}/skills" ]; then
+    cd "$git_dir" || exit 1
+    git pull -q origin || exit 1; cd - || exit 1
+else
+    git init -q "$git_dir"
+    cd "$git_dir" || exit 1
+    git checkout -q -b main
+    git remote add origin "https://github.com/cscribn/dotfiles-misc"
+    git sparse-checkout set "skills"
+    git pull -q --set-upstream origin main
+    cd - || exit 1
+fi
+
+# skills - sync
+# TODO - sync everything from "$HOME/.config/dotfiles-misc/skills" to each project's "".cursor/skills" directory, if one exists
+
 # requirements - download
 git_dir="${HOME}/.config/dotfiles-misc"
-if [ -d "$git_dir" ]; then
+if [ -d "${git_dir}/requirements" ]; then
     cd "$git_dir" || exit 1
     git pull -q origin || exit 1; cd - || exit 1
 else
