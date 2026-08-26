@@ -139,6 +139,7 @@ npm install -g datadog-mcp-server -q
 
 # pipx
 pipx upgrade busylight-for-humans -q 2>/dev/null || pipx install busylight-for-humans -q; pipx inject --force busylight-for-humans uvicorn
+pipx upgrade ipython -q 2>/dev/null || pipx install ipython -q
 pipx upgrade openai-whisper -q 2>/dev/null || pipx install openai-whisper -q
 
 # teamwork graph
