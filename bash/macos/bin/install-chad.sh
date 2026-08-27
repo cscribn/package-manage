@@ -132,8 +132,8 @@ pipx_ensure_inject busylight-for-humans uvicorn || exit 1
 pipx_ensure_package ipython || exit 1
 pipx_ensure_package openai-whisper || exit 1
 
-# teamwork graph
-twg update
+# teamwork graph (--output json suppresses progress lines and post-update tips)
+twg update --output json
 
 # zsh
 git_clone_or_pull "https://github.com/zsh-users/zsh-autosuggestions" "${HOME}/.zsh/zsh-autosuggestions" --quiet
