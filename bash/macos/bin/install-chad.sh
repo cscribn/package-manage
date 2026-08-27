@@ -53,7 +53,7 @@ brew_install_formula gradle
 brew_install_formula granted
 brew_install_formula helm
 brew_install_formula jq
-brew_install_formula libgit2@1.7
+brew_install_formula libgit2
 brew_install_formula libpq; brew link --force libpq
 brew_install_formula lsd
 brew_install_formula maven
@@ -122,22 +122,15 @@ log_section "post-brew (npm/pipx/twg/copy/cleanup)"
 # docker
 docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
 
-# netskope certificates
-if [[ -f "${HOME}/netskope-cert-bundle.pem" && ! -f "${HOME}/.ssl/certs/ca_bundle.pem" ]]; then
-    cp /opt/homebrew/etc/ca-certificates/cert.pem "${HOME}/.ssl/certs/ca_bundle.pem"
-    cat "${HOME}/netskope-cert-bundle.pem" >> "${HOME}/.ssl/certs/ca_bundle.pem"
-    "${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" -file "${HOME}/.ssl/certs/ca_bundle.pem" -storepass changeit -noprompt
-fi
-
 # npm
 npm config set fund false
 npm install -g @pilatos/bitbucket-cli -q
 npm install -g datadog-mcp-server -q
 
 # pipx
-pipx_ensure_inject busylight-for-humans uvicorn
-pipx_ensure_package ipython
-pipx_ensure_package openai-whisper
+pipx_ensure_inject busylight-for-humans uvicorn || exit 1
+pipx_ensure_package ipython || exit 1
+pipx_ensure_package openai-whisper || exit 1
 
 # teamwork graph
 twg update

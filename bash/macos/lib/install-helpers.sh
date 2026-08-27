@@ -9,10 +9,35 @@ log_section() {
     echo "==> ${PACKAGE_MANAGE_LOG_PREFIX}: $1"
 }
 
+setup_tls_certs() {
+    local ca_bundle="${HOME}/.ssl/certs/ca_bundle.pem"
+    local netskope_bundle="${HOME}/netskope-cert-bundle.pem"
+
+    mkdir -p "${HOME}/.ssl/certs"
+
+    if [[ -f "${netskope_bundle}" ]]; then
+        cp /opt/homebrew/etc/ca-certificates/cert.pem "${ca_bundle}"
+        cat "${netskope_bundle}" >> "${ca_bundle}"
+        if [[ -n "${JAVA_HOME:-}" && -x "${JAVA_HOME}/bin/keytool" ]]; then
+            "${JAVA_HOME}/bin/keytool" -import -keystore "${JAVA_HOME}/lib/security/cacerts" \
+                -file "${ca_bundle}" -storepass changeit -noprompt 2>/dev/null || true
+        fi
+    fi
+
+    export UV_SYSTEM_CERTS=true
+
+    if [[ -f "${ca_bundle}" ]]; then
+        export SSL_CERT_FILE="${ca_bundle}"
+        export REQUESTS_CA_BUNDLE="${ca_bundle}"
+        export CURL_CA_BUNDLE="${ca_bundle}"
+    fi
+}
+
 setup_brew_env() {
     export HOMEBREW_NO_ENV_HINTS=1
     export HOMEBREW_NO_UPDATE_REPORT_NEW=1
     export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin:${HOME}/.local/bin"
+    setup_tls_certs
 }
 
 brew_bootstrap() {
