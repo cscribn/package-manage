@@ -10,8 +10,6 @@
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-setup_brew_env
-
 # Check password before proceeding
 if dscl /Search -authonly "$USERNAME" "$($SUDO_ASKPASS)"; then
     echo "Password is correct."
@@ -22,6 +20,8 @@ fi
 
 source "${script_dir}/../lib/sudo-askpass.sh"
 source "${script_dir}/../lib/install-helpers.sh"
+
+setup_brew_env
 
 brew_bootstrap
 
@@ -135,9 +135,9 @@ npm install -g @pilatos/bitbucket-cli -q
 npm install -g datadog-mcp-server -q
 
 # pipx
-pipx upgrade busylight-for-humans -q 2>/dev/null || pipx install busylight-for-humans -q; pipx inject --force busylight-for-humans uvicorn
-pipx upgrade ipython -q 2>/dev/null || pipx install ipython -q
-pipx upgrade openai-whisper -q 2>/dev/null || pipx install openai-whisper -q
+pipx_ensure_inject busylight-for-humans uvicorn
+pipx_ensure_package ipython
+pipx_ensure_package openai-whisper
 
 # teamwork graph
 twg update
