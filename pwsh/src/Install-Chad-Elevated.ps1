@@ -16,6 +16,7 @@ Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 . $PSScriptRoot\Private\Set-Registry.ps1
 . $PSScriptRoot\Private\Install-Programs-Elevated.ps1
 . $PSScriptRoot\Private\Install-Apps-Elevated.ps1
+. $PSScriptRoot\Private\Install-Helpers.ps1
 
 # chocolatey
 choco feature enable -n='useRememberedArgumentsForUpgrades'
@@ -34,15 +35,15 @@ Set-Location "$Env:USERPROFILE\Projects\dotfiles-misc"
 npx --silent -y skills@latest update --yes
 Set-Location -
 
-# pipx
-pipx upgrade ipython -q 2>$null || pipx install ipython -q
-pipx upgrade openai-whisper -q 2>$null || pipx install openai-whisper -q
-pipx upgrade "yt-dlp[default]" -q 2>$null || pipx install "yt-dlp[default]" -q
-
 # python
 python -m pip install --upgrade pip -q
 python -m pip install --user pipx -q
 python -m pipx ensurepath
+
+# pipx packages
+if (-not (Ensure-PipxPackage -Package 'ipython')) { exit 1 }
+if (-not (Ensure-PipxPackage -Package 'openai-whisper')) { exit 1 }
+if (-not (Ensure-PipxPackage -Package 'yt-dlp[default]')) { exit 1 }
 
 # wsl
 if (-Not (wsl --list -version)) { wsl --install }
