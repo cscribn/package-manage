@@ -22,19 +22,32 @@ done
 
 # skills - download
 git_dir="${HOME}/.config/dotfiles-misc"
-if [ -d "${git_dir}/.agents/skills" ]; then
-    cd "$git_dir" || exit 1
-    git pull -q origin || exit 1
-    cd - || exit 1
-else
-    git init -q "$git_dir"
-    cd "$git_dir" || exit 1
-    git checkout -q -b main
-    git remote add origin "https://github.com/cscribn/dotfiles-misc"
-    git sparse-checkout set ".agents/skills"
-    git pull -q --set-upstream origin main
-    cd - || exit 1
-fi
+repo_url="https://github.com/cscribn/dotfiles-misc"
+
+ensure_sparse_repo() {
+    local repo_dir="$1"
+    local sparse_path="$2"
+
+    if git -C "$repo_dir" rev-parse --git-dir >/dev/null 2>&1; then
+        cd "$repo_dir" || exit 1
+        git remote get-url origin >/dev/null 2>&1 || git remote add origin "$repo_url"
+        git pull -q origin || exit 1
+        if ! git sparse-checkout list | grep -qxF "$sparse_path"; then
+            git sparse-checkout add "$sparse_path"
+        fi
+        cd - || exit 1
+    else
+        git init -q "$repo_dir"
+        cd "$repo_dir" || exit 1
+        git checkout -q -b main
+        git remote add origin "$repo_url"
+        git sparse-checkout set "$sparse_path"
+        git pull -q --set-upstream origin main
+        cd - || exit 1
+    fi
+}
+
+ensure_sparse_repo "$git_dir" ".agents/skills"
 
 # skills - sync
 src_dir="$HOME/.config/dotfiles-misc/.agents/skills"
@@ -70,20 +83,7 @@ find "$HOME/projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_ro
 done
 
 # requirements - download
-git_dir="${HOME}/.config/dotfiles-misc"
-if [ -d "${git_dir}/requirements" ]; then
-    cd "$git_dir" || exit 1
-    git pull -q origin || exit 1
-    cd - || exit 1
-else
-    git init -q "$git_dir"
-    cd "$git_dir" || exit 1
-    git checkout -q -b main
-    git remote add origin "https://github.com/cscribn/dotfiles-misc"
-    git sparse-checkout set "requirements"
-    git pull -q --set-upstream origin main
-    cd - || exit 1
-fi
+ensure_sparse_repo "$git_dir" "requirements"
 
 # requirements - sync
 src_dir="$HOME/.config/dotfiles-misc/requirements"
