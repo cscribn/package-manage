@@ -1,3 +1,18 @@
+# Non-package installations (add/update these first):
+# davinici resolve, set video directory to Documents\DavinciResolve
+# freefilesync
+# git-sdk (uninstall once pacman is scriptable)
+# libreoffice settings: disable jre, enable quickstarter, set default saves to office formats.
+# powershell msi https://github.com/powershell/powershell/releases
+# winget
+#
+# file type associations:
+# IrfanView - bmp, gif, heic, jpeg, jpg, png, tif, webp
+# LibreOffice.CalcDocument - csv, xls, xlsx
+# LibreOffice.WriterDocument - doc, docx
+# LibreOffice.ImpressDocument - ppt, pptx
+# VLC - avi, flac, flv, m4a, m4v, mov, mp3, mpeg, mpg, rm, swf, wav, wmv
+
 [CmdletBinding()]
 $Global:InformationPreference = 'Continue'
 

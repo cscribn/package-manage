@@ -1,3 +1,10 @@
+# Non-package installations (add/update these first)
+# awesome duplicate photo finder
+# backblaze
+# krita generative AI - https://github.com/Acly/krita-ai-diffusion
+# scansnap
+# silhouette studio
+
 [CmdletBinding()]
 $Global:InformationPreference = 'Continue'
 

@@ -1,3 +1,5 @@
+# Non-package installations (add/update these first)
+
 [CmdletBinding()]
 $Global:InformationPreference = 'Continue'
 
