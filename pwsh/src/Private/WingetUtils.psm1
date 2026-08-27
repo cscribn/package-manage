@@ -139,10 +139,6 @@ function Get-WinGetInstallAlreadyInstalledNoUpgrade {
         [string]$Id
     )
 
-    if ($InstallResult.ExitCode -notin 1,-1978335189) {
-        return $false
-    }
-
     $installedPackages = Get-WinGetInstalledPackagesById -Id $Id
     return @($installedPackages).Count -gt 0
 }
@@ -165,6 +161,7 @@ function Convert-WinGetInstallResult {
     }
 
     if (Get-WinGetInstallAlreadyInstalledNoUpgrade -InstallResult $InstallResult -Id $Id) {
+        Write-Warning "winget reported failure for '$Id' (ExitCode=$($InstallResult.ExitCode)). Package is installed; treating as success."
         return [pscustomobject]@{
             Success = $true
             ExitCode = 0
