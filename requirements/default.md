@@ -2,22 +2,13 @@
 
 ## All Projects
 
-- README.md as operator guide (build/run/env), not as requirements; README, requirements.md kept in sync with behavior/config changes.
+- README.md acts strictly as an operator guide (build/run/env); keep README.md and requirements.md in sync with all behavior and config updates.
+- Prioritize YAGNI and standard library reuse; write minimal code, avoiding premature abstraction until logic repeats 3+ times.
+- Keep functions cohesive (≤ 40 lines, low complexity); remove dead code and unused imports immediately.
 
-## Projects containing languages other than/in addition to Bash and PowerShell
+## Non-Scripting Projects
 
-- One run command; env vars used for runtime modes.
-- Config loads from .env; .env.example kept synced; secrets never hardcoded; .gitignore maintained for artifacts, secrets, local env.
-
-## All Project Quality
-
-- Prioritize YAGNI, reuse (codebase/stdlib/platform/deps); write minimum required code only if one-line solution doesn't exist.
-- Abstraction is never premature; repeated logic extracted after appearing 3+ times.
-- Functions kept small, cohesive (<= 40 lines, low complexity).
-- Dead code removed, no unused imports.
-
-## Quality for projects Projects containing languages other than/in addition to Bash and PowerShell
-
-- Explicit types used over generic open-ended configs.
-- Tests kept up to date with behavior; error messages are actionable.
-- For each verified regression, a lightweight test is created/updated.
+- Single entry point command; runtime configured via .env (kept synced with .env.example).
+- Never hardcode secrets; maintain .gitignore for secrets, local envs, and artifacts.
+- Bind to system-default runtimes; ensure system updates do not break build/run flows.
+- Prefer explicit types over generic configs.  Maintain actionable error messages, keep tests synced with behavior, add regression tests for all fixed bugs.
