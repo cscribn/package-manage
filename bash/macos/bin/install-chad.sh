@@ -8,9 +8,7 @@
 # sudo git lfs install --system
 # twg: bash <(curl -fsSL https://teamwork-graph.atlassian.com/cli/install)
 
-export HOMEBREW_NO_ENV_HINTS=1
-export HOMEBREW_NO_UPDATE_REPORT_NEW=1
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/bin:${HOME}/.local/bin"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Check password before proceeding
 if dscl /Search -authonly "$USERNAME" "$($SUDO_ASKPASS)"; then
@@ -20,107 +18,106 @@ else
     exit 1
 fi
 
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${script_dir}/../lib/sudo-askpass.sh"
+source "${script_dir}/../lib/install-helpers.sh"
 
-brew update || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew upgrade --formula
+setup_brew_env
+
+brew_bootstrap
 
 # taps
-brew trust deskflow/tap && brew tap deskflow/tap
-brew trust powershell/tap && brew tap powershell/tap
-brew trust snyk/tap && brew tap snyk/tap
-brew trust theseal/blank-screensaver && brew tap theseal/blank-screensaver
+brew_trust_tap deskflow/tap
+brew_trust_tap powershell/tap
+brew_trust_tap snyk/tap
+brew_trust_tap theseal/blank-screensaver
+
+log_section "formulae"
 
 # formulae
-brew install bash || brew upgrade bash
-brew install bat || brew upgrade bat
-brew install blank-screensaver || brew upgrade blank-screensaver
-brew install btop || brew upgrade btop
-brew install bun || brew upgrade bun
-brew install curl || brew upgrade curl
-brew install deskflow || brew upgrade deskflow
-brew install docker-compose || brew upgrade docker-compose
-brew install fastfetch || brew upgrade fastfetch
-brew install ffmpeg || brew upgrade ffmpeg
-brew install fzf || brew upgrade fzf
-brew install gh || brew upgrade gh
-brew install gifsicle || brew upgrade gifsicle
-brew install git || brew upgrade git
-brew install git-lfs || brew upgrade git-lfs; git lfs install
-brew install gradle || brew upgrade gradle
-brew install granted || brew upgrade granted
-brew install helm || brew upgrade helm
-brew install jq || brew upgrade jq
-brew install libgit2@1.7 || brew upgrade libgit2@1.7
-brew install libpq || brew upgrade libpq; brew link --force libpq
-brew install lsd || brew upgrade lsd
-brew install maven || brew upgrade maven
-brew install mermaid-cli || brew upgrade mermaid-cli
-brew install nmap || brew upgrade nmap
+brew_install_formula bash
+brew_install_formula bat
+brew_install_formula blank-screensaver
+brew_install_formula btop
+brew_install_formula bun
+brew_install_formula curl
+brew_install_formula deskflow
+brew_install_formula docker-compose
+brew_install_formula fastfetch
+brew_install_formula ffmpeg
+brew_install_formula fzf
+brew_install_formula gh
+brew_install_formula gifsicle
+brew_install_formula git
+brew_install_formula git-lfs; git lfs install
+brew_install_formula gradle
+brew_install_formula granted
+brew_install_formula helm
+brew_install_formula jq
+brew_install_formula libgit2@1.7
+brew_install_formula libpq; brew link --force libpq
+brew_install_formula lsd
+brew_install_formula maven
+brew_install_formula mermaid-cli
+brew_install_formula nmap
 
 # nvm and node
-brew install nvm || brew upgrade nvm; export NVM_DIR="${HOME}/.nvm"
-[[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-[[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ]] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-nvm install --lts; nvm use --lts;
-# remove old node versions
-node_versions_dir="${HOME}/.nvm/versions/node"
-if [[ -d "${node_versions_dir}" ]]; then
-    (
-        cd "${node_versions_dir}" || exit
-        ls -dr * | tail -n +2 | xargs -I '{}' bash -c "export NVM_DIR=$HOME/.nvm; [ -s $NVM_DIR/nvm.sh ] && . $NVM_DIR/nvm.sh && nvm deactivate {} && nvm uninstall {}"
-    )
-fi
+brew_install_formula nvm
+nvm_install_lts_prune
 
-brew install --formula jandedobbeleer/oh-my-posh/oh-my-posh || brew upgrade jandedobbeleer/oh-my-posh/oh-my-posh; oh-my-posh disable notice
-brew install perl || brew upgrade perl
-brew install pipx || brew upgrade pipx; pipx ensurepath
-(brew install powershell || brew upgrade powershell; launchctl setenv POWERSHELL_UPDATECHECK Off) && brew link powershell
-brew install pre-commit || brew upgrade pre-commit
-brew install python || brew upgrade python
-brew install ripgrep || brew upgrade ripgrep
-brew install sbcl || brew upgrade sbcl # steel bank common lisp
-brew install snyk || brew upgrade snyk
-brew install --cask temurin || brew upgrade --cask temurin
-brew install uv || brew upgrade uv
-brew install vim || brew upgrade vim
-brew install wget || brew upgrade wget
-brew install yarn || brew upgrade yarn
-brew install zsh || brew upgrade zsh
+brew_install_formula jandedobbeleer/oh-my-posh/oh-my-posh --formula; oh-my-posh disable notice
+brew_install_formula perl
+brew_install_formula pipx; pipx ensurepath
+(brew_install_formula powershell; launchctl setenv POWERSHELL_UPDATECHECK Off) && brew link powershell
+brew_install_formula pre-commit
+brew_install_formula python
+brew_install_formula ripgrep
+brew_install_formula sbcl # steel bank common lisp
+brew_install_formula snyk
+brew_install_formula temurin --cask
+brew_install_formula uv
+brew_install_formula vim
+brew_install_formula wget
+brew_install_formula yarn
+brew_install_formula zsh
+
+log_section "casks"
+refresh_sudo
 
 # casks
-brew install --cask adobe-acrobat-reader || brew upgrade --cask adobe-acrobat-reader
-brew install --cask alt-tab || brew upgrade --cask alt-tab
-brew install --cask antigravity-cli || brew upgrade --cask antigravity-cli
-brew install --cask bbedit || brew upgrade --cask bbedit
-brew install --cask claude || brew upgrade --cask claude
-brew list --cask cursor >/dev/null || brew install --force --cask cursor
-brew install --cask dbeaver-community || brew upgrade --cask dbeaver-community
-brew install --cask docker-desktop || brew upgrade --cask docker-desktop
-brew list --cask firefox >/dev/null || brew install --force --cask firefox
-brew install --cask font-meslo-lg-nerd-font || brew upgrade --cask font-meslo-lg-nerd-font
-brew install --cask gimp || brew upgrade --cask gimp
-brew install --cask git-credential-manager || brew upgrade --cask git-credential-manager
-brew install --cask github || brew upgrade --cask github
-brew list --cask google-chrome >/dev/null || brew install --force --cask google-chrome
-brew list --cask google-chrome@beta >/dev/null || brew install --force --cask google-chrome@beta
-brew install --cask gpg-suite || brew upgrade --cask gpg-suite
-brew install --cask hammerspoon || brew upgrade --cask hammerspoon
-brew install --cask hex-fiend || brew upgrade --cask hex-fiend
-brew install --cask iterm2 || brew upgrade --cask iterm2
-brew install --cask itsycal || brew upgrade --cask itsycal
-brew install --cask krita || brew upgrade --cask krita
-brew install --cask libreoffice || brew upgrade --cask libreoffice
-brew install --cask microsoft-auto-update || brew upgrade --cask microsoft-auto-update
-brew list --cask microsoft-edge >/dev/null || brew install --force --cask microsoft-edge
-brew install --cask pgadmin4 || brew upgrade --cask pgadmin4
-brew install --cask postgres-unofficial || brew upgrade --cask postgres-unofficial
-brew install --cask postman || brew upgrade --force --cask postman
-brew install --cask the-unarchiver || brew upgrade --cask the-unarchiver
-brew list --cask visual-studio-code >/dev/null || brew install --force --cask visual-studio-code
-brew install --cask vlc || brew upgrade --cask vlc
-brew install --cask wireshark-app || brew upgrade --cask wireshark-app
+brew_install_cask adobe-acrobat-reader || true
+brew_install_cask alt-tab || true
+brew_install_cask antigravity-cli || true
+brew_install_cask bbedit || true
+brew_install_cask claude || true
+brew_ensure_cask cursor || true
+brew_install_cask dbeaver-community || true
+brew_install_cask docker-desktop || true
+brew_ensure_cask firefox || true
+brew_install_cask font-meslo-lg-nerd-font || true
+brew_install_cask gimp || true
+brew_install_cask git-credential-manager || true
+brew_install_cask github || true
+brew_ensure_cask google-chrome || true
+brew_ensure_cask google-chrome@beta || true
+brew_install_cask gpg-suite || true
+brew_install_cask hammerspoon || true
+brew_install_cask hex-fiend || true
+brew_install_cask iterm2 || true
+brew_install_cask itsycal || true
+brew_install_cask krita || true
+refresh_sudo
+brew_install_cask libreoffice || true
+brew_install_cask microsoft-auto-update || true
+brew_ensure_cask microsoft-edge || true
+brew_install_cask pgadmin4 || true
+brew_install_cask postgres-unofficial || true
+brew_upgrade_force_cask postman || true
+brew_install_cask the-unarchiver || true
+brew_ensure_cask visual-studio-code || true
+brew_install_cask vlc || true
+brew_install_cask wireshark-app || true
+
+log_section "post-brew (npm/pipx/twg/copy/cleanup)"
 
 # docker
 docker info >/dev/null 2>&1 && docker pull crystaldba/postgres-mcp
@@ -138,19 +135,19 @@ npm install -g @pilatos/bitbucket-cli -q
 npm install -g datadog-mcp-server -q
 
 # pipx
-pipx upgrade busylight-for-humans -q 2>/dev/null || pipx install busylight-for-humans -q; pipx inject --force busylight-for-humans uvicorn
-pipx upgrade ipython -q 2>/dev/null || pipx install ipython -q
-pipx upgrade openai-whisper -q 2>/dev/null || pipx install openai-whisper -q
+pipx_ensure_inject busylight-for-humans uvicorn
+pipx_ensure_package ipython
+pipx_ensure_package openai-whisper
 
 # teamwork graph
 twg update
 
 # zsh
-git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
-git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
+git_clone_or_pull "https://github.com/zsh-users/zsh-autosuggestions" "${HOME}/.zsh/zsh-autosuggestions" --quiet
+git_clone_or_pull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "${HOME}/.zsh/zsh-syntax-highlighting" --quiet
 
 source "${script_dir}/../lib/copy-projects-chad.sh"
 source "${script_dir}/../lib/copy-config.sh"
 
 # cleanup
-brew autoremove; brew cleanup; brew doctor
+brew_cleanup

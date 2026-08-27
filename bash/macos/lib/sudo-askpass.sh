@@ -18,3 +18,7 @@ if ! sudo -A -v; then
     echo "sudo authentication failed via SUDO_ASKPASS: ${SUDO_ASKPASS}" >&2
     exit 1
 fi
+
+refresh_sudo() {
+    sudo -A -v
+}
