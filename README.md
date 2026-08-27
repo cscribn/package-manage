@@ -29,8 +29,7 @@ Install brew via Terminal
 Some brew cask installs/upgrades require sudo. For launchd runs (no terminal), create an askpass script outside this repo:
 
 ```zsh
-mkdir -p ~/.ssh/secrets
-cat > ~/.ssh/secrets/.supwd.sh <<'EOF'
+mkdir -p ~/.ssh/secrets; cat > ~/.ssh/secrets/.supwd.sh <<'EOF'
 #!/opt/homebrew/bin/bash
 echo 'YOUR_MACOS_PASSWORD'
 EOF
@@ -65,15 +64,14 @@ Use launchd to run the daily mac package workflow via [`run-package-manage.sh`](
 First-time setup
 
 ```zsh
-cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/
-launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
+cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/; launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
 ```
 
 Update existing setup after script path changes
 
 ```zsh
-launchctl bootout gui/$(id -u)/com.appfire-chadscribner.package-manage
-cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/
+launchctl bootout gui/$(id -u)/com.appfire-chadscribner.package-manage; \
+cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/; \
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
 ```
 
@@ -94,8 +92,8 @@ Or run the wrapper directly:
 Verify and monitor logs
 
 ```zsh
-launchctl print gui/$(id -u)/com.appfire-chadscribner.package-manage
-tail -f ./bash/macos/logs/package-manage.log
+launchctl print gui/$(id -u)/com.appfire-chadscribner.package-manage; \
+tail -f ./bash/macos/logs/package-manage.log; \
 tail -f ./bash/macos/logs/package-manage-launchd.log
 ```
 
