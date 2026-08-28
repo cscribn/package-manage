@@ -99,6 +99,50 @@ tail -f ./bash/macos/logs/package-manage-launchd.log
 
 A successful run ends with `launchd finish` in `package-manage.log`.
 
+### mac launchd (KeyBindings backup)
+
+Use launchd to back up `~/Library/KeyBindings/DefaultKeyBinding.dict` into `~/projects/KeyBindings/` daily at 3:00 AM via [`run-keybindings-backup.sh`](bash/macos/bin/run-keybindings-backup.sh). The wrapper:
+
+- creates the destination directory if needed
+- copies the live keybindings file into `~/projects/KeyBindings/`
+- writes start/finish markers to `bash/macos/logs/keybindings-backup.log`
+
+First-time setup
+
+```zsh
+cp ./bash/macos/launchd/keybindings-backup.plist ~/Library/LaunchAgents/; \
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/keybindings-backup.plist
+```
+
+Update existing setup after script path changes
+
+```zsh
+launchctl bootout gui/$(id -u)/com.appfire-chadscribner.keybindings-backup; \
+cp ./bash/macos/launchd/keybindings-backup.plist ~/Library/LaunchAgents/; \
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/keybindings-backup.plist
+```
+
+Manual run (same as scheduled launchd job)
+
+```zsh
+launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.keybindings-backup
+```
+
+Or run the wrapper directly:
+
+```zsh
+./bash/macos/bin/run-keybindings-backup.sh
+```
+
+Verify and monitor logs
+
+```zsh
+launchctl print gui/$(id -u)/com.appfire-chadscribner.keybindings-backup; \
+tail -f ./bash/macos/logs/keybindings-backup.log
+```
+
+A successful run ends with `launchd finish` in `keybindings-backup.log`.
+
 ## pwsh/
 
 Powershell scripts that install/upgrade Windows packages. Different files are used for different machines.
