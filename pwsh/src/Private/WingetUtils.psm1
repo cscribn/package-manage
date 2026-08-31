@@ -4,6 +4,102 @@ if (-not (Get-Variable -Name 'INSTALLED_OR_UPGRADED' -Scope Global -ErrorAction 
     New-Variable -Name "INSTALLED_OR_UPGRADED" -Value "SUCCESS: Install/Upgrade performed." -Option Constant -Scope Global
 }
 
+function Get-WinGetInstalledPackagesFromCli {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$false)]
+        [string]$Id,
+
+        [Parameter(Mandatory=$false)]
+        [string]$Like
+    )
+
+    try {
+        $arguments = @('list', '--accept-source-agreements', '--source', 'winget')
+        if ($Id) {
+            $arguments += @('--id', $Id)
+        }
+
+        $output = & 'winget' @arguments 2>&1 | Out-String
+        if (-not $output) {
+            return @()
+        }
+
+        $lines = @($output -split "`r?`n")
+        $packages = @()
+        foreach ($line in $lines) {
+            $trimmed = $line.Trim()
+            if (-not $trimmed) {
+                continue
+            }
+
+            if ($trimmed -match '^Name\s+Id\s+Version') {
+                continue
+            }
+
+            if ($trimmed -match '^[-\s]+$') {
+                continue
+            }
+
+            $match = [regex]::Match($trimmed, '^(?<Name>.+?)\s{2,}(?<Id>\S+)\s{2,}(?<Version>\S+)(?:\s{2,}(?<Available>\S+))?\s*$')
+            if (-not $match.Success) {
+                continue
+            }
+
+            $name = $match.Groups['Name'].Value.Trim()
+            $id = $match.Groups['Id'].Value.Trim()
+            $version = $match.Groups['Version'].Value.Trim()
+
+            if (-not $name -or -not $id -or -not $version) {
+                continue
+            }
+
+            if ($Id -and $id -ne $Id) {
+                continue
+            }
+
+            if ($Like -and $name -notlike $Like -and $id -notlike $Like) {
+                continue
+            }
+
+            $packages += [pscustomobject]@{
+                Id = $id
+                Name = $name
+                Version = $version
+                Source = 'winget'
+            }
+        }
+
+        return @($packages)
+    } catch {
+        return @()
+    }
+}
+
+function Merge-WinGetPackageCollections {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [object[]]$BasePackages,
+
+        [Parameter(Mandatory=$false)]
+        [object[]]$AdditionalPackages
+    )
+
+    $combined = @($BasePackages)
+    foreach ($package in @($AdditionalPackages)) {
+        $sameVersionExists = @($combined | Where-Object {
+            $_.Id -eq $package.Id -and (Get-WinGetPackageVersion $_) -eq (Get-WinGetPackageVersion $package)
+        })
+
+        if (@($sameVersionExists).Count -eq 0) {
+            $combined += $package
+        }
+    }
+
+    return @($combined)
+}
+
 function Get-WinGetInstalledPackagesById {
     [CmdletBinding()]
     param(
@@ -14,7 +110,8 @@ function Get-WinGetInstalledPackagesById {
     try {
         $packages = Get-WinGetPackage -Id $Id -ErrorAction Stop
         if (@($packages).Count -gt 0) {
-            return @($packages)
+            $combined = Merge-WinGetPackageCollections -BasePackages $packages -AdditionalPackages @(Get-WinGetInstalledPackagesFromCli -Id $Id)
+            return @($combined)
         }
     } catch {
         # If the winget provider does not support filtering by msstore alias ID,
@@ -23,9 +120,10 @@ function Get-WinGetInstalledPackagesById {
 
     try {
         $packages = Get-WinGetPackage -ErrorAction Stop | Where-Object { $_.Id -eq $Id }
-        return @($packages)
+        $combined = Merge-WinGetPackageCollections -BasePackages $packages -AdditionalPackages @(Get-WinGetInstalledPackagesFromCli -Id $Id)
+        return @($combined)
     } catch {
-        return @()
+        return @(Get-WinGetInstalledPackagesFromCli -Id $Id)
     }
 }
 
@@ -251,20 +349,58 @@ function Get-WinGetInstalledPackagesForCleanup {
         return Get-WinGetInstalledPackagesById -Id $Id
     }
 
+    $candidates = [System.Collections.Generic.List[object]]::new()
     $pattern = Get-WinGetPackageFamilyPattern -Id $Id
-    $packages = Get-WinGetPackage -ErrorAction SilentlyContinue | Where-Object { $_.Id -like $pattern }
-    if (@($packages).Count -gt 0) {
-        return @($packages)
+
+    $familyPackages = @(Get-WinGetPackage -ErrorAction SilentlyContinue | Where-Object { $_.Id -like $pattern })
+    foreach ($package in $familyPackages) {
+        [void]$candidates.Add($package)
+    }
+
+    $cliFamilyPackages = @(Get-WinGetInstalledPackagesFromCli -Id $Id)
+    foreach ($package in $cliFamilyPackages) {
+        [void]$candidates.Add($package)
     }
 
     if ($Like) {
-        $packages = Get-WinGetPackage -ErrorAction SilentlyContinue | Where-Object { $_.Name -like $Like }
-        if (@($packages).Count -gt 0) {
-            return @($packages)
+        $namePackages = @(Get-WinGetPackage -ErrorAction SilentlyContinue | Where-Object { $_.Name -like $Like })
+        foreach ($package in $namePackages) {
+            [void]$candidates.Add($package)
+        }
+
+        $cliNamePackages = @(Get-WinGetInstalledPackagesFromCli -Like $Like)
+        foreach ($package in $cliNamePackages) {
+            [void]$candidates.Add($package)
         }
     }
 
-    return Get-WinGetInstalledPackagesById -Id $Id
+    $exactPackages = @(Get-WinGetInstalledPackagesById -Id $Id)
+    foreach ($package in $exactPackages) {
+        [void]$candidates.Add($package)
+    }
+
+    if ($candidates.Count -eq 0) {
+        return @()
+    }
+
+    $uniquePackages = [System.Collections.Generic.List[object]]::new()
+    foreach ($package in $candidates) {
+        $key = "$($package.Id)|$([string](Get-WinGetPackageVersion $package))"
+        $seen = $false
+        foreach ($existing in $uniquePackages) {
+            $existingKey = "$($existing.Id)|$([string](Get-WinGetPackageVersion $existing))"
+            if ($existingKey -eq $key) {
+                $seen = $true
+                break
+            }
+        }
+
+        if (-not $seen) {
+            [void]$uniquePackages.Add($package)
+        }
+    }
+
+    return @($uniquePackages)
 }
 
 function Remove-OldWinGetPackageVersions {
