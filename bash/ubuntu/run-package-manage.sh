@@ -165,7 +165,7 @@ main() {
     echo "$(timestamp) - systemd start" > "${LOG_FILE}"
 
     set +e
-    /usr/bin/env bash "${SCRIPT_DIR}/run-package-manage.sh" --workflow
+    run_workflow
     exit_code=$?
     set -e
 
