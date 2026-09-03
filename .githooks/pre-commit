@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# Find staged files matching .ps1 or .sh and force executable mode
+# Find staged files matching .ps1 or .sh and ensure executable mode.
+# This keeps the index and the working tree aligned for scripts created after setup.
 git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(ps1|sh)$' | while read -r file; do
     if [ -f "$file" ]; then
+        chmod +x "$file" 2>/dev/null || true
         git update-index --chmod=+x "$file"
     fi
 done

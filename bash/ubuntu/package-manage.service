@@ -5,8 +5,10 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-User=root
-Group=root
+User=chadb
+Group=chadb
+Environment=SUDO_ASKPASS=/home/chadb/.ssh/secrets/.supwd.sh
+Environment=USERNAME=chadb
 WorkingDirectory=/home/chadb/package-manage
 ExecStart=/usr/bin/env bash /home/chadb/package-manage/bash/ubuntu/run-package-manage.sh
 StandardOutput=journal
