@@ -7,8 +7,8 @@ if [[ -n "${SUDO_ASKPASS:-}" ]]; then
 fi
 
 # update, autoremove, clean, upgrade all apt-get
-sudo -A apt-get update
-sudo -A apt-get dist-upgrade -y
+sudo -A apt-get update -q
+sudo -A apt-get dist-upgrade -y -q
 
 # ssh - enable
 sudo -A systemctl enable --now ssh

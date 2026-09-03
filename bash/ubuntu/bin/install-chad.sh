@@ -20,5 +20,5 @@ source "${SCRIPT_DIR}/../lib/install-programs.sh"
 # todo git
 
 # autoremove, clean
-sudo -A apt-get autoremove -y
-sudo -A apt-get clean -y
+sudo -A apt-get autoremove -y -q
+sudo -A apt-get clean -y -q
