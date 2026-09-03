@@ -12,4 +12,4 @@ readonly HOSTNAME
 source "${SCRIPT_DIR}/../lib/install-programs.sh"
 
 # autoremove, clean
-sudo apt-get autoremove -y; sudo apt-get clean -y
+apt-get autoremove -y; apt-get clean -y

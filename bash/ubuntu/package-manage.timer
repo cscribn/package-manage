@@ -1,0 +1,10 @@
+[Unit]
+Description=Run package management at 04:00 daily
+
+[Timer]
+OnCalendar=*-*-* 04:00:00
+Persistent=true
+Unit=package-manage.service
+
+[Install]
+WantedBy=timers.target

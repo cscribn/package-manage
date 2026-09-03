@@ -12,6 +12,43 @@ git config core.hooksPath .githooks
 
 Bash scripts that install/upgrade Raspberry Pi/Ubuntu packages.
 
+### ubuntu daily package updates
+
+The Ubuntu workflow uses systemd instead of launchd so the daily package update job runs as root at 4:00 AM.
+
+Files live in [`bash/ubuntu/`](bash/ubuntu/) and include:
+
+- [`bash/ubuntu/run-package-manage.sh`](bash/ubuntu/run-package-manage.sh) for lock/log management and workflow execution
+- [`bash/ubuntu/package-manage.service`](bash/ubuntu/package-manage.service) for the systemd service unit
+- [`bash/ubuntu/package-manage.timer`](bash/ubuntu/package-manage.timer) for the 4:00 AM daily trigger
+- [`bash/ubuntu/bin/install-chad.sh`](bash/ubuntu/bin/install-chad.sh) for the actual Ubuntu install/update step
+
+Set up the service:
+
+```bash
+sudo sed -i 's#/path/to/package-manage#'"$(pwd)"'#g' ./bash/ubuntu/package-manage.service
+sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
+sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
+sudo systemctl daemon-reload
+sudo systemctl enable --now package-manage.timer
+sudo systemctl status package-manage.timer
+```
+
+Run it manually:
+
+```bash
+sudo systemctl start package-manage.service
+sudo journalctl -u package-manage.service -f
+```
+
+Check logs:
+
+```bash
+tail -f ./bash/ubuntu/logs/package-manage.log
+```
+
+A successful run ends with `systemd finish` in the log.
+
 ## mac*
 
 Bash scripts that install/upgrade Mac packages.

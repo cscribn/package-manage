@@ -1,0 +1,16 @@
+[Unit]
+Description=Daily Ubuntu package management
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+WorkingDirectory=/path/to/package-manage
+ExecStart=/usr/bin/env bash /path/to/package-manage/bash/ubuntu/run-package-manage.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
