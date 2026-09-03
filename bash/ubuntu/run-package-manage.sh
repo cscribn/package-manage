@@ -2,6 +2,8 @@
 
 set -Eeuo pipefail
 
+exit_code=0
+
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 readonly MAX_RUNTIME_SECONDS=$((6 * 60 * 60))
@@ -77,20 +79,18 @@ handle_pid() {
     return 1
 }
 
-clear_stale_runs() {
+acquire_lock() {
     local pid=""
 
     if [[ -f "${LOCK_FILE}" ]]; then
         pid="$(<"${LOCK_FILE}")"
-        handle_pid "${pid}" || return 1
+        if [[ "${pid}" =~ ^[0-9]+$ ]] && kill -0 "${pid}" 2>/dev/null; then
+            return 1
+        fi
         rm -f "${LOCK_FILE}"
     fi
 
-    while IFS= read -r pid; do
-        [[ "${pid}" == "$$" ]] && continue
-        handle_pid "${pid}" || return 1
-    done < <(pgrep -f "${WORKFLOW_PGREP}" 2>/dev/null || true)
-
+    echo "$$" > "${LOCK_FILE}"
     return 0
 }
 
@@ -150,17 +150,14 @@ run_workflow() {
 }
 
 main() {
-    local exit_code=0
-
     mkdir -p "${LOG_DIR}" "${STATE_DIR}"
 
-    if ! clear_stale_runs; then
+    if ! acquire_lock; then
         log "skipped; another run is still active"
         exit 0
     fi
 
-    echo "$$" > "${LOCK_FILE}"
-    trap 'log "systemd finish (exit ${exit_code})"; rm -f "${LOCK_FILE}"' EXIT
+    trap 'exit_code=$?; log "systemd finish (exit ${exit_code})"; rm -f "${LOCK_FILE}"' EXIT
 
     echo "$(timestamp) - systemd start" > "${LOG_FILE}"
 
