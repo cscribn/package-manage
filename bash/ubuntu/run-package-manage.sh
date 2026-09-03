@@ -130,8 +130,11 @@ run_workflow() {
 
     cd "${REPO_ROOT}"
 
+    # Avoid Git ownership failures for service users that do not own the checkout yet.
+    git config --global --add safe.directory "${REPO_ROOT}" 2>/dev/null || true
+
     set +e
-    git pull >> "${LOG_FILE}" 2>&1
+    git -c safe.directory="${REPO_ROOT}" pull >> "${LOG_FILE}" 2>&1
     step_exit=$?
     set -e
     if (( step_exit != 0 )); then
@@ -151,6 +154,11 @@ run_workflow() {
 
 main() {
     mkdir -p "${LOG_DIR}" "${STATE_DIR}"
+
+    if [[ ! -w "${LOG_DIR}" || ! -w "${STATE_DIR}" ]]; then
+        echo "Permission denied: ${LOG_DIR} and ${STATE_DIR} must be writable by ${USER:-$(whoami)}. Run: sudo chown -R chadb:chadb ${REPO_ROOT}" >&2
+        exit 1
+    fi
 
     if ! acquire_lock; then
         log "skipped; another run is still active"

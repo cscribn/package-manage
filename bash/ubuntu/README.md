@@ -43,6 +43,24 @@ sudo -A -v
 
 If that succeeds, the systemd unit can keep `Environment=SUDO_ASKPASS=/home/chadb/.ssh/secrets/.supwd.sh` and `Environment=USERNAME=chadb` and the service can run without interactively prompting for a password.
 
+## Repository ownership and Git safety setup
+
+The repo must be owned by the same user that runs the systemd service. If the checkout was created or changed by root, the service user will hit both `Permission denied` on the lock/log directory and `dubious ownership in repository` when Git runs.
+
+Fix it once on the machine:
+
+```bash
+sudo chown -R chadb:chadb /home/chadb/package-manage
+sudo install -d -o chadb -g chadb /home/chadb/package-manage/bash/ubuntu/logs /home/chadb/package-manage/bash/ubuntu/state
+git config --global --add safe.directory /home/chadb/package-manage
+```
+
+You can also verify the service user can write and pull from the repo:
+
+```bash
+sudo -u chadb bash -lc 'touch /home/chadb/package-manage/bash/ubuntu/state/test-write && git -C /home/chadb/package-manage pull'
+```
+
 ## First-time setup
 
 The service runs as the normal user `chadb`, so the repo path must still be the actual checkout path and the askpass script must exist for that user before the timer is enabled.
