@@ -18,16 +18,25 @@ The wrapper runs as root and performs the daily update flow:
 - `package-manage.timer` - runs the service at 04:00 daily
 - `install-chad.sh` - wrapper or entry script for the actual Ubuntu install logic
 
-## Setup
+## First-time setup
 
-The service runs as root via systemd, so the wrapper and Ubuntu install scripts do not use `sudo` internally. Update the repo path in the service before installing it:
+The service runs as root via systemd, so the wrapper and Ubuntu install scripts do not use `sudo` internally. Because systemd runs as root, the service path must be the actual repo path.
 
 ```bash
-sudo sed -i 's#/path/to/package-manage#'"$(pwd)"'#g' ./bash/ubuntu/package-manage.service
 sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
 sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
 sudo systemctl daemon-reload
 sudo systemctl enable --now package-manage.timer
+sudo systemctl status package-manage.timer
+```
+
+## Update existing setup after changes
+
+```bash
+sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
+sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
+sudo systemctl daemon-reload
+sudo systemctl restart package-manage.timer
 sudo systemctl status package-manage.timer
 ```
 

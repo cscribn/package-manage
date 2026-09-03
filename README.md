@@ -23,10 +23,9 @@ Files live in [`bash/ubuntu/`](bash/ubuntu/) and include:
 - [`bash/ubuntu/package-manage.timer`](bash/ubuntu/package-manage.timer) for the 4:00 AM daily trigger
 - [`bash/ubuntu/bin/install-chad.sh`](bash/ubuntu/bin/install-chad.sh) for the actual Ubuntu install/update step
 
-Set up the service:
+First-time setup
 
 ```bash
-sudo sed -i 's#/path/to/package-manage#'"$(pwd)"'#g' ./bash/ubuntu/package-manage.service
 sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
 sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
 sudo systemctl daemon-reload
@@ -34,14 +33,24 @@ sudo systemctl enable --now package-manage.timer
 sudo systemctl status package-manage.timer
 ```
 
-Run it manually:
+Update existing setup after changes
+
+```bash
+sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
+sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
+sudo systemctl daemon-reload
+sudo systemctl restart package-manage.timer
+sudo systemctl status package-manage.timer
+```
+
+Manual run
 
 ```bash
 sudo systemctl start package-manage.service
 sudo journalctl -u package-manage.service -f
 ```
 
-Check logs:
+Check logs
 
 ```bash
 tail -f ./bash/ubuntu/logs/package-manage.log
