@@ -17,7 +17,6 @@ fi
 # include
 source "${SCRIPT_DIR}/../lib/install-programs.sh"
 
-# todo git
 
 # autoremove, clean
 sudo -A apt-get autoremove -y -q
