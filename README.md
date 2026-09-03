@@ -72,7 +72,7 @@ Install brew via Terminal
 
 ### mac askpass (unattended sudo)
 
-Some brew cask installs/upgrades require sudo. For launchd runs (no terminal), create an askpass script outside this repo:
+Some brew cask installs/upgrades require sudo. For launchd runs (no terminal), create an askpass script outside this repo and make it executable for the user that launches the job:
 
 ```zsh
 mkdir -p ~/.ssh/secrets; cat > ~/.ssh/secrets/.supwd.sh <<'EOF'
@@ -81,6 +81,15 @@ echo 'YOUR_MACOS_PASSWORD'
 EOF
 chmod 700 ~/.ssh/secrets/.supwd.sh
 ```
+
+Validate that the script works before relying on it:
+
+```zsh
+export SUDO_ASKPASS="$HOME/.ssh/secrets/.supwd.sh"
+sudo -A -v
+```
+
+The mac launchd setup relies on `sudo -A` and `SUDO_ASKPASS` for privileged operations, so the password script must exist and be executable for the user under `~/Library/LaunchAgents` and the matching systemd/launchd environment.
 
 ### mac install scripts
 
