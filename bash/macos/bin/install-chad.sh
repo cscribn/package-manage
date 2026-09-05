@@ -84,38 +84,38 @@ log_section "casks"
 refresh_sudo
 
 # casks
-brew_install_cask adobe-acrobat-reader || true
-brew_install_cask alt-tab || true
-brew_install_cask antigravity-cli || true
-brew_install_cask bbedit || true
-brew_install_cask claude || true
-brew_ensure_cask cursor || true
-brew_install_cask dbeaver-community || true
-brew_install_cask docker-desktop || true
-brew_ensure_cask firefox || true
-brew_install_cask font-meslo-lg-nerd-font || true
-brew_install_cask gimp || true
-brew_install_cask git-credential-manager || true
-brew_install_cask github || true
-brew_ensure_cask google-chrome || true
-brew_ensure_cask google-chrome@beta || true
-brew_install_cask gpg-suite || true
-brew_install_cask hammerspoon || true
-brew_install_cask hex-fiend || true
-brew_install_cask iterm2 || true
-brew_install_cask itsycal || true
-brew_install_cask krita || true
+brew_install_cask adobe-acrobat-reader
+brew_install_cask alt-tab
+brew_install_cask antigravity-cli
+brew_install_cask bbedit
+brew_install_cask claude
+brew_ensure_cask cursor
+brew_install_cask dbeaver-community
+brew_install_cask docker-desktop
+brew_ensure_cask firefox
+brew_install_cask font-meslo-lg-nerd-font
+brew_install_cask gimp
+brew_install_cask git-credential-manager
+brew_install_cask github
+brew_ensure_cask google-chrome
+brew_ensure_cask google-chrome@beta
+brew_install_cask gpg-suite
+brew_install_cask hammerspoon
+brew_install_cask hex-fiend
+brew_install_cask iterm2
+brew_install_cask itsycal
+brew_install_cask krita
 refresh_sudo
-brew_install_cask libreoffice || true
-brew_install_cask microsoft-auto-update || true
-brew_ensure_cask microsoft-edge || true
-brew_install_cask pgadmin4 || true
-brew_install_cask postgres-unofficial || true
-brew_upgrade_force_cask postman || true
-brew_install_cask the-unarchiver || true
-brew_ensure_cask visual-studio-code || true
-brew_install_cask vlc || true
-brew_install_cask wireshark-app || true
+brew_install_cask libreoffice
+brew_install_cask microsoft-auto-update
+brew_ensure_cask microsoft-edge
+brew_install_cask pgadmin4
+brew_install_cask postgres-unofficial
+brew_upgrade_force_cask postman
+brew_install_cask the-unarchiver
+brew_ensure_cask visual-studio-code
+brew_install_cask vlc
+brew_install_cask wireshark-app
 
 log_section "post-brew (npm/pipx/twg/copy/cleanup)"
 
@@ -128,9 +128,9 @@ npm install -g @pilatos/bitbucket-cli -q
 npm install -g datadog-mcp-server -q
 
 # pipx
-pipx_ensure_inject busylight-for-humans uvicorn || exit 1
-pipx_ensure_package ipython || exit 1
-pipx_ensure_package openai-whisper || exit 1
+pipx_ensure_inject busylight-for-humans uvicorn
+pipx_ensure_package ipython
+pipx_ensure_package openai-whisper
 
 # teamwork graph (--output json suppresses progress lines and post-update tips)
 twg update --output json
