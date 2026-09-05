@@ -7,8 +7,8 @@ if [[ -n "${SUDO_ASKPASS:-}" ]]; then
 fi
 
 # update, autoremove, clean, upgrade all
-sudo -A fwupdmgr refresh || true
-sudo -A fwupdmgr update -y --no-reboot-check || true
+sudo -A fwupdmgr refresh
+sudo -A fwupdmgr update -y --no-reboot-check
 sudo -A apt-get update -q
 sudo -A apt-get dist-upgrade -y -q
 
