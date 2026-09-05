@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # bash
-curl -sSLo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-mac
+curl -sSLo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-ubuntu
 
 # oh-my-posh
 git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
@@ -32,4 +32,4 @@ curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-m
 
 # zsh
 git_dir="${HOME}/.config/zsh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-zsh.git" "$git_dir"; fi
-cp "${HOME}/.config/zsh/zshrc-mac" "${HOME}/.zshrc"
+cp "${HOME}/.config/zsh/zshrc-ubuntu" "${HOME}/.zshrc"
