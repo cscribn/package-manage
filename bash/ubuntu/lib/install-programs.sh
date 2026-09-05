@@ -6,7 +6,9 @@ if [[ -n "${SUDO_ASKPASS:-}" ]]; then
     sudo -A -v
 fi
 
-# update, autoremove, clean, upgrade all apt-get
+# update, autoremove, clean, upgrade all
+fwupdmgr refresh --quiet
+fwupdmgr update -y --no-reboot-check || true
 sudo -A apt-get update -q
 sudo -A apt-get dist-upgrade -y -q
 
