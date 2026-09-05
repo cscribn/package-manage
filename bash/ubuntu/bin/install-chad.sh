@@ -16,7 +16,10 @@ fi
 
 # include
 source "${SCRIPT_DIR}/../lib/install-programs.sh"
+source "${SCRIPT_DIR}/../lib/copy-config.sh"
 
+sudo apt-get install pipx -y
+sudo apt-get install uv -y
 
 # autoremove, clean
 sudo -A apt-get autoremove -y -q

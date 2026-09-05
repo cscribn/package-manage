@@ -10,23 +10,29 @@ fi
 sudo -A apt-get update -q
 sudo -A apt-get dist-upgrade -y -q
 
-# ssh - enable
-sudo -A systemctl enable --now ssh
+sudo apt-get install bat -y
+sudo apt-get install btop -y
+sudo apt-get install curl -y
+sudo apt-get install fastfetch -y
+sudo snap refresh firefox
+sudo apt-get install fzf -y
+sudo apt-get install git -y
+sudo apt-get install htop -y
+sudo apt-get install jq -y
+sudo apt-get install lsd -y
 
-# sleep, suspend, hibernate, hybrid-sleep - disable
-sudo -A systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+# oh-my-posh
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notice
 
-# laptop lid close actions - disable
-sudo -A sed -i 's/#\?HandleLidSwitch=.*/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
-sudo -A sed -i 's/#\?HandleLidSwitchExternalPower=.*/HandleLidSwitchExternalPower=ignore/' /etc/systemd/logind.conf
-sudo -A sed -i 's/#\?HandleLidSwitchDocked=.*/HandleLidSwitchDocked=ignore/' /etc/systemd/logind.conf
-sudo -A systemctl restart systemd-logind
+sudo apt-get install ripgrep -y
+sudo apt-get install speedtest-cli -y
+sudo apt-get install unzip -y
+sudo apt-get install vim -y
+sudo apt-get install wget -y
 
-# automatic login
-TARGET_USER="${SUDO_USER:-${USER:-$(whoami)}}"
-sudo -A mkdir -p /etc/lightdm/lightdm.conf.d/
-sudo -A sh -c 'cat <<EOF > /etc/lightdm/lightdm.conf.d/50-autologin.conf
-[Seat:*]
-autologin-user=${TARGET_USER}
-autologin-user-timeout=0
-EOF'
+# zsh
+sudo apt-get install zsh -y
+
+git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
+git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
