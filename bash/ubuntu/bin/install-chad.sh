@@ -24,4 +24,3 @@ sudo apt-get install uv -y
 # autoremove, clean
 sudo -A apt-get autoremove -y -q
 sudo -A apt-get clean -y -q
-fwupdmgr clear-history
