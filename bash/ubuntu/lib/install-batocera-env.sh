@@ -15,7 +15,7 @@ if ! id -nG "$USER" | grep -qw "docker"; then
 fi
 
 if ! groups | grep -qw "docker"; then
-    exec sg docker "$0 $*"
+    exec su -c "$0 $*" "$USER"
 fi
 
 # batocera
