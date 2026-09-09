@@ -18,7 +18,7 @@ source "${SCRIPT_DIR}/../lib/install-programs.sh"
 source "${SCRIPT_DIR}/../lib/install-batocera-env.sh"
 source "${SCRIPT_DIR}/../lib/copy-config.sh"
 
-sudo apt-get install pipx -y
+sudo apt-get install pipx -y -q
 
 ## pipx
 pipx_ensure_package ipython

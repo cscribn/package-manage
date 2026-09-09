@@ -5,8 +5,8 @@ if [[ -n "${SUDO_ASKPASS:-}" ]]; then
     sudo -A -v
 fi
 
-sudo apt-get install build-essential -y
-sudo apt-get install docker.io -y
+sudo apt-get install build-essential -y -q
+sudo apt-get install docker.io -y -q
 
 sudo groupadd -f docker
 
