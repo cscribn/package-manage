@@ -3,6 +3,13 @@
 [[ -n "${_INSTALL_HELPERS_LOADED:-}" ]] && return 0
 _INSTALL_HELPERS_LOADED=1
 
+apt_run() {
+    sudo -A -E env \
+        DEBIAN_FRONTEND=noninteractive \
+        DEBCONF_NONINTERACTIVE_SEEN=true \
+        apt-get -o Dpkg::Use-Pty=0 -qq "$@"
+}
+
 pipx_ensure_package() {
     local package="$1"
     local venv_python="${HOME}/.local/pipx/venvs/${package}/bin/python"

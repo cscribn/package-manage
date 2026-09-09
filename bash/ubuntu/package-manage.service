@@ -7,7 +7,6 @@ Wants=network-online.target
 Type=oneshot
 User=chadb
 Group=chadb
-Environment=DEBIAN_FRONTEND=noninteractive
 Environment=SUDO_ASKPASS=/home/chadb/.ssh/secrets/.supwd.sh
 Environment=USERNAME=chadb
 WorkingDirectory=/home/chadb/package-manage

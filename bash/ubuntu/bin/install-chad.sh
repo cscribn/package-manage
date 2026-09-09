@@ -18,12 +18,12 @@ source "${SCRIPT_DIR}/../lib/install-programs.sh"
 source "${SCRIPT_DIR}/../lib/install-batocera-env.sh"
 source "${SCRIPT_DIR}/../lib/copy-config.sh"
 
-sudo apt-get install pipx -y -q
+apt_run install pipx -y
 
 ## pipx
 pipx_ensure_package ipython
 pipx_ensure_package uv
 
 # autoremove, clean
-sudo -A apt-get autoremove -y -q
-sudo -A apt-get clean -y -q
+apt_run autoremove -y
+apt_run clean -y
