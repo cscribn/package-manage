@@ -19,9 +19,9 @@ $Global:InformationPreference = 'Continue'
 # chocolatey
 choco upgrade chocolatey -y -r -q
 choco feature enable -n='useRememberedArgumentsForUpgrades'
-choco upgrade chocolatey-font-helpers.extension -y -r -q --ignore-dependencies
 choco upgrade filezilla -y -r -q --ignore-dependencies
-choco upgrade nerd-fonts-meslo -y -r -q --ignore-dependencies
+choco uninstall nerd-fonts-meslo -y -r -q --ignore-dependencies
+choco uninstall chocolatey-font-helpers.extension -y -r -q --ignore-dependencies
 
 # fonts backup
 $FontBackupPath = Join-Path $Env:USERPROFILE 'Fonts Backup'

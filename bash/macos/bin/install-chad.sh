@@ -93,7 +93,7 @@ brew_ensure_cask cursor
 brew_install_cask dbeaver-community
 brew_install_cask docker-desktop
 brew_ensure_cask firefox
-brew_install_cask font-meslo-lg-nerd-font
+brew uninstall --cask font-meslo-lg-nerd-font
 brew_install_cask gimp
 brew_install_cask git-credential-manager
 brew_install_cask github
