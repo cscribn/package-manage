@@ -3,15 +3,6 @@
 # bash
 curl -sSLo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-ubuntu
 
-# oh-my-posh
-git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
-
-# sleep, suspend, hibernate, hybrid-sleep - disable
-sudo -A systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
-
-# ssh - enable
-sudo -A systemctl enable --now ssh
-
 # laptop lid close actions - disable
 sudo -A sed -i 's/#\?HandleLidSwitch=.*/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
 sudo -A sed -i 's/#\?HandleLidSwitchExternalPower=.*/HandleLidSwitchExternalPower=ignore/' /etc/systemd/logind.conf
@@ -31,6 +22,15 @@ EOF'
 mkdir -p "${HOME}/.config/lsd"
 curl -sSLo "${HOME}/.config/lsd/config.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/config.yaml
 curl -sSLo "${HOME}/.config/lsd/icons.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/icons.yaml
+
+# oh-my-posh
+git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
+
+# sleep, suspend, hibernate, hybrid-sleep - disable
+sudo -A systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
+# ssh - enable
+sudo -A systemctl enable --now ssh
 
 # vim
 curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc
