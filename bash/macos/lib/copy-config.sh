@@ -36,6 +36,7 @@ cp "${HOME}/.config/zsh/zshrc-mac" "${HOME}/.zshrc"
 # pwsh
 mkdir -p "${HOME}/.config/powershell"
 curl -sSLo "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
+curl -sSLo "${HOME}/.config/powershell/Terminal-Icons.Emoji.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Terminal-Icons.Emoji.ps1
 
 # key bindings
 mkdir -p "${HOME}/Library/KeyBindings"

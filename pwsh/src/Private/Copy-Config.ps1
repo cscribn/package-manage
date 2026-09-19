@@ -20,7 +20,9 @@ curl -sSLo "$Env:USERPROFILE\.config\microsoft-windows-terminal\Scripts\SshWithP
 $GitDir = "$Env:USERPROFILE\.config\oh-my-posh"; If (Test-Path $GitDir) { Set-Location $GitDir; git pull -q; Set-Location - } Else { git clone -q "https://github.com/cscribn/dotfiles-oh-my-posh.git" $GitDir}
 
 # powershell-core
+New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\powershell"
 curl -sSLo "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
+curl -sSLo "$Env:USERPROFILE\Documents\PowerShell\Terminal-Icons.Emoji.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Terminal-Icons.Emoji.ps1
 
 # vim
 Set-Location "$Env:USERPROFILE"; curl -sSLo ".vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc; Set-Location -
