@@ -27,6 +27,11 @@ autologin-user=${TARGET_USER}
 autologin-user-timeout=0
 EOF'
 
+# lsd
+mkdir -p "${HOME}/.config/lsd"
+curl -sSLo "${HOME}/.config/lsd/config.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/config.yaml
+curl -sSLo "${HOME}/.config/lsd/icons.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/icons.yaml
+
 # vim
 curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc
 

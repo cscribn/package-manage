@@ -4,6 +4,11 @@ curl -sSLo "$Env:USERPROFILE\.bashrc" https://raw.githubusercontent.com/cscribn/
 # clink
 curl -sSLo "$Env:LOCALAPPDATA\clink\oh-my-posh.lua" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/clink/oh-my-posh.lua
 
+# lsd
+New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\lsd"
+curl -sSLo "$Env:USERPROFILE\.config\lsd\config.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/config.yaml
+curl -sSLo "$Env:USERPROFILE\.config\lsd\icons.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/icons.yaml
+
 # microsoft-windows-terminal
 New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons"
 curl -sSLo "$Env:USERPROFILE\.config\microsoft-windows-terminal\ProfileIcons\ssh.ico" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/ProfileIcons/ssh.ico
