@@ -1,5 +1,6 @@
 # bash
 curl -sSLo "$Env:USERPROFILE\.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-win
+curl -sSLo "$Env:USERPROFILE\.inputrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/inputrc-win
 
 # clink
 curl -sSLo "$Env:LOCALAPPDATA\clink\oh-my-posh.lua" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/clink/oh-my-posh.lua

@@ -2,6 +2,7 @@
 
 # bash
 curl -sSLo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-mac
+curl -sSLo "${HOME}/.inputrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/inputrc-mac
 
 # bbedit
 curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist

@@ -2,6 +2,7 @@
 
 # bash
 curl -sSLo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-ubuntu
+curl -sSLo "${HOME}/.inputrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/inputrc-ubuntu
 
 # laptop lid close actions - disable
 sudo -A sed -i 's/#\?HandleLidSwitch=.*/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
