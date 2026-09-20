@@ -25,6 +25,7 @@ Install-WinGetPackageClean -Id Gyan.FFmpeg
 Install-WinGetPackageClean -Id Mozilla.Firefox
 Install-WinGetPackageClean -Id junegunn.fzf
 Install-WinGetPackageClean -Id GIMP.GIMP
+Install-WinGetPackageClean -Id Google.AntigravityIDE -InstallType "SkipIfInstalled"
 Install-WinGetPackageClean -Id Google.Chrome -InstallType "SkipIfInstalled"
 Install-WinGetPackageClean -Id Google.ChromeRemoteDesktopHost
 Install-WinGetPackageClean -Id Google.PlatformTools
