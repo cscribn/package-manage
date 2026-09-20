@@ -29,6 +29,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notic
 
 apt_run install ripgrep -y
 apt_run install speedtest-cli -y
+apt_run install tmux -y
 apt_run install unzip -y
 apt_run install vim -y
 apt_run install wget -y
