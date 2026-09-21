@@ -28,6 +28,7 @@ sudo wget -nv https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/downl
 sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notice
 
 apt_run install ripgrep -y
+apt_run install samba -y
 apt_run install speedtest-cli -y
 apt_run install tmux -y
 apt_run install unzip -y
