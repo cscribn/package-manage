@@ -39,3 +39,4 @@ curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-m
 # zsh
 git_dir="${HOME}/.config/zsh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-zsh.git" "$git_dir"; fi
 cp "${HOME}/.config/zsh/zshrc-ubuntu" "${HOME}/.zshrc"
+[ "$SHELL" != "$(which zsh)" ] && sudo chsh -s "$(which zsh)" "$USER"
