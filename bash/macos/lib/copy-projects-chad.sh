@@ -47,20 +47,34 @@ ensure_sparse_repo() {
     fi
 }
 
-ensure_sparse_repo "$git_dir" ".agents/skills"
+ensure_full_repo() {
+    local repo_dir="$1"
+    local repo_url="$2"
 
-# skills - sync
-src_dir="$HOME/.config/dotfiles-misc/.agents/skills"
-find "$HOME/projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_root; do
-    [[ -d "$project_root/.cursor/skills" ]] || continue
-    has_changes="false"
+    if git -C "$repo_dir" rev-parse --git-dir >/dev/null 2>&1; then
+        cd "$repo_dir" || exit 1
+        git remote get-url origin >/dev/null 2>&1 || git remote add origin "$repo_url"
+        git pull -q origin main || exit 1
+        cd - || exit 1
+    else
+        git clone -q -b main "$repo_url" "$repo_dir"
+    fi
+}
+
+sync_skills_from_src_into_project() {
+    local src_dir="$1"
+    local project_root="$2"
+    local changed="false"
+
+    [[ -d "$src_dir" ]] || return 1
+
     for src_skill_dir in "$src_dir"/*/; do
         [[ -d "$src_skill_dir" ]] || continue
         skill_name=$(basename "$src_skill_dir")
         target_skill_dir="$project_root/.cursor/skills/$skill_name"
         [[ -d "$target_skill_dir" ]] || continue
         while IFS= read -r src_file; do
-            rel_path="${src_file#$src_skill_dir/}"
+            rel_path="${src_file#$src_skill_dir}"
             target="$target_skill_dir/$rel_path"
             if [[ -f "$target" ]]; then
                 src_hash=$(sha256sum "$src_file" | awk '{print $1}')
@@ -68,11 +82,30 @@ find "$HOME/projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_ro
                 if [[ "$src_hash" != "$tgt_hash" ]]; then
                     mkdir -p "$(dirname "$target")"
                     cp "$src_file" "$target"
-                    has_changes="true"
+                    changed="true"
                 fi
             fi
         done < <(find "$src_skill_dir" -type f)
     done
+
+    [[ "$changed" == "true" ]]
+}
+
+ensure_sparse_repo "$git_dir" ".agents/skills"
+
+ai_pilot_git_dir="${HOME}/.config/ai-pilot-skills"
+ai_pilot_repo_url="https://bitbucket.org/appfire/ai-pilot-skills.git"
+ensure_full_repo "$ai_pilot_git_dir" "$ai_pilot_repo_url"
+
+# skills - sync
+dotfiles_skills_dir="${HOME}/.config/dotfiles-misc/.agents/skills"
+ai_pilot_skills_dir="${HOME}/.config/ai-pilot-skills/skills"
+
+find "$HOME/projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_root; do
+    [[ -d "$project_root/.cursor/skills" ]] || continue
+    has_changes="false"
+    sync_skills_from_src_into_project "$dotfiles_skills_dir" "$project_root" && has_changes="true"
+    sync_skills_from_src_into_project "$ai_pilot_skills_dir" "$project_root" && has_changes="true"
     if [[ "$has_changes" == "true" ]]; then
         cd "$project_root" || exit 1
         git add .cursor/skills/
