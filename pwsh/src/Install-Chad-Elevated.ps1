@@ -60,9 +60,9 @@ wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get clean $AptFlags"
 ## git
 git config --global diff.word.textconv pandoc --to=markdown
 
-## copilot instructions
-New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.copilot"
-curl -sSLo "$Env:USERPROFILE\.ai\AGENTS.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md
+## agent instructions
+New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\ai"
+curl -sSLo "$Env:USERPROFILE\ai\AGENTS.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md
 
 ## microsoft-windows-terminal
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
