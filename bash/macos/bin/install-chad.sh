@@ -29,14 +29,12 @@ brew_bootstrap
 brew_trust_tap deskflow/tap
 brew_trust_tap powershell/tap
 brew_trust_tap snyk/tap
-brew_trust_tap theseal/blank-screensaver
 
 log_section "formulae"
 
 # formulae
 brew_install_formula bash
 brew_install_formula bat
-brew_install_formula blank-screensaver; sed -i '' 's/preflight do/preflight_steps do/' /opt/homebrew/Library/Taps/theseal/homebrew-blank-screensaver/Casks/blank-screensaver.rb
 brew_install_formula btop
 brew_install_formula bun
 brew_install_formula curl
