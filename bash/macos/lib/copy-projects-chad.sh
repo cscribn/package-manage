@@ -1,12 +1,12 @@
 #!/opt/homebrew/bin/bash
 
-# cursor instructions - download
-mkdir -p "${HOME}/.config/cursor"
+# Agent instructions - download
+mkdir -p "${HOME}/.config/ai"
 { printf '%s\n' '---' 'alwaysApply: true' '---' ''
-    curl -fsSL https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md; } > "${HOME}/.config/AI/AGENTS.md"
+    curl -fsSL https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md; } > "${HOME}/.config/ai/AGENTS.md"
 
-# cursor instructions - copy
-src="${HOME}/.config/AI/AGENTS.md"
+# Agent instructions - copy
+src="${HOME}/.config/ai/AGENTS.md"
 for dir in "${HOME}/projects"/*/; do
     [[ -d "$dir" ]] || continue
     target="${dir}AGENTS.md"
