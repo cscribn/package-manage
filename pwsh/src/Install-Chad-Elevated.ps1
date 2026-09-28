@@ -61,8 +61,8 @@ wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get clean $AptFlags"
 git config --global diff.word.textconv pandoc --to=markdown
 
 ## agent instructions
-New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\ai"
-curl -sSLo "$Env:USERPROFILE\ai\AGENTS.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md
+New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\ai"
+curl -sSLo "$Env:USERPROFILE\.config\ai\AGENTS.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md
 
 ## microsoft-windows-terminal
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"

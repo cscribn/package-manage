@@ -1,5 +1,5 @@
 # agent instructions
-$src = "$Env:USERPROFILE\ai\AGENTS.md"
+$src = "$Env:USERPROFILE\.config\ai\AGENTS.md"
 Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object {
     $target = Join-Path $_.FullName "AGENTS.md"
     if (Test-Path $target) {
