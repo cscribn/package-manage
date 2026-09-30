@@ -52,7 +52,7 @@ $AptFlags = "-qq -y -o=Dpkg::Use-Pty=0"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get update $AptFlags"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get install expect $AptFlags"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get full-upgrade $AptFlags"
-wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; do-release-upgrade"
+wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags UCF_FORCE_CONFFOLD=1; do-release-upgrade -f DistUpgradeViewNonInteractive -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold'"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get autoremove $AptFlags"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get clean $AptFlags"
 
