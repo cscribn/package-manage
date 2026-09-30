@@ -25,6 +25,7 @@ Install-WinGetPackageClean -Id EclipseAdoptium.Temurin -Like "*JDK*"
 Install-WinGetPackageClean -Id KDE.Krita
 Install-WinGetPackageClean -Id GuinpinSoft.MakeMKV
 Install-WinGetPackageClean -Id Microsoft.VisualStudio.BuildTools
+Install-WinGetPackageClean -Id MusicBrainz.Picard
 Install-WinGetPackageClean -Id NextDNS.NextDNS
 Install-WinGetPackageClean -Id OpenJS.NodeJS.LTS
 Install-WinGetPackageClean -Id Ollama.Ollama -InstallType "SkipIfInstalled"
