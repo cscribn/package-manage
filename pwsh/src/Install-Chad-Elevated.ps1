@@ -47,12 +47,12 @@ if (-not (Ensure-PipxPackage -Package 'yt-dlp[default]')) { exit 1 }
 
 # wsl
 if (-Not (wsl --list -version)) { wsl --install }
-$EnvFlags = "DEBIAN_FRONTEND=noninteractive"
+$EnvFlags = "DEBIAN_FRONTEND=noninteractive UCF_FORCE_CONFFOLD=1"
 $AptFlags = "-qq -y -o=Dpkg::Use-Pty=0"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get update $AptFlags"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get install expect $AptFlags"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get full-upgrade $AptFlags"
-wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags UCF_FORCE_CONFFOLD=1; do-release-upgrade -f DistUpgradeViewNonInteractive -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold'"
+wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; do-release-upgrade -f DistUpgradeViewNonInteractive"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get autoremove $AptFlags"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get clean $AptFlags"
 
