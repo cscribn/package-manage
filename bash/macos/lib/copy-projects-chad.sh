@@ -2,8 +2,7 @@
 
 # Agent instructions - download
 mkdir -p "${HOME}/.config/ai"
-{ printf '%s\n' '---' 'alwaysApply: true' '---' ''
-    curl -fsSL https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md; } > "${HOME}/.config/ai/AGENTS.md"
+curl -fsSL https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md > "${HOME}/.config/ai/AGENTS.md"
 
 # Agent instructions - copy
 src="${HOME}/.config/ai/AGENTS.md"
