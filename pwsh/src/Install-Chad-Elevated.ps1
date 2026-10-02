@@ -29,12 +29,6 @@ choco upgrade win32diskimager --version 0.9.5 -y -r -q --ignore-dependencies; ch
 choco upgrade xmlstarlet -y -r -q --ignore-dependencies; choco upgrade xmlstarlet.portable -y -r -q --ignore-dependencies
 choco upgrade xsltproc -y -r -q --ignore-dependencies
 
-# npx
-## skills
-Set-Location "$Env:USERPROFILE\Projects\dotfiles-misc"
-npx --silent -y skills@latest update --yes
-Set-Location -
-
 # python
 python -m pip install --upgrade pip -q
 python -m pip install --user pipx -q
