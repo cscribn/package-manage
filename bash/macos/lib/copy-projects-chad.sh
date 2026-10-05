@@ -8,6 +8,7 @@ curl -fsSL https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENT
 src="${HOME}/.config/ai/AGENTS.md"
 for dir in "${HOME}/projects"/*/; do
     [[ -d "$dir" ]] || continue
+    [[ "$dir" == */package-mange/ ]] && continue
     target="${dir}AGENTS.md"
     if [[ -f "$target" ]]; then
         if [[ "$(shasum -a 256 "$target" | awk '{print $1}')" != "$(shasum -a 256 "$src" | awk '{print $1}')" ]]; then
@@ -101,6 +102,7 @@ dotfiles_skills_dir="${HOME}/.config/dotfiles-misc/.agents/skills"
 ai_pilot_skills_dir="${HOME}/.config/ai-pilot-skills/skills"
 
 find "$HOME/projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_root; do
+    [[ "$project_root" == */package-mange ]] && continue
     [[ -d "$project_root/.cursor/skills" ]] || continue
     has_changes="false"
     sync_skills_from_src_into_project "$dotfiles_skills_dir" "$project_root" && has_changes="true"
@@ -121,6 +123,7 @@ ensure_sparse_repo "$git_dir" "requirements"
 src_dir="$HOME/.config/dotfiles-misc/requirements"
 md_files=(); while IFS= read -r _md; do md_files+=("$_md"); done < <(find "$src_dir" -maxdepth 1 -type f -name "*.md")
 find "$HOME/projects" -maxdepth 1 -mindepth 1 -type d | while read -r project_root; do
+    [[ "$project_root" == */package-mange ]] && continue
     [[ -d "$project_root/requirements" ]] || continue
     has_changes="false"
     for src in "${md_files[@]}"; do

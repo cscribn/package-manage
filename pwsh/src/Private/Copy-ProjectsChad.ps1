@@ -94,6 +94,7 @@ function Update-SkillsFromSource {
 # agent instructions
 $src = "$Env:USERPROFILE\.config\ai\AGENTS.md"
 Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object {
+    if ($_.Name -eq "package-mange") { return }
     $target = Join-Path $_.FullName "AGENTS.md"
     if (Test-Path $target) {
         if ((Get-FileHash $target).Hash -ne (Get-FileHash $src).Hash) {
@@ -117,6 +118,7 @@ Initialize-SparseCheckoutRepo -RepoDir $DotfilesGitDir -RepoUrl $DotfilesRepoUrl
 
 $DotfilesSkillsDir = Join-Path $DotfilesGitDir ".agents\skills"
 Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object {
+    if ($_.Name -eq "package-mange") { return }
     $ProjectRoot = $_.FullName
     if (-not (Test-Path -LiteralPath (Join-Path $ProjectRoot ".agents\skills") -PathType Container)) {
         return
@@ -136,6 +138,7 @@ Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object {
 $srcDir = "$Env:USERPROFILE\.config\dotfiles-misc\requirements"
 $mdFiles = Get-ChildItem -Path $srcDir -Filter *.md
 Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object {
+    if ($_.Name -eq "package-mange") { return }
     $projectRoot = $_.FullName
     $hasChanges = $false
     foreach ($file in $mdFiles) {
