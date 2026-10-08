@@ -30,8 +30,18 @@ git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"
 # vim
 curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc
 
-# zsh
-git_dir="${HOME}/.config/zsh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-zsh.git" "$git_dir"; fi
+# zsh (sparse checkout of dotfiles-misc: repo root ~/.config, only the zsh directory)
+git_dir="${HOME}/.config"
+if [[ -d "$git_dir/.git" ]]; then
+    git -C "$git_dir" pull -q
+else
+    rm -rf "$git_dir/zsh" # legacy dotfiles-zsh clone
+    git -C "$git_dir" init -q
+    git -C "$git_dir" remote add origin "https://github.com/cscribn/dotfiles-misc.git"
+    git -C "$git_dir" sparse-checkout set --no-cone '/zsh/'
+    git -C "$git_dir" fetch -q origin
+    git -C "$git_dir" checkout -q -b main --track origin/main
+fi
 cp "${HOME}/.config/zsh/zshrc-mac" "${HOME}/.zshrc"
 
 # pwsh

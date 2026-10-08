@@ -28,6 +28,14 @@ curl -sSLo "$Env:USERPROFILE\Documents\PowerShell\Terminal-Icons.Emoji.ps1" http
 # vim
 Set-Location "$Env:USERPROFILE"; curl -sSLo ".vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc; Set-Location -
 
-# zsh
-$GitDir = "$Env:USERPROFILE\.config\zsh"; If (Test-Path $GitDir) { Set-Location $GitDir; git pull -q; Set-Location - } Else { git clone -q "https://github.com/cscribn/dotfiles-zsh.git" $GitDir}
-Copy-Item -Force -Path "$GitDir\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
+# zsh (sparse checkout of dotfiles-misc: repo root $Env:USERPROFILE\.config, only the zsh directory)
+$GitDir = "$Env:USERPROFILE\.config"
+If (Test-Path "$GitDir\.git") { git -C $GitDir pull -q } Else {
+    Remove-Item -Recurse -Force "$GitDir\zsh" -ErrorAction SilentlyContinue # legacy dotfiles-zsh clone
+    git -C $GitDir init -q
+    git -C $GitDir remote add origin "https://github.com/cscribn/dotfiles-misc.git"
+    git -C $GitDir sparse-checkout set --no-cone '/zsh/'
+    git -C $GitDir fetch -q origin
+    git -C $GitDir checkout -q -b main --track origin/main
+}
+Copy-Item -Force -Path "$GitDir\zsh\zshrc-win" -Destination "$Env:USERPROFILE\.zshrc"
