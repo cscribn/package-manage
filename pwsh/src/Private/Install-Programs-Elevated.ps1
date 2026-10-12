@@ -49,17 +49,7 @@ Update-Module -Name Terminal-Icons
 # zsh
 & "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S -q --needed --noconfirm --overwrite \* zsh"
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-autosuggestions"
-if (Test-Path $GitDir) {
-    Set-Location $GitDir
-    git pull -q; Set-Location -
-} else {
-    git clone -q "https://github.com/zsh-users/zsh-autosuggestions" $GitDir
-}
+Git-CloneOrPull -Url "https://github.com/zsh-users/zsh-autosuggestions" -Destination $GitDir -Quiet
 $GitDir = "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting"
-if (Test-Path $GitDir) {
-    Set-Location $GitDir
-    git pull -q; Set-Location -
-} else {
-    git clone -q "https://github.com/zsh-users/zsh-syntax-highlighting.git" $GitDir
-}
+Git-CloneOrPull -Url "https://github.com/zsh-users/zsh-syntax-highlighting.git" -Destination $GitDir -Quiet
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item

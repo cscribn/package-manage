@@ -38,5 +38,5 @@ apt_run install wget -y
 # zsh
 apt_run install zsh -y
 
-git_dir="${HOME}/.zsh/zsh-autosuggestions"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-autosuggestions" "$git_dir"; fi
-git_dir="${HOME}/.zsh/zsh-syntax-highlighting"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull; cd -; else git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$git_dir"; fi
+git_clone_or_pull "https://github.com/zsh-users/zsh-autosuggestions" "${HOME}/.zsh/zsh-autosuggestions"
+git_clone_or_pull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "${HOME}/.zsh/zsh-syntax-highlighting"

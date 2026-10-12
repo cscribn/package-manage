@@ -17,6 +17,7 @@ HOSTNAME="$(hostname)"
 readonly HOSTNAME
 
 # include
+source "${SCRIPT_DIR}/../lib/install-helpers.sh"
 source "${SCRIPT_DIR}/../lib/install-programs.sh"
 source "${SCRIPT_DIR}/../lib/copy-config.sh"
 

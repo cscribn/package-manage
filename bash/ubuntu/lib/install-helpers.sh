@@ -10,6 +10,25 @@ apt_run() {
         apt-get -o Dpkg::Use-Pty=0 -qq "$@"
 }
 
+git_clone_or_pull() {
+    local url="$1"
+    local dest="$2"
+    local quiet_flag="${3:-}"
+    local -a git_quiet=()
+
+    if [[ "${quiet_flag}" == "--quiet" ]]; then
+        git_quiet=(-q)
+    fi
+
+    if [[ -d "${dest}" ]]; then
+        cd "${dest}" || return 1
+        git pull "${git_quiet[@]}"
+        cd - || return 1
+    else
+        git clone "${git_quiet[@]}" "${url}" "${dest}"
+    fi
+}
+
 pipx_ensure_package() {
     local package="$1"
     local venv_python="${HOME}/.local/pipx/venvs/${package}/bin/python"

@@ -78,3 +78,29 @@ function Ensure-PipxInject {
     pipx inject --force $Package @InjectPackages
     return $LASTEXITCODE -eq 0
 }
+
+function Git-CloneOrPull {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$Url,
+
+        [Parameter(Mandatory)]
+        [string]$Destination,
+
+        [switch]$Quiet
+    )
+
+    $QuietArgs = @()
+    if ($Quiet) {
+        $QuietArgs = @('-q')
+    }
+
+    if (Test-Path -LiteralPath $Destination) {
+        Push-Location $Destination
+        git pull @QuietArgs
+        Pop-Location
+    } else {
+        git clone @QuietArgs $Url $Destination
+    }
+}
