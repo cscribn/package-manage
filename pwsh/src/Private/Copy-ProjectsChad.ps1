@@ -1,59 +1,3 @@
-function Initialize-SparseCheckoutRepo {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory)]
-        [string]$RepoDir,
-        [Parameter(Mandatory)]
-        [string]$RepoUrl,
-        [Parameter(Mandatory)]
-        [string]$SparsePath
-    )
-
-    if (Test-Path -LiteralPath (Join-Path $RepoDir ".git")) {
-        Push-Location $RepoDir
-        $Remotes = git remote
-        if ($Remotes -notcontains "origin") {
-            git remote add origin $RepoUrl
-        }
-        git pull -q origin
-        $SparsePaths = git sparse-checkout list
-        if ($SparsePaths -notcontains $SparsePath) {
-            git sparse-checkout add $SparsePath
-        }
-        Pop-Location
-    } else {
-        git init -q $RepoDir
-        Push-Location $RepoDir
-        git checkout -q -b main
-        git remote add origin $RepoUrl
-        git sparse-checkout set $SparsePath
-        git pull -q --set-upstream origin main
-        Pop-Location
-    }
-}
-
-function Initialize-FullCloneRepo {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory)]
-        [string]$RepoDir,
-        [Parameter(Mandatory)]
-        [string]$RepoUrl
-    )
-
-    if (Test-Path -LiteralPath (Join-Path $RepoDir ".git")) {
-        Push-Location $RepoDir
-        $Remotes = git remote
-        if ($Remotes -notcontains "origin") {
-            git remote add origin $RepoUrl
-        }
-        git pull -q origin main
-        Pop-Location
-    } else {
-        git clone -q -b main $RepoUrl $RepoDir
-    }
-}
-
 function Update-SkillsFromSource {
     [CmdletBinding()]
     param(
@@ -92,7 +36,7 @@ function Update-SkillsFromSource {
 }
 
 # agent instructions
-$src = "$Env:USERPROFILE\.config\ai\AGENTS.md"
+$src = "$Env:USERPROFILE\.config\dotfiles-misc\ai\AGENTS.md"
 Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object {
     if ($_.Name -eq "package-mange") { return }
     $target = Join-Path $_.FullName "AGENTS.md"
@@ -109,14 +53,9 @@ Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object {
         }
     }
 }
-Clear-Content -Path $src
 
 # skills
-$DotfilesGitDir = "$Env:USERPROFILE\.config\dotfiles-misc"
-$DotfilesRepoUrl = "https://github.com/cscribn/dotfiles-misc"
-Initialize-SparseCheckoutRepo -RepoDir $DotfilesGitDir -RepoUrl $DotfilesRepoUrl -SparsePath ".agents/skills"
-
-$DotfilesSkillsDir = Join-Path $DotfilesGitDir ".agents\skills"
+$DotfilesSkillsDir = "$Env:USERPROFILE\.config\dotfiles-misc\.agents\skills"
 Get-ChildItem -Path "$Env:USERPROFILE\Projects" -Directory | ForEach-Object {
     if ($_.Name -eq "package-mange") { return }
     $ProjectRoot = $_.FullName

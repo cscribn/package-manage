@@ -1,8 +1,11 @@
 #!/opt/homebrew/bin/bash
 
+# dotfiles-misc
+git_clone_or_pull "https://github.com/cscribn/dotfiles-misc.git" "${HOME}/.config/dotfiles-misc" --quiet
+
 # bash
-curl -sSLo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-mac
-curl -sSLo "${HOME}/.inputrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/inputrc-mac
+cp "${HOME}/.config/dotfiles-misc/bash/bashrc-mac" "${HOME}/.bashrc"
+cp "${HOME}/.config/dotfiles-misc/bash/inputrc-mac" "${HOME}/.inputrc"
 
 # bbedit
 curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLanguageModule.plist" https://luminaryapps.com/code/CSharpLanguageModule.plist
@@ -17,37 +20,26 @@ if launchctl print "$finder_service" &>/dev/null; then
 fi
 
 # hammerspoon
-curl -sSLo "${HOME}/.hammerspoon/init.lua" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/hammerspoon/init.lua
+cp "${HOME}/.config/dotfiles-misc/hammerspoon/init.lua" "${HOME}/.hammerspoon/init.lua"
 
 # lsd
 mkdir -p "${HOME}/.config/lsd"
-curl -sSLo "${HOME}/.config/lsd/config.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/config.yaml
-curl -sSLo "${HOME}/.config/lsd/icons.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/icons.yaml
+cp "${HOME}/.config/dotfiles-misc/lsd/config.yaml" "${HOME}/.config/lsd/config.yaml"
+cp "${HOME}/.config/dotfiles-misc/lsd/icons.yaml" "${HOME}/.config/lsd/icons.yaml"
 
 # oh-my-posh
-git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
+git_clone_or_pull "https://github.com/cscribn/dotfiles-oh-my-posh.git" "${HOME}/.config/oh-my-posh" --quiet
 
 # vim
-curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc
+cp "${HOME}/.config/dotfiles-misc/vim/vimrc" "${HOME}/.vimrc"
 
-# zsh (sparse checkout of dotfiles-misc: repo root ~/.config, only the zsh directory)
-git_dir="${HOME}/.config"
-if [[ -d "$git_dir/.git" ]]; then
-    git -C "$git_dir" pull -q
-else
-    rm -rf "$git_dir/zsh" # legacy dotfiles-zsh clone
-    git -C "$git_dir" init -q
-    git -C "$git_dir" remote add origin "https://github.com/cscribn/dotfiles-misc.git"
-    git -C "$git_dir" sparse-checkout set --no-cone '/zsh/'
-    git -C "$git_dir" fetch -q origin
-    git -C "$git_dir" checkout -q -b main --track origin/main
-fi
-cp "${HOME}/.config/zsh/zshrc-mac" "${HOME}/.zshrc"
+# zsh
+cp "${HOME}/.config/dotfiles-misc/zsh/zshrc-mac" "${HOME}/.zshrc"
 
 # pwsh
 mkdir -p "${HOME}/.config/powershell"
-curl -sSLo "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Microsoft.PowerShell_profile.ps1
-curl -sSLo "${HOME}/.config/powershell/Terminal-Icons.Emoji.ps1" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/powershell-core/Terminal-Icons.Emoji.ps1
+cp "${HOME}/.config/dotfiles-misc/powershell-core/Microsoft.PowerShell_profile.ps1" "${HOME}/.config/powershell/Microsoft.PowerShell_profile.ps1"
+cp "${HOME}/.config/dotfiles-misc/powershell-core/Terminal-Icons.Emoji.ps1" "${HOME}/.config/powershell/Terminal-Icons.Emoji.ps1"
 
 # key bindings
 mkdir -p "${HOME}/Library/KeyBindings"

@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# dotfiles-misc
+git_clone_or_pull "https://github.com/cscribn/dotfiles-misc.git" "${HOME}/.config/dotfiles-misc" --quiet
+
 # bash
-curl -sSLo "${HOME}/.bashrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/bashrc-ubuntu
-curl -sSLo "${HOME}/.inputrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/bash/inputrc-ubuntu
+cp "${HOME}/.config/dotfiles-misc/bash/bashrc-ubuntu" "${HOME}/.bashrc"
+cp "${HOME}/.config/dotfiles-misc/bash/inputrc-ubuntu" "${HOME}/.inputrc"
 
 # laptop lid close actions - disable
 sudo -A sed -i 's/#\?HandleLidSwitch=.*/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
@@ -21,11 +24,11 @@ EOF'
 
 # lsd
 mkdir -p "${HOME}/.config/lsd"
-curl -sSLo "${HOME}/.config/lsd/config.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/config.yaml
-curl -sSLo "${HOME}/.config/lsd/icons.yaml" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/lsd/icons.yaml
+cp "${HOME}/.config/dotfiles-misc/lsd/config.yaml" "${HOME}/.config/lsd/config.yaml"
+cp "${HOME}/.config/dotfiles-misc/lsd/icons.yaml" "${HOME}/.config/lsd/icons.yaml"
 
 # oh-my-posh
-git_dir="${HOME}/.config/oh-my-posh"; if [[ -d "$git_dir" ]]; then cd "$git_dir"; git pull -q; cd -; else git clone -q "https://github.com/cscribn/dotfiles-oh-my-posh.git" "$git_dir"; fi
+git_clone_or_pull "https://github.com/cscribn/dotfiles-oh-my-posh.git" "${HOME}/.config/oh-my-posh" --quiet
 
 # sleep, suspend, hibernate, hybrid-sleep - disable
 sudo -A systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
@@ -34,19 +37,8 @@ sudo -A systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep
 sudo -A systemctl enable --now ssh
 
 # vim
-curl -sSLo "${HOME}/.vimrc" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/vim/vimrc
+cp "${HOME}/.config/dotfiles-misc/vim/vimrc" "${HOME}/.vimrc"
 
-# zsh (sparse checkout of dotfiles-misc: repo root ~/.config, only the zsh directory)
-git_dir="${HOME}/.config"
-if [[ -d "$git_dir/.git" ]]; then
-    git -C "$git_dir" pull -q
-else
-    rm -rf "$git_dir/zsh" # legacy dotfiles-zsh clone
-    git -C "$git_dir" init -q
-    git -C "$git_dir" remote add origin "https://github.com/cscribn/dotfiles-misc.git"
-    git -C "$git_dir" sparse-checkout set --no-cone '/zsh/'
-    git -C "$git_dir" fetch -q origin
-    git -C "$git_dir" checkout -q -b main --track origin/main
-fi
-cp "${HOME}/.config/zsh/zshrc-ubuntu" "${HOME}/.zshrc"
+# zsh
+cp "${HOME}/.config/dotfiles-misc/zsh/zshrc-ubuntu" "${HOME}/.zshrc"
 [ "$SHELL" != "$(which zsh)" ] && sudo chsh -s "$(which zsh)" "$USER"
