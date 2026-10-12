@@ -5,13 +5,13 @@ set -Eeuo pipefail
 exit_code=0
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+readonly REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 readonly MAX_RUNTIME_SECONDS=$((6 * 60 * 60))
-readonly LOG_DIR="${SCRIPT_DIR}/logs"
+readonly LOG_DIR="${REPO_ROOT}/logs"
 readonly LOG_FILE="${LOG_DIR}/package-manage.log"
 readonly STATE_DIR="${SCRIPT_DIR}/state"
 readonly LOCK_FILE="${STATE_DIR}/package-manage.lock"
-readonly WORKFLOW_PGREP="${REPO_ROOT}/bash/ubuntu/run-package-manage.sh|${REPO_ROOT}/bash/ubuntu/install-chad.sh|${REPO_ROOT}/bash/ubuntu/bin/install-chad.sh"
+readonly WORKFLOW_PGREP="${REPO_ROOT}/ubuntu/run-package-manage.sh|${REPO_ROOT}/ubuntu/install-chad.sh|${REPO_ROOT}/ubuntu/bin/install-chad.sh"
 
 timestamp() {
     date "+%A, %B %d, %Y - %I:%M %p"
@@ -109,17 +109,17 @@ run_step() {
 }
 
 resolve_install_script() {
-    if [[ -x "${REPO_ROOT}/bash/ubuntu/bin/install-chad.sh" ]]; then
-        echo "${REPO_ROOT}/bash/ubuntu/bin/install-chad.sh"
+    if [[ -x "${REPO_ROOT}/ubuntu/bin/install-chad.sh" ]]; then
+        echo "${REPO_ROOT}/ubuntu/bin/install-chad.sh"
         return 0
     fi
 
-    if [[ -x "${REPO_ROOT}/bash/ubuntu/install-chad.sh" ]]; then
-        echo "${REPO_ROOT}/bash/ubuntu/install-chad.sh"
+    if [[ -x "${REPO_ROOT}/ubuntu/install-chad.sh" ]]; then
+        echo "${REPO_ROOT}/ubuntu/install-chad.sh"
         return 0
     fi
 
-    echo "${REPO_ROOT}/bash/ubuntu/bin/install-chad.sh"
+    echo "${REPO_ROOT}/ubuntu/bin/install-chad.sh"
     return 1
 }
 

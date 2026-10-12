@@ -3,11 +3,11 @@
 set -euo pipefail
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+readonly REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 readonly MAX_RUNTIME_SECONDS=$((6 * 60 * 60))
-readonly LOG_FILE="${REPO_ROOT}/bash/macos/logs/package-manage.log"
-readonly LOCK_FILE="${REPO_ROOT}/bash/macos/state/package-manage.lock"
-readonly WORKFLOW_PGREP="${REPO_ROOT}/bash/macos/bin/run-package-manage.sh|${REPO_ROOT}/bash/macos/bin/install-chad.sh"
+readonly LOG_FILE="${REPO_ROOT}/logs/package-manage.log"
+readonly LOCK_FILE="${REPO_ROOT}/macos/state/package-manage.lock"
+readonly WORKFLOW_PGREP="${REPO_ROOT}/macos/bin/run-package-manage.sh|${REPO_ROOT}/macos/bin/install-chad.sh"
 
 timestamp() {
     date "+%A, %B %d, %Y - %I:%M %p"
@@ -123,7 +123,7 @@ run_workflow() {
     fi
 
     run_step "install-chad.sh" "${SCRIPT_DIR}/install-chad.sh" || exit_code=1
-    run_step "Update-Modules-Mac.ps1" /opt/homebrew/bin/pwsh ./pwsh/src/Private/Update-Modules-Mac.ps1 || exit_code=1
+    run_step "Update-Modules-Mac.ps1" /opt/homebrew/bin/pwsh ./win/src/Private/Update-Modules-Mac.ps1 || exit_code=1
 
     return "${exit_code}"
 }

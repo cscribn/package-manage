@@ -10,7 +10,7 @@ Group=chadb
 Environment=SUDO_ASKPASS=/home/chadb/.ssh/secrets/.supwd.sh
 Environment=USERNAME=chadb
 WorkingDirectory=/home/chadb/package-manage
-ExecStart=/usr/bin/env bash /home/chadb/package-manage/bash/ubuntu/run-package-manage.sh
+ExecStart=/usr/bin/env bash /home/chadb/package-manage/ubuntu/run-package-manage.sh
 StandardOutput=journal
 StandardError=journal
 

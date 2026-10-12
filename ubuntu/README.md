@@ -7,7 +7,7 @@ This directory contains the minimal Ubuntu version of the daily package workflow
 The wrapper runs as the normal user `chadb` and performs the daily update flow:
 
 - checks for stale or overlapping runs with a lock file
-- writes start and finish markers to `bash/ubuntu/logs/package-manage.log`
+- writes start and finish markers to `logs/package-manage.log`
 - runs `git pull` from the repo root
 - executes the Ubuntu `install-chad.sh` script
 - uses `sudo -A` with `SUDO_ASKPASS` for root-only steps such as `apt-get` and `systemctl`
@@ -51,14 +51,14 @@ Fix it once on the machine:
 
 ```bash
 sudo chown -R chadb:chadb /home/chadb/package-manage
-sudo install -d -o chadb -g chadb /home/chadb/package-manage/bash/ubuntu/logs /home/chadb/package-manage/bash/ubuntu/state
+sudo install -d -o chadb -g chadb /home/chadb/package-manage/logs /home/chadb/package-manage/ubuntu/state
 git config --global --add safe.directory /home/chadb/package-manage
 ```
 
 You can also verify the service user can write and pull from the repo:
 
 ```bash
-sudo -u chadb bash -lc 'touch /home/chadb/package-manage/bash/ubuntu/state/test-write && git -C /home/chadb/package-manage pull'
+sudo -u chadb bash -lc 'touch /home/chadb/package-manage/ubuntu/state/test-write && git -C /home/chadb/package-manage pull'
 ```
 
 ## First-time setup
@@ -66,8 +66,8 @@ sudo -u chadb bash -lc 'touch /home/chadb/package-manage/bash/ubuntu/state/test-
 The service runs as the normal user `chadb`, so the repo path must still be the actual checkout path and the askpass script must exist for that user before the timer is enabled.
 
 ```bash
-sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
-sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
+sudo cp ./ubuntu/package-manage.service /etc/systemd/system/package-manage.service
+sudo cp ./ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
 sudo systemctl daemon-reload
 sudo systemctl enable --now package-manage.timer
 sudo systemctl status package-manage.timer
@@ -76,8 +76,8 @@ sudo systemctl status package-manage.timer
 ## Update existing setup after changes
 
 ```bash
-sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
-sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
+sudo cp ./ubuntu/package-manage.service /etc/systemd/system/package-manage.service
+sudo cp ./ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
 sudo systemctl daemon-reload
 sudo systemctl restart package-manage.timer
 sudo systemctl status package-manage.timer
@@ -93,7 +93,7 @@ sudo journalctl -u package-manage.service -f
 ## Log inspection
 
 ```bash
-tail -f ./bash/ubuntu/logs/package-manage.log
+tail -f ./logs/package-manage.log
 ```
 
 A successful run ends with `systemd finish` in the log.

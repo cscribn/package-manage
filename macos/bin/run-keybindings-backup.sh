@@ -3,11 +3,11 @@
 set -euo pipefail
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+readonly REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 readonly SOURCE="${HOME}/Library/KeyBindings/DefaultKeyBinding.dict"
 readonly DEST_DIR="${HOME}/projects/KeyBindings"
 readonly DEST="${DEST_DIR}/DefaultKeyBinding.dict"
-readonly LOG_FILE="${REPO_ROOT}/bash/macos/logs/keybindings-backup.log"
+readonly LOG_FILE="${REPO_ROOT}/logs/keybindings-backup.log"
 
 timestamp() {
     date "+%A, %B %d, %Y - %I:%M %p"

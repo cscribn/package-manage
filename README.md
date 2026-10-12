@@ -16,18 +16,18 @@ Bash scripts that install/upgrade Raspberry Pi/Ubuntu packages.
 
 The Ubuntu workflow uses systemd instead of launchd so the daily package update job runs as root at 4:00 AM.
 
-Files live in [`bash/ubuntu/`](bash/ubuntu/) and include:
+Files live in [`ubuntu/`](ubuntu/) and include:
 
-- [`bash/ubuntu/run-package-manage.sh`](bash/ubuntu/run-package-manage.sh) for lock/log management and workflow execution
-- [`bash/ubuntu/package-manage.service`](bash/ubuntu/package-manage.service) for the systemd service unit
-- [`bash/ubuntu/package-manage.timer`](bash/ubuntu/package-manage.timer) for the 4:00 AM daily trigger
-- [`bash/ubuntu/bin/install-chad.sh`](bash/ubuntu/bin/install-chad.sh) for the actual Ubuntu install/update step
+- [`ubuntu/run-package-manage.sh`](ubuntu/run-package-manage.sh) for lock/log management and workflow execution
+- [`ubuntu/package-manage.service`](ubuntu/package-manage.service) for the systemd service unit
+- [`ubuntu/package-manage.timer`](ubuntu/package-manage.timer) for the 4:00 AM daily trigger
+- [`ubuntu/bin/install-chad.sh`](ubuntu/bin/install-chad.sh) for the actual Ubuntu install/update step
 
 First-time setup
 
 ```bash
-sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
-sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
+sudo cp ./ubuntu/package-manage.service /etc/systemd/system/package-manage.service
+sudo cp ./ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
 sudo systemctl daemon-reload
 sudo systemctl enable --now package-manage.timer
 sudo systemctl status package-manage.timer
@@ -36,8 +36,8 @@ sudo systemctl status package-manage.timer
 Update existing setup after changes
 
 ```bash
-sudo cp ./bash/ubuntu/package-manage.service /etc/systemd/system/package-manage.service
-sudo cp ./bash/ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
+sudo cp ./ubuntu/package-manage.service /etc/systemd/system/package-manage.service
+sudo cp ./ubuntu/package-manage.timer /etc/systemd/system/package-manage.timer
 sudo systemctl daemon-reload
 sudo systemctl restart package-manage.timer
 sudo systemctl status package-manage.timer
@@ -53,7 +53,7 @@ sudo journalctl -u package-manage.service -f
 Check logs
 
 ```bash
-tail -f ./bash/ubuntu/logs/package-manage.log
+tail -f ./logs/package-manage.log
 ```
 
 A successful run ends with `systemd finish` in the log.
@@ -93,7 +93,7 @@ The mac launchd setup relies on `sudo -A` and `SUDO_ASKPASS` for privileged oper
 
 ### mac install scripts
 
-Machine-specific install scripts live in [`bash/macos/bin/`](bash/macos/bin/) (e.g. [`install-chad.sh`](bash/macos/bin/install-chad.sh)). Shared helpers are in [`bash/macos/lib/install-helpers.sh`](bash/macos/lib/install-helpers.sh).
+Machine-specific install scripts live in [`macos/bin/`](macos/bin/) (e.g. [`install-chad.sh`](macos/bin/install-chad.sh)). Shared helpers are in [`macos/lib/install-helpers.sh`](macos/lib/install-helpers.sh).
 
 Source libs in this order:
 
@@ -109,24 +109,24 @@ To add a new machine, copy `install-chad.sh`, keep the shared lib sourcing and h
 
 ### mac launchd (setup/update)
 
-Use launchd to run the daily mac package workflow via [`run-package-manage.sh`](bash/macos/bin/run-package-manage.sh). The wrapper:
+Use launchd to run the daily mac package workflow via [`run-package-manage.sh`](macos/bin/run-package-manage.sh). The wrapper:
 
-- prevents overlapping runs with a lock file at `bash/macos/state/package-manage.lock`
+- prevents overlapping runs with a lock file at `macos/state/package-manage.lock`
 - uses `caffeinate` to keep the Mac awake during long installs
 - refreshes sudo before cask installs
-- writes start/finish markers to `bash/macos/logs/package-manage.log` for each phase (`launchd`, `install-chad.sh`, `Update-Modules-Mac.ps1`)
+- writes start/finish markers to `logs/package-manage.log` for each phase (`launchd`, `install-chad.sh`, `Update-Modules-Mac.ps1`)
 
 First-time setup
 
 ```zsh
-cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/; launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
+cp ./macos/launchd/package-manage.plist ~/Library/LaunchAgents/; launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
 ```
 
 Update existing setup after script path changes
 
 ```zsh
 launchctl bootout gui/$(id -u)/com.appfire-chadscribner.package-manage; \
-cp ./bash/macos/launchd/package-manage.plist ~/Library/LaunchAgents/; \
+cp ./macos/launchd/package-manage.plist ~/Library/LaunchAgents/; \
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/package-manage.plist
 ```
 
@@ -141,31 +141,31 @@ launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.package-manage
 Or run the wrapper directly:
 
 ```zsh
-./bash/macos/bin/run-package-manage.sh
+./macos/bin/run-package-manage.sh
 ```
 
 Verify and monitor logs
 
 ```zsh
 launchctl print gui/$(id -u)/com.appfire-chadscribner.package-manage; \
-tail -f ./bash/macos/logs/package-manage.log; \
-tail -f ./bash/macos/logs/package-manage-launchd.log
+tail -f ./logs/package-manage.log; \
+tail -f ./logs/package-manage-launchd.log
 ```
 
 A successful run ends with `launchd finish` in `package-manage.log`.
 
 ### mac launchd (KeyBindings backup)
 
-Use launchd to back up `~/Library/KeyBindings/DefaultKeyBinding.dict` into `~/projects/KeyBindings/` daily at 3:00 AM via [`run-keybindings-backup.sh`](bash/macos/bin/run-keybindings-backup.sh). The wrapper:
+Use launchd to back up `~/Library/KeyBindings/DefaultKeyBinding.dict` into `~/projects/KeyBindings/` daily at 3:00 AM via [`run-keybindings-backup.sh`](macos/bin/run-keybindings-backup.sh). The wrapper:
 
 - creates the destination directory if needed
 - copies the live keybindings file into `~/projects/KeyBindings/`
-- writes start/finish markers to `bash/macos/logs/keybindings-backup.log`
+- writes start/finish markers to `logs/keybindings-backup.log`
 
 First-time setup
 
 ```zsh
-cp ./bash/macos/launchd/keybindings-backup.plist ~/Library/LaunchAgents/; \
+cp ./macos/launchd/keybindings-backup.plist ~/Library/LaunchAgents/; \
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/keybindings-backup.plist
 ```
 
@@ -173,7 +173,7 @@ Update existing setup after script path changes
 
 ```zsh
 launchctl bootout gui/$(id -u)/com.appfire-chadscribner.keybindings-backup; \
-cp ./bash/macos/launchd/keybindings-backup.plist ~/Library/LaunchAgents/; \
+cp ./macos/launchd/keybindings-backup.plist ~/Library/LaunchAgents/; \
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/keybindings-backup.plist
 ```
 
@@ -186,19 +186,19 @@ launchctl kickstart -k gui/$(id -u)/com.appfire-chadscribner.keybindings-backup
 Or run the wrapper directly:
 
 ```zsh
-./bash/macos/bin/run-keybindings-backup.sh
+./macos/bin/run-keybindings-backup.sh
 ```
 
 Verify and monitor logs
 
 ```zsh
 launchctl print gui/$(id -u)/com.appfire-chadscribner.keybindings-backup; \
-tail -f ./bash/macos/logs/keybindings-backup.log
+tail -f ./logs/keybindings-backup.log
 ```
 
 A successful run ends with `launchd finish` in `keybindings-backup.log`.
 
-## pwsh/
+## win/
 
 Powershell scripts that install/upgrade Windows packages. Different files are used for different machines.
 

@@ -9,8 +9,8 @@ Use the scripts in `manual-repro/` when a human has seen a package-install failu
 Examples:
 
 ```powershell
-pwsh -NoLogo -NoProfile -File .\pwsh\tests\manual-repro\Repro-InstallUnknownId.ps1
-pwsh -NoLogo -NoProfile -File .\pwsh\tests\manual-repro\Repro-UpgradeOnly.ps1
+pwsh -NoLogo -NoProfile -File .\win\tests\manual-repro\Repro-InstallUnknownId.ps1
+pwsh -NoLogo -NoProfile -File .\win\tests\manual-repro\Repro-UpgradeOnly.ps1
 ```
 
 These scripts are intentionally narrow and copy-paste friendly. A human can read the log, copy the failing command, paste it into the script, and rerun it to inspect the output immediately.
@@ -21,7 +21,7 @@ Use the suite in `pester/` for repeatable validation after fixes.
 
 ```powershell
 $env:PACKAGE_MANAGE_ENABLE_WINGET_TESTS = '1'
-Invoke-Pester .\pwsh\tests\pester\WingetUtils.Tests.ps1
+Invoke-Pester .\win\tests\pester\WingetUtils.Tests.ps1
 ```
 
 ## Naming
@@ -31,4 +31,4 @@ Invoke-Pester .\pwsh\tests\pester\WingetUtils.Tests.ps1
 
 ## Notes
 
-These are real winget integration tests that touch the local machine. Run them deliberately and treat failures as regression candidates for the logic in `pwsh/src/Private/WingetUtils.psm1`.
+These are real winget integration tests that touch the local machine. Run them deliberately and treat failures as regression candidates for the logic in `win/src/Private/WingetUtils.psm1`.
