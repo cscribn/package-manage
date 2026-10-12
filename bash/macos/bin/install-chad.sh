@@ -135,8 +135,8 @@ twg update --output json
 git_clone_or_pull "https://github.com/zsh-users/zsh-autosuggestions" "${HOME}/.zsh/zsh-autosuggestions" --quiet
 git_clone_or_pull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "${HOME}/.zsh/zsh-syntax-highlighting" --quiet
 
-source "${script_dir}/../lib/copy-projects-chad.sh"
 source "${script_dir}/../lib/copy-config.sh"
+source "${script_dir}/../lib/copy-projects-chad.sh"
 
 # cleanup
 brew_cleanup

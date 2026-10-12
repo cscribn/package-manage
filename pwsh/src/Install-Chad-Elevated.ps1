@@ -50,35 +50,17 @@ wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; do-release-upgrade -f Dist
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get autoremove $AptFlags"
 wsl -d "Ubuntu" -u root -e bash -c "export $EnvFlags; apt-get clean $AptFlags"
 
+. $PSScriptRoot\Private\Copy-Config.ps1
+. $PSScriptRoot\Private\Copy-ProjectsChad.ps1
+
 # config
 ## git
 git config --global diff.word.textconv pandoc --to=markdown
 
-## agent instructions
-New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\ai"
-curl -sSLo "$Env:USERPROFILE\.config\ai\AGENTS.md" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/ai/AGENTS.md
-
 ## microsoft-windows-terminal
 $LocalStateDir = Get-ChildItem -Path "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_*\LocalState"
-curl -sSLo "$LocalStateDir\settings.json" https://raw.githubusercontent.com/cscribn/dotfiles-misc/main/microsoft-windows-terminal/LocalState/settings-chad.json
+Copy-Item -Path "$Env:USERPROFILE\.config\dotfiles-misc\microsoft-windows-terminal/LocalState/settings-chad.json" -Destination "$LocalStateDir\settings.json" -Force
 
-# requirements
-$GitDir = "$Env:USERPROFILE\.config\dotfiles-misc"
-if (Test-Path $GitDir) {
-    Set-Location $GitDir
-    git pull -q origin; Set-Location -
-} else {
-    git init -q $GitDir
-    Set-Location $GitDir
-    git checkout -q -b main
-    git remote add origin "https://github.com/cscribn/dotfiles-misc"
-    git sparse-checkout set "requirements"
-    git pull -q --set-upstream origin main
-    Set-Location -
-}
-
-. $PSScriptRoot\Private\Copy-ProjectsChad.ps1
-. $PSScriptRoot\Private\Copy-Config.ps1
 . $PSScriptRoot\Private\Remove-Unwanted.ps1
 . $PSScriptRoot\Private\Reset-Network.ps1
 

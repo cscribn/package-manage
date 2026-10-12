@@ -24,7 +24,6 @@ Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\microsoft-windows
 Git-CloneOrPull -Url "https://github.com/cscribn/dotfiles-oh-my-posh.git" -Destination "$Env:USERPROFILE\.config\oh-my-posh" -Quiet
 
 # powershell-core
-New-Item -ItemType Directory -Force -Path "$Env:USERPROFILE\.config\powershell"
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\powershell-core\Microsoft.PowerShell_profile.ps1" -Destination "$Env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\powershell-core\Terminal-Icons.Emoji.ps1" -Destination "$Env:USERPROFILE\Documents\PowerShell\Terminal-Icons.Emoji.ps1"
 
