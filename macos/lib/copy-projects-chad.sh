@@ -49,7 +49,7 @@ sync_skills_from_src_into_project() {
 
 ai_pilot_git_dir="${HOME}/.config/ai-pilot-skills"
 ai_pilot_repo_url="https://bitbucket.org/appfire/ai-pilot-skills.git"
-git_clone_or_pull "$ai_pilot_git_dir" "$ai_pilot_repo_url" --quiet
+git_clone_or_pull "$ai_pilot_repo_url" "$ai_pilot_git_dir" --quiet
 
 # skills - sync
 dotfiles_skills_dir="${HOME}/.config/dotfiles-misc/.agents/skills"
