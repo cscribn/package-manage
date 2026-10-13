@@ -6,7 +6,10 @@ Configure project after cloning.
 
 ```zsh
 git config core.hooksPath .githooks
+chmod +x ./macos/bin/*.sh
 ```
+
+The `chmod` step is required for launchd and direct runs. The pre-commit hook sets `+x` on staged `.sh`/`.ps1` files; entry scripts in `macos/bin/` are also tracked executable in git.
 
 ## pi* & ubuntu*
 
@@ -151,6 +154,8 @@ launchctl print gui/$(id -u)/com.appfire-chadscribner.package-manage; \
 tail -f ./logs/package-manage.log; \
 tail -f ./logs/package-manage-launchd.log
 ```
+
+If `launchctl print` shows `last exit code = 78: EX_CONFIG`, the wrapper scripts are not executable. Run `chmod +x ./macos/bin/*.sh`, then repeat the update steps (bootout, copy plist, bootstrap) before `kickstart`.
 
 A successful run ends with `launchd finish` in `package-manage.log`.
 
