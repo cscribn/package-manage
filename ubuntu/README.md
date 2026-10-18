@@ -17,7 +17,7 @@ The wrapper runs as the normal user `chadb` and performs the daily update flow:
 - `run-package-manage.sh` - runner and lock/log management
 - `package-manage.service` - systemd service entry point
 - `package-manage.timer` - runs the service at 04:00 daily
-- `install-chad.sh` - wrapper or entry script for the actual Ubuntu install logic
+- `bin/install-chad.sh` - wrapper or entry script for the actual Ubuntu install logic
 
 ## Unattended sudo setup
 
@@ -42,6 +42,8 @@ sudo -A -v
 ```
 
 If that succeeds, the systemd unit can keep `Environment=SUDO_ASKPASS=/home/chadb/.ssh/secrets/.supwd.sh` and `Environment=USERNAME=chadb` and the service can run without interactively prompting for a password.
+
+Every root operation in these scripts must use `sudo -A` (directly or through `apt_run`). The service has no terminal, so a bare `sudo` fails with `sudo: A terminal is required to authenticate` and aborts the workflow. `install-batocera-env.sh` also re-runs the workflow with `sudo -A su` after adding the user to the `docker` group, so the new group takes effect in the same run.
 
 ## Repository ownership and Git safety setup
 
@@ -97,3 +99,17 @@ tail -f ./logs/package-manage.log
 ```
 
 A successful run ends with `systemd finish` in the log.
+
+## Troubleshooting
+
+The runner redirects all step output to `logs/package-manage.log`, so a failure usually shows an exit code in `journalctl` with no detail there. Start with the log file:
+
+```bash
+tail -30 ~/package-manage/logs/package-manage.log
+```
+
+Common failures:
+
+- `install-chad.sh finish (exit 126)` next to `Permission denied`: the script has no executable bit. Restore it with `chmod +x ubuntu/run-package-manage.sh ubuntu/bin/install-chad.sh ubuntu/lib/*.sh`. Current runners call the entry script through `bash`, but `install-batocera-env.sh` re-executes itself, so the bits still matter.
+- `sudo authentication failed via SUDO_ASKPASS`: the askpass script is missing, not executable, or the password is wrong. Re-run the `sudo -A -v` check above as `chadb`.
+- Nothing appended to the log at all: the service user cannot write `logs/` or `ubuntu/state/`. Run the `chown`/`install -d` commands above.

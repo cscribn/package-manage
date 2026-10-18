@@ -109,12 +109,13 @@ run_step() {
 }
 
 resolve_install_script() {
-    if [[ -x "${REPO_ROOT}/ubuntu/bin/install-chad.sh" ]]; then
+    # Invoked through bash, so the executable bit is not required here.
+    if [[ -f "${REPO_ROOT}/ubuntu/bin/install-chad.sh" ]]; then
         echo "${REPO_ROOT}/ubuntu/bin/install-chad.sh"
         return 0
     fi
 
-    if [[ -x "${REPO_ROOT}/ubuntu/install-chad.sh" ]]; then
+    if [[ -f "${REPO_ROOT}/ubuntu/install-chad.sh" ]]; then
         echo "${REPO_ROOT}/ubuntu/install-chad.sh"
         return 0
     fi
@@ -148,7 +149,7 @@ run_workflow() {
         return 1
     fi
 
-    run_step "install-chad.sh" "${install_script}" || exit_code=1
+    run_step "install-chad.sh" bash "${install_script}" || exit_code=1
     return "${exit_code}"
 }
 

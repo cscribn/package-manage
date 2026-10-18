@@ -16,11 +16,11 @@ sudo -A systemctl restart systemd-logind
 # login - automatic
 TARGET_USER="${SUDO_USER:-${USER:-$(whoami)}}"
 sudo -A mkdir -p /etc/lightdm/lightdm.conf.d/
-sudo -A sh -c 'cat <<EOF > /etc/lightdm/lightdm.conf.d/50-autologin.conf
+sudo -A tee /etc/lightdm/lightdm.conf.d/50-autologin.conf > /dev/null <<EOF
 [Seat:*]
 autologin-user=${TARGET_USER}
 autologin-user-timeout=0
-EOF'
+EOF
 
 # lsd
 mkdir -p "${HOME}/.config/lsd"
@@ -41,4 +41,4 @@ cp "${HOME}/.config/dotfiles-misc/vim/vimrc" "${HOME}/.vimrc"
 
 # zsh
 cp "${HOME}/.config/dotfiles-misc/zsh/zshrc-ubuntu" "${HOME}/.zshrc"
-[ "$SHELL" != "$(which zsh)" ] && sudo chsh -s "$(which zsh)" "$USER"
+[ "$SHELL" != "$(which zsh)" ] && sudo -A chsh -s "$(which zsh)" "$USER"

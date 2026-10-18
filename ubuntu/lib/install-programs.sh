@@ -16,7 +16,7 @@ apt_run install bat -y
 apt_run install btop -y
 apt_run install curl -y
 apt_run install fastfetch -y
-sudo snap refresh firefox
+sudo -A snap refresh firefox
 apt_run install fzf -y
 apt_run install git -y
 apt_run install htop -y
@@ -24,8 +24,8 @@ apt_run install jq -y
 apt_run install lsd -y
 
 # oh-my-posh
-sudo wget -nv https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notice
+sudo -A wget -nv https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo -A chmod +x /usr/local/bin/oh-my-posh; /usr/local/bin/oh-my-posh disable notice
 
 apt_run install ripgrep -y
 apt_run install samba -y
