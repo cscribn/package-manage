@@ -47,6 +47,7 @@ if (($Output = Install-WinGetPackageClean -Id FlorianHeidenreich.Mp3tag) -eq $IN
     regsvr32 /s "C:\Program Files\Mp3tag\Mp3tagShell.dll"
 }
 Write-Output $Output
+Install-WinGetPackageClean -Id ring0.MP3val.WF
 Install-WinGetPackageClean -Id Insecure.Nmap
 Install-WinGetPackageClean -Id Notepad++.Notepad++
 Install-WinGetPackageClean -Id gsass1.NTop
