@@ -1,10 +1,10 @@
-#!/opt/homebrew/bin/bash
+#!/bin/bash
 
 [[ -n "${_INSTALL_HELPERS_LOADED:-}" ]] && return 0
 _INSTALL_HELPERS_LOADED=1
 
 apt_run() {
-    sudo -A -E env \
+    sudo -A env \
         DEBIAN_FRONTEND=noninteractive \
         DEBCONF_NONINTERACTIVE_SEEN=true \
         apt-get -o Dpkg::Use-Pty=0 -qq "$@"
