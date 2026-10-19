@@ -2,7 +2,6 @@
 # append C:\jdk to PATH
 # backblaze
 # github desktop
-# grill-me skill
 # iso compressor
 # krita generative AI - https://github.com/Acly/krita-ai-diffusion
 # mise (first install only from https://github.com/jdx/mise/releases)
