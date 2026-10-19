@@ -2,7 +2,13 @@
 # davinici resolve, set video directory to Documents\DavinciResolve
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
-# libreoffice settings: disable jre, enable quickstarter, set default saves to office formats.
+# libre office settings
+## download, install aptos fonts - https://www.microsoft.com/en-us/download/details.aspx?id=106087
+## View -> User Interface -> Tabbed, all
+## 3 Lines -> Options -> LibreOffice Writer -> Basic Fonts (Western), default aptos, heading aptos display
+## 3 Lines -> Options -> LibreOffice Writer -> Compatibility, word-compatible..., use word-compatible..., default
+## 3 Lines -> Options -> Load/Save -> General, always save as 365 and warn uncheck. Repeat for calc and impress.
+## 3 Lines -> Options -> LibreOffice -> Advanced, uncheck java runtime.
 # powershell msi https://github.com/powershell/powershell/releases
 # winget
 #

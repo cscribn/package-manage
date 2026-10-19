@@ -3,6 +3,13 @@
 # Non-package installations (add/update these first)
 # filezilla
 # google drive - don't use brew
+# libre office settings
+## download, install aptos fonts - https://www.microsoft.com/en-us/download/details.aspx?id=106087
+## View -> User Interface -> Tabbed, all
+## 3 Lines -> Options -> LibreOffice Writer -> Basic Fonts (Western), default aptos, heading aptos display
+## 3 Lines -> Options -> LibreOffice Writer -> Compatibility, word-compatible..., use word-compatible..., default
+## 3 Lines -> Options -> Load/Save -> General, always save as 365 and warn uncheck. Repeat for calc and impress.
+## 3 Lines -> Options -> LibreOffice -> Advanced, uncheck java runtime.
 # screen shot: In Finder locate Application/Utilities/ScreenShot.app, grab a hold of the app, and drag/drop onto the Dock.
 # sudo git lfs install --system
 # twg: bash <(curl -fsSL https://teamwork-graph.atlassian.com/cli/install)
