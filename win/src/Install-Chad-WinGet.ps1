@@ -40,7 +40,6 @@ Install-WinGetPackageClean -Id SBCL.SBCL # steel bank common lisp
 Install-WinGetPackageClean -Id srjuddington.slade
 Install-WinGetPackageClean -Id SQLite.SQLite
 Install-WinGetPackageClean -Id UB-Mannheim.TesseractOCR
-Install-WinGetPackageClean -Id astral-sh.uv
 Install-WinGetPackageClean -Id Oracle.VirtualBox
 Install-WinGetPackageClean -Id WireGuard.WireGuard
 Install-WinGetPackageClean -Id MikeFarah.yq
