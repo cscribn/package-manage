@@ -1,5 +1,6 @@
 # Non-package installations (add/update these first):
-# davinici resolve, set video directory to Documents\DavinciResolve
+# davinci resolve, set video directory to Documents\DavinciResolve
+## if restoring, use %APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Resolve Project Library\Resolve Projects
 # freefilesync
 # git-sdk (uninstall once pacman is scriptable)
 # libre office settings
