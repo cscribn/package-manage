@@ -48,6 +48,13 @@ if (($Output = Install-WinGetPackageClean -Id FlorianHeidenreich.Mp3tag) -eq $IN
 }
 Write-Output $Output
 Install-WinGetPackageClean -Id ring0.MP3val.WF
+$Path = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\MP3Val Frontend.lnk"
+if (-not (Test-Path $Path)) {
+    $s = (New-Object -ComObject WScript.Shell).CreateShortcut($Path)
+    $s.TargetPath = "powershell.exe"
+    $s.Arguments = '-WindowStyle Hidden -Command "mp3val-frontend"'
+    $s.Save()
+}
 Install-WinGetPackageClean -Id Insecure.Nmap
 Install-WinGetPackageClean -Id Notepad++.Notepad++
 Install-WinGetPackageClean -Id gsass1.NTop
