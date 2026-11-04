@@ -43,7 +43,6 @@ function Remove-UnwantedShortcuts {
             'Paragon Partition Manager*.lnk',
             'PDFgear.lnk',
             'Plantronics Hub.lnk',
-            'Postman.lnk',
             'RealTimeSync.lnk',
             'Redragon * Keyboard.lnk',
             'Roblox Player.lnk',

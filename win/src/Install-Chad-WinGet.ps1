@@ -31,7 +31,6 @@ Install-WinGetPackageClean -Id OpenJS.NodeJS.LTS
 Install-WinGetPackageClean -Id Ollama.Ollama -InstallType "SkipIfInstalled"
 Install-WinGetPackageClean -Id Poly.PlantronicsHub
 Install-WinGetPackageClean -Id oschwartz10612.Poppler
-Install-WinGetPackageClean -Id Postman.Postman
 Install-WinGetPackageClean -Id PuTTY.PuTTY
 Install-WinGetPackageClean -Id "Python.Python." -InstallType "UnknownId"
 Install-WinGetPackageClean -Id RaspberryPiFoundation.RaspberryPiImager

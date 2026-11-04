@@ -115,7 +115,6 @@ brew_install_cask microsoft-auto-update
 brew_ensure_cask microsoft-edge
 brew_install_cask pgadmin4
 brew_install_cask postgres-unofficial
-brew_upgrade_force_cask postman
 brew_install_cask the-unarchiver
 brew_ensure_cask visual-studio-code
 brew_install_cask vlc
