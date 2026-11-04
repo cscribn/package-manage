@@ -92,6 +92,31 @@ sudo systemctl start package-manage.service
 sudo journalctl -u package-manage.service -f
 ```
 
+## Temporarily disable for uninterrupted work
+
+Disable the timer before starting work that must not have `apt-get` or `systemctl` run underneath it.
+
+```bash
+sudo systemctl disable --now package-manage.timer
+systemctl list-timers package-manage.timer --no-pager
+```
+
+- `disable --now` stops the timer and removes the `timers.target` enable link, so it stays off across reboots for the whole build.
+- `list-timers` must show no `NEXT` entry.
+- `sudo systemctl stop package-manage.timer` alone only covers the current boot. `timers.target` re-arms enabled timers at boot, so a build that reboots will get the 04:00 run back.
+- If `package-manage.service` shows `active (running)`, either let it finish (`journalctl -u package-manage.service -f`) or stop it and repair dpkg before building: `sudo dpkg --configure -a`. Stopping mid-run can leave apt half-configured.
+
+### Re-enable after finishing uninterrupted work
+
+```bash
+sudo systemctl enable --now package-manage.timer
+systemctl list-timers package-manage.timer --no-pager
+```
+
+- `enable --now` restores the boot link and the 04:00 schedule.
+- `package-manage.timer` has `Persistent=true`, so systemd runs the missed job as soon as the timer is active again. Expect an immediate run; check it with `tail -5 logs/package-manage.log`.
+- A run interrupted by the build leaves `ubuntu/state/package-manage.lock`. The next run deletes it automatically once the recorded pid is gone, so no manual cleanup is needed.
+
 ## Log inspection
 
 ```bash
