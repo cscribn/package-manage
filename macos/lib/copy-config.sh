@@ -12,6 +12,9 @@ curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/CSharpLa
 curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/PowerShell.plist" https://raw.githubusercontent.com/doug-baer/BBEdit-PowerShell/master/PowerShell.plist
 defaults write com.barebones.bbedit ZoomWindowsInPlace -bool NO
 
+# blesh
+cp "${HOME}/.config/dotfiles-misc/blesh/.bleshrc" "${HOME}/.bleshrc"
+
 # finder - show all files (launchctl restarts Finder without the TCC popup from killall)
 defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
 finder_service="gui/$(id -u)/com.apple.Finder"

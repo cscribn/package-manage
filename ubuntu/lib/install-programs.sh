@@ -13,6 +13,11 @@ apt_run update
 apt_run dist-upgrade -y
 
 apt_run install bat -y
+
+# blesh
+cd ~ && curl -L https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz | tar xJf - && bash ble-nightly/ble.sh --install ~/.local/share && rm -rf ble-nightly && cd -
+bash --login -c 'exit'
+
 apt_run install btop -y
 apt_run install curl -y
 apt_run install fastfetch -y
