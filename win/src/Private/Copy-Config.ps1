@@ -5,6 +5,9 @@ Git-CloneOrPull -Url "https://github.com/cscribn/dotfiles-misc.git" -Destination
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\bash\bashrc-win" -Destination "$Env:USERPROFILE\.bashrc"
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\bash\inputrc-win" -Destination "$Env:USERPROFILE\.inputrc"
 
+# blesh
+Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\blesh\.bleshrc" -Destination "$Env:USERPROFILE\.bleshrc"
+
 # clink
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\clink\oh-my-posh.lua" -Destination "$Env:LOCALAPPDATA\clink\oh-my-posh.lua"
 
