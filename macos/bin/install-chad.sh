@@ -44,7 +44,6 @@ brew_install_formula bat
 
 # blesh
 cd ~ && curl -L https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz | tar xJf - && bash ble-nightly/ble.sh --install ~/.local/share && rm -rf ble-nightly && cd -
-bash --login -c 'exit'
 
 brew_install_formula btop
 brew_install_formula bun

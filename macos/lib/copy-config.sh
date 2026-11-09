@@ -13,7 +13,7 @@ curl -sSLo "${HOME}/Library/Application Support/BBEdit/Language Modules/PowerShe
 defaults write com.barebones.bbedit ZoomWindowsInPlace -bool NO
 
 # blesh
-cp "${HOME}/.config/dotfiles-misc/blesh/.bleshrc" "${HOME}/.bleshrc"
+rm -f "${HOME}/.bleshrc"
 
 # finder - show all files (launchctl restarts Finder without the TCC popup from killall)
 defaults write com.apple.finder "AppleShowAllFiles" -bool "true"

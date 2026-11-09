@@ -25,7 +25,6 @@ $Global:InformationPreference = 'Continue'
 
 # blesh
 & "C:\Program Files\Git\bin\bash.exe" -c "cd ~ && curl -L https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz | tar xJf - && bash ble-nightly/ble.sh --install ~/.local/share && rm -rf ble-nightly"
-& "C:\Program Files\Git\bin\bash.exe" --login -c 'exit'
 
 # chocolatey
 choco upgrade chocolatey -y -r -q
@@ -49,7 +48,7 @@ if (-Not (Test-Path "C:\Program Files\Git\usr\bin\pacman.exe") -and (Test-Path "
     Copy-Item -Recurse "C:\git-sdk-64\etc\pacman.d" -Destination "C:\Program Files\Git\etc"
     Copy-Item -Recurse "C:\git-sdk-64\var" -Destination "C:\Program Files\Git"
 }
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S -q --needed --noconfirm --overwrite \* pacman"
+& "C:\Program Files\Git\bin\bash.exe" -c "pacman -S -q --needed --noconfirm --overwrite \* pacman"
 
 # powershell modules
 Update-Module -Name Microsoft.WinGet.Client
@@ -58,7 +57,7 @@ Update-Module -Name PSReadLine
 Update-Module -Name Terminal-Icons
 
 # zsh
-& "C:\Program Files\Git\bin\bash.exe" -c -i "pacman -S -q --needed --noconfirm --overwrite \* zsh"
+& "C:\Program Files\Git\bin\bash.exe" -c "pacman -S -q --needed --noconfirm --overwrite \* zsh"
 Git-CloneOrPull -Url "https://github.com/zsh-users/zsh-autosuggestions" -Destination "$Env:USERPROFILE\.zsh\zsh-autosuggestions" -Quiet
 Git-CloneOrPull -Url "https://github.com/zsh-users/zsh-syntax-highlighting.git" -Destination "$Env:USERPROFILE\.zsh\zsh-syntax-highlighting" -Quiet
 Get-ChildItem $HOME | Where-Object { $_.Name -match '^\.zsh_history\..+' } | Where-Object LastWriteTime -lt  (Get-Date).AddDays(-5) | Remove-Item

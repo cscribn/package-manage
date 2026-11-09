@@ -6,7 +6,7 @@ Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\bash\bashrc-win" 
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\bash\inputrc-win" -Destination "$Env:USERPROFILE\.inputrc"
 
 # blesh
-Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\blesh\.bleshrc" -Destination "$Env:USERPROFILE\.bleshrc"
+Remove-Item "$Env:USERPROFILE\.bleshrc" -Force
 
 # clink
 Copy-Item -Force -Path "$Env:USERPROFILE\.config\dotfiles-misc\clink\oh-my-posh.lua" -Destination "$Env:LOCALAPPDATA\clink\oh-my-posh.lua"

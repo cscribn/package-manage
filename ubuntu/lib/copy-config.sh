@@ -8,7 +8,7 @@ cp "${HOME}/.config/dotfiles-misc/bash/bashrc-ubuntu" "${HOME}/.bashrc"
 cp "${HOME}/.config/dotfiles-misc/bash/inputrc-ubuntu" "${HOME}/.inputrc"
 
 # blesh
-cp "${HOME}/.config/dotfiles-misc/blesh/.bleshrc" "${HOME}/.bleshrc"
+rm -f "${HOME}/.bleshrc"
 
 # laptop lid close actions - disable
 sudo -A sed -i 's/#\?HandleLidSwitch=.*/HandleLidSwitch=ignore/' /etc/systemd/logind.conf

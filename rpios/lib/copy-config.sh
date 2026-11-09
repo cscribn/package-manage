@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # blesh
-cp "${HOME}/.config/dotfiles-misc/blesh/.bleshrc" "${HOME}/.bleshrc"
+rm -f "${HOME}/.bleshrc"
 
 # dotfiles-misc
 git_clone_or_pull "https://github.com/cscribn/dotfiles-misc.git" "${HOME}/.config/dotfiles-misc" --quiet
