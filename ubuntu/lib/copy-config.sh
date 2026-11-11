@@ -7,9 +7,6 @@ git_clone_or_pull "https://github.com/cscribn/dotfiles-misc.git" "${HOME}/.confi
 cp "${HOME}/.config/dotfiles-misc/bash/bashrc-ubuntu" "${HOME}/.bashrc"
 cp "${HOME}/.config/dotfiles-misc/bash/inputrc-ubuntu" "${HOME}/.inputrc"
 
-# blesh
-rm -f "${HOME}/.bleshrc"
-
 # laptop lid close actions - disable
 sudo -A sed -i 's/#\?HandleLidSwitch=.*/HandleLidSwitch=ignore/' /etc/systemd/logind.conf
 sudo -A sed -i 's/#\?HandleLidSwitchExternalPower=.*/HandleLidSwitchExternalPower=ignore/' /etc/systemd/logind.conf
