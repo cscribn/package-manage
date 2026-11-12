@@ -32,7 +32,12 @@ Install-WinGetPackageClean -Id Ollama.Ollama -InstallType "SkipIfInstalled"
 Install-WinGetPackageClean -Id Poly.PlantronicsHub
 Install-WinGetPackageClean -Id oschwartz10612.Poppler
 Install-WinGetPackageClean -Id PuTTY.PuTTY
-Install-WinGetPackageClean -Id "Python.Python." -InstallType "UnknownId"
+
+if (($Output = Install-WinGetPackageClean -Id "Python.Python." -InstallType "UnknownId") -eq $INSTALLED_OR_UPGRADED) {
+    pipx list --short | ForEach-Object { pipx uninstall $_ }
+    pipx reset --force
+}
+
 Install-WinGetPackageClean -Id RaspberryPiFoundation.RaspberryPiImager
 Install-WinGetPackageClean -Id Rufus.Rufus
 Install-WinGetPackageClean -Id SBCL.SBCL # steel bank common lisp
