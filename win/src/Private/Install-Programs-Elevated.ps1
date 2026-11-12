@@ -18,7 +18,7 @@
 # LibreOffice.CalcDocument - csv, xls, xlsx
 # LibreOffice.WriterDocument - doc, docx
 # LibreOffice.ImpressDocument - ppt, pptx
-# VLC - avi, flac, flv, m4a, m4v, mov, mp3, mpeg, mpg, rm, swf, wav, wmv
+# VLC - 3g2, avi, flac, flv, m4a, m4v, mov, mp3, mpeg, mpg, rm, swf, wav, wmv
 
 [CmdletBinding()]
 $Global:InformationPreference = 'Continue'
