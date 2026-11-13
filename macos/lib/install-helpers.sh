@@ -137,6 +137,10 @@ git_clone_or_pull() {
     fi
 }
 
+pipx_reset_unattended() {
+    pipx reset -q --yes
+}
+
 pipx_ensure_package() {
     local package="$1"
     local venv_python="${HOME}/.local/pipx/venvs/${package}/bin/python"

@@ -85,7 +85,7 @@ if brew_install_formula python; then
         pipx uninstall "${package}"
     done
 
-    pipx reset --force
+    pipx_reset_unattended
 fi
 
 brew_install_formula python@3.12

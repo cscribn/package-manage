@@ -5,6 +5,7 @@ Import-Module "$PSScriptRoot\Private\WingetUtils.psm1" -Force
 
 Get-Date -Format "dddd, MMMM dd, yyyy - hh:mm tt"
 
+. $PSScriptRoot\Private\Install-Helpers.ps1
 . $PSScriptRoot\Private\Install-Programs-WinGet.ps1
 . $PSScriptRoot\Private\Install-Apps-WinGet.ps1
 
@@ -35,7 +36,7 @@ Install-WinGetPackageClean -Id PuTTY.PuTTY
 
 if (($Output = Install-WinGetPackageClean -Id "Python.Python." -InstallType "UnknownId") -eq $INSTALLED_OR_UPGRADED) {
     pipx list --short | ForEach-Object { ($_.Trim() -split '\s+')[0] } | Where-Object { $_ } | ForEach-Object { pipx uninstall $_ }
-    pipx reset --force
+    Reset-PipxUnattended
 }
 
 Install-WinGetPackageClean -Id RaspberryPiFoundation.RaspberryPiImager

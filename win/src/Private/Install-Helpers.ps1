@@ -39,6 +39,10 @@ function Get-PipxVenvPythonPath {
     return Join-Path $defaultRoot "venvs\$venvName\Scripts\python.exe"
 }
 
+function Reset-PipxUnattended {
+    pipx reset -q --yes
+}
+
 function Ensure-PipxPackage {
     [CmdletBinding()]
     param(
