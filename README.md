@@ -108,6 +108,8 @@ source "${script_dir}/../lib/install-helpers.sh"
 
 `install-helpers.sh` provides `setup_brew_env`, `brew_bootstrap`, `brew_install_formula`, cask helpers (`brew_install_cask`, `brew_ensure_cask`, `brew_upgrade_force_cask`), `nvm_install_lts_prune`, `git_clone_or_pull`, `log_section`, and `brew_cleanup`. Cask helpers call `refresh_sudo` from `sudo-askpass.sh`.
 
+`brew_install_formula` returns 0 only when the formula was installed or upgraded, and nonzero when it was already up-to-date or the brew calls failed.
+
 To add a new machine, copy `install-chad.sh`, keep the shared lib sourcing and helper calls, and swap the package lists plus machine-specific libs (e.g. `copy-projects-chad.sh` → `copy-projects-lisa.sh`). Set `PACKAGE_MANAGE_LOG_PREFIX` before sourcing helpers to distinguish machines in logs.
 
 ### mac launchd (setup/update)

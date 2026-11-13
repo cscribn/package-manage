@@ -77,7 +77,17 @@ brew_install_formula perl
 brew_install_formula pipx; pipx ensurepath
 (brew_install_formula powershell; launchctl setenv POWERSHELL_UPDATECHECK Off) && brew link powershell
 brew_install_formula pre-commit
-brew_install_formula python
+
+if brew_install_formula python; then
+    mapfile -t pipx_packages < <(pipx list --short | awk 'NF {print $1}')
+
+    for package in "${pipx_packages[@]}"; do
+        pipx uninstall "${package}"
+    done
+
+    pipx reset --force
+fi
+
 brew_install_formula python@3.12
 brew_install_formula ripgrep
 brew_install_formula sbcl # steel bank common lisp

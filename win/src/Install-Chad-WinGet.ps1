@@ -34,7 +34,7 @@ Install-WinGetPackageClean -Id oschwartz10612.Poppler
 Install-WinGetPackageClean -Id PuTTY.PuTTY
 
 if (($Output = Install-WinGetPackageClean -Id "Python.Python." -InstallType "UnknownId") -eq $INSTALLED_OR_UPGRADED) {
-    pipx list --short | ForEach-Object { pipx uninstall $_ }
+    pipx list --short | ForEach-Object { ($_.Trim() -split '\s+')[0] } | Where-Object { $_ } | ForEach-Object { pipx uninstall $_ }
     pipx reset --force
 }
 

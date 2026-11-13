@@ -51,10 +51,20 @@ brew_trust_tap() {
     brew trust "${tap}" && brew tap "${tap}"
 }
 
+# Returns 0 when the formula was installed or upgraded, nonzero when it was
+# already up-to-date or the brew calls failed.
 brew_install_formula() {
     local formula="$1"
     shift
-    brew install "$@" "${formula}" || brew upgrade "$@" "${formula}"
+    local outdated=""
+
+    brew install "$@" "${formula}" && return 0
+
+    # brew upgrade exits 0 even when nothing was upgraded, so gate on outdated.
+    outdated="$(brew outdated --quiet "$@" "${formula}")" || return 1
+    [[ -n "${outdated}" ]] || return 1
+
+    brew upgrade "$@" "${formula}"
 }
 
 _brew_cask_log() {
